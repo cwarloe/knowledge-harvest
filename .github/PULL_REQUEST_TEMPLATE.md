@@ -1,24 +1,24 @@
-## Description
+### Description
 
-Provide a concise description of the changes in this pull request.
+Provide a summary of the changes and the issue(s) this pull request addresses.  Include context on why these changes were needed.
 
-## Related Issue
+### Issue(s)
 
-Link to a GitHub issue if applicable.
+Closes #
 
-## Type of Change
+### Type of change
 
-- [ ] Bug fix
 - [ ] Feature
-- [ ] Task
-- [ ] Refactor
+- [ ] Bug fix
 - [ ] Documentation
+- [ ] Chore
 
-## Checklist
+### Screenshots / Recordings
 
-- [ ] I have followed the coding standards and guidelines.
-- [ ] I have performed a self-review of my code.
-- [ ] I have commented my code where necessary.
-- [ ] I have added relevant tests for my changes.
-- [ ] I have updated the documentation as needed.
-- [ ] My changes do not introduce any new warnings or errors.
+If applicable, attach screenshots or use the Knowledge Harvest recorder to demonstrate tacit knowledge or workflows involved in your change.
+
+### Checklist
+
+- [ ] I have followed the contribution guidelines in `CONTRIBUTING.md`.
+- [ ] I have added tests that prove my fix or feature works.
+- [ ] I have updated documentation where necessary.
