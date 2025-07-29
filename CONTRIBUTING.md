@@ -1,33 +1,16 @@
-# Contributing Guidelines
+# Contributing to Knowledge Harvest
 
-Thank you for considering contributing to the Business Ideas project! We welcome contributions from everyone.
+Thank you for your interest in contributing!  By sharing your expertise, you help us preserve and disseminate tacit knowledge throughout the organisation.
 
-## Coding standards
+## How to contribute
 
-- Follow language-specific best practices (e.g., PEP8 for Python, ESLint/Prettier for JavaScript/TypeScript).
-- Write clear and concise code with comments where necessary.
-- Include unit tests for new functionality and ensure existing tests continue to pass.
-
-## Branch naming conventions
-
-Create branches off of `main` using the following prefixes:
-
-- `feature/<short-description>` for new features and enhancements.
-- `bugfix/<short-description>` for bug fixes.
-- `task/<short-description>` for small tasks and chores.
-- `research/<short-description>` for exploratory work.
-
-Use hyphens to separate words (e.g., `feature/user-authentication`).
-
-## Review and merge process
-
-1. Ensure your branch is up to date with `main` before opening a pull request (PR).
-2. Open a PR against `main` describing the change, linking relevant issues or tasks.
-3. Assign appropriate labels (Type, Priority, Team, Status) and request a reviewer.
-4. All PRs must pass CI checks and be reviewed by at least one other team member before merging.
-5. Once approved and all checks pass, the reviewer or maintainer merges the PR using the merge button. Squash merges are preferred.
-6. Do not commit directly to the `main` branch.
+1. **Open an issue** – Before starting work, open a new issue using the appropriate template (feature, bug or task).  Describe the problem or idea clearly and add acceptance criteria.
+2. **Create a branch** – Use a descriptive branch name based on the issue number (e.g. `feat/23-add-video-trimmer`).
+3. **Make changes** – Follow coding standards and add tests where appropriate.  When documenting tacit knowledge flows, remember that tacit knowledge is often informal, subjective and non‑codified【261120688409170†screenshot】.  Use screen captures, transcripts and narratives to illustrate the expert’s process.
+4. **Write good commit messages** – Explain *why* changes are made, not just *what* changed.
+5. **Submit a pull request** – Use the pull‑request template to summarise your changes, link the relevant issue and describe any impacts on existing functionality.
+6. **Respond to reviews** – Collaborate with reviewers to refine your contribution.  After approval, the change will be merged to the main branch.
 
 ## Code of conduct
 
-Please be respectful and considerate in all interactions. We strive to create an inclusive and supportive environment for all contributors.
+Please be respectful and supportive when interacting with other contributors.  A knowledge‑friendly culture depends on open communication and recognition of the experiences that others share【94584336290138†screenshot】.
