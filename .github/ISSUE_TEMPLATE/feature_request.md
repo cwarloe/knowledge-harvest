@@ -1,19 +1,18 @@
 ---
-name: Feature Request
-about: Suggest a new feature or enhancement for the project
-title: "[Feature] "
-labels: feature
-assignees: ''
+name: "🚀 Feature request"
+about: Suggest a new feature or enhancement for Knowledge Harvest
+labels: ["Type: feature", "Priority: P2"]
 ---
 
-**Description**
+### Proposed feature
 
-Provide a detailed description of the feature request.
+Describe the feature you would like to add.  Explain the user problem it solves and include any relevant context.  Remember that tacit knowledge often involves personal experiences and hard‑won insights【224308209286044†screenshot】, so think about how this feature could capture or share these nuances.
 
-**Solution**
+### Acceptance criteria
 
-Describe the solution you'd like.
+- [ ] …
+- [ ] …
 
-**Additional context**
+### Additional context
 
-Add any other context or screenshots about the feature request.
+Add any other context, screenshots or references here.

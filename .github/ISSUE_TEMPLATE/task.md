@@ -1,19 +1,17 @@
 ---
-name: Task
-about: A small or routine task to complete
-title: "[Task] "
-labels: task
-assignees: ''
+name: "📋 Task"
+about: Define an engineering or documentation task
+labels: ["Type: task", "Priority: P2"]
 ---
 
-**Task description**
+### Task description
 
-Describe the task and what needs to be done.
+Briefly describe the work to be done.
 
-**Acceptance criteria**
+### Acceptance criteria
 
-List the conditions that must be met for this task to be considered complete.
+- [ ] …
 
-**Additional context**
+### Dependencies
 
-Add any relevant information, dependencies, or references.
+List any dependent issues or external factors.

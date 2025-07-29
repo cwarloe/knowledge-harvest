@@ -1,37 +1,29 @@
 ---
-name: Bug Report
-about: Report a bug to help us improve
-title: "[Bug] "
-labels: bug
-assignees: ''
+name: "🐛 Bug report"
+about: Report a bug in Knowledge Harvest
+labels: ["Type: bug", "Priority: P1"]
 ---
 
-**Description**
+### Summary
 
-Describe the bug encountered.
+A clear and concise description of what the bug is.
 
-**Steps to Reproduce**
+### Steps to reproduce
 
-Steps to reproduce the behavior:
-1. Go to ...
-2. Click ...
-3. Scroll down to ...
+1. Go to '…'
+2. Click on '…'
+3. Scroll down to '…'
 4. See error
 
-**Expected behavior**
+### Expected behaviour
 
 Describe what you expected to happen.
 
-**Screenshots**
+### Environment
 
-If applicable, add screenshots to help explain your problem.
+- Browser / OS:
+- Service / API version:
 
-**Environment**
+### Additional context
 
-- OS: [e.g., Windows 10]
-- Browser: [e.g., Chrome 91]
-- Version: [e.g., 0.1.0]
-
-**Additional context**
-
-Add any other context about the problem.
+Include screenshots, logs or a recording (use the platform’s capture tool if relevant).
