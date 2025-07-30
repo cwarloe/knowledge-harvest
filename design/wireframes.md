@@ -30,3 +30,18 @@ flowchart LR
 ```
 
 The library page contains a search bar for filtering content and a list of recording cards (`B`).  Selecting a card opens a detail view (`D`) with the transcript, summary, tags and related case studies (`E`,`F`).
+
+
+## 📊 Annotation Extraction Workflow
+
+```mermaid
+flowchart TD
+  A[Recording Complete] --> B[Metadata Extraction Service]
+  B --> C{Contains Annotations?}
+  C -- Yes --> D[Parse Highlights + Narration Timing]
+  D --> E[Generate Structured Callouts]
+  E --> F[Attach Callouts to Training Docs]
+  C -- No --> G[Log and Flag for Manual Review]
+```
+
+> TIP: This flow assumes successful recording ingestion and structured timestamping. Future enhancements may include NLP validation or audio confidence scoring.
