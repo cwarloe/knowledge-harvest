@@ -52,6 +52,21 @@ docker-compose up -d
 
 ### Setup
 
+2.a Create and activate a virtual environment:
+   ```
+   cd services
+   python3 -m venv ../venv
+   source ../venv/bin/activate      # on Windows: venv\Scripts\activate
+   ```
+
+2.b Install dependencies and run:
+   ```
+   pip install --upgrade pip
+   pip install -r requirements.txt
+   export FLASK_APP=app.py
+   python -m flask run --port 5000
+   ```
+
 1. **Clone the repo**
    ```bash
    git clone https://github.com/cwarloe/knowledge-harvest.git
