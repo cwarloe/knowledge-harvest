@@ -1,0 +1,3 @@
+# Python dependencies for backend services
+Flask>=2.0
+pytest
