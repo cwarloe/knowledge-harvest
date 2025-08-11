@@ -41,6 +41,16 @@ const KnowledgeHarvestApp = () => {
     }
   };
 
+  const stopRecording = useCallback(() => {
+    if (mediaRecorderRef.current && isRecording) {
+      mediaRecorderRef.current.stop();
+      streamRef.current?.getTracks().forEach(track => track.stop());
+      clearInterval(intervalRef.current);
+      setIsRecording(false);
+      setIsPaused(false);
+    }
+  }, [isRecording]);
+
   const startRecording = useCallback(async () => {
     try {
       setError(null);
@@ -70,7 +80,7 @@ const KnowledgeHarvestApp = () => {
       mediaRecorder.start();
       setIsRecording(true);
       setRecordingTime(0);
-      
+
       intervalRef.current = setInterval(() => {
         setRecordingTime(prev => {
           if (prev >= 900) {
@@ -80,11 +90,11 @@ const KnowledgeHarvestApp = () => {
           return prev + 1;
         });
       }, 1000);
-      
+
     } catch (error) {
       setError('Error accessing screen: ' + error.message);
     }
-  }, []);
+  }, [stopRecording]);
 
   const pauseRecording = useCallback(() => {
     if (mediaRecorderRef.current && isRecording) {
@@ -100,16 +110,6 @@ const KnowledgeHarvestApp = () => {
       setIsPaused(!isPaused);
     }
   }, [isRecording, isPaused]);
-
-  const stopRecording = useCallback(() => {
-    if (mediaRecorderRef.current && isRecording) {
-      mediaRecorderRef.current.stop();
-      streamRef.current?.getTracks().forEach(track => track.stop());
-      clearInterval(intervalRef.current);
-      setIsRecording(false);
-      setIsPaused(false);
-    }
-  }, [isRecording]);
 
   const uploadRecording = async () => {
     if (!recordedBlob || !metadata.title.trim()) {
