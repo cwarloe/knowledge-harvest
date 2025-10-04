@@ -15,6 +15,8 @@ const KnowledgeHarvestApp = () => {
   const [showMetadataForm, setShowMetadataForm] = useState(false);
   const [metadata, setMetadata] = useState({ title: '', description: '', tags: '' });
   const [uploading, setUploading] = useState(false);
+  const [selectedRecording, setSelectedRecording] = useState(null);
+  const [playbackUrl, setPlaybackUrl] = useState(null);
 
   const mediaRecorderRef = useRef(null);
   const streamRef = useRef(null);
@@ -160,15 +162,31 @@ const KnowledgeHarvestApp = () => {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  const playRecording = async (recording) => {
+    try {
+      const response = await fetch(`${API_BASE}/api/recordings/${recording.id}`);
+      if (!response.ok) throw new Error('Failed to get video URL');
+
+      const data = await response.json();
+      if (data.video_url) {
+        setSelectedRecording(data);
+        setPlaybackUrl(`${API_BASE}${data.video_url}`);
+        setCurrentView('player');
+      }
+    } catch (err) {
+      setError('Failed to load video: ' + err.message);
+    }
+  };
+
   const downloadRecording = async (recording) => {
     try {
       const response = await fetch(`${API_BASE}/api/recordings/${recording.id}`);
       if (!response.ok) throw new Error('Failed to get download URL');
-      
+
       const data = await response.json();
       if (data.video_url) {
         const a = document.createElement('a');
-        a.href = data.video_url;
+        a.href = `${API_BASE}${data.video_url}`;
         a.download = `${recording.title.replace(/[^a-z0-9]/gi, '_')}.webm`;
         a.click();
       }
@@ -186,6 +204,78 @@ const KnowledgeHarvestApp = () => {
   });
 
   const allTags = [...new Set(recordings.flatMap(r => r.tags || []))];
+
+  // Video Player View
+  if (currentView === 'player' && selectedRecording && playbackUrl) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <header className="bg-white shadow-sm border-b">
+          <div className="max-w-7xl mx-auto px-6 py-4">
+            <div className="flex items-center justify-between">
+              <h1 className="text-2xl font-bold text-gray-900">Knowledge Harvest</h1>
+              <button
+                onClick={() => {
+                  setCurrentView('browse');
+                  setSelectedRecording(null);
+                  setPlaybackUrl(null);
+                }}
+                className="px-4 py-2 rounded-lg font-medium text-gray-600 hover:text-gray-900"
+              >
+                ← Back to Browse
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <main className="max-w-5xl mx-auto px-6 py-8">
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="aspect-video bg-black">
+              <video
+                src={playbackUrl}
+                controls
+                autoPlay
+                className="w-full h-full"
+              >
+                Your browser does not support video playback.
+              </video>
+            </div>
+
+            <div className="p-6">
+              <h2 className="text-2xl font-bold mb-2">{selectedRecording.title}</h2>
+              <p className="text-gray-600 mb-4">
+                By {selectedRecording.creator} • {new Date(selectedRecording.created_at).toLocaleDateString()}
+                {selectedRecording.duration && ` • ${selectedRecording.duration}`}
+              </p>
+
+              {selectedRecording.description && (
+                <p className="text-gray-700 mb-4">{selectedRecording.description}</p>
+              )}
+
+              {selectedRecording.tags && selectedRecording.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {selectedRecording.tags.map(tag => (
+                    <span key={tag} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              <div className="flex gap-3">
+                <button
+                  onClick={() => downloadRecording(selectedRecording)}
+                  className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+                >
+                  <Download size={20} />
+                  Download
+                </button>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   if (showMetadataForm) {
     return (
@@ -410,7 +500,10 @@ const KnowledgeHarvestApp = () => {
                       ))}
                     </div>
                     <div className="flex gap-2">
-                      <button className="flex-1 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 flex items-center justify-center gap-2">
+                      <button
+                        onClick={() => playRecording(recording)}
+                        className="flex-1 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 flex items-center justify-center gap-2"
+                      >
                         <Play size={16} />
                         Watch
                       </button>
