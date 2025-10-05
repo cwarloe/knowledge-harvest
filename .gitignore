@@ -11,3 +11,47 @@ web/.next/
 dist/
 build/
 services/uploads/*
+.env
+**/.env
+
+# --- Knowledge Harvest ignore rules ---
+.env
+**/.env
+.DS_Store
+*.log
+*.tmp
+*.swp
+node_modules/
+web/node_modules/
+web/.next/
+dist/
+build/
+services/uploads/*
+# --- Knowledge Harvest ignore rules ---
+.env
+**/.env
+.DS_Store
+*.log
+*.tmp
+*.swp
+node_modules/
+web/node_modules/
+web/.next/
+dist/
+build/
+services/uploads/*
+!services/uploads/.gitkeep
+# --- Knowledge Harvest ignore rules ---
+.env
+**/.env
+.DS_Store
+*.log
+*.tmp
+*.swp
+node_modules/
+web/node_modules/
+web/.next/
+dist/
+build/
+services/uploads/*
+!services/uploads/.gitkeep
