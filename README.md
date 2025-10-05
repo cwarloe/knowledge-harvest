@@ -101,3 +101,10 @@ docker-compose up -d
 
 Services -> http://localhost:5000
 Frontend -> http://localhost:3000
+
+### Env setup
+Copy the example and fill in values:
+
+```bash
+cp .env.example .env
+```
