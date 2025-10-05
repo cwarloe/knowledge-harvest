@@ -1,2 +1,13 @@
+# --- Knowledge Harvest ignore rules ---
 .env
-node_modules
+**/.env
+.DS_Store
+*.log
+*.tmp
+*.swp
+node_modules/
+web/node_modules/
+web/.next/
+dist/
+build/
+services/uploads/*
