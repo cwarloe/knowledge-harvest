@@ -48,3 +48,14 @@ sleep 3
 curl -sf http://localhost:4000/health && echo '
 API OK' || echo '
 API NOT READY'
+
+# --- Smoke test ---
+# --- Smoke test ---
+# Give containers a moment, then ping API health
+sleep 3
+if curl -sf http://localhost:4000/health >/dev/null; then
+  echo "API OK"
+else
+  echo "API NOT READY (this is okay if API is not part of your stack yet)"
+fi
+
