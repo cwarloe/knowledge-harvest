@@ -42,3 +42,9 @@ echo "  docker-compose logs -f api    # View API logs"
 echo "  docker-compose logs -f web    # View React logs"
 echo "  docker-compose down           # Stop all services"
 echo ""
+
+# Smoke test
+sleep 3
+curl -sf http://localhost:4000/health && echo '
+API OK' || echo '
+API NOT READY'
