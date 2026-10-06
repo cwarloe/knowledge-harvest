@@ -1,6 +1,19 @@
 # Knowledge Harvest
 
-Capture and share tacit subject-matter-expert knowledge through screen recordings.
+**Transfer the know-how behind a growing company's success so employees can perform without unnecessary founder dependency.**
+
+Knowledge Harvest is an emerging performance-consulting and technology concept for founder-led service businesses. It identifies work that still escalates to the founder, diagnoses **why** the team still needs that expertise, and transfers the capability using the smallest appropriate intervention — which may be a decision guide, job aid, practice, coaching, documentation, automation, AI support, or formal training.
+
+The existing software in this repository explores one part of that larger problem: capturing and sharing tacit subject-matter-expert knowledge through screen recordings and related work artifacts.
+
+> **Working principle:** Don't document the founder. Reproduce the capability.
+
+### Business and research docs
+
+- [Business hypothesis](docs/business-hypothesis.md)
+- [Founder capability research](docs/founder-capability-research.md)
+- [Entrepreneurship advisor pitch](docs/advisor-pitch.md)
+- [MVP definition](docs/mvp-definition.md)
 
 ## Quick Start
 
