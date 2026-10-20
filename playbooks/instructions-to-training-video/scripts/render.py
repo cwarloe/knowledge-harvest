@@ -28,7 +28,7 @@ page_url = pathlib.Path(a.page).resolve().as_uri()
 
 async def main():
     async with async_playwright() as p:
-        b = await p.chromium.launch()
+        b = await p.chromium.launch(executable_path=os.environ.get("CHROMIUM_PATH") or None)  # set CHROMIUM_PATH if Playwright can't find its own browser
         pg = await b.new_page(viewport={"width": a.width, "height": a.height})
         await pg.goto(page_url); await pg.wait_for_timeout(800)
         total = await pg.evaluate("TOTAL")

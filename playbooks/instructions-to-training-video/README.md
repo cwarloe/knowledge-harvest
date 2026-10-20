@@ -76,5 +76,41 @@ Example scene file: `template/example-external-data.html` (copy it, swap the sce
 - Browser-extension page reads can fail when the tab changes. If so, ask for the file as an upload instead of retrying.
 - Budget: about 1 hour of Claude work for a 2–3 min video; the render itself takes ~1 min per minute of video at 24 fps.
 
+## Run it with an agent
+
+Paste this into Claude Code (or any agent that can run shell commands) with this folder available and your source file attached or in the working directory:
+
+```
+Turn <SOURCE FILE> into a short training walkthrough video.
+
+Follow playbooks/instructions-to-training-video/README.md.
+
+1. Run scripts/extract.sh on the source. Read extracted/text.md and look at the
+   images in extracted/media/ so you know which image goes with which step.
+2. Write a storyboard first and show it to me: one scene per numbered step, with
+   chip label (match the source numbering), title, 1-4 actions, caption, and
+   duration. Flag anything in the source that contradicts itself and say which
+   version you will use. Wait for my OK.
+3. Copy template/example-external-data.html and replace the SC array with the new
+   scenes. Use schematic UI for "do this" steps and real screenshots (cropped to
+   the part that matters) for "check your work" steps. Captions are imperative and
+   double as the narration script.
+4. Run render.py with --stills on a spread of times and fix any layout problems.
+5. Run the full render to a temp file, verify it decodes, then move it into place.
+6. Tell me the length, scene count, and any decisions I should look at.
+
+Do not invent steps, menu names, or values that are not in the source.
+```
+
+**Install:** `pip install playwright pillow`, plus `ffmpeg` and `pandoc` (and `poppler-utils` for PDFs). If Playwright can't find its browser, point `CHROMIUM_PATH` at an installed Chromium and `render.py` will use it.
+
+**Tested:** `extract.sh` on the ITM 310 External Data docx (140 lines of text, 10 images) and `render.py --stills` on the example scene file both ran cleanly from a fresh environment.
+
+## Worked example
+
+The first run used the ITM 310 *External Data* Power BI assignment (a Word file with 10 screenshots) and produced a 2:37, 16-scene, 1280×720 MP4 of about 3.7 MB. The scene file for it is `template/example-external-data.html`.
+
+The source document and the finished video are course material, so they are **not** stored in this repository. Keep your own pair next to this folder when you work, and don't commit them unless you own the rights to share them.
+
 ## Requirements
 `python3`, `playwright` (Chromium), `ffmpeg`, `pandoc`, `Pillow`; `poppler-utils` for PDFs.
