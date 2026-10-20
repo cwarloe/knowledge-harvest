@@ -112,5 +112,17 @@ The first run used the ITM 310 *External Data* Power BI assignment (a Word file 
 
 The source document and the finished video are course material, so they are **not** stored in this repository. Keep your own pair next to this folder when you work, and don't commit them unless you own the rights to share them.
 
+### Second and third runs: web documentation as the source
+
+Two more videos were built from online documentation instead of a Word file: a Security Onion *groupby* walkthrough (2:36, 13 scenes) and a Wireshark *first look* primer (2:14, 11 scenes). What they added to the playbook:
+
+- **Web pages are a fine source.** `curl` the page, `pandoc -f html -t plain --wrap=none` for text, and list the `<img src>` tags to see which screenshots exist. If `curl` is refused, the sandbox's network allow-list is the first thing to check, not the page.
+- **Real data beats placeholder data.** For the Wireshark primer, every packet row, byte and line of stream text was pulled from a real capture with `tshark`, then drawn into a schematic window. Nothing on screen was typed from memory.
+- **Check every label against the docs.** The first draft of the right-click menu used item names from memory. The docs table had different ones. Look up each menu item, button and field name before it goes on screen.
+- **If the video sits in front of a lesson, don't solve the lesson.** Practice on a part the lesson already explains, and finish with a hand-off scene that tells the learner what to do next. Written steps next to the video mean it's optional.
+- **Know who owns the images and data.** The Wireshark primer uses no screenshots from the docs, only drawings built from the course's own capture. That capture comes from the Network Analyst Development Framework (CC BY-NC-SA 4.0); credit it if you reuse the example.
+
+The Wireshark scene file is `template/example-wireshark-first-look.html`. Unlike the Power BI example it needs no images, so it renders as is: it's a better starting point for a first try. The Security Onion scene file isn't included because it leans on a screenshot from that project's documentation.
+
 ## Requirements
 `python3`, `playwright` (Chromium), `ffmpeg`, `pandoc`, `Pillow`; `poppler-utils` for PDFs.

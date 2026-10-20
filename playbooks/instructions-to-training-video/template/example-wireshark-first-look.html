@@ -1,0 +1,300 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Wireshark first look: primer for Lesson 02. Render: CHROMIUM_PATH=... python3 render.py scenes.html out.mp4 (render.py lives in the instructions-to-training-video playbook, cwarloe/knowledge-harvest). Data below comes from tshark on assets/pcaps/02-conversation.pcap. -->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0e1829;--panel:#16233a;--panel2:#1d2d49;--line:#2c3f63;--yel:#f5c518;--txt:#e9eef7;--mut:#93a3bf;--ok:#22c38e;--bad:#ff6b6b;--blue:#4ea1ff}
+body{width:1280px;height:720px;overflow:hidden;background:var(--bg);font-family:"Segoe UI","DejaVu Sans",Arial,sans-serif;color:var(--txt)}
+.scene{position:absolute;inset:0;display:none}
+.hdr{position:absolute;left:40px;top:26px;display:flex;align-items:center;gap:14px}
+.chip{background:var(--yel);color:#1a1300;font-weight:800;font-size:15px;padding:5px 12px;border-radius:14px;letter-spacing:.5px}
+.htitle{font-size:28px;font-weight:700}
+.cap{position:absolute;left:0;right:0;bottom:0;height:70px;background:#081020;border-top:2px solid var(--line);display:flex;align-items:center;padding:0 40px;font-size:20px;color:#dfe7f5}
+.cap b{color:var(--yel)}
+.prog{position:absolute;left:0;bottom:0;height:4px;background:var(--yel)}
+.steps{position:absolute;list-style:none}
+.steps li{display:flex;gap:12px;align-items:flex-start;font-size:20px;line-height:1.35;margin-bottom:16px;opacity:0}
+.n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--yel);color:#1a1300;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:16px;margin-top:1px}
+.mono{font-family:"Consolas","DejaVu Sans Mono",monospace;color:var(--yel)}
+.lbl{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:1px}
+/* model view */
+.canvas{position:absolute;left:40px;top:90px;width:760px;height:548px;background:#e6e4e2;border-radius:10px;overflow:hidden}
+.card{position:absolute;width:200px;background:#fff;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.18);color:#222;font-size:14px}
+.card h4{font-size:16px;font-weight:600;padding:9px 12px;border-bottom:1px solid #ddd}
+.card div{padding:4px 14px;color:#444}
+.card div.hl{background:#fff3b0;color:#000;font-weight:600}
+.tag{position:absolute;background:var(--bad);color:#fff;font-size:13px;font-weight:700;padding:4px 10px;border-radius:12px}
+.ghost{position:absolute;background:#fff3b0;border:2px solid #c9a200;color:#000;font-size:14px;font-weight:600;padding:3px 10px;border-radius:4px;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+svg.ov{position:absolute;inset:0;width:100%;height:100%}
+/* build pane */
+.pane{position:absolute;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.well{border:1.5px dashed #4a5f86;border-radius:6px;min-height:44px;padding:6px;margin:6px 0 14px}
+.fld{background:#2a3d61;border-radius:4px;padding:6px 10px;font-size:15px;margin:4px 0;display:flex;justify-content:space-between}
+.fld i{font-style:normal;color:var(--mut);font-size:12px}
+.shot{position:absolute;background:#fff;border-radius:8px;padding:8px;box-shadow:0 8px 30px rgba(0,0,0,.45)}
+.shot img{display:block}
+.shotlbl{position:absolute;font-size:14px;color:var(--mut)}
+.callout{position:absolute;width:34px;height:34px;border-radius:50%;background:var(--yel);color:#1a1300;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:17px;border:3px solid #fff;box-shadow:0 0 0 4px rgba(245,197,24,.35);transform:translate(-50%,-50%)}
+.ring{position:absolute;border:3px solid var(--yel);border-radius:8px;box-shadow:0 0 0 5px rgba(245,197,24,.25)}
+.click{position:absolute;width:40px;height:40px;border-radius:50%;border:3px solid var(--yel);transform:translate(-50%,-50%)}
+table.mx{border-collapse:collapse;font-size:16px;color:#222;background:#fff}
+table.mx th{font-weight:600;text-align:right;padding:8px 14px;border-bottom:2px solid #4ea1ff;position:relative}
+table.mx th:first-child,table.mx td:first-child{text-align:left}
+table.mx td{padding:6px 14px;text-align:right;border-bottom:1px solid #eee}
+.note{position:absolute;background:#3a2a05;border:2px solid var(--yel);border-radius:10px;padding:16px 20px;font-size:18px;line-height:1.4}
+.ddl{background:#fff;color:#222;border:1px solid #999;border-radius:3px;padding:7px 10px;font-size:16px;height:36px;margin:4px 0 14px;position:relative}
+.ddl:after{content:"⌄";position:absolute;right:10px;top:4px;color:#555}
+.ddl.inp:after{content:""}
+.btn{display:inline-block;padding:8px 18px;border-radius:4px;font-size:16px;font-weight:600}
+
+/* ---- Wireshark first look: additions ---- */
+.win{position:absolute;background:#f3f3f3;border-radius:8px;box-shadow:0 8px 28px rgba(0,0,0,.5);color:#222;overflow:hidden}
+.fb{display:flex;align-items:center;gap:8px;padding:7px 10px;background:#e4e4e4;border-bottom:1px solid #c9c9c9}
+.fin{flex:1;height:30px;border:1.5px solid #999;border-radius:4px;background:#fff;font-family:"Consolas","DejaVu Sans Mono",monospace;font-size:16px;display:flex;align-items:center;padding:0 10px;white-space:nowrap;overflow:hidden}
+.fin.ok{background:#d9f7d9;border-color:#3aa33a}.fin.bad{background:#ffd9d9;border-color:#d33}
+.fbtn{height:30px;padding:0 12px;border:1px solid #aaa;border-radius:4px;background:#fafafa;font-size:14px;display:flex;align-items:center}
+.car{display:inline-block;width:2px;height:18px;background:#222;margin-left:1px}
+table.pl{border-collapse:collapse;width:100%;font-size:12.5px;font-family:"Consolas","DejaVu Sans Mono",monospace;background:#fff}
+table.pl th{background:#e9e9e9;text-align:left;font-weight:600;padding:3px 6px;border-bottom:1px solid #bbb;font-family:"Segoe UI","DejaVu Sans",Arial,sans-serif;font-size:12px}
+table.pl td{padding:2px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:330px}
+table.pl tr.sel td{background:#3b82f6;color:#fff}
+table.pl tr.hi td{background:#fff3b0}
+.tree{background:#fff;border-top:1px solid #bbb;padding:6px 10px;font-size:13px;line-height:1.55;font-family:"Segoe UI","DejaVu Sans",Arial,sans-serif}
+.tree div.on{background:#bcd7ff}
+.hex{background:#fff;border-top:1px solid #bbb;padding:6px 10px;font-family:"Consolas","DejaVu Sans Mono",monospace;font-size:12.5px;line-height:1.5;white-space:pre}
+.hex b{background:#bcd7ff;font-weight:400}
+.plab{position:absolute;right:8px;font-size:11px;color:#888;font-family:"Segoe UI",Arial,sans-serif;text-transform:uppercase;letter-spacing:.8px}
+.cm{position:absolute;background:#fff;color:#222;border-radius:6px;box-shadow:0 8px 28px rgba(0,0,0,.55);padding:5px 0;font-size:15px;width:230px;font-family:"Segoe UI","DejaVu Sans",Arial,sans-serif}
+.cm div{padding:6px 14px}.cm div.hl{background:#3b82f6;color:#fff}
+.call{position:absolute;background:#3a2a05;border:2px solid var(--yel);border-radius:10px;padding:12px 16px;font-size:18px;line-height:1.4}
+.term{position:absolute;background:#0b1424;border:1px solid var(--line);border-radius:8px;padding:16px 18px;font-family:"Consolas","DejaVu Sans Mono",monospace;font-size:17px;line-height:1.8;color:#dfe7f5;white-space:pre}
+.term .p{color:var(--yel)}
+table.cs{border-collapse:collapse;width:100%;font-size:19px;color:#dfe7f5}
+table.cs td{padding:9px 12px;border-bottom:1px solid #2c3f63}
+table.cs td:first-child{color:var(--yel);font-family:"Consolas","DejaVu Sans Mono",monospace;width:610px;font-size:17px}
+</style></head><body>
+
+<section class="scene" id="s0">
+  <div style="position:absolute;left:110px;top:190px;width:10px;height:270px;background:var(--yel)" id="s0bar"></div>
+  <div style="position:absolute;left:150px;top:195px" id="s0txt">
+    <div style="font-size:56px;font-weight:800">Wireshark: a first look</div>
+    <div style="font-size:28px;color:var(--yel);margin-top:14px">A short primer before Lesson 02</div>
+    <div style="font-size:20px;color:var(--mut);margin-top:40px">Open a capture &nbsp;•&nbsp; Filter it &nbsp;•&nbsp; Follow one conversation</div>
+    <div style="font-size:16px;color:var(--mut);margin-top:10px">Uses <span class="mono" style="font-size:16px">02-conversation.pcap</span> from this course</div>
+  </div>
+  <div class="cap">Lesson 02 asks you to read a conversation in Wireshark. This video covers the few moves you'll need.</div>
+</section>
+
+<section class="scene" id="s1">
+  <div class="hdr"><span class="chip">STEP 1</span><span class="htitle">What you're opening</span></div>
+  <div class="pane" id="s1a" style="left:60px;top:120px;width:560px;height:330px">
+    <div class="lbl">A capture file</div>
+    <div style="font-size:30px;font-weight:800;margin:12px 0 4px" class="mono">02-conversation.pcap</div>
+    <div style="font-size:20px;color:#dfe7f5;margin-bottom:22px">20 packets &nbsp;·&nbsp; 2 TCP conversations</div>
+    <div id="s1b1" style="margin:10px 0"><div style="font-size:15px;color:var(--mut)">Conversation one · client port 42876</div><div style="height:22px;width:250px;background:#4ea1ff;border-radius:4px;margin-top:4px;font-size:14px;color:#06223f;padding:2px 8px;font-weight:700">10 packets</div></div>
+    <div id="s1b2" style="margin:14px 0"><div style="font-size:15px;color:var(--mut)">Conversation two · client port 42886</div><div style="height:22px;width:250px;background:#22c38e;border-radius:4px;margin-top:4px;font-size:14px;color:#052b1d;padding:2px 8px;font-weight:700">10 packets</div></div>
+  </div>
+  <ul class="steps" style="left:690px;top:130px;width:550px">
+    <li><span class="n">1</span><span>A <b>capture</b> is a recording of packets, in order, as they crossed one point on the network.</span></li>
+    <li><span class="n">2</span><span><b>Wireshark</b> opens the file and shows you every packet.</span></li>
+    <li><span class="n">3</span><span><span class="mono">tshark</span> is the same program at the command line.</span></li>
+  </ul>
+  <div class="cap">Open the file in Wireshark with File → Open, or drag it onto the window.</div>
+</section>
+
+<section class="scene" id="s2">
+  <div class="hdr"><span class="chip">STEP 2</span><span class="htitle">Click a packet to see inside it</span></div>
+  <div class="win" id="s2w" style="left:40px;top:90px;width:820px;height:548px"></div>
+  <ul class="steps" style="left:900px;top:110px;width:350px">
+    <li><span class="n">1</span><span>Click a packet in the <b>list</b>.</span></li>
+    <li><span class="n">2</span><span>Its layers appear in the <b>details</b> tree.</span></li>
+    <li><span class="n">3</span><span>Click a layer and its bytes light up in the <b>bytes</b> pane.</span></li>
+  </ul>
+  <div class="cap">Three panes: the packet list, the details tree, and the raw bytes.</div>
+</section>
+
+<section class="scene" id="s3">
+  <div class="hdr"><span class="chip">STEP 3</span><span class="htitle">Type a display filter</span></div>
+  <div class="win" id="s3w" style="left:40px;top:90px;width:820px;height:548px"></div>
+  <ul class="steps" style="left:900px;top:110px;width:350px">
+    <li><span class="n">1</span><span>Type in the filter bar. <b style="color:#ff8a8a">Red</b> means incomplete or invalid. <b style="color:#5be28a">Green</b> means valid.</span></li>
+    <li><span class="n">2</span><span>Press <b>Enter</b> (or click Apply).</span></li>
+  </ul>
+  <div class="cap">Example: <span class="mono">tcp.port == 42876</span> keeps only packets using that port.</div>
+</section>
+
+<section class="scene" id="s4">
+  <div class="hdr"><span class="chip">STEP 3b</span><span class="htitle">Nothing was deleted</span></div>
+  <div class="win" id="s4w" style="left:40px;top:90px;width:820px;height:548px"></div>
+  <div class="call" id="s4n" style="left:900px;top:120px;width:340px"><b style="color:var(--yel)">In the file:</b> 20 packets<br><b style="color:var(--yel)">On screen:</b> <span id="s4c">10</span><br><span style="font-size:15px;color:#dfe7f5">A filter only changes what you <i>see</i>. The capture file is untouched.</span></div>
+  <ul class="steps" style="left:900px;top:340px;width:340px">
+    <li><span class="n">1</span><span>Click <b>Clear</b>, next to the filter bar, to bring every packet back.</span></li>
+  </ul>
+  <div class="cap">Filtering hides packets. It never removes them from the capture.</div>
+</section>
+
+<section class="scene" id="s5">
+  <div class="hdr"><span class="chip">STEP 4</span><span class="htitle">Combine two conditions with and</span></div>
+  <div class="win" id="s5w" style="left:40px;top:90px;width:820px;height:548px"></div>
+  <ul class="steps" style="left:900px;top:110px;width:350px">
+    <li><span class="n">1</span><span><span class="mono">and</span>: both must be true.</span></li>
+    <li><span class="n">2</span><span><span class="mono">or</span>: either one is enough.</span></li>
+    <li><span class="n">3</span><span>Here: the port, <b>and</b> the SYN flag set. That's the two packets that open the connection.</span></li>
+  </ul>
+  <div class="cap">Combining filters narrows the view to exactly the packets you mean.</div>
+</section>
+
+<section class="scene" id="s6">
+  <div class="hdr"><span class="chip">STEP 4b</span><span class="htitle">Symbols work too</span></div>
+  <div class="win" id="s6w" style="left:40px;top:90px;width:820px;height:548px"></div>
+  <ul class="steps" style="left:900px;top:110px;width:350px">
+    <li><span class="n">1</span><span><span class="mono">&amp;&amp;</span> means <span class="mono">and</span>. <span class="mono">||</span> means <span class="mono">or</span>.</span></li>
+    <li><span class="n">2</span><span><span class="mono">&gt;</span> compares: <span class="mono">tcp.len &gt; 0</span> keeps packets that carry data.</span></li>
+  </ul>
+  <div class="cap">Both packets here carry data: the request and the reply.</div>
+</section>
+
+<section class="scene" id="s7">
+  <div class="hdr"><span class="chip">STEP 5</span><span class="htitle">Follow a TCP stream</span></div>
+  <div class="win" id="s7w" style="left:40px;top:90px;width:560px;height:548px"></div>
+  <div class="cm" id="s7m" style="left:250px;top:240px"><div>Mark Packet</div><div>Apply as Filter</div><div>Conversation Filter</div><div class="hl" id="s7h">Follow ▸ TCP Stream</div><div>Copy</div></div>
+  <div class="win" id="s7f" style="left:630px;top:120px;width:610px;height:400px;background:#fff"><div style="background:#e4e4e4;padding:6px 12px;font-size:13px;border-bottom:1px solid #c9c9c9">Follow TCP Stream (conversation one)</div><div id="s7t" style="padding:10px 14px;font-family:Consolas,'DejaVu Sans Mono',monospace;font-size:13px;line-height:1.45;white-space:pre"></div></div>
+  <div class="call" id="s7n" style="left:630px;top:545px;width:610px;font-size:16px">Right-click any packet in the conversation → <b>Follow → TCP Stream</b>. You get the whole exchange as one readable page.</div>
+  <div class="cap">The stream joins the packets of one conversation back into what the client said and what the server said.</div>
+</section>
+
+<section class="scene" id="s8">
+  <div class="hdr"><span class="chip">NO GUI?</span><span class="htitle">The same filter at the command line</span></div>
+  <div class="term" id="s8t" style="left:40px;top:120px;width:1200px"></div>
+  <ul class="steps" style="left:40px;top:370px;width:1200px">
+    <li><span class="n">1</span><span><span class="mono">-r</span> names the capture file. <span class="mono">-Y</span> takes a display filter, the same kind you typed in Wireshark.</span></li>
+    <li><span class="n">2</span><span>Same filter, same packets: frames 4 and 6 from conversation one.</span></li>
+  </ul>
+  <div class="cap">If you don't have a screen to click on, <span class="mono">tshark -Y</span> does the filtering for you.</div>
+</section>
+
+<section class="scene" id="s9">
+  <div class="hdr"><span class="chip">RECAP</span><span class="htitle">Six moves</span></div>
+  <div class="pane" style="left:90px;top:100px;width:1100px;padding:12px 16px"><table class="cs"><tbody id="s9t">
+    <tr><td>File → Open</td><td>Load a capture</td></tr>
+    <tr><td>Click a packet</td><td>See its layers and bytes</td></tr>
+    <tr><td>Type a filter, press Enter</td><td>Show only the packets you want</td></tr>
+    <tr><td>tcp.port == 42876 and tcp.flags.syn == 1</td><td>Combine conditions with and / or</td></tr>
+    <tr><td>Clear</td><td>Bring every packet back</td></tr>
+    <tr><td>Follow → TCP Stream</td><td>Read one conversation as text</td></tr>
+  </tbody></table></div>
+  <div class="cap">That's enough Wireshark to start Lesson 02.</div>
+</section>
+
+<section class="scene" id="s10">
+  <div class="hdr"><span class="chip">YOUR TURN</span><span class="htitle">Now read conversation two</span></div>
+  <ul class="steps" style="left:120px;top:150px;width:1040px;font-size:24px">
+    <li><span class="n">1</span><span>Open <span class="mono">02-conversation.pcap</span>.</span></li>
+    <li><span class="n">2</span><span>Filter to conversation two. It starts at frame 11.</span></li>
+    <li><span class="n">3</span><span>Follow its TCP stream.</span></li>
+    <li><span class="n">4</span><span>Then work through the questions in <b>Lesson 02</b>.</span></li>
+  </ul>
+  <div class="note" id="s10n" style="left:120px;top:440px;width:1040px;font-size:20px">The screen shows you what happened. What it means is your call. Lesson 02 is where you practice telling those apart.</div>
+  <div class="cap">Everything in this video used conversation one. The conversation you'll analyze is yours to open.</div>
+</section>
+
+<div class="prog" id="prog"></div>
+
+<script>
+const D={"rows": [["1", "0.000000", "192.0.2.10", "198.51.100.20", "TCP", "74", "42876 \u2192 80 [SYN] Seq=0 Win=65495 Len=0 MSS=65495 SACK_PERM TSval=348181793 TSecr=0 WS=1024"], ["2", "0.000017", "198.51.100.20", "192.0.2.10", "TCP", "74", "80 \u2192 42876 [SYN, ACK] Seq=0 Ack=1 Win=65483 Len=0 MSS=65495 SACK_PERM TSval=348181793 TSecr=348181793 WS=1024"], ["3", "0.000031", "192.0.2.10", "198.51.100.20", "TCP", "66", "42876 \u2192 80 [ACK] Seq=1 Ack=1 Win=65536 Len=0 TSval=348181793 TSecr=348181793"], ["4", "0.000075", "192.0.2.10", "198.51.100.20", "HTTP", "217", "GET /api/v2/export?page=1 HTTP/1.1"], ["5", "0.000079", "198.51.100.20", "192.0.2.10", "TCP", "66", "80 \u2192 42876 [ACK] Seq=1 Ack=152 Win=65536 Len=0 TSval=348181793 TSecr=348181793"], ["6", "0.003966", "198.51.100.20", "192.0.2.10", "HTTP/JSON", "273", "HTTP/1.1 200 OK , JSON (application/json)"], ["7", "0.003977", "192.0.2.10", "198.51.100.20", "TCP", "66", "42876 \u2192 80 [ACK] Seq=152 Ack=208 Win=65536 Len=0 TSval=348181797 TSecr=348181797"], ["8", "0.004019", "198.51.100.20", "192.0.2.10", "TCP", "66", "80 \u2192 42876 [FIN, ACK] Seq=208 Ack=152 Win=65536 Len=0 TSval=348181797 TSecr=348181797"], ["9", "0.004038", "192.0.2.10", "198.51.100.20", "TCP", "66", "42876 \u2192 80 [FIN, ACK] Seq=152 Ack=209 Win=65536 Len=0 TSval=348181797 TSecr=348181797"], ["10", "0.004053", "198.51.100.20", "192.0.2.10", "TCP", "66", "80 \u2192 42876 [ACK] Seq=209 Ack=153 Win=65536 Len=0 TSval=348181797 TSecr=348181797"], ["11", "0.404280", "192.0.2.10", "198.51.100.20", "TCP", "74", "42886 \u2192 80 [SYN] Seq=0 Win=65495 Len=0 MSS=65495 SACK_PERM TSval=348182197 TSecr=0 WS=1024"], ["12", "0.404296", "198.51.100.20", "192.0.2.10", "TCP", "74", "80 \u2192 42886 [SYN, ACK] Seq=0 Ack=1 Win=65483 Len=0 MSS=65495 SACK_PERM TSval=348182197 TSecr=348182197 WS=1024"], ["13", "0.404309", "192.0.2.10", "198.51.100.20", "TCP", "66", "42886 \u2192 80 [ACK] Seq=1 Ack=1 Win=65536 Len=0 TSval=348182197 TSecr=348182197"], ["14", "0.404344", "192.0.2.10", "198.51.100.20", "HTTP", "215", "GET /api/v2/admin/users HTTP/1.1"], ["15", "0.404348", "198.51.100.20", "192.0.2.10", "TCP", "66", "80 \u2192 42886 [ACK] Seq=1 Ack=150 Win=65536 Len=0 TSval=348182197 TSecr=348182197"], ["16", "0.404428", "198.51.100.20", "192.0.2.10", "HTTP/JSON", "210", "HTTP/1.1 403 Forbidden , JSON (application/json)"], ["17", "0.404432", "192.0.2.10", "198.51.100.20", "TCP", "66", "42886 \u2192 80 [ACK] Seq=150 Ack=145 Win=65536 Len=0 TSval=348182197 TSecr=348182197"], ["18", "0.404450", "198.51.100.20", "192.0.2.10", "TCP", "66", "80 \u2192 42886 [FIN, ACK] Seq=145 Ack=150 Win=65536 Len=0 TSval=348182197 TSecr=348182197"], ["19", "0.404464", "192.0.2.10", "198.51.100.20", "TCP", "66", "42886 \u2192 80 [FIN, ACK] Seq=150 Ack=146 Win=65536 Len=0 TSval=348182197 TSecr=348182197"], ["20", "0.404473", "198.51.100.20", "192.0.2.10", "TCP", "66", "80 \u2192 42886 [ACK] Seq=146 Ack=151 Win=65536 Len=0 TSval=348182197 TSecr=348182197"]], "bytes": [0, 80, 86, 159, 77, 30, 0, 28, 66, 26, 43, 60, 8, 0, 69, 0, 0, 203, 89, 128, 64, 0, 64, 6, 244, 90, 192, 0, 2, 10, 198, 51, 100, 20, 167, 124, 0, 80, 79, 93, 125, 134, 190, 205, 72, 238, 128, 24, 0, 64, 34, 40, 0, 0, 1, 1, 8, 10, 20, 192, 213, 33, 20, 192, 213, 33, 71, 69, 84, 32, 47, 97, 112, 105, 47, 118, 50, 47, 101, 120]};
+const R=D.rows, B=D.bytes;
+const $=id=>document.getElementById(id);
+const clamp=x=>Math.max(0,Math.min(1,x));
+const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+const P=(lt,a,d=.5)=>ease(clamp((lt-a)/d));
+const fade=(el,v,dy=12)=>{if(!el)return;el.style.opacity=v;el.style.transform=`translateY(${(1-v)*dy}px)`};
+const lis=sc=>[...document.querySelectorAll(`#${sc} .steps li`)];
+const stepIn=(sc,lt,times)=>lis(sc).forEach((li,i)=>fade(li,P(lt,times[i]??99)));
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const setHTML=(el,h)=>{if(el.__h!==h){el.innerHTML=h;el.__h=h}};
+
+/* filter validity for the typed examples */
+const valid=s=>/^tcp(\.port( == \d+( (and|&&) (tcp\.flags\.syn == \d|tcp\.len > \d+))?)?)?$/.test(s);
+const typedText=(s,lt,a,d)=>s.slice(0,Math.floor(clamp((lt-a)/d)*s.length));
+
+function winHTML(o){
+  const rows=o.rows.map(i=>R[i]);
+  const rh=o.rowH||21;
+  const list=`<table class="pl"><thead><tr><th style="width:34px">No.</th><th style="width:78px">Time</th><th style="width:96px">Source</th><th style="width:104px">Destination</th><th style="width:56px">Protocol</th><th style="width:40px">Len</th><th>Info</th></tr></thead><tbody>`+
+   rows.map(r=>{const n=+r[0];const c=o.sel===n?'sel':(o.hi&&o.hi.includes(n)?'hi':'');return `<tr class="${c}" style="height:${rh}px"><td>${r[0]}</td><td>${(+r[1]).toFixed(6)}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td><td>${esc(r[6].length>42?r[6].slice(0,41)+'…':r[6])}</td></tr>`}).join('')+`</tbody></table>`;
+  const state=o.state||'none';
+  const bar=`<div class="fb"><div class="fin ${state==='none'?'':state}"><span>${esc(o.filter||'')}</span>${o.caret?'<span class="car"></span>':''}</div><div class="fbtn${o.hiClear?'':''}" style="${o.hiApply?'outline:3px solid #f5c518':''}">Apply</div><div class="fbtn" style="${o.hiClear?'outline:3px solid #f5c518':''}">Clear</div></div>`;
+  let extra='';
+  if(o.details){
+    const sel=o.treeSel;
+    const t=['Frame 4: 217 bytes on wire','Ethernet II','Internet Protocol Version 4, Src: 192.0.2.10, Dst: 198.51.100.20','Transmission Control Protocol, Src Port: 42876, Dst Port: 80, Seq: 1, Ack: 1, Len: 151','Hypertext Transfer Protocol'];
+    extra+=`<div class="tree" style="height:${o.treeH||132}px">`+t.map((s,i)=>`<div class="${sel===i?'on':''}">▸ ${esc(s)}</div>`).join('')+`</div>`;
+    const hs=sel===3?[34,65]:[-1,-2];
+    let hx='';
+    for(let r=0;r<5;r++){
+      let a='',b='';
+      for(let c=0;c<16;c++){const i=r*16+c;const h=B[i].toString(16).padStart(2,'0');const ch=(B[i]>=32&&B[i]<127)?String.fromCharCode(B[i]):'.';const on=i>=hs[0]&&i<=hs[1];
+        a+=(on?'<b>':'')+h+(on?'</b>':'')+' ';b+=(on?'<b>':'')+esc(ch)+(on?'</b>':'')}
+      hx+=(r*16).toString(16).padStart(4,'0')+'  '+a+' '+b+'\n';
+    }
+    extra+=`<div class="hex" style="height:112px">${hx}</div>`;
+  }
+  const lh=o.listH?`height:${o.listH}px;overflow:hidden`:'';
+  return bar+`<div style="${lh}">${list}</div>`+extra;
+}
+const all=Array.from({length:20},(_,i)=>i), first10=all.slice(0,10);
+
+/* conversation-one text (real, from tshark follow) */
+const REQ=['GET /api/v2/export?page=1 HTTP/1.1','Host: files.harrowmere-group.example','User-Agent: harrow-sync/3.21','Accept: application/json','Connection: close'];
+const RES=['HTTP/1.1 200 OK','Server: nginx/1.24.0','Content-Type: application/json','Content-Length: 90','X-Request-Id: 7f3a91c2','','{"report":"finance-export","rows":1284,"generated":"2026-08-19T09:14:22Z","format":"json"}'];
+
+const SC=[
+ ['s0',6,lt=>{fade($('s0bar'),P(lt,.2,.6),0);$('s0bar').style.transform=`scaleY(${P(lt,.2,.6)})`;fade($('s0txt'),P(lt,.5,.8),20)}],
+ ['s1',13,lt=>{fade($('s1a'),P(lt,.3));fade($('s1b1'),P(lt,2),6);fade($('s1b2'),P(lt,3),6);stepIn('s1',lt,[4,6.5,9])}],
+ ['s2',16,lt=>{stepIn('s2',lt,[1,3.5,7]);
+   const sel=lt>1.2?4:null, tsel=lt>7?3:(lt>3.5?3:null);
+   setHTML($('s2w'),winHTML({rows:all.slice(0,8),sel:lt>1.2?4:0,details:lt>3.5,treeSel:lt>7?3:-1,listH:196,treeH:132}))}],
+ ['s3',15,lt=>{stepIn('s3',lt,[1,9.5]);
+   const full='tcp.port == 42876',s=typedText(full,lt,1,4.2);const done=lt>9.5;
+   const state=s.length?(valid(s)?'ok':'bad'):'none';
+   setHTML($('s3w'),winHTML({filter:s,state,caret:!done&&Math.floor(lt*2)%2===0,rows:done?first10:all,rowH:19,hiApply:lt>8.5&&lt<9.5}))}],
+ ['s4',11,lt=>{const cleared=lt>6;
+   setHTML($('s4w'),winHTML({filter:cleared?'':'tcp.port == 42876',state:cleared?'none':'ok',rows:cleared?all:first10,rowH:19,hiClear:lt>4&&lt<6.2}));
+   $('s4c').textContent=cleared?'20':'10';fade($('s4n'),P(lt,.5));stepIn('s4',lt,[3.5])}],
+ ['s5',14,lt=>{stepIn('s5',lt,[1,3.5,6.5]);
+   const full='tcp.port == 42876 and tcp.flags.syn == 1',s=typedText(full,lt,.8,5);const done=lt>7;
+   const st=s.length?(valid(s)?'ok':'bad'):'none';
+   setHTML($('s5w'),winHTML({filter:s,state:st,caret:!done&&Math.floor(lt*2)%2===0,rows:done?[0,1]:first10,hi:done?[1,2]:[],rowH:24,hiApply:lt>6&&lt<7}))}],
+ ['s6',11,lt=>{stepIn('s6',lt,[1,4]);
+   const full='tcp.port == 42876 && tcp.len > 0',s=typedText(full,lt,.6,3.5);const done=lt>5;
+   const st=s.length?(valid(s)?'ok':'bad'):'none';
+   setHTML($('s6w'),winHTML({filter:s,state:st,caret:!done&&Math.floor(lt*2)%2===0,rows:done?[3,5]:first10,hi:done?[4,6]:[],rowH:24}))}],
+ ['s7',16,lt=>{const menu=lt>1.5&&lt<5.5;
+   setHTML($('s7w'),winHTML({filter:'tcp.port == 42876',state:'ok',rows:first10,rowH:21,sel:lt>1?4:0,listH:290}));
+   fade($('s7m'),menu?P(lt,1.5,.3):0,0);$('s7h').className=lt>3.5?'hl':'';
+   const show=P(lt,5.5,.6);$('s7f').style.opacity=show;
+   const txt=[...REQ,'',...RES];const n=Math.floor(clamp((lt-6)/6)*txt.length);
+   $('s7t').innerHTML=txt.slice(0,n).map((l,i)=>`<div style="color:${i<REQ.length?'#a62323':'#1d4fa8'}">${esc(l)||'&nbsp;'}</div>`).join('');
+   fade($('s7n'),P(lt,9))}],
+ ['s8',11,lt=>{
+   const cmd='<span class="p">$</span> tshark -r assets/pcaps/02-conversation.pcap -Y "tcp.port == 42876 &amp;&amp; tcp.len &gt; 0"';
+   const o1='    4   0.000075   192.0.2.10 → 198.51.100.20 HTTP 217 GET /api/v2/export?page=1 HTTP/1.1';
+   const o2='    6   0.003966 198.51.100.20 → 192.0.2.10   HTTP/JSON 273 HTTP/1.1 200 OK , JSON (application/json)';
+   $('s8t').innerHTML=cmd+(lt>2.5?'\n'+o1:'')+(lt>3.2?'\n'+o2:'');
+   stepIn('s8',lt,[4.5,7])}],
+ ['s9',11,lt=>{[...$('s9t').children].forEach((r,i)=>fade(r,P(lt,.4+i*.8,.5),8))}],
+ ['s10',10,lt=>{stepIn('s10',lt,[.5,1.8,3.1,4.4]);fade($('s10n'),P(lt,6))}],
+];
+let acc=0;SC.forEach(s=>{s.start=acc;acc+=s[1]});
+window.TOTAL=acc;
+window.render=function(t){
+  let cur=SC[SC.length-1];for(const s of SC){if(t>=s.start&&t<s.start+s[1]){cur=s;break}}
+  SC.forEach(s=>$(s[0]).style.display=s===cur?'block':'none');
+  const lt=t-cur.start;cur[2](lt);
+  const el=$(cur[0]);el.style.opacity=Math.min(clamp(lt/.35),clamp((cur[1]-lt)/.35));
+  $('prog').style.width=(t/acc*100)+'%';
+};
+document.querySelectorAll('.cap').forEach(c=>c.innerHTML='<span>'+c.innerHTML+'</span>');
+window.render(0);
+</script>
+</body></html>
