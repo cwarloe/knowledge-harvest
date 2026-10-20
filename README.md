@@ -15,6 +15,10 @@ The existing software in this repository explores one part of that larger proble
 - [Entrepreneurship advisor pitch](docs/advisor-pitch.md)
 - [MVP definition](docs/mvp-definition.md)
 
+### Playbooks
+
+- [Instructions → training video](playbooks/instructions-to-training-video/README.md): turn a written procedure (docx, PDF, slides, web page, notes) into a short captioned walkthrough video, with no screen recording. A way to reproduce a capability when the steps already exist in writing.
+
 ## Quick Start
 
 ```bash

@@ -1,0 +1,382 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0e1829;--panel:#16233a;--panel2:#1d2d49;--line:#2c3f63;--yel:#f5c518;--txt:#e9eef7;--mut:#93a3bf;--ok:#22c38e;--bad:#ff6b6b;--blue:#4ea1ff}
+body{width:1280px;height:720px;overflow:hidden;background:var(--bg);font-family:"Segoe UI","DejaVu Sans",Arial,sans-serif;color:var(--txt)}
+.scene{position:absolute;inset:0;display:none}
+.hdr{position:absolute;left:40px;top:26px;display:flex;align-items:center;gap:14px}
+.chip{background:var(--yel);color:#1a1300;font-weight:800;font-size:15px;padding:5px 12px;border-radius:14px;letter-spacing:.5px}
+.htitle{font-size:28px;font-weight:700}
+.cap{position:absolute;left:0;right:0;bottom:0;height:70px;background:#081020;border-top:2px solid var(--line);display:flex;align-items:center;padding:0 40px;font-size:20px;color:#dfe7f5}
+.cap b{color:var(--yel)}
+.prog{position:absolute;left:0;bottom:0;height:4px;background:var(--yel)}
+.steps{position:absolute;list-style:none}
+.steps li{display:flex;gap:12px;align-items:flex-start;font-size:20px;line-height:1.35;margin-bottom:16px;opacity:0}
+.n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--yel);color:#1a1300;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:16px;margin-top:1px}
+.mono{font-family:"Consolas","DejaVu Sans Mono",monospace;color:var(--yel)}
+.lbl{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:1px}
+/* model view */
+.canvas{position:absolute;left:40px;top:90px;width:760px;height:548px;background:#e6e4e2;border-radius:10px;overflow:hidden}
+.card{position:absolute;width:200px;background:#fff;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.18);color:#222;font-size:14px}
+.card h4{font-size:16px;font-weight:600;padding:9px 12px;border-bottom:1px solid #ddd}
+.card div{padding:4px 14px;color:#444}
+.card div.hl{background:#fff3b0;color:#000;font-weight:600}
+.tag{position:absolute;background:var(--bad);color:#fff;font-size:13px;font-weight:700;padding:4px 10px;border-radius:12px}
+.ghost{position:absolute;background:#fff3b0;border:2px solid #c9a200;color:#000;font-size:14px;font-weight:600;padding:3px 10px;border-radius:4px;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+svg.ov{position:absolute;inset:0;width:100%;height:100%}
+/* build pane */
+.pane{position:absolute;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.well{border:1.5px dashed #4a5f86;border-radius:6px;min-height:44px;padding:6px;margin:6px 0 14px}
+.fld{background:#2a3d61;border-radius:4px;padding:6px 10px;font-size:15px;margin:4px 0;display:flex;justify-content:space-between}
+.fld i{font-style:normal;color:var(--mut);font-size:12px}
+.shot{position:absolute;background:#fff;border-radius:8px;padding:8px;box-shadow:0 8px 30px rgba(0,0,0,.45)}
+.shot img{display:block}
+.shotlbl{position:absolute;font-size:14px;color:var(--mut)}
+.callout{position:absolute;width:34px;height:34px;border-radius:50%;background:var(--yel);color:#1a1300;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:17px;border:3px solid #fff;box-shadow:0 0 0 4px rgba(245,197,24,.35);transform:translate(-50%,-50%)}
+.ring{position:absolute;border:3px solid var(--yel);border-radius:8px;box-shadow:0 0 0 5px rgba(245,197,24,.25)}
+.click{position:absolute;width:40px;height:40px;border-radius:50%;border:3px solid var(--yel);transform:translate(-50%,-50%)}
+table.mx{border-collapse:collapse;font-size:16px;color:#222;background:#fff}
+table.mx th{font-weight:600;text-align:right;padding:8px 14px;border-bottom:2px solid #4ea1ff;position:relative}
+table.mx th:first-child,table.mx td:first-child{text-align:left}
+table.mx td{padding:6px 14px;text-align:right;border-bottom:1px solid #eee}
+.note{position:absolute;background:#3a2a05;border:2px solid var(--yel);border-radius:10px;padding:16px 20px;font-size:18px;line-height:1.4}
+.ddl{background:#fff;color:#222;border:1px solid #999;border-radius:3px;padding:7px 10px;font-size:16px;height:36px;margin:4px 0 14px;position:relative}
+.ddl:after{content:"⌄";position:absolute;right:10px;top:4px;color:#555}
+.ddl.inp:after{content:""}
+.btn{display:inline-block;padding:8px 18px;border-radius:4px;font-size:16px;font-weight:600}
+</style></head><body>
+
+<!-- S0 TITLE -->
+<section class="scene" id="s0">
+  <div style="position:absolute;left:110px;top:200px;width:10px;height:250px;background:var(--yel)" id="s0bar"></div>
+  <div style="position:absolute;left:150px;top:205px" id="s0txt">
+    <div style="font-size:56px;font-weight:800">Power BI External Data Assignment</div>
+    <div style="font-size:28px;color:var(--yel);margin-top:14px">Step-by-step training walkthrough</div>
+    <div style="font-size:20px;color:var(--mut);margin-top:40px">ITM 310 · Fall 26</div>
+    <div style="font-size:20px;color:var(--mut);margin-top:8px">Relate outside data &nbsp;•&nbsp; Build 3 visualizations &nbsp;•&nbsp; Turn in your file</div>
+  </div>
+  <div class="cap">This video follows your External Data instructions in order. Pause at any step to follow along in Power BI.</div>
+</section>
+
+<!-- S1 OVERVIEW -->
+<section class="scene" id="s1">
+  <div class="hdr"><span class="chip">OVERVIEW</span><span class="htitle">Why relate outside data?</span></div>
+  <div class="pane" id="s1a" style="left:90px;top:170px;width:380px;height:240px">
+    <div class="lbl">Outside data</div>
+    <div style="font-size:26px;font-weight:700;margin:10px 0">Excel download</div>
+    <div style="font-size:18px;color:var(--mut)">Vendor flat file, loaded as the</div>
+    <div class="fld" style="margin-top:14px;font-size:18px">Top Sales <i>table</i></div>
+  </div>
+  <div class="pane" id="s1b" style="left:810px;top:170px;width:380px;height:240px">
+    <div class="lbl">Existing data</div>
+    <div style="font-size:26px;font-weight:700;margin:10px 0">OLAP data warehouse</div>
+    <div style="font-size:18px;color:var(--mut)">The theater's own operations</div>
+    <div class="fld" style="margin-top:14px;font-size:18px">Tickets, Movie, Theater… <i>tables</i></div>
+  </div>
+  <svg class="ov"><line id="s1line" x1="472" y1="290" x2="808" y2="290" stroke="#f5c518" stroke-width="4" stroke-dasharray="8 6"/></svg>
+  <div id="s1lab" style="position:absolute;left:500px;top:245px;width:280px;text-align:center;font-size:18px;color:var(--yel);font-weight:700">relate on movie title</div>
+  <div id="s1out" style="position:absolute;left:0;right:0;top:470px;text-align:center;font-size:22px">Then build visuals and turn in your <span class="mono">.pbix</span> file to Canvas.</div>
+  <div class="cap">Strategic decisions often need data from outside the firm. You'll connect the Excel data to the warehouse data.</div>
+</section>
+
+<!-- S2-S4 MODEL VIEW (shared markup built by JS) -->
+<section class="scene" id="s2"></section>
+<section class="scene" id="s3"></section>
+<section class="scene" id="s4"></section>
+
+<!-- S5 VERIFY -->
+<section class="scene" id="s5">
+  <div class="hdr"><span class="chip">STEP 1c</span><span class="htitle">Check the relationship</span></div>
+  <div class="shot" style="left:40px;top:86px"><img src="assets/dialog.png" style="width:593px;height:520px"></div>
+  <div id="s5c" style="position:absolute;left:48px;top:94px">
+    <div class="callout" style="left:150px;top:133px">1</div>
+    <div class="callout" style="left:157px;top:276px">2</div>
+    <div class="callout" style="left:161px;top:396px">3</div>
+    <div class="callout" style="left:471px;top:487px">4</div>
+  </div>
+  <ul class="steps" style="left:700px;top:110px;width:540px">
+    <li><span class="n">1</span><span>Double-click the relationship line. First table: <b>Tickets</b>, column <span class="mono">MovieTitle</span>.</span></li>
+    <li><span class="n">2</span><span>Second table: <b>Top Sales</b>, column <span class="mono">Title</span>.</span></li>
+    <li><span class="n">3</span><span>Cardinality reads <b>Many to one (*:1)</b>.</span></li>
+    <li><span class="n">4</span><span>Click <b>OK</b>.</span></li>
+  </ul>
+  <div class="note" id="s5n" style="left:700px;top:470px;width:540px;font-size:16px">Columns may be in a different order. Scroll right if you don't see <span class="mono">MovieTitle</span>.</div>
+  <div class="cap">Screenshot from your instructions: MovieTitle in Tickets is related to Title in Top Sales.</div>
+</section>
+
+<!-- S6 REPORT VIEW -->
+<section class="scene" id="s6">
+  <div class="hdr"><span class="chip">STEP 2</span><span class="htitle">Switch to Report view</span></div>
+  <div class="shot" style="left:250px;top:230px;padding:20px"><img src="assets/image3.png" style="width:399px;height:165px;image-rendering:auto"></div>
+  <div class="ring" id="s6r" style="left:258px;top:238px;width:420px;height:200px"></div>
+  <div style="position:absolute;left:760px;top:270px;width:440px;font-size:24px;line-height:1.5">Click <b style="color:var(--yel)">Report view</b> on the left side of your screen.<br><span style="color:var(--mut);font-size:19px">Now you'll build three visuals.</span></div>
+  <div class="cap">Step 2: Create visualizations. Start in Report view.</div>
+</section>
+
+<!-- S7 TREEMAP -->
+<section class="scene" id="s7">
+  <div class="hdr"><span class="chip">STEP 2a</span><span class="htitle">Visual 1 of 3: Treemap</span></div>
+  <div class="pane" style="left:40px;top:100px;width:230px;height:240px">
+    <div class="lbl">Visualizations</div>
+    <div style="display:flex;justify-content:center;margin-top:30px"><div style="position:relative;background:#fff;padding:10px;border-radius:6px"><img src="assets/image4.png" style="width:134px;height:128px"><div class="ring" id="s7r" style="inset:-6px"></div></div></div>
+  </div>
+  <div class="pane" style="left:300px;top:100px;width:380px;height:300px">
+    <div class="lbl">Build visual (schematic)</div>
+    <div style="margin-top:12px;font-weight:600">Category</div><div class="well"><div class="fld" id="s7f1">Theater <i>Tickets</i></div></div>
+    <div style="font-weight:600">Values</div><div class="well"><div class="fld" id="s7f2">StudioPaymentAmount <i>Tickets</i></div></div>
+  </div>
+  <div class="shot" id="s7s" style="left:740px;top:130px"><img src="assets/image5.png" style="width:288px;height:285px"></div>
+  <div class="shotlbl" id="s7l" style="left:740px;top:100px">Your Build pane should look like this</div>
+  <ul class="steps" style="left:40px;top:430px;width:660px">
+    <li><span class="n">1</span><span>Select <b>Treemap</b> from the Visualizations pane.</span></li>
+    <li><span class="n">2</span><span>Category ← <span class="mono">Theater</span> &nbsp;·&nbsp; Values ← <span class="mono">Studio Payment Amount</span></span></li>
+  </ul>
+  <div class="cap">Both Treemap fields come from the <b>Tickets</b> table.</div>
+</section>
+
+<!-- S8 MATRIX -->
+<section class="scene" id="s8">
+  <div class="hdr"><span class="chip">STEP 2b</span><span class="htitle">Visual 2 of 3: Matrix</span></div>
+  <div class="pane" style="left:40px;top:100px;width:420px;height:400px">
+    <div class="lbl">Build visual (schematic)</div>
+    <div style="margin-top:12px;font-weight:600">Rows</div><div class="well"><div class="fld" id="s8f1">Theater <i>Tickets</i></div><div class="fld" id="s8f2">MovieTitle <i>Tickets</i></div></div>
+    <div style="font-weight:600">Columns</div><div class="well" style="color:var(--mut);font-size:14px;padding:12px">(leave empty)</div>
+    <div style="font-weight:600">Values</div><div class="well"><div class="fld" id="s8f3">RevenuePerMovie <i>Metrics</i></div><div class="fld" id="s8f4">TotalTicketsSold <i>Metrics</i></div></div>
+  </div>
+  <div class="shot" id="s8s" style="left:520px;top:130px"><img src="assets/image6.png" style="width:229px;height:299px"></div>
+  <div class="shotlbl" id="s8l" style="left:520px;top:100px">From your instructions</div>
+  <ul class="steps" style="left:800px;top:130px;width:440px">
+    <li><span class="n">1</span><span>Select <b>Matrix</b>.</span></li>
+    <li><span class="n">2</span><span>Rows ← <span class="mono">Theater</span>, then <span class="mono">Movie Title</span> (Tickets)</span></li>
+    <li><span class="n">3</span><span>Values ← <span class="mono">Revenue per Movie</span> and <span class="mono">Total Tickets Sold</span> (Metrics table)</span></li>
+  </ul>
+  <div class="cap">Order matters in Rows: Theater first, Movie Title second, so you can expand each theater.</div>
+</section>
+
+<!-- S9 SORT MATRIX -->
+<section class="scene" id="s9">
+  <div class="hdr"><span class="chip">STEP 2b</span><span class="htitle">Sort the matrix</span></div>
+  <div class="shot" style="left:120px;top:120px;padding:14px">
+    <table class="mx" id="s9t"><thead><tr><th>Theater</th><th id="s9h1">RevenuePerMovie</th><th id="s9h2">TotalTicketsSold</th></tr></thead>
+    <tbody>
+      <tr><td>⊞ Edwards 21 Boise</td><td>$138.1183</td><td>5782</td></tr>
+      <tr><td>⊞ Village Cinema Meridian</td><td>$83.7262</td><td>1634</td></tr>
+      <tr><td>⊞ Grand Teton 14 Idaho Falls</td><td>$71.9231</td><td>108</td></tr>
+      <tr><td>⊞ Edwards BoDo 9 Boise</td><td>$68.9247</td><td>1037</td></tr>
+      <tr><td>⊞ Edwards 14 Nampa</td><td>$47.871</td><td>329</td></tr>
+    </tbody></table>
+  </div>
+  <div class="click" id="s9c"></div>
+  <div id="s9a" style="position:absolute;font-size:20px;color:#4ea1ff;font-weight:900">▼</div>
+  <ul class="steps" style="left:820px;top:150px;width:420px">
+    <li><span class="n">1</span><span>Click the <span class="mono">RevenuePerMovie</span> heading.</span></li>
+    <li><span class="n">2</span><span>Click the <span class="mono">TotalTicketsSold</span> heading.</span></li>
+  </ul>
+  <div class="cap">Clicking a column heading sorts the matrix by that column.</div>
+</section>
+
+<!-- S10 TABLE -->
+<section class="scene" id="s10">
+  <div class="hdr"><span class="chip">STEP 2c</span><span class="htitle">Visual 3 of 3: Table</span></div>
+  <div class="pane" style="left:40px;top:100px;width:420px;height:250px">
+    <div class="lbl">Build visual (schematic)</div>
+    <div style="margin-top:12px;font-weight:600">Columns</div>
+    <div class="well"><div class="fld" id="s10f1">Title <i>Top Sales</i></div><div class="fld" id="s10f2">YearsSalesRank <i>Top Sales</i></div><div class="fld" id="s10f3">OpenDate <i>Top Sales</i></div></div>
+  </div>
+  <div class="shot" id="s10s" style="left:520px;top:130px"><img src="assets/image7.png" style="width:418px;height:212px"></div>
+  <div class="shotlbl" id="s10l" style="left:520px;top:100px">From your instructions</div>
+  <ul class="steps" style="left:40px;top:400px;width:1100px">
+    <li><span class="n">1</span><span>Select <b>Table</b>.</span></li>
+    <li><span class="n">2</span><span>Columns ← <span class="mono">Title</span>, <span class="mono">YearsSalesRank</span>, <span class="mono">OpenDate</span>, all from the <b>Top Sales</b> table (your new outside data).</span></li>
+  </ul>
+  <div class="cap">This visual only works because of the relationship you created in Step 1.</div>
+</section>
+
+<!-- S11 FILTER -->
+<section class="scene" id="s11">
+  <div class="hdr"><span class="chip">STEP 2c</span><span class="htitle">Filter to movies opened 2020 or later</span></div>
+  <div class="pane" style="left:40px;top:100px;width:400px;height:480px;background:#f3f3f3;color:#222;border-color:#ccc">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><img src="assets/image8.png" style="height:28px"><span style="font-size:12px;color:#666">(schematic)</span></div>
+    <div style="font-weight:700;font-size:17px">OpenDate - Year</div>
+    <div style="font-size:14px;margin-top:12px">Filter type</div>
+    <div class="ddl" id="s11d1"><span></span></div>
+    <div style="font-size:14px">Show items when the value</div>
+    <div class="ddl" id="s11d2"><span></span></div>
+    <div class="ddl inp" id="s11d3"><span></span></div>
+    <div style="text-align:right;margin-top:20px"><span class="btn" id="s11b" style="background:#ddd;color:#888">Apply filter</span></div>
+  </div>
+  <ul class="steps" style="left:500px;top:120px;width:740px">
+    <li><span class="n">i</span><span>In the Filters pane, open <b>OpenDate - Year</b>. First drop-down: <b>Advanced filtering</b></span></li>
+    <li><span class="n">ii</span><span>Second drop-down: <b>is greater than or equal to</b></span></li>
+    <li><span class="n">iii</span><span>Type <span class="mono">2020</span></span></li>
+    <li><span class="n">iv</span><span>Click <b>Apply filter</b></span></li>
+  </ul>
+  <div class="cap">Advanced filtering on OpenDate - Year: <b>is greater than or equal to 2020</b>, then Apply filter.</div>
+</section>
+
+<!-- S12 DATE HIERARCHY -->
+<section class="scene" id="s12">
+  <div class="hdr"><span class="chip">STEP 2c</span><span class="htitle">Show OpenDate, not the Date Hierarchy</span></div>
+  <div class="shot" style="left:60px;top:90px"><img src="assets/menu.png" style="width:431px;height:481px"></div>
+  <div id="s12c" style="position:absolute;left:68px;top:98px">
+    <div class="callout" style="left:150px;top:112px">1</div>
+    <div class="callout" style="left:225px;top:468px">2</div>
+  </div>
+  <ul class="steps" style="left:580px;top:150px;width:660px">
+    <li><span class="n">1</span><span>Under Columns, click the arrow on <span class="mono">OpenDate</span>.</span></li>
+    <li><span class="n">2</span><span>Choose <b>OpenDate</b> instead of <b>Date Hierarchy</b>.</span></li>
+  </ul>
+  <div id="s12r" style="position:absolute;left:580px;top:340px;width:620px;font-size:19px;color:var(--mut)">You'll see full dates (e.g., Friday, January 17, 2020) instead of Year / Quarter / Month / Day.</div>
+  <div class="cap">Screenshot from your instructions: the field menu for OpenDate.</div>
+</section>
+
+<!-- S13 SORT RANK + NOTE -->
+<section class="scene" id="s13">
+  <div class="hdr"><span class="chip">STEP 2c</span><span class="htitle">Sort by YearsSalesRank</span></div>
+  <div class="shot" style="left:60px;top:110px;padding:14px">
+    <table class="mx"><thead><tr><th>Title</th><th id="s13h">Sum of YearsSalesRank</th><th>OpenDate</th></tr></thead>
+    <tbody id="s13b"></tbody></table>
+  </div>
+  <div class="click" id="s13c"></div>
+  <div id="s13a" style="position:absolute;font-size:20px;color:#4ea1ff;font-weight:900">▲</div>
+  <div class="note" id="s13n" style="left:780px;top:130px;width:450px"><b style="color:var(--yel)">Note:</b> If the ranks go 1, 10, 100…, go back to <b>Top Sales</b> and make sure <span class="mono">YearsSalesRank</span> is set to a <b>number</b>, not General format.</div>
+  <div class="cap">Click the YearsSalesRank heading so the table sorts from 1 to 100.</div>
+</section>
+
+<!-- S14 CHECK -->
+<section class="scene" id="s14">
+  <div class="hdr"><span class="chip">CHECK</span><span class="htitle">Your report should look similar to this</span></div>
+  <div class="shot" id="s14s" style="left:150px;top:86px"><img src="assets/image10.png" style="width:968px;height:510px"></div>
+  <div class="cap">Treemap, matrix and filtered table. Your colors and column widths may differ.</div>
+</section>
+
+<!-- S15 TURN IN -->
+<section class="scene" id="s15">
+  <div class="hdr"><span class="chip">STEP 3</span><span class="htitle">Save and turn in</span></div>
+  <div style="position:absolute;left:0;right:0;top:220px;display:flex;justify-content:center;gap:60px">
+    <div class="pane" id="s15a" style="position:relative;width:340px;height:180px;text-align:center;padding-top:40px"><div style="font-size:44px">💾</div><div style="font-size:22px;margin-top:10px">Save your <span class="mono">.pbix</span></div></div>
+    <div class="pane" id="s15b" style="position:relative;width:340px;height:180px;text-align:center;padding-top:40px"><div style="font-size:44px">⬆</div><div style="font-size:22px;margin-top:10px">Upload it to Canvas</div></div>
+  </div>
+  <div id="s15c" style="position:absolute;left:0;right:0;top:470px;text-align:center;font-size:30px;font-weight:800;color:var(--yel)">You're done.</div>
+  <div class="cap">Save your Power BI file and submit it on the assignment page in Canvas.</div>
+</section>
+
+<div class="prog" id="prog"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const clamp=x=>Math.max(0,Math.min(1,x));
+const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+const P=(lt,a,d=.5)=>ease(clamp((lt-a)/d));
+const fade=(el,v,dy=12)=>{if(!el)return;el.style.opacity=v;el.style.transform=`translateY(${(1-v)*dy}px)`};
+const lis=sc=>[...document.querySelectorAll(`#${sc} .steps li`)];
+const stepIn=(sc,lt,times)=>lis(sc).forEach((li,i)=>fade(li,P(lt,times[i]??99)));
+const pulse=(lt)=>.6+.4*Math.abs(Math.sin(lt*3));
+
+/* ---------- shared model-view canvas ---------- */
+const TK=['AdmissionPrice','LineTotal','MovieFormat','MovieTitle','PaymentMethod','Theater'];
+const TS=['YearsSalesRank','Title','Genre','Gross','OpenDate'];
+function modelScene(id,chip,title,cap,steps){
+  $(id).innerHTML=`
+  <div class="hdr"><span class="chip">${chip}</span><span class="htitle">${title}</span></div>
+  <div class="canvas"><div class="lbl" style="position:absolute;right:12px;top:8px;color:#888">Model view (schematic)</div>
+    <svg class="ov"><g stroke="#666" stroke-width="2" fill="none">
+      <path d="M230 200 H330"/><path d="M530 190 H590"/></g>
+      <text x="236" y="194" font-size="14" fill="#444">1</text><text x="318" y="194" font-size="16" fill="#444">*</text>
+      <text x="536" y="184" font-size="16" fill="#444">*</text><text x="578" y="184" font-size="14" fill="#444">1</text>
+      <path class="rel" d="M430 308 V370" stroke="#333" stroke-width="2.5" fill="none" opacity="0"/>
+      <text class="rel" x="438" y="328" font-size="18" fill="#333" opacity="0">*</text>
+      <text class="rel" x="438" y="366" font-size="15" fill="#333" opacity="0">1</text>
+    </svg>
+    <div class="card" style="left:30px;top:150px"><h4>Movie</h4><div>MovieTitle</div><div>Rating</div><div>RunningTime</div></div>
+    <div class="card" style="left:330px;top:110px"><h4>Tickets</h4>${TK.map(f=>`<div data-f="${f}">${f}</div>`).join('')}</div>
+    <div class="card" style="left:590px;top:110px;width:150px"><h4>Theater</h4><div>City</div><div>TheaterName</div></div>
+    <div class="card ts" style="left:560px;top:300px"><h4>Top Sales</h4>${TS.map(f=>`<div data-f="${f}">${f}</div>`).join('')}</div>
+    <div class="tag" style="left:560px;top:266px">No relationship</div>
+    <div class="ghost" style="display:none">Title</div>
+  </div>
+  <ul class="steps" style="left:840px;top:110px;width:400px">${steps.map((s,i)=>`<li><span class="n">${i+1}</span><span>${s}</span></li>`).join('')}</ul>
+  <div class="cap">${cap}</div>`;
+}
+modelScene('s2','STEP 1','Open the file and go to Model view',
+ 'Notice the <b>Top Sales</b> table has no relationship to the other tables yet.',
+ ['Download <span class="mono">ASGN-External Data.pbix</span> from Canvas (Week 10 Tech ASGN) and open it.',
+  'Click <b>Model view</b> on the left side <img src="assets/image1.png" style="height:26px;vertical-align:middle;background:#fff;border-radius:3px">',
+  'Find <b>Top Sales</b>. It isn\'t connected to anything.']);
+modelScene('s3','STEP 1a','Move Top Sales next to Tickets',
+ 'Drag the <b>Top Sales</b> table close to the <b>Tickets</b> table.',
+ ['Drag the <b>Top Sales</b> table by its header.','Drop it close to <b>Tickets</b>.']);
+modelScene('s4','STEP 1b','Drag Title onto MovieTitle',
+ 'Drag <b>Title</b> (Top Sales) onto <b>MovieTitle</b> (Tickets) to create the relationship.',
+ ['In Top Sales, click <span class="mono">Title</span>.','Drag it onto <span class="mono">MovieTitle</span> in Tickets.','A relationship line appears: many (*) Tickets to one (1) Top Sales.']);
+
+const q=(id,s)=>document.querySelector(`#${id} ${s}`);
+const tsPos=(id,x,y)=>{const c=q(id,'.ts');c.style.left=x+'px';c.style.top=y+'px'};
+
+/* ---------- scene timeline ---------- */
+const SC=[
+ ['s0',6,lt=>{fade($('s0bar'),P(lt,.2,.6),0);$('s0bar').style.transform=`scaleY(${P(lt,.2,.6)})`;fade($('s0txt'),P(lt,.5,.8),20)}],
+ ['s1',9,lt=>{fade($('s1a'),P(lt,.3));fade($('s1b'),P(lt,1));
+   const L=$('s1line'),k=P(lt,2,1.2);L.setAttribute('x2',472+336*k);fade($('s1lab'),P(lt,3));fade($('s1out'),P(lt,5))}],
+ ['s2',9,lt=>{stepIn('s2',lt,[.4,2.5,5]);tsPos('s2',560,300);
+   const tag=q('s2','.tag');tag.style.opacity=lt>5?pulse(lt):0;
+   q('s2','.ts').style.outline=lt>5?'3px solid #ff6b6b':'none'}],
+ ['s3',8,lt=>{stepIn('s3',lt,[.3,2]);const k=P(lt,1.5,2.5);
+   tsPos('s3',560-230*k,300+70*k);q('s3','.tag').style.opacity=1-k;
+   q('s3','.ts').style.boxShadow=k>0&&k<1?'0 12px 30px rgba(0,0,0,.35)':''}],
+ ['s4',11,lt=>{stepIn('s4',lt,[.3,2,6]);tsPos('s4',330,370);q('s4','.tag').style.opacity=0;
+   const title=q('s4','.ts [data-f="Title"]'),mt=q('s4','[data-f="MovieTitle"]');
+   title.className=lt>1?'hl':'';mt.className=lt>4.5&&lt<7?'hl':'';
+   const g=q('s4','.ghost'),k=P(lt,2.2,2.3);g.style.display=lt>2.2&&lt<4.8?'block':'none';
+   // Title row ~ (350,486) -> MovieTitle row ~ (350,283)
+   g.style.left=(360)+'px';g.style.top=(436-210*k)+'px';
+   document.querySelectorAll('#s4 .rel').forEach(e=>e.setAttribute('opacity',P(lt,4.8,.6)))}],
+ ['s5',12,lt=>{stepIn('s5',lt,[.8,3,5,7.5]);
+   [...$('s5c').children].forEach((c,i)=>{const v=P(lt,[.8,3,5,7.5][i],.3);c.style.opacity=v;c.style.transform=`translate(-50%,-50%) scale(${.5+.5*v})`});
+   fade($('s5n'),P(lt,9))}],
+ ['s6',6,lt=>{$('s6r').style.opacity=lt>1?pulse(lt):0}],
+ ['s7',13,lt=>{stepIn('s7',lt,[.5,3.5]);$('s7r').style.opacity=lt>1&&lt<4?pulse(lt):0;
+   fade($('s7f1'),P(lt,4,.6),-20);fade($('s7f2'),P(lt,6,.6),-20);fade($('s7s'),P(lt,8.5));fade($('s7l'),P(lt,8.5))}],
+ ['s8',13,lt=>{stepIn('s8',lt,[.5,2,5]);fade($('s8f1'),P(lt,2.5,.5),-20);fade($('s8f2'),P(lt,3.5,.5),-20);
+   fade($('s8f3'),P(lt,5.5,.5),-20);fade($('s8f4'),P(lt,6.5,.5),-20);fade($('s8s'),P(lt,9));fade($('s8l'),P(lt,9))}],
+ ['s9',7,lt=>{stepIn('s9',lt,[.4,3.5]);
+   const h=lt<3.5?$('s9h1'):$('s9h2'),r=h.getBoundingClientRect();const c=$('s9c'),on=(lt>1.5&&lt<2.4)||(lt>4.3&&lt<5.2);
+   c.style.left=(r.left+r.width/2)+'px';c.style.top=(r.top+r.height/2)+'px';c.style.opacity=on?1:0;
+   const show=lt>2||false;const a=$('s9a');a.style.opacity=lt>2?1:0;a.style.left=(r.left+r.width/2-8)+'px';a.style.top=(r.bottom-6)+'px'}],
+ ['s10',10,lt=>{stepIn('s10',lt,[.5,2]);fade($('s10f1'),P(lt,2.5,.5),-20);fade($('s10f2'),P(lt,3.5,.5),-20);fade($('s10f3'),P(lt,4.5,.5),-20);
+   fade($('s10s'),P(lt,6.5));fade($('s10l'),P(lt,6.5))}],
+ ['s11',15,lt=>{stepIn('s11',lt,[.5,4,7.5,10.5]);
+   const type=(el,s,a)=>{el.firstChild.textContent=s.slice(0,Math.floor(clamp((lt-a)/1)*s.length))};
+   type($('s11d1'),'Advanced filtering',1.5);type($('s11d2'),'is greater than or equal to',5);type($('s11d3'),'2020',8.5);
+   [['s11d1',1.5,3.5],['s11d2',5,7],['s11d3',8.5,10]].forEach(([d,a,b])=>$(d).style.boxShadow=lt>a&&lt<b?'0 0 0 3px #f5c518':'none');
+   const b=$('s11b');const on=lt>11;b.style.background=on?'#118dff':'#ddd';b.style.color=on?'#fff':'#888';
+   b.style.boxShadow=lt>11&&lt<13?'0 0 0 4px rgba(245,197,24,.8)':'none'}],
+ ['s12',10,lt=>{stepIn('s12',lt,[.6,3.5]);
+   [...$('s12c').children].forEach((c,i)=>{const v=P(lt,[.6,3.5][i],.3);c.style.opacity=v;c.style.transform=`translate(-50%,-50%) scale(${.5+.5*v})`});
+   fade($('s12r'),P(lt,6))}],
+ ['s13',11,lt=>{const sorted=lt>2.4;
+   const rows=sorted?[['Bad Boys for Life',1,'Friday, January 17, 2020'],['Barbie',1,'Friday, July 21, 2023'],['Spider-Man: No Way Home',1,'Friday, December 17, 2021'],['Top Gun: Maverick',1,'Friday, May 27, 2022'],['Avatar: The Way of Water',2,'Friday, December 16, 2022'],['Sonic the Hedgehog',2,'Friday, February 14, 2020']]
+     :[['Barbie',1,'Friday, July 21, 2023'],['Dolittle',4,'Friday, January 17, 2020'],['Avatar: The Way of Water',2,'Friday, December 16, 2022'],['Black Widow',4,'Friday, July 09, 2021'],['Bad Boys for Life',1,'Friday, January 17, 2020'],['Birds of Prey',3,'Friday, February 07, 2020']];
+   const html=rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+   if($('s13b').innerHTML!==html)$('s13b').innerHTML=html;
+   const r=$('s13h').getBoundingClientRect(),c=$('s13c');c.style.left=(r.left+r.width/2)+'px';c.style.top=(r.top+r.height/2)+'px';c.style.opacity=lt>1.6&&lt<2.6?1:0;
+   const a=$('s13a');a.style.opacity=sorted?1:0;a.style.left=(r.left+r.width/2-8)+'px';a.style.top=(r.bottom-8)+'px';
+   fade($('s13n'),P(lt,5))}],
+ ['s14',10,lt=>{const v=P(lt,.3,1);$('s14s').style.opacity=v;$('s14s').style.transform=`scale(${.96+.04*v})`}],
+ ['s15',7,lt=>{fade($('s15a'),P(lt,.4));fade($('s15b'),P(lt,1.6));fade($('s15c'),P(lt,3.5))}],
+];
+let acc=0;SC.forEach(s=>{s.start=acc;acc+=s[1]});
+window.TOTAL=acc;
+window.render=function(t){
+  let cur=SC[SC.length-1];for(const s of SC){if(t>=s.start&&t<s.start+s[1]){cur=s;break}}
+  SC.forEach(s=>$(s[0]).style.display=s===cur?'block':'none');
+  const lt=t-cur.start;cur[2](lt);
+  // scene crossfade
+  const el=$(cur[0]);el.style.opacity=Math.min(clamp(lt/.35),clamp((cur[1]-lt)/.35));
+  $('prog').style.width=(t/acc*100)+'%';
+};
+document.querySelectorAll('.cap').forEach(c=>c.innerHTML='<span>'+c.innerHTML+'</span>');
+window.render(0);
+</script>
+</body></html>
