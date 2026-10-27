@@ -10,8 +10,6 @@
 ```bash
 git clone https://github.com/cwarloe/knowledge-harvest.git
 cd knowledge-harvest
-chmod +x generate-files.sh
-./generate-files.sh
 ./setup.sh
 ```
 
