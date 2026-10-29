@@ -19,16 +19,6 @@ The existing software in this repository explores one part of that larger proble
 
 - [Instructions → training video](playbooks/instructions-to-training-video/README.md): turn a written procedure (docx, PDF, slides, web page, notes) into a short captioned walkthrough video, with no screen recording. A way to reproduce a capability when the steps already exist in writing.
 
-## Quick Start
-
-```bash
-git clone https://github.com/cwarloe/knowledge-harvest.git
-cd knowledge-harvest
-./setup.sh
-```
-
-Access at: http://localhost:3000
-
 ## Features
 
 - WebRTC screen recording with audio
@@ -37,20 +27,6 @@ Access at: http://localhost:3000
 - Search and tag filtering
 - Docker development environment
 
-## Development
-
-```bash
-# View logs
-docker-compose logs -f api
-docker-compose logs -f web
-
-# Stop services
-docker-compose down
-
-# Restart
-docker-compose up -d
-```
-
 ## Architecture
 
 - **Frontend**: React with Tailwind CSS
@@ -58,50 +34,73 @@ docker-compose up -d
 - **Database**: PostgreSQL
 - **Storage**: LocalStack S3 (development)
 - **Deployment**: Docker Compose
-## Local Development
+
+## Setup
 
 ### Prerequisites
-- Node.js v18+ & npm
-- Docker & Docker Compose
 
-### Setup
+You'll need Node.js v18 or later with npm, plus Docker and Docker Compose.
 
-1. **Clone the repo**
+### Quick start
+
+If you just want everything running, clone the repo and run the setup script:
+
+```bash
+git clone https://github.com/cwarloe/knowledge-harvest.git
+cd knowledge-harvest
+./setup.sh
+```
+
+When it finishes, open http://localhost:3000.
+
+### Running each part yourself
+
+If you'd rather run the pieces one at a time, start from the cloned repo.
+
+1. **Start the database and local S3.** These come from the root `docker-compose.yml`.
    ```bash
-   git clone https://github.com/cwarloe/knowledge-harvest.git
-   cd knowledge-harvest
+   docker-compose up -d
    ```
 
-2. **Backend API** (in `services/`, Node/Express)
+2. **Start the backend API.** It lives in `services/` and runs on Node/Express.
    ```bash
    cd services
    npm install
    npm run dev
    ```
 
-3. **Frontend app** (in `web/`)
+3. **Start the frontend app.** It lives in `web/`.
    ```bash
    cd web
    npm install
    npm start
    ```
 
-4. **Database + local S3** (root `docker-compose.yml`)
-   ```bash
-   docker-compose up -d
-   ```
+Once everything is up, the API health check is at http://localhost:3001/api/health and the frontend is at http://localhost:3000.
 
-5. **Testing**
-   ```bash
-   cd services && npm test
-   ```
+### Environment variables
 
-API -> http://localhost:3001/api/health
-Frontend -> http://localhost:3000
-
-### Env setup
-Copy the example and fill in values:
+Copy the example file, then fill in your own values:
 
 ```bash
 cp .env.example .env
 ```
+
+### Running the tests
+
+The backend tests run from `services/`:
+
+```bash
+cd services && npm test
+```
+
+### Day-to-day Docker commands
+
+These are handy while you're working. To follow the logs:
+
+```bash
+docker-compose logs -f api
+docker-compose logs -f web
+```
+
+To stop everything, run `docker-compose down`. To bring it back up, run `docker-compose up -d`.
