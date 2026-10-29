@@ -62,25 +62,9 @@ docker-compose up -d
 
 ### Prerequisites
 - Node.js v18+ & npm
-- Python 3.11+ & pip
 - Docker & Docker Compose
 
 ### Setup
-
-2.a Create and activate a virtual environment:
-   ```
-   cd services
-   python3 -m venv ../venv
-   source ../venv/bin/activate      # on Windows: venv\Scripts\activate
-   ```
-
-2.b Install dependencies and run:
-   ```
-   pip install --upgrade pip
-   pip install -r requirements.txt
-   export FLASK_APP=app.py
-   python -m flask run --port 5000
-   ```
 
 1. **Clone the repo**
    ```bash
@@ -88,12 +72,11 @@ docker-compose up -d
    cd knowledge-harvest
    ```
 
-2. **Backend services** (in `services/`)
+2. **Backend API** (in `services/`, Node/Express)
    ```bash
    cd services
-   pip install -r requirements.txt
-   export FLASK_APP=app.py
-   flask run --port 5000
+   npm install
+   npm run dev
    ```
 
 3. **Frontend app** (in `web/`)
@@ -103,18 +86,17 @@ docker-compose up -d
    npm start
    ```
 
-4. **Infrastructure** (in `infra/`)
+4. **Database + local S3** (root `docker-compose.yml`)
    ```bash
-   cd infra
    docker-compose up -d
    ```
 
 5. **Testing**
    ```bash
-   pytest services/tests
+   cd services && npm test
    ```
 
-Services -> http://localhost:5000
+API -> http://localhost:3001/api/health
 Frontend -> http://localhost:3000
 
 ### Env setup
