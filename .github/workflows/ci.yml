@@ -43,5 +43,5 @@ jobs:
       - run: npm ci
       - name: Syntax check
         run: node --check server.js
-      - name: Tests (none yet; passes until some are added)
-        run: npm test -- --passWithNoTests
+      - name: Tests
+        run: npm test

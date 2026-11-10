@@ -184,6 +184,12 @@ app.delete('/api/recordings/:id', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Knowledge Harvest API running on port ${port}`);
-});
+// Start the server only when run directly (`npm start`), so tests can
+// require the app without opening a port.
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`Knowledge Harvest API running on port ${port}`);
+  });
+}
+
+module.exports = app;
