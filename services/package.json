@@ -9,7 +9,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "aws-sdk": "^2.1692.0",
     "cors": "^2.8.5",
     "dotenv": "^16.6.1",
     "express": "^4.21.2",
@@ -18,7 +17,7 @@
   },
   "devDependencies": {
     "jest": "^29.3.1",
-    "nodemon": "^2.0.22",
+    "nodemon": "^3.1.14",
     "supertest": "^6.3.3"
   },
   "keywords": [
