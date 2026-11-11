@@ -63,7 +63,7 @@ When it finishes, open http://localhost:3000.
 
 If you'd rather run the pieces one at a time, start from the cloned repo.
 
-1. **Start the database and local S3.** These come from the root `docker-compose.yml`.
+1. **Start the database.** The root `docker-compose.yml` also starts a LocalStack service, but the current server does not use it.
    ```bash
    docker-compose up -d
    ```

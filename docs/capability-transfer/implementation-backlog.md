@@ -34,7 +34,7 @@ Slices 1–2 should be developed with fictional data. Slice 3 must precede a sof
 7. Reduced founder time accompanied by increased total support or critical errors remains visible.
 8. Missing authority/access prevents live application; a recorded critical error holds it until reviewed.
 9. Private data, recordings, exports, and deletions all require authorized access.
-10. Migration preserves existing recordings; existing browse/upload/playback/delete behavior still works.
+10. Migration preserves existing recordings; existing browse, upload, and playback behavior still works, and the unauthenticated `DELETE /api/recordings/:id` route still works if it remains part of the API.
 
 These are implementation acceptance scenarios, not claims that tests or features already exist.
 

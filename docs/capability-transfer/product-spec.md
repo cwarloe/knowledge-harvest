@@ -4,7 +4,7 @@
 
 ## Existing app integration
 
-`web/src/App.js` currently provides recording, metadata, browsing, search, playback, and deletion in a single React component. `services/server.js` exposes `/api/recordings` with PostgreSQL metadata and local-file uploads; its `s3_key` currently holds a filename. `services/schema.sql` defines only recordings. These observations describe source inspection, not a verified deployment.
+`web/src/App.js` currently provides recording, metadata, browsing, search, and playback in a single React component. `services/server.js` exposes `/api/recordings` with PostgreSQL metadata and local-file uploads; its `s3_key` currently holds a filename. The same server also has an unauthenticated `DELETE /api/recordings/:id` route, but the current UI does not call it. `services/schema.sql` defines only recordings. These observations describe source inspection, not a verified deployment.
 
 Add a separate Cases area and components rather than replacing the recording workflow. A case can link an existing recording as one evidence source; recording is optional. Do not assume S3 exists because older architecture documents mention it. Do not add microservices for this workflow.
 
