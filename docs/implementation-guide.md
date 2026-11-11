@@ -1,5 +1,7 @@
 # Knowledge Harvest - Technical Implementation Guide
 
+> Historical recording/storage implementation guidance. For current capability-transfer priorities, use the [product specification](capability-transfer/product-spec.md) and [implementation backlog](capability-transfer/implementation-backlog.md). Examples below are proposals, not proof of deployed features.
+
 This guide provides detailed technical instructions for implementing the next critical features of the Knowledge Harvest MVP. It's intended for developers working on the project to ensure consistent implementation and code quality.
 
 ## 1. S3 Integration for Video Storage

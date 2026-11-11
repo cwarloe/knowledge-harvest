@@ -8,6 +8,12 @@ The existing software in this repository explores one part of that larger proble
 
 > **Working principle:** Don't document the founder. Reproduce the capability.
 
+### Capability transfer pilot framework
+
+Start with the [Capability Transfer Framework](docs/capability-transfer/README.md): a complete manual pilot workflow, reusable workbook, fictional MSP example, evidence rules, and four-screen software specification. Follow one recurring escalation through diagnosis, expert capture, practice, live application, and a reviewed outcome.
+
+**Delivery status:** the framework is ready to use manually; the case workflow is specified, not implemented in the recording app.
+
 ### Business and research docs
 
 - [Business hypothesis](docs/business-hypothesis.md)
@@ -22,7 +28,7 @@ The existing software in this repository explores one part of that larger proble
 ## Features
 
 - WebRTC screen recording with audio
-- File upload to LocalStack S3
+- File upload to local storage in the current server
 - PostgreSQL database
 - Search and tag filtering
 - Docker development environment
@@ -32,7 +38,7 @@ The existing software in this repository explores one part of that larger proble
 - **Frontend**: React with Tailwind CSS
 - **Backend**: Node.js/Express API
 - **Database**: PostgreSQL
-- **Storage**: LocalStack S3 (development)
+- **Storage**: local uploaded files; LocalStack S3 is included in development configuration but not wired into the current server
 - **Deployment**: Docker Compose
 
 ## Setup
@@ -57,7 +63,7 @@ When it finishes, open http://localhost:3000.
 
 If you'd rather run the pieces one at a time, start from the cloned repo.
 
-1. **Start the database and local S3.** These come from the root `docker-compose.yml`.
+1. **Start the database.** The root `docker-compose.yml` also starts a LocalStack service, but the current server does not use it.
    ```bash
    docker-compose up -d
    ```
@@ -104,3 +110,4 @@ docker-compose logs -f web
 ```
 
 To stop everything, run `docker-compose down`. To bring it back up, run `docker-compose up -d`.
+
