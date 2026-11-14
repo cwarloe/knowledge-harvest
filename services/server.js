@@ -110,6 +110,13 @@ app.get('/api/recordings/:id', async (req, res) => {
   }
 });
 
+// Remove a file multer saved for a request that did not create a recording.
+function removeUpload(file) {
+  if (file && file.path) {
+    fs.rm(file.path, { force: true }, () => {});
+  }
+}
+
 // Upload recording (saves to local filesystem)
 app.post('/api/recordings', upload.single('video'), async (req, res) => {
   try {
@@ -117,6 +124,7 @@ app.post('/api/recordings', upload.single('video'), async (req, res) => {
     const videoFile = req.file;
 
     if (!title || !videoFile) {
+      removeUpload(videoFile);
       return res.status(400).json({ error: 'Title and video file are required' });
     }
 
@@ -149,6 +157,9 @@ app.post('/api/recordings', upload.single('video'), async (req, res) => {
 
     res.status(201).json(recording);
   } catch (error) {
+    // multer has already written the file; don't leave it orphaned on disk
+    // when the database insert fails.
+    removeUpload(req.file);
     console.error('Error uploading recording:', error);
     res.status(500).json({ error: 'Failed to upload recording' });
   }
