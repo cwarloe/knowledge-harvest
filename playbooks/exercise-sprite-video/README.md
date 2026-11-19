@@ -19,6 +19,7 @@ python3 kit/build.py --data ... --list                    # what each chart slot
 python3 kit/build.py --data ... --scene config/scene.example-mat.json --preview --only ex4   # try a mat, shadow, prop
 python3 kit/build.py --data ... --export exports          # the scene as separate transparent PNGs + scene.json
 python3 kit/build.py --bake                               # (re)write assets/: sprites and backdrop layers
+python3 kit/make_demo.py --data ... --out docs/sprite-boy-demo --reel   # phone-friendly demo: reel + interactive layer viewer
 python3 tests/smoke.py path/to/5bx-charts.json            # 20 s: did my change break anything?
 ```
 
@@ -93,6 +94,10 @@ The ElevenLabs edit tool takes "change this, keep that" and re-renders the strip
 Charts 2–6 use different exercises (sit-up with hands behind head, wide-hand push-up, jack jumps…),
 so each one needs its own strips: **26 more across the five charts** (`docs/CHARTS-2-6.md`). `--list` refuses to build a chart that still has gaps and says which.
 
+## The demo page
+
+`kit/make_demo.py` builds a folder of plain files: a 40-second reel (about 1.6 MB), an interactive viewer where you switch backdrop layers, add the mat, shadow and bottle, and recolor the boy, and the edit-test pictures. About 4.6 MB in all. It reads everything from the kit's own assets and config, so rebuilding after any change refreshes it. A copy for the chart 1 look is in `docs/sprite-boy-demo/` at the repo root, ready for GitHub Pages (Settings → Pages → deploy from a branch → `/docs`; the page would be at `/sprite-boy-demo/`). Rebuild it with the command above.
+
 ## Rules that matter
 
 - **Form is checked by a person.** The generator makes plausible-but-wrong form. Check every strip against the booklet's words, and have someone who knows the exercises watch the final video.
@@ -123,7 +128,7 @@ config/scene.json       props between/in front of the layers; scene.example-mat.
 docs/LAYERS-AND-IDEAS.md   brainstorm: every way to split this into layers, tagged by effort
 docs/CHARTS-2-6.md      what the five remaining charts need, from the data
 prompts/strips.json     the pose lists that produced them
-kit/build.py            the builder     kit/prompt.py   prompt maker
+kit/build.py            the builder     kit/prompt.py   prompt maker     kit/make_demo.py   the demo page
 kit/keyer.py            background -> transparency     kit/recolor.py   free recolour
 tests/smoke.py          15-second check
 ```

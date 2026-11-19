@@ -68,4 +68,16 @@ with tempfile.TemporaryDirectory() as tmp:
         dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", out], capture_output=True, text=True).stdout)
         check(abs(dur - 5.0) < 0.2, f"preview of one exercise is 5 s (got {dur:.1f})")
     else: print(r.stderr[-800:])
+
+with tempfile.TemporaryDirectory() as tmp:
+    demo = os.path.join(tmp, "demo")
+    r = subprocess.run([sys.executable, os.path.join(ROOT, "kit", "make_demo.py"), "--data", data_path, "--out", demo], capture_output=True, text=True)
+    ok = r.returncode == 0 and os.path.exists(os.path.join(demo, "data.json"))
+    check(ok, "demo page builds")
+    if ok:
+        dd = json.load(open(os.path.join(demo, "data.json")))
+        refs = [l["file"] for l in dd["layers"]] + [q["file"] for sl in dd["slots"].values() for q in sl["poses"]] + [q["file"] for q in dd["props"] if q["kind"] == "image"]
+        check(all(os.path.exists(os.path.join(demo, f)) for f in refs), f"every file the demo refers to exists ({len(refs)} files)")
+        check(os.path.exists(os.path.join(demo, "index.html")) and "5BX Sprite Boy" in open(os.path.join(demo, "index.html"), encoding="utf-8").read(), "demo index.html written")
+    else: print(r.stderr[-600:])
 print("\nALL PASS" if not fails else f"\n{len(fails)} FAILED"); sys.exit(1 if fails else 0)

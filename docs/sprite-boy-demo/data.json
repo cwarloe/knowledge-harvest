@@ -1,0 +1,385 @@
+{
+ "frame": [
+  1280,
+  720
+ ],
+ "scale": 0.6666666666666666,
+ "ground": 576.0,
+ "floor": 582.67,
+ "layers": [
+  {
+   "name": "sky",
+   "file": "backdrop/00-sky.png"
+  },
+  {
+   "name": "clouds",
+   "file": "backdrop/01-clouds.png"
+  },
+  {
+   "name": "mountains-far",
+   "file": "backdrop/02-mountains-far.png"
+  },
+  {
+   "name": "mountains-near",
+   "file": "backdrop/03-mountains-near.png"
+  },
+  {
+   "name": "trees-back",
+   "file": "backdrop/04-trees-back.png"
+  },
+  {
+   "name": "trees-front",
+   "file": "backdrop/05-trees-front.png"
+  },
+  {
+   "name": "ground",
+   "file": "backdrop/06-ground.png"
+  }
+ ],
+ "slots": {
+  "ex1": {
+   "strip": "toe-touch-c1",
+   "cycle": [
+    1,
+    2,
+    1,
+    3
+   ],
+   "cycle_s": 12.0,
+   "allot": 120,
+   "poses": [
+    {
+     "file": "sprites/toe-touch-c1/p1.png",
+     "x": 600.86,
+     "y": 156.0,
+     "w": 83,
+     "h": 427
+    },
+    {
+     "file": "sprites/toe-touch-c1/p2.png",
+     "x": 573.91,
+     "y": 353.61,
+     "w": 203,
+     "h": 228
+    },
+    {
+     "file": "sprites/toe-touch-c1/p3.png",
+     "x": 502.7,
+     "y": 203.48,
+     "w": 200,
+     "h": 379
+    }
+   ],
+   "union": [
+    502.7,
+    777.3
+   ],
+   "kicker": "EXERCISE 1 OF 5",
+   "title": "Toe touching",
+   "target": "20 reps"
+  },
+  "ex2": {
+   "strip": "partial-sit-up-c1",
+   "cycle": [
+    1,
+    2,
+    3,
+    2
+   ],
+   "cycle_s": 3.3333,
+   "allot": 60,
+   "poses": [
+    {
+     "file": "sprites/partial-sit-up-c1/p1.png",
+     "x": 231.76,
+     "y": 379.03,
+     "w": 816,
+     "h": 204
+    },
+    {
+     "file": "sprites/partial-sit-up-c1/p2.png",
+     "x": 282.18,
+     "y": 229.7,
+     "w": 760,
+     "h": 339
+    },
+    {
+     "file": "sprites/partial-sit-up-c1/p3.png",
+     "x": 400.48,
+     "y": 156.0,
+     "w": 644,
+     "h": 417
+    }
+   ],
+   "union": [
+    231.76,
+    1048.24
+   ],
+   "kicker": "EXERCISE 2 OF 5",
+   "title": "Partial sit-up",
+   "target": "18 reps"
+  },
+  "ex3": {
+   "strip": "alternate-leg-raise-c1",
+   "cycle": [
+    1,
+    2,
+    1,
+    3
+   ],
+   "cycle_s": 6.6667,
+   "allot": 60,
+   "poses": [
+    {
+     "file": "sprites/alternate-leg-raise-c1/p1.png",
+     "x": 142.28,
+     "y": 308.69,
+     "w": 998,
+     "h": 267
+    },
+    {
+     "file": "sprites/alternate-leg-raise-c1/p2.png",
+     "x": 140.0,
+     "y": 171.71,
+     "w": 947,
+     "h": 411
+    },
+    {
+     "file": "sprites/alternate-leg-raise-c1/p3.png",
+     "x": 140.0,
+     "y": 171.71,
+     "w": 950,
+     "h": 411
+    }
+   ],
+   "union": [
+    140.0,
+    1140.0
+   ],
+   "kicker": "EXERCISE 3 OF 5",
+   "title": "Alternate leg raise",
+   "target": "18 reps"
+  },
+  "ex4": {
+   "strip": "knee-push-up-c1",
+   "cycle": [
+    1,
+    2,
+    3,
+    2
+   ],
+   "cycle_s": 4.6154,
+   "allot": 60,
+   "poses": [
+    {
+     "file": "sprites/knee-push-up-c1/p1.png",
+     "x": 345.1,
+     "y": 359.57,
+     "w": 627,
+     "h": 223
+    },
+    {
+     "file": "sprites/knee-push-up-c1/p2.png",
+     "x": 338.13,
+     "y": 238.27,
+     "w": 569,
+     "h": 344
+    },
+    {
+     "file": "sprites/knee-push-up-c1/p3.png",
+     "x": 307.45,
+     "y": 156.0,
+     "w": 524,
+     "h": 427
+    }
+   ],
+   "union": [
+    307.45,
+    972.55
+   ],
+   "kicker": "EXERCISE 4 OF 5",
+   "title": "Knee push-up",
+   "target": "13 reps"
+  },
+  "jump": {
+   "strip": "scissor-jumps-c1",
+   "cycle": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "cycle_s": 2.4,
+   "allot": 360,
+   "poses": [
+    {
+     "file": "sprites/scissor-jumps-c1/p1.png",
+     "x": 472.38,
+     "y": 217.88,
+     "w": 335,
+     "h": 365
+    },
+    {
+     "file": "sprites/scissor-jumps-c1/p2.png",
+     "x": 520.4,
+     "y": 156.92,
+     "w": 193,
+     "h": 382
+    },
+    {
+     "file": "sprites/scissor-jumps-c1/p3.png",
+     "x": 486.7,
+     "y": 217.88,
+     "w": 314,
+     "h": 364
+    },
+    {
+     "file": "sprites/scissor-jumps-c1/p4.png",
+     "x": 520.87,
+     "y": 156.0,
+     "w": 193,
+     "h": 383
+    }
+   ],
+   "union": [
+    472.38,
+    807.62
+   ],
+   "kicker": "PAUSE THE RUN",
+   "title": "10 scissor jumps",
+   "target": "jump now"
+  },
+  "run": {
+   "strip": "stationary-run-c1",
+   "cycle": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "cycle_s": 0.75,
+   "allot": 360,
+   "poses": [
+    {
+     "file": "sprites/stationary-run-c1/p1.png",
+     "x": 548.0,
+     "y": 156.0,
+     "w": 191,
+     "h": 420
+    },
+    {
+     "file": "sprites/stationary-run-c1/p2.png",
+     "x": 571.74,
+     "y": 156.7,
+     "w": 147,
+     "h": 426
+    },
+    {
+     "file": "sprites/stationary-run-c1/p3.png",
+     "x": 573.14,
+     "y": 158.09,
+     "w": 161,
+     "h": 423
+    },
+    {
+     "file": "sprites/stationary-run-c1/p4.png",
+     "x": 540.67,
+     "y": 158.79,
+     "w": 187,
+     "h": 422
+    }
+   ],
+   "union": [
+    540.67,
+    739.33
+   ],
+   "kicker": "EXERCISE 5 OF 5",
+   "title": "Stationary run",
+   "target": "400 steps"
+  }
+ },
+ "order": [
+  "ex1",
+  "ex2",
+  "ex3",
+  "ex4",
+  "run",
+  "jump"
+ ],
+ "props": [
+  {
+   "id": "mat",
+   "kind": "mat",
+   "enabled": true,
+   "slots": [
+    "ex2",
+    "ex3",
+    "ex4"
+   ],
+   "z": "behind",
+   "color": "#2f6fb5",
+   "edge": "#1f4c80",
+   "pad": 0.12,
+   "thickness": 30
+  },
+  {
+   "id": "contact-shadow",
+   "kind": "shadow",
+   "enabled": true,
+   "slots": "*",
+   "z": "behind",
+   "opacity": 0.28,
+   "width": 0.95,
+   "height": 26,
+   "blur": 10
+  },
+  {
+   "id": "water-bottle",
+   "kind": "image",
+   "enabled": true,
+   "file": "props/water-bottle.png",
+   "slots": "*",
+   "z": "front",
+   "x": 0.14,
+   "scale": 0.045,
+   "lift": 0
+  }
+ ],
+ "strings": {
+  "kicker": "EXERCISE {n} OF 5",
+  "reps": "{reps} reps",
+  "steps": "{steps} steps",
+  "left": "LEFT",
+  "break": "BREAK",
+  "next": "NEXT",
+  "jump_kicker": "PAUSE THE RUN",
+  "jump_title": "{count} {name}",
+  "jump_target": "jump now"
+ },
+ "regions": {
+  "shorts": {
+   "h": [
+    345,
+    15
+   ],
+   "smin": 0.45,
+   "vmin": 0.25
+  },
+  "shoes": {
+   "h": [
+    212,
+    255
+   ],
+   "smin": 0.4,
+   "vmin": 0.15
+  },
+  "tank": {
+   "h": [
+    170,
+    208
+   ],
+   "smin": 0.45,
+   "vmin": 0.3
+  }
+ }
+}
