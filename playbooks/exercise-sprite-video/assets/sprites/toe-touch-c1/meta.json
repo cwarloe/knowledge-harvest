@@ -1,5 +1,5 @@
 {
- "version": "1",
+ "version": "2",
  "source": "ex1-toe-touching.png",
  "source_hash": "6f6ce8022261",
  "key": {
@@ -22,7 +22,8 @@
     "head": 60.5,
     "span-left": 24.0,
     "span-right": 126.0,
-    "span-center": 75.0
+    "span-center": 75.0,
+    "hips": 64.22686084142394
    }
   },
   {
@@ -39,7 +40,8 @@
     "head": 96.5,
     "span-left": 65.0,
     "span-right": 169.0,
-    "span-center": 117.0
+    "span-center": 117.0,
+    "hips": 46.58585298196949
    }
   },
   {
@@ -56,7 +58,8 @@
     "head": 119.0,
     "span-left": 176.0,
     "span-right": 280.0,
-    "span-center": 228.0
+    "span-center": 228.0,
+    "hips": 255.98410578335782
    }
   }
  ],

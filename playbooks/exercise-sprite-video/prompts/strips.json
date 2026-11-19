@@ -168,7 +168,7 @@
       "chart": 2,
       "slot": "ex2",
       "exercise": "a SIT-UP",
-      "kept": "(not made yet)",
+      "kept": "Grok Imagine, first take, kept as made (3 figures).",
       "layout": "In every pose he lies on his back with his HEAD ON THE LEFT and his FEET ON THE RIGHT, same scale, all on the same invisible floor line, wide empty gaps so the figures never touch. Draw only the boy: no chair, no objects.",
       "poses": [
         "START: lying flat on his back, legs straight on the floor with the feet about six inches apart, arms straight and resting at his sides.",
@@ -196,13 +196,17 @@
           2
         ],
         "reps_per_cycle": 1
-      }
+      },
+      "learned": [
+        "Right on the first try: lying flat, rising to about 45 degrees, then a vertical torso with the arms reaching and the feet staying on the floor.",
+        "Anchored by the feet (span-right): the shorts wander 46 px across the poses. Anchoring by the hips would be steadier still."
+      ]
     },
     "back-extension-c2": {
       "chart": 2,
       "slot": "ex3",
       "exercise": "a BACK EXTENSION",
-      "kept": "(not made yet)",
+      "kept": "Grok Imagine, first take, kept as made (3 figures).",
       "layout": "In every pose he lies FACE DOWN, flat on his belly, with his HEAD ON THE RIGHT looking right and his FEET ON THE LEFT. Same scale, all on the same invisible floor line, wide empty gaps between figures.",
       "rule": "KEY BODY RULE FOR ALL THREE POSES: his arms are NOT pushing up and NOT planted in front of him. Both arms are STRAIGHT and stretched back along his sides, with the hands tucked flat, palms down, UNDER THE FRONT OF HIS THIGHS. Elbows straight.",
       "poses": [
@@ -228,7 +232,13 @@
           2
         ],
         "reps_per_cycle": 1
-      }
+      },
+      "learned": [
+        "Form is right: head, shoulders and both legs up, back gently arched, arms straight back, hands on the floor.",
+        "The leg raise is modest: the feet rise about 20 px more than at the start, so the thighs only just clear the hands. If a clearer raise is wanted, ask for 'legs raised high' or run an edit pass.",
+        "The START pose already has the feet a few pixels off the floor.",
+        "Both feet lift at the top, so a planted-foot anchor makes him slide 364 px. The new 'hips' anchor (the red shorts) holds him to 2 px. Use it for any exercise where he lies and the hips stay on the floor."
+      ]
     },
     "push-up-c2": {
       "chart": 2,
@@ -271,7 +281,7 @@
       "chart": 2,
       "slot": "jump",
       "exercise": "ASTRIDE JUMPS",
-      "kept": "(not made yet)",
+      "kept": "Grok Imagine, first take, kept as made (4 figures, front view).",
       "view": "strict FRONT view, the boy facing the camera (not a side view)",
       "far_side": false,
       "layout": "Same scale, wide empty gaps so the figures never touch. The two standing poses rest on the same invisible floor line; the two jumping poses are drawn clearly higher, with both feet well above that line.",
@@ -302,7 +312,12 @@
           4
         ],
         "jumps_per_cycle": 2
-      }
+      },
+      "learned": [
+        "Right on the first try: feet together and arms down, jump out with the legs spread, land astride with the arms straight and above shoulder height, jump back.",
+        "The two jump poses sit about 89 px above the standing poses.",
+        "One count is taken to be a complete out-and-back (the booklet says 'return with a jump to the starting position for count of one'), so one cycle per count: jumps_per_cycle is 1 and a cycle takes 1.2 s. If the count should be each jump, set jumps_per_cycle to 2 in config/strips.json (2.4 s a cycle)."
+      ]
     }
   }
 }

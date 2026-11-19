@@ -1,5 +1,5 @@
 {
- "version": "1",
+ "version": "2",
  "source": "ex2-partial-sit-up.png",
  "source_hash": "17c10e97e347",
  "key": {
@@ -22,7 +22,8 @@
     "head": 23.0,
     "span-left": 27.0,
     "span-right": 408.0,
-    "span-center": 190.25819672131146
+    "span-center": 190.25819672131146,
+    "hips": 253.23173464813985
    }
   },
   {
@@ -39,7 +40,8 @@
     "head": 50.833333333333336,
     "span-left": 80.0,
     "span-right": 382.0,
-    "span-center": 229.53082191780823
+    "span-center": 229.53082191780823,
+    "hips": 220.79717813051147
    }
   },
   {
@@ -56,7 +58,8 @@
     "head": 56.0,
     "span-left": 78.0,
     "span-right": 321.0,
-    "span-center": 197.19354838709677
+    "span-center": 197.19354838709677,
+    "hips": 153.69306322897484
    }
   }
  ],

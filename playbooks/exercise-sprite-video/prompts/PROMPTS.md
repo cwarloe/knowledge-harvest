@@ -423,7 +423,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - Movement: "Sit up" to vertical position, keep feet on floor even if it is necessary to hook them under a chair.
 - Note: Allow knees to bend slightly.
 
-**Status:** (not made yet)
+**Kept:** Grok Imagine, first take, kept as made (3 figures).
 
 **Check before you keep a take:**
 
@@ -471,6 +471,11 @@ Draw the arm and leg on the far side of the body in a noticeably darker shade of
 BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
 ```
 
+**What went wrong, and the fix:**
+
+- Right on the first try: lying flat, rising to about 45 degrees, then a vertical torso with the arms reaching and the feet staying on the floor.
+- Anchored by the feet (span-right): the shorts wander 46 px across the poses. Anchoring by the hips would be steadier still.
+
 ---
 
 ## Chart 2: a BACK EXTENSION  (`back-extension-c2`, 3 poses)
@@ -481,7 +486,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - Movement: Raise head, shoulders, and both legs.
 - Note: Keep legs straight, both thighs must clear the palms.
 
-**Status:** (not made yet)
+**Kept:** Grok Imagine, first take, kept as made (3 figures).
 
 **Check before you keep a take:**
 
@@ -527,6 +532,13 @@ Draw the arm and leg on the far side of the body in a noticeably darker shade of
 
 BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
 ```
+
+**What went wrong, and the fix:**
+
+- Form is right: head, shoulders and both legs up, back gently arched, arms straight back, hands on the floor.
+- The leg raise is modest: the feet rise about 20 px more than at the start, so the thighs only just clear the hands. If a clearer raise is wanted, ask for 'legs raised high' or run an edit pass.
+- The START pose already has the feet a few pixels off the floor.
+- Both feet lift at the top, so a planted-foot anchor makes him slide 364 px. The new 'hips' anchor (the red shorts) holds him to 2 px. Use it for any exercise where he lies and the hips stay on the floor.
 
 ---
 
@@ -602,7 +614,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - Note: Jump and land with feet astride and arms raised sideways to slightly above shoulder height. Return with a jump to the starting position for count of one.
 - Note: Keep arms straight.
 
-**Status:** (not made yet)
+**Kept:** Grok Imagine, first take, kept as made (4 figures, front view).
 
 **Check before you keep a take:**
 
@@ -647,6 +659,12 @@ THE FOUR POSES (official exercise, follow exactly):
 
 BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
 ```
+
+**What went wrong, and the fix:**
+
+- Right on the first try: feet together and arms down, jump out with the legs spread, land astride with the arms straight and above shoulder height, jump back.
+- The two jump poses sit about 89 px above the standing poses.
+- One count is taken to be a complete out-and-back (the booklet says 'return with a jump to the starting position for count of one'), so one cycle per count: jumps_per_cycle is 1 and a cycle takes 1.2 s. If the count should be each jump, set jumps_per_cycle to 2 in config/strips.json (2.4 s a cycle).
 
 ---
 

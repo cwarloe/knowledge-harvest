@@ -82,7 +82,7 @@ Add an entry in `config/strips.json`:
 "my-new-strip": {"file": "my-new-strip.png", "poses": 3, "anchor": "span-center", "cycle": [1, 2, 3, 2], "reps_per_cycle": 1}
 ```
 
-- `anchor` pins each pose so the boy does not slide: `span-right` (feet stay put, lying on his back), `span-left`, `span-center` (standing), or `head` (run and jumps).
+- `anchor` pins each pose so the boy does not slide: `span-right` (feet stay put, lying on his back), `span-left`, `span-center` (standing), `head` (run and jumps), or `hips` (the red shorts: for any exercise where he lies and the hips stay on the floor, such as the back extension).
 - `cycle` is the order poses play in. `[1, 2, 1, 3]` is "stand, fold, stand, bend back".
 - Then point a chart slot at it under `charts`, run `build.py --list` and `tests/smoke.py`.
 

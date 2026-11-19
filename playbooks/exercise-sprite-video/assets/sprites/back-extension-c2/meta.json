@@ -1,0 +1,68 @@
+{
+ "version": "2",
+ "source": "c2-ex3-back-extension.png",
+ "source_hash": "e7eff802987b",
+ "key": {
+  "lo": 28,
+  "hi": 95
+ },
+ "n": 3,
+ "poses": [
+  {
+   "file": "p1.png",
+   "offset": [
+    40,
+    342
+   ],
+   "size": [
+    417,
+    104
+   ],
+   "anchors": {
+    "head": 358.0,
+    "span-left": 1.0,
+    "span-right": 365.0,
+    "span-center": 205.6219512195122,
+    "hips": 177.9708423326134
+   }
+  },
+  {
+   "file": "p2.png",
+   "offset": [
+    478,
+    310
+   ],
+   "size": [
+    376,
+    140
+   ],
+   "anchors": {
+    "head": 335.0,
+    "span-left": 10.0,
+    "span-right": 272.0,
+    "span-center": 180.2378048780488,
+    "hips": 177.71239911958915
+   }
+  },
+  {
+   "file": "p3.png",
+   "offset": [
+    875,
+    285
+   ],
+   "size": [
+    367,
+    162
+   ],
+   "anchors": {
+    "head": 327.0821917808219,
+    "span-left": 129.0,
+    "span-right": 234.0,
+    "span-center": 181.5,
+    "hips": 172.56228373702422
+   }
+  }
+ ],
+ "floor": 450,
+ "top": 285
+}

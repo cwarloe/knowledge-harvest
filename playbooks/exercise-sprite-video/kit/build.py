@@ -27,7 +27,7 @@ from PIL import Image, ImageDraw
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 ASSETS = os.path.join(ROOT, "assets")          # layers as real files: sprites, backdrops, props (committed)
-BAKE_VERSION = "1"                              # bump when the cut-out or backdrop drawing changes
+BAKE_VERSION = "2"                              # bump when the cut-out or backdrop drawing changes
 sys.path.insert(0, HERE)
 from keyer import key as chroma_key
 from recolor import recolor
@@ -162,10 +162,13 @@ def split_rgba(rgba, n, label):
 
 
 def anchors_of(p):
-    """Every anchor a pose can be pinned by, in the pose's own pixel coordinates."""
-    a = np.array(p)[..., 3] > 128; h, w = a.shape
+    """Every anchor a pose can be pinned by, in the pose's own pixel coordinates.
+    hips = the red shorts: the part of the body that stays put when he lies on the floor (back extension, sit-up)."""
+    arr = np.array(p); a = arr[..., 3] > 128; h, w = a.shape
     head = np.nonzero(a[:max(6, int(h * .12))].any(axis=0))[0]; feet = np.nonzero(a[-14:].any(axis=0))[0]
-    return {"head": float(head.mean()), "span-left": float(feet.min()), "span-right": float(feet.max()), "span-center": float(feet.mean())}
+    red = (arr[..., 3] > 200) & (arr[..., 0] > 150) & (arr[..., 1] < 90) & (arr[..., 2] < 90)
+    hips = float(np.nonzero(red)[1].mean()) if red.sum() >= 50 else float(feet.mean())
+    return {"head": float(head.mean()), "span-left": float(feet.min()), "span-right": float(feet.max()), "span-center": float(feet.mean()), "hips": hips}
 
 
 def bake(name, strip, theme):

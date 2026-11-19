@@ -1,5 +1,5 @@
 {
- "version": "1",
+ "version": "2",
  "source": "ex5-stationary-run.png",
  "source_hash": "43023e251fcc",
  "key": {
@@ -22,7 +22,8 @@
     "head": 144.5,
     "span-left": 40.0,
     "span-right": 75.0,
-    "span-center": 57.5
+    "span-center": 57.5,
+    "hips": 138.22844469087886
    }
   },
   {
@@ -39,7 +40,8 @@
     "head": 110.5,
     "span-left": 49.0,
     "span-right": 165.0,
-    "span-center": 109.89908256880734
+    "span-center": 109.89908256880734,
+    "hips": 96.28539892778304
    }
   },
   {
@@ -56,7 +58,8 @@
     "head": 108.5,
     "span-left": 33.0,
     "span-right": 89.0,
-    "span-center": 61.0
+    "span-center": 61.0,
+    "hips": 97.71190180664736
    }
   },
   {
@@ -73,7 +76,8 @@
     "head": 155.0,
     "span-left": 42.0,
     "span-right": 232.0,
-    "span-center": 147.51470588235293
+    "span-center": 147.51470588235293,
+    "hips": 142.11566757493188
    }
   }
  ],

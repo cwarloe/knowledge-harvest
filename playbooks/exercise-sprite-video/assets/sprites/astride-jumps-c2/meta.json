@@ -1,0 +1,86 @@
+{
+ "version": "2",
+ "source": "c2-jump-astride-jumps.png",
+ "source_hash": "0a944e07c74f",
+ "key": {
+  "lo": 28,
+  "hi": 95
+ },
+ "n": 4,
+ "poses": [
+  {
+   "file": "p1.png",
+   "offset": [
+    112,
+    165
+   ],
+   "size": [
+    111,
+    425
+   ],
+   "anchors": {
+    "head": 55.0,
+    "span-left": 6.0,
+    "span-right": 104.0,
+    "span-center": 55.0,
+    "hips": 54.99817089103737
+   }
+  },
+  {
+   "file": "p2.png",
+   "offset": [
+    299,
+    108
+   ],
+   "size": [
+    335,
+    394
+   ],
+   "anchors": {
+    "head": 167.5,
+    "span-left": 31.0,
+    "span-right": 306.0,
+    "span-center": 167.54736842105262,
+    "hips": 167.25223983459682
+   }
+  },
+  {
+   "file": "p3.png",
+   "offset": [
+    644,
+    199
+   ],
+   "size": [
+    321,
+    392
+   ],
+   "anchors": {
+    "head": 159.5,
+    "span-left": 32.0,
+    "span-right": 286.0,
+    "span-center": 159.0,
+    "hips": 159.02169249106078
+   }
+  },
+  {
+   "file": "p4.png",
+   "offset": [
+    1057,
+    77
+   ],
+   "size": [
+    108,
+    426
+   ],
+   "anchors": {
+    "head": 54.0,
+    "span-left": 19.0,
+    "span-right": 88.0,
+    "span-center": 53.42622950819672,
+    "hips": 53.625103448275866
+   }
+  }
+ ],
+ "floor": 591,
+ "top": 77
+}

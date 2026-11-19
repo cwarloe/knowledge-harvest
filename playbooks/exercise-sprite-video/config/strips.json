@@ -97,6 +97,42 @@
         2
       ],
       "reps_per_cycle": 1
+    },
+    "sit-up-c2": {
+      "file": "c2-ex2-sit-up.png",
+      "poses": 3,
+      "anchor": "span-right",
+      "cycle": [
+        1,
+        2,
+        3,
+        2
+      ],
+      "reps_per_cycle": 1
+    },
+    "astride-jumps-c2": {
+      "file": "c2-jump-astride-jumps.png",
+      "poses": 4,
+      "anchor": "head",
+      "cycle": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "jumps_per_cycle": 1
+    },
+    "back-extension-c2": {
+      "file": "c2-ex3-back-extension.png",
+      "poses": 3,
+      "anchor": "hips",
+      "cycle": [
+        1,
+        2,
+        3,
+        2
+      ],
+      "reps_per_cycle": 1
     }
   },
   "charts": {
@@ -111,7 +147,10 @@
     "2": {
       "ex1": "toe-touch-c2",
       "run": "stationary-run-c1",
-      "ex4": "push-up-c2"
+      "ex4": "push-up-c2",
+      "ex2": "sit-up-c2",
+      "jump": "astride-jumps-c2",
+      "ex3": "back-extension-c2"
     }
   }
 }

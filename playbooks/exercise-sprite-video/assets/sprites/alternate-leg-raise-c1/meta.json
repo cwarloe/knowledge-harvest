@@ -1,5 +1,5 @@
 {
- "version": "1",
+ "version": "2",
  "source": "ex3-alternate-leg-raise.png",
  "source_hash": "cd34a02bb6d7",
  "key": {
@@ -22,7 +22,8 @@
     "head": 370.5,
     "span-left": 0.0,
     "span-right": 379.0,
-    "span-center": 194.49675324675326
+    "span-center": 194.49675324675326,
+    "hips": 173.2820750347383
    }
   },
   {
@@ -39,7 +40,8 @@
     "head": 63.5,
     "span-left": 1.0,
     "span-right": 298.0,
-    "span-center": 174.49099099099098
+    "span-center": 174.49099099099098,
+    "hips": 171.50550055005502
    }
   },
   {
@@ -56,7 +58,8 @@
     "head": 62.0,
     "span-left": 1.0,
     "span-right": 302.0,
-    "span-center": 174.1818181818182
+    "span-center": 174.1818181818182,
+    "hips": 173.45678092399405
    }
   }
  ],
