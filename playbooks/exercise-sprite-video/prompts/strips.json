@@ -29,7 +29,9 @@
       "learned": [
         "Take 2's backward bend swept the arms down behind him; the booklet says up and back. Take 1 kept the arms up and reaching back.",
         "The model draws a ground shadow even when told not to; the key removes it."
-      ]
+      ],
+      "chart": 1,
+      "slot": "ex1"
     },
     "partial-sit-up-c1": {
       "exercise": "a PARTIAL SIT-UP",
@@ -43,7 +45,9 @@
       "learned": [
         "Take 1 bent the knees at the top: the booklet says keep the legs straight. Always include 'knees NOT bent' and 'NOT sitting fully upright, hands NOT behind the head'.",
         "Takes 2 and 3 sat almost fully upright. Take 4 lifted only the head and shoulders in the middle pose."
-      ]
+      ],
+      "chart": 1,
+      "slot": "ex2"
     },
     "alternate-leg-raise-c1": {
       "exercise": "an ALTERNATE LEG RAISE",
@@ -59,7 +63,9 @@
         "First batch failed all four times: the push-up strip, used as the reference, leaked push-up arms and a bent kicking leg into this exercise.",
         "Fix: use a neutral standing strip as the reference, say 'use it only for appearance, ignore its poses', and spell out the geometry (arms straight back, palms under the thighs, knee locked straight).",
         "The darker far-side shading is what lets near leg and far leg read differently in profile."
-      ]
+      ],
+      "chart": 1,
+      "slot": "ex3"
     },
     "knee-push-up-c1": {
       "exercise": "a KNEE PUSH-UP",
@@ -73,7 +79,9 @@
       "learned": [
         "This was the pilot: no reference image, the character described in words. It came out right in all four takes.",
         "Take 4 was kept because the chest actually touches the floor at the bottom and the arms are fully straight at the top. Then it became the first character reference."
-      ]
+      ],
+      "chart": 1,
+      "slot": "ex4"
     },
     "stationary-run-c1": {
       "exercise": "a STATIONARY RUN (running in place)",
@@ -89,7 +97,9 @@
       "learned": [
         "First batch: the same (near) leg was lifted in both lift poses, so it read as hopping on one foot. Fix: name the near and far legs, shade the far one, and say 'the two lifts must use DIFFERENT legs'.",
         "The model lifts the foot higher than the booklet's 4 inches. An edit pass ('lower the lifted foot to about 4 inches') brought it down; see edits.json."
-      ]
+      ],
+      "chart": 1,
+      "slot": "run"
     },
     "scissor-jumps-c1": {
       "exercise": "SCISSOR JUMPS",
@@ -104,7 +114,179 @@
       "learned": [
         "Stance A and stance B look almost the same in profile; only the shading differs. A front view would fix it.",
         "Stance B came out as a lunge with a bent back knee. An edit pass made it upright; see edits.json."
-      ]
+      ],
+      "chart": 1,
+      "slot": "jump"
+    },
+    "toe-touch-c2": {
+      "chart": 2,
+      "slot": "ex1",
+      "exercise": "TOE TOUCHES WITH A BOUNCE",
+      "kept": "(not made yet)",
+      "layout": "Same scale, feet on the same invisible floor line, with wide empty gaps so the figures never touch.",
+      "poses": [
+        "START: standing tall, feet about shoulder-width apart, both arms straight up overhead, upper arms beside the ears.",
+        "TOUCH: deep forward bend, torso folded down toward the legs, knees only slightly bent (not forced straight, not deeply squatting), fingertips touching the floor beside the feet, head hanging relaxed.",
+        "PRESS: the same forward bend pressed one small bounce lower: fingertips pressing on the floor, torso and head a little lower than in the TOUCH pose, knees still only slightly bent.",
+        "STRETCH BACK: standing again with arms still stretched up and reaching backward, a gentle backward bend, hips pushed slightly forward, chest and face lifted toward the sky, knees straight."
+      ],
+      "check": [
+        "Four poses, left to right",
+        "Knees only slightly bent in the two bends (not forced straight, not a squat)",
+        "Fingertips reach the floor in TOUCH and PRESS; PRESS is a little lower than TOUCH",
+        "In STRETCH BACK the arms are UP and back, not swept down behind him"
+      ],
+      "draft": [
+        "The booklet says 'touch floor and press (bounce) once'. Pose 3 (PRESS) is my reading of 'press once'. It differs only slightly from pose 2, so check it looks like a bounce, not a duplicate."
+      ],
+      "suggest": {
+        "file": "c2-ex1-toe-touching.png",
+        "poses": 4,
+        "anchor": "span-center",
+        "cycle": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "reps_per_cycle": 1
+      }
+    },
+    "sit-up-c2": {
+      "chart": 2,
+      "slot": "ex2",
+      "exercise": "a SIT-UP",
+      "kept": "(not made yet)",
+      "layout": "In every pose he lies on his back with his HEAD ON THE LEFT and his FEET ON THE RIGHT, same scale, all on the same invisible floor line, wide empty gaps so the figures never touch. Draw only the boy: no chair, no objects.",
+      "poses": [
+        "START: lying flat on his back, legs straight on the floor with the feet about six inches apart, arms straight and resting at his sides.",
+        "RISING: halfway up, upper body lifted about 45 degrees off the floor, arms reaching forward, heels still on the floor, knees allowed to bend very slightly.",
+        "TOP: sitting up to a vertical position, back straight and upright, arms reaching forward toward the feet, FEET STAYING FLAT ON THE FLOOR, knees bent only slightly (hands NOT behind the head, heels NOT lifted)."
+      ],
+      "check": [
+        "Three poses, head on the left, feet on the right",
+        "Feet stay on the floor in every pose",
+        "TOP is a vertical, upright torso (this is a full sit-up, not the partial one in chart 1)",
+        "Knees at most slightly bent",
+        "Hands at the sides or reaching forward, not behind the head; no chair"
+      ],
+      "draft": [
+        "The booklet allows 'knees bend slightly' for this exercise. Chart 1's partial sit-up did not."
+      ],
+      "suggest": {
+        "file": "c2-ex2-sit-up.png",
+        "poses": 3,
+        "anchor": "span-right",
+        "cycle": [
+          1,
+          2,
+          3,
+          2
+        ],
+        "reps_per_cycle": 1
+      }
+    },
+    "back-extension-c2": {
+      "chart": 2,
+      "slot": "ex3",
+      "exercise": "a BACK EXTENSION",
+      "kept": "(not made yet)",
+      "layout": "In every pose he lies FACE DOWN, flat on his belly, with his HEAD ON THE RIGHT looking right and his FEET ON THE LEFT. Same scale, all on the same invisible floor line, wide empty gaps between figures.",
+      "rule": "KEY BODY RULE FOR ALL THREE POSES: his arms are NOT pushing up and NOT planted in front of him. Both arms are STRAIGHT and stretched back along his sides, with the hands tucked flat, palms down, UNDER THE FRONT OF HIS THIGHS. Elbows straight.",
+      "poses": [
+        "START: lying completely flat face down, legs straight and together, chin near the floor, arms straight back with palms under the thighs.",
+        "LIFTING: head, shoulders and both legs just beginning to lift off the floor together, legs straight, arms still straight back under the thighs.",
+        "TOP: head, shoulders AND BOTH LEGS raised off the floor at the same time, legs straight with the knees LOCKED, thighs clearly lifted off his hands, back gently arched, looking forward; only his belly stays on the floor."
+      ],
+      "check": [
+        "Three poses, head on the right, feet on the left",
+        "Arms straight back, hands under the thighs (not planted in front like a push-up)",
+        "In TOP the head, shoulders and BOTH legs are up together",
+        "Legs straight, thighs clear of the hands"
+      ],
+      "draft": [],
+      "suggest": {
+        "file": "c2-ex3-back-extension.png",
+        "poses": 3,
+        "anchor": "span-left",
+        "cycle": [
+          1,
+          2,
+          3,
+          2
+        ],
+        "reps_per_cycle": 1
+      }
+    },
+    "push-up-c2": {
+      "chart": 2,
+      "slot": "ex4",
+      "exercise": "a PUSH-UP (on the palms and toes, knees OFF the floor)",
+      "kept": "(not made yet)",
+      "layout": "Same scale, all on the same invisible floor line, with generous empty space between the figures so they do not touch or overlap.",
+      "poses": [
+        "DOWN: face down with the chest touching the floor, palms flat on the floor directly under the shoulders, elbows bent and tucked close to the ribs, only the palms and the toes touching the floor, the body one straight line from head to heels.",
+        "MIDDLE: halfway up, elbows bent about 90 degrees, chest a hand-width above the floor, only the palms and toes touching the floor, body still one straight line, back straight.",
+        "UP: arms fully straightened, palms flat directly under the shoulders, only the palms and toes touching the floor, body one straight diagonal line from the heels to the head (hips NOT piked up, back NOT sagging, knees NOT on the floor)."
+      ],
+      "check": [
+        "Three poses, facing right",
+        "Only palms and toes touch the floor; knees are OFF the floor in every pose",
+        "Body a straight line, back straight (no sagging hips, no piked hips)",
+        "Chest touches the floor in DOWN; arms fully straight in UP"
+      ],
+      "draft": [
+        "This is a different exercise from chart 1's knee push-up. Grok's chart 1 push-up drew this form by mistake; here it is correct."
+      ],
+      "suggest": {
+        "file": "c2-ex4-push-up.png",
+        "poses": 3,
+        "anchor": "span-right",
+        "cycle": [
+          1,
+          2,
+          3,
+          2
+        ],
+        "reps_per_cycle": 1
+      }
+    },
+    "astride-jumps-c2": {
+      "chart": 2,
+      "slot": "jump",
+      "exercise": "ASTRIDE JUMPS",
+      "kept": "(not made yet)",
+      "view": "strict FRONT view, the boy facing the camera (not a side view)",
+      "far_side": false,
+      "layout": "Same scale, wide empty gaps so the figures never touch. The two standing poses rest on the same invisible floor line; the two jumping poses are drawn clearly higher, with both feet well above that line.",
+      "poses": [
+        "START: standing with the FEET TOGETHER and the arms straight down at his sides.",
+        "JUMP OUT: in the air, both feet off the floor, legs spreading apart, arms swinging out sideways, arms straight.",
+        "LAND ASTRIDE: landed with the feet wide apart (astride), both feet flat on the floor, arms straight and raised sideways to slightly above shoulder height.",
+        "JUMP BACK: in the air, both feet off the floor, legs coming back together, arms coming down toward his sides, arms straight."
+      ],
+      "check": [
+        "Four poses, strict front view, same boy",
+        "START has the feet together and the arms down",
+        "In LAND ASTRIDE the arms are straight and just above shoulder height, the feet wide apart",
+        "The two jump poses are clearly higher than the two standing poses"
+      ],
+      "draft": [
+        "Front view, because the legs and arms move sideways and a side view would hide it.",
+        "The booklet says 'return with a jump to the starting position for count of one', so one count is out AND back. I will decide how that maps to '10 astride jumps' when I wire it in."
+      ],
+      "suggest": {
+        "file": "c2-jump-astride-jumps.png",
+        "poses": 4,
+        "anchor": "head",
+        "cycle": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "jumps_per_cycle": 2
+      }
     }
   }
 }

@@ -76,6 +76,9 @@ def main():
     shutil.copy(os.path.join(ROOT, "prompts", "prompts.json"), os.path.join(out, "prompts.json")); shutil.copy(os.path.join(ROOT, "prompts", "PROMPTS.md"), os.path.join(out, "PROMPTS.md"))
     shutil.copy(os.path.join(ROOT, "docs", "HOW-TO-GENERATE-STRIPS.md"), os.path.join(out, "HOW-TO-GENERATE-STRIPS.md"))
     for st in reg["strips"].values(): shutil.copy(os.path.join(ROOT, "sheets", st["file"]), os.path.join(out, "strips", st["file"]))
+    specs = jload(os.path.join(ROOT, "prompts", "strips.json"))["strips"]
+    for cid in sorted({v["chart"] for v in specs.values() if v.get("chart", 1) > 1}):                    # a Word document of prompts for each chart still to build
+        sh([sys.executable, os.path.join(HERE, "make_prompt_doc.py"), "--data", a.data, "--chart", str(cid), "--out", os.path.join(out, f"Chart-{cid}-image-prompts.docx")])
 
     for name in ("page", "prompts"):                                  # the page itself; the wrapper makes it a standalone file
         page = open(os.path.join(HERE, "demo", name + ".html"), encoding="utf-8").read()
