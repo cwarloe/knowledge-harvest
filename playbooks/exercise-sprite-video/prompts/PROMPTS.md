@@ -668,6 +668,305 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 
 ---
 
+## Chart 3: Toe Touches To The Left, Centre And Right  (`toe-touch-c3`, 5 poses)
+
+**What the plan says** (the booklet's own wording, from the 5BX data file):
+
+- Starts: Feet astride, arms upward.
+- Movement: Touch floor 6" outside left foot, again between feet and press once then 6" outside right foot, bend backward as far as possible, repeat, reverse direction after half the number of counts.
+- Note: Do not strain to keep knees straight, return to erect position.
+
+**Status:** (not made yet)
+
+**Check before you keep a take:**
+
+- Five poses in movement order
+- Front view in every pose, feet wide apart throughout
+- TOUCH LEFT: fingertips on the floor outside his left foot (the picture-right foot); TOUCH RIGHT: outside his right foot (the picture-left foot); TOUCH BETWEEN: between the feet
+- Knees only slightly bent in the three bends
+- BEND BACK: arms up and back, leaning backward as far as he can
+
+**My decisions to check [DRAFT]:**
+
+- Front view, because the three touches land at different places across the floor and a side view would hide that.
+- Left and right are the boy's own: his left foot is on the right side of the picture when he faces us.
+- The booklet says to reverse the direction after half the number of counts (right, between, left in the second half). That needs no extra picture: I will run the same poses in reverse order in the build.
+- If the generator struggles with a bend seen from the front, try 'three-quarter front view' instead, and tell me.
+
+**Prompt, with a character reference attached:**
+
+```text
+Using the attached reference image ONLY for the character's appearance and art style (a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges). IGNORE the poses in the reference image completely.
+
+Create a NEW wide 16:9 pose sheet of that same boy doing TOE TOUCHES TO THE LEFT, CENTRE AND RIGHT, shown FIVE times left to right, strict FRONT view, the boy facing the camera (not a side view). Same scale, feet on the same invisible floor line, with wide empty gaps so the figures never touch. The five figures are in the ORDER OF THE MOVEMENT, left to right across the picture, not in the order of where the hands land.
+
+THE FIVE POSES (official exercise, follow exactly):
+1. START: standing tall facing the camera, feet wide apart (astride, a little wider than the shoulders), both arms straight up overhead, upper arms beside the ears.
+2. TOUCH LEFT: bent forward at the waist, seen from the front, both hands reaching down together with the fingertips touching the floor about six inches OUTSIDE HIS LEFT FOOT (his left foot is on the RIGHT side of the picture), knees only slightly bent, head hanging down.
+3. TOUCH BETWEEN: bent forward in the same way, fingertips of both hands touching the floor BETWEEN HIS FEET, pressing down a little, knees only slightly bent, head hanging down.
+4. TOUCH RIGHT: bent forward in the same way, fingertips of both hands touching the floor about six inches OUTSIDE HIS RIGHT FOOT (his right foot is on the LEFT side of the picture), knees only slightly bent, head hanging down.
+5. BEND BACK: standing again, feet still wide apart, both arms stretched up and back, bending backward as far as he can, hips pushed forward, chest and face lifted toward the sky, knees straight.
+
+BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
+```
+
+**Prompt for the very first strip (no reference, character in words):**
+
+```text
+Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown FIVE times, left to right, doing TOE TOUCHES TO THE LEFT, CENTRE AND RIGHT, strict FRONT view, the boy facing the camera (not a side view). This is a pose-by-pose animation reference, so all five figures must be the same character at the same scale. Same scale, feet on the same invisible floor line, with wide empty gaps so the figures never touch. The five figures are in the ORDER OF THE MOVEMENT, left to right across the picture, not in the order of where the hands land.
+
+CHARACTER (keep identical in every pose): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.
+
+THE FIVE POSES (official exercise, follow exactly):
+1. START: standing tall facing the camera, feet wide apart (astride, a little wider than the shoulders), both arms straight up overhead, upper arms beside the ears.
+2. TOUCH LEFT: bent forward at the waist, seen from the front, both hands reaching down together with the fingertips touching the floor about six inches OUTSIDE HIS LEFT FOOT (his left foot is on the RIGHT side of the picture), knees only slightly bent, head hanging down.
+3. TOUCH BETWEEN: bent forward in the same way, fingertips of both hands touching the floor BETWEEN HIS FEET, pressing down a little, knees only slightly bent, head hanging down.
+4. TOUCH RIGHT: bent forward in the same way, fingertips of both hands touching the floor about six inches OUTSIDE HIS RIGHT FOOT (his right foot is on the LEFT side of the picture), knees only slightly bent, head hanging down.
+5. BEND BACK: standing again, feet still wide apart, both arms stretched up and back, bending backward as far as he can, hips pushed forward, chest and face lifted toward the sky, knees straight.
+
+BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
+```
+
+---
+
+## Chart 3: a SIT-UP WITH THE HANDS CLASPED BEHIND THE HEAD  (`sit-up-hands-behind-head-c3`, 3 poses)
+
+**What the plan says** (the booklet's own wording, from the 5BX data file):
+
+- Starts: Back lying, feet 6" apart, arms clasped behind head. Allow knees to bend slightly.
+- Movement: Sit up to vertical position, keep feet on floor, hook feet under chair, etc., only if necessary.
+
+**Status:** (not made yet)
+
+**Check before you keep a take:**
+
+- Three poses, head on the left, feet on the right
+- Fingers clasped behind the head in ALL three poses (the arms do not reach forward)
+- Feet stay on the floor; TOP is a vertical, upright torso
+- Knees at most slightly bent; no chair
+
+**My decisions to check [DRAFT]:**
+
+- The same exercise as chart 2's sit-up, with the hands clasped behind the head.
+
+**Prompt, with a character reference attached:**
+
+```text
+Using the attached reference image ONLY for the character's appearance and art style (a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges). IGNORE the poses in the reference image completely.
+
+Create a NEW wide 16:9 pose sheet of that same boy doing a SIT-UP WITH THE HANDS CLASPED BEHIND THE HEAD, shown THREE times left to right, three-quarter view, turned slightly toward the camera (about 30 to 45 degrees off a pure side view), facing right, with the SAME camera angle in every pose. In every pose he lies on his back with his HEAD ON THE LEFT and his FEET ON THE RIGHT, same scale, all on the same invisible floor line, wide empty gaps so the figures never touch. Draw only the boy: no chair, no objects.
+
+THE THREE POSES (official exercise, follow exactly):
+1. START: lying flat on his back, legs straight on the floor with the feet about six inches apart, fingers clasped behind his head with the elbows out to the sides.
+2. RISING: halfway up, upper body lifted about 45 degrees off the floor, hands still clasped behind his head with the elbows wide, heels still on the floor, knees allowed to bend very slightly.
+3. TOP: sitting up to a vertical position, back straight and upright, hands still clasped behind his head with the elbows wide, FEET STAYING FLAT ON THE FLOOR, knees bent only slightly (hands NOT reaching forward, heels NOT lifted).
+
+Draw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.
+
+BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
+```
+
+**Prompt for the very first strip (no reference, character in words):**
+
+```text
+Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown THREE times, left to right, doing a SIT-UP WITH THE HANDS CLASPED BEHIND THE HEAD, three-quarter view, turned slightly toward the camera (about 30 to 45 degrees off a pure side view), facing right, with the SAME camera angle in every pose. This is a pose-by-pose animation reference, so all three figures must be the same character at the same scale. In every pose he lies on his back with his HEAD ON THE LEFT and his FEET ON THE RIGHT, same scale, all on the same invisible floor line, wide empty gaps so the figures never touch. Draw only the boy: no chair, no objects.
+
+CHARACTER (keep identical in every pose): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.
+
+THE THREE POSES (official exercise, follow exactly):
+1. START: lying flat on his back, legs straight on the floor with the feet about six inches apart, fingers clasped behind his head with the elbows out to the sides.
+2. RISING: halfway up, upper body lifted about 45 degrees off the floor, hands still clasped behind his head with the elbows wide, heels still on the floor, knees allowed to bend very slightly.
+3. TOP: sitting up to a vertical position, back straight and upright, hands still clasped behind his head with the elbows wide, FEET STAYING FLAT ON THE FLOOR, knees bent only slightly (hands NOT reaching forward, heels NOT lifted).
+
+Draw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.
+
+BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
+```
+
+---
+
+## Chart 3: a BACK EXTENSION WITH THE HANDS INTERLOCKED BEHIND THE BACK  (`back-extension-hands-behind-back-c3`, 3 poses)
+
+**What the plan says** (the booklet's own wording, from the 5BX data file):
+
+- Starts: Front lying, hands interlocked behind the back.
+- Movement: Lift head, shoulders, chest and both legs as high as possible.
+- Note: Keep legs straight, and raise chest and both thighs completely off floor.
+
+**Status:** (not made yet)
+
+**Check before you keep a take:**
+
+- Three poses, head on the right, feet on the left
+- Hands interlocked behind the back in ALL three poses (not under the thighs, not on the floor)
+- TOP: chest AND both thighs clear of the floor, higher than chart 2's back extension
+- Legs straight
+
+**My decisions to check [DRAFT]:**
+
+- Chart 2's back extension kept the hands on the floor under the thighs. Here the hands are clasped behind the back, so the lift can go higher.
+
+**Prompt, with a character reference attached:**
+
+```text
+Using the attached reference image ONLY for the character's appearance and art style (a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges). IGNORE the poses in the reference image completely.
+
+Create a NEW wide 16:9 pose sheet of that same boy doing a BACK EXTENSION WITH THE HANDS INTERLOCKED BEHIND THE BACK, shown THREE times left to right, three-quarter view, turned slightly toward the camera (about 30 to 45 degrees off a pure side view), facing right, with the SAME camera angle in every pose. In every pose he lies FACE DOWN, flat on his belly, with his HEAD ON THE RIGHT looking right and his FEET ON THE LEFT. Same scale, all on the same invisible floor line, wide empty gaps between figures.
+
+KEY BODY RULE FOR ALL THREE POSES: his hands are INTERLOCKED BEHIND HIS BACK, fingers clasped over the lower back, arms straight. His hands are NOT under his thighs, NOT in front of him and NOT on the floor.
+
+THE THREE POSES (official exercise, follow exactly):
+1. START: lying completely flat face down, legs straight and together, chin near the floor, hands interlocked behind the back.
+2. LIFTING: head, shoulders, chest and both legs just beginning to lift off the floor together, legs straight, hands still interlocked behind the back.
+3. TOP: head, shoulders, chest AND BOTH THIGHS lifted completely off the floor, as high as he can, legs straight with the knees LOCKED, back strongly arched, looking forward, hands still interlocked behind the back; only his lower belly and hips stay on the floor.
+
+Draw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.
+
+BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
+```
+
+**Prompt for the very first strip (no reference, character in words):**
+
+```text
+Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown THREE times, left to right, doing a BACK EXTENSION WITH THE HANDS INTERLOCKED BEHIND THE BACK, three-quarter view, turned slightly toward the camera (about 30 to 45 degrees off a pure side view), facing right, with the SAME camera angle in every pose. This is a pose-by-pose animation reference, so all three figures must be the same character at the same scale. In every pose he lies FACE DOWN, flat on his belly, with his HEAD ON THE RIGHT looking right and his FEET ON THE LEFT. Same scale, all on the same invisible floor line, wide empty gaps between figures.
+
+CHARACTER (keep identical in every pose): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.
+
+KEY BODY RULE FOR ALL THREE POSES: his hands are INTERLOCKED BEHIND HIS BACK, fingers clasped over the lower back, arms straight. His hands are NOT under his thighs, NOT in front of him and NOT on the floor.
+
+THE THREE POSES (official exercise, follow exactly):
+1. START: lying completely flat face down, legs straight and together, chin near the floor, hands interlocked behind the back.
+2. LIFTING: head, shoulders, chest and both legs just beginning to lift off the floor together, legs straight, hands still interlocked behind the back.
+3. TOP: head, shoulders, chest AND BOTH THIGHS lifted completely off the floor, as high as he can, legs straight with the knees LOCKED, back strongly arched, looking forward, hands still interlocked behind the back; only his lower belly and hips stay on the floor.
+
+Draw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.
+
+BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
+```
+
+---
+
+## Chart 3: a CHIN-FOREHEAD PUSH-UP (on the palms and toes, knees OFF the floor)  (`chin-forehead-push-up-c3`, 3 poses)
+
+**What the plan says** (the booklet's own wording, from the 5BX data file):
+
+- Starts: Front lying, hands under the shoulders, palms flat on floor.
+- Movement: Touch chin to floor in front of hands - touch forehead to floor behind hands before returning to up position.
+- Note: There are three definite movements: chin, forehead, arms straightened. DO NOT do in one continuous movement.
+
+**Status:** (not made yet)
+
+**Check before you keep a take:**
+
+- Three poses, facing right: UP, CHIN, FOREHEAD
+- Only palms and toes touch the floor (knees OFF the floor) in UP
+- CHIN: the chin on the floor in front of the hands
+- FOREHEAD: the forehead on the floor behind the hands, clearly different from CHIN
+- Body a straight line, back straight
+
+**My decisions to check [DRAFT]:**
+
+- The booklet does not say whether this push-up is on the toes or the knees. I assumed palms and toes, continuing chart 2. If it should be the knees, tell me and I will change one phrase.
+- 'Forehead on the floor behind the hands' is physically awkward. If Grok's FOREHEAD pose is not clearly different from CHIN, send me what it gives and I will check it against the booklet.
+- The booklet stresses three separate movements (chin, forehead, arms straightened), not one continuous one. The build will hold each pose.
+
+**Prompt, with a character reference attached:**
+
+```text
+Using the attached reference image ONLY for the character's appearance and art style (a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges). IGNORE the poses in the reference image completely.
+
+Create a NEW wide 16:9 pose sheet of that same boy doing a CHIN-FOREHEAD PUSH-UP (on the palms and toes, knees OFF the floor), shown THREE times left to right, three-quarter view, turned slightly toward the camera (about 30 to 45 degrees off a pure side view), facing right, with the SAME camera angle in every pose. Same scale, all on the same invisible floor line, with generous empty space between the figures so they do not touch or overlap.
+
+THE THREE POSES (official exercise, follow exactly):
+1. UP: arms fully straightened, palms flat directly under the shoulders, only the palms and toes touching the floor, the body one straight line from the heels to the head (hips NOT piked up, back NOT sagging, knees NOT on the floor).
+2. CHIN: lowered until the CHIN touches the floor in front of the hands (the head pushed forward past the hands), elbows bent, palms still flat on the floor under the shoulders, only the palms, toes and chin touching the floor, the body one straight line.
+3. FOREHEAD: the FOREHEAD touching the floor behind the hands (the head tucked back toward the hands so the forehead rests on the floor on the body side of the hands), elbows bent and tucked in, palms flat, only the palms, toes and forehead touching the floor, the body one straight line.
+
+Draw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.
+
+BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
+```
+
+**Prompt for the very first strip (no reference, character in words):**
+
+```text
+Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown THREE times, left to right, doing a CHIN-FOREHEAD PUSH-UP (on the palms and toes, knees OFF the floor), three-quarter view, turned slightly toward the camera (about 30 to 45 degrees off a pure side view), facing right, with the SAME camera angle in every pose. This is a pose-by-pose animation reference, so all three figures must be the same character at the same scale. Same scale, all on the same invisible floor line, with generous empty space between the figures so they do not touch or overlap.
+
+CHARACTER (keep identical in every pose): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.
+
+THE THREE POSES (official exercise, follow exactly):
+1. UP: arms fully straightened, palms flat directly under the shoulders, only the palms and toes touching the floor, the body one straight line from the heels to the head (hips NOT piked up, back NOT sagging, knees NOT on the floor).
+2. CHIN: lowered until the CHIN touches the floor in front of the hands (the head pushed forward past the hands), elbows bent, palms still flat on the floor under the shoulders, only the palms, toes and chin touching the floor, the body one straight line.
+3. FOREHEAD: the FOREHEAD touching the floor behind the hands (the head tucked back toward the hands so the forehead rests on the floor on the body side of the hands), elbows bent and tucked in, palms flat, only the palms, toes and forehead touching the floor, the body one straight line.
+
+Draw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.
+
+BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
+```
+
+---
+
+## Chart 3: Half Knee Bends  (`half-knee-bends-c3`, 3 poses)
+
+**What the plan says** (the booklet's own wording, from the 5BX data file):
+
+- Starts: Count a step each time left foot touches floor. Lift feet approximately 4 inches off floor.
+- Movement: After every 75 steps do 10 "half knee bends". Repeat this sequence until required number of steps is completed.
+- Note: Half knee bends - Feet together, hands on hips, knees bent to form an angle of about 110 degrees. Do not bend knees past a right angle.
+- Note: Straighten to upright position, raising heel off floor, return to starting position each time.
+- Note: Keep feet in contact with floor - the back upright and straight at all times.
+
+**Status:** (not made yet)
+
+**Check before you keep a take:**
+
+- Three poses
+- Feet together and hands on the hips in every pose
+- Back upright and straight in every pose (no leaning forward)
+- HALF BEND: a moderate knee bend, not a deep squat
+- RISE: heels off the floor, toes on it
+
+**My decisions to check [DRAFT]:**
+
+- The booklet gives 'about 110 degrees' for the knee angle and says not to bend past a right angle. I read a half bend as a moderate bend, well short of a squat.
+- Each count is taken as bend, rise onto the toes, return to standing: one cycle per count.
+
+**Prompt, with a character reference attached:**
+
+```text
+Using the attached reference image ONLY for the character's appearance and art style (a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges). IGNORE the poses in the reference image completely.
+
+Create a NEW wide 16:9 pose sheet of that same boy doing HALF KNEE BENDS, shown THREE times left to right, three-quarter view, turned slightly toward the camera (about 30 to 45 degrees off a pure side view), facing right, with the SAME camera angle in every pose. Same scale, all three figures standing on the same invisible floor line (the toes of the third figure stay on that line while the heels lift), with wide empty gaps so the figures never touch.
+
+THE THREE POSES (official exercise, follow exactly):
+1. START: standing upright, feet together, hands on the hips, back straight.
+2. HALF BEND: knees bent to an angle of about 110 degrees (a HALF bend, NOT a deep squat, knees NOT bent past a right angle), back upright and straight, hands on the hips, both feet flat on the floor, feet together.
+3. RISE: straightened to a fully upright position and raised UP ON THE TOES, the heels lifted off the floor and the toes still touching the floor, legs straight, back upright and straight, hands on the hips.
+
+Draw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.
+
+BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
+```
+
+**Prompt for the very first strip (no reference, character in words):**
+
+```text
+Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown THREE times, left to right, doing HALF KNEE BENDS, three-quarter view, turned slightly toward the camera (about 30 to 45 degrees off a pure side view), facing right, with the SAME camera angle in every pose. This is a pose-by-pose animation reference, so all three figures must be the same character at the same scale. Same scale, all three figures standing on the same invisible floor line (the toes of the third figure stay on that line while the heels lift), with wide empty gaps so the figures never touch.
+
+CHARACTER (keep identical in every pose): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.
+
+THE THREE POSES (official exercise, follow exactly):
+1. START: standing upright, feet together, hands on the hips, back straight.
+2. HALF BEND: knees bent to an angle of about 110 degrees (a HALF bend, NOT a deep squat, knees NOT bent past a right angle), back upright and straight, hands on the hips, both feet flat on the floor, feet together.
+3. RISE: straightened to a fully upright position and raised UP ON THE TOES, the heels lifted off the floor and the toes still touching the floor, legs straight, back upright and straight, hands on the hips.
+
+Draw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.
+
+BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
+```
+
+---
+
 ## Edit prompts (change one thing, keep the rest)
 
 Used with the ElevenLabs edit tool (gpt-image-2.5-sunburst), the strip passed as the reference. About 433 credits a take.

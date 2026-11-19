@@ -318,6 +318,185 @@
         "The two jump poses sit about 89 px above the standing poses.",
         "One count is taken to be a complete out-and-back (the booklet says 'return with a jump to the starting position for count of one'), so one cycle per count: jumps_per_cycle is 1 and a cycle takes 1.2 s. If the count should be each jump, set jumps_per_cycle to 2 in config/strips.json (2.4 s a cycle)."
       ]
+    },
+    "toe-touch-c3": {
+      "chart": 3,
+      "slot": "ex1",
+      "exercise": "TOE TOUCHES TO THE LEFT, CENTRE AND RIGHT",
+      "kept": "(not made yet)",
+      "view": "strict FRONT view, the boy facing the camera (not a side view)",
+      "far_side": false,
+      "layout": "Same scale, feet on the same invisible floor line, with wide empty gaps so the figures never touch. The five figures are in the ORDER OF THE MOVEMENT, left to right across the picture, not in the order of where the hands land.",
+      "poses": [
+        "START: standing tall facing the camera, feet wide apart (astride, a little wider than the shoulders), both arms straight up overhead, upper arms beside the ears.",
+        "TOUCH LEFT: bent forward at the waist, seen from the front, both hands reaching down together with the fingertips touching the floor about six inches OUTSIDE HIS LEFT FOOT (his left foot is on the RIGHT side of the picture), knees only slightly bent, head hanging down.",
+        "TOUCH BETWEEN: bent forward in the same way, fingertips of both hands touching the floor BETWEEN HIS FEET, pressing down a little, knees only slightly bent, head hanging down.",
+        "TOUCH RIGHT: bent forward in the same way, fingertips of both hands touching the floor about six inches OUTSIDE HIS RIGHT FOOT (his right foot is on the LEFT side of the picture), knees only slightly bent, head hanging down.",
+        "BEND BACK: standing again, feet still wide apart, both arms stretched up and back, bending backward as far as he can, hips pushed forward, chest and face lifted toward the sky, knees straight."
+      ],
+      "check": [
+        "Five poses in movement order",
+        "Front view in every pose, feet wide apart throughout",
+        "TOUCH LEFT: fingertips on the floor outside his left foot (the picture-right foot); TOUCH RIGHT: outside his right foot (the picture-left foot); TOUCH BETWEEN: between the feet",
+        "Knees only slightly bent in the three bends",
+        "BEND BACK: arms up and back, leaning backward as far as he can"
+      ],
+      "draft": [
+        "Front view, because the three touches land at different places across the floor and a side view would hide that.",
+        "Left and right are the boy's own: his left foot is on the right side of the picture when he faces us.",
+        "The booklet says to reverse the direction after half the number of counts (right, between, left in the second half). That needs no extra picture: I will run the same poses in reverse order in the build.",
+        "If the generator struggles with a bend seen from the front, try 'three-quarter front view' instead, and tell me."
+      ],
+      "suggest": {
+        "file": "c3-ex1-toe-touching.png",
+        "poses": 5,
+        "anchor": "span-center",
+        "cycle": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "reps_per_cycle": 1
+      }
+    },
+    "sit-up-hands-behind-head-c3": {
+      "chart": 3,
+      "slot": "ex2",
+      "exercise": "a SIT-UP WITH THE HANDS CLASPED BEHIND THE HEAD",
+      "kept": "(not made yet)",
+      "layout": "In every pose he lies on his back with his HEAD ON THE LEFT and his FEET ON THE RIGHT, same scale, all on the same invisible floor line, wide empty gaps so the figures never touch. Draw only the boy: no chair, no objects.",
+      "poses": [
+        "START: lying flat on his back, legs straight on the floor with the feet about six inches apart, fingers clasped behind his head with the elbows out to the sides.",
+        "RISING: halfway up, upper body lifted about 45 degrees off the floor, hands still clasped behind his head with the elbows wide, heels still on the floor, knees allowed to bend very slightly.",
+        "TOP: sitting up to a vertical position, back straight and upright, hands still clasped behind his head with the elbows wide, FEET STAYING FLAT ON THE FLOOR, knees bent only slightly (hands NOT reaching forward, heels NOT lifted)."
+      ],
+      "check": [
+        "Three poses, head on the left, feet on the right",
+        "Fingers clasped behind the head in ALL three poses (the arms do not reach forward)",
+        "Feet stay on the floor; TOP is a vertical, upright torso",
+        "Knees at most slightly bent; no chair"
+      ],
+      "draft": [
+        "The same exercise as chart 2's sit-up, with the hands clasped behind the head."
+      ],
+      "suggest": {
+        "file": "c3-ex2-sit-up-hands-behind-head.png",
+        "poses": 3,
+        "anchor": "hips",
+        "cycle": [
+          1,
+          2,
+          3,
+          2
+        ],
+        "reps_per_cycle": 1
+      }
+    },
+    "back-extension-hands-behind-back-c3": {
+      "chart": 3,
+      "slot": "ex3",
+      "exercise": "a BACK EXTENSION WITH THE HANDS INTERLOCKED BEHIND THE BACK",
+      "kept": "(not made yet)",
+      "layout": "In every pose he lies FACE DOWN, flat on his belly, with his HEAD ON THE RIGHT looking right and his FEET ON THE LEFT. Same scale, all on the same invisible floor line, wide empty gaps between figures.",
+      "rule": "KEY BODY RULE FOR ALL THREE POSES: his hands are INTERLOCKED BEHIND HIS BACK, fingers clasped over the lower back, arms straight. His hands are NOT under his thighs, NOT in front of him and NOT on the floor.",
+      "poses": [
+        "START: lying completely flat face down, legs straight and together, chin near the floor, hands interlocked behind the back.",
+        "LIFTING: head, shoulders, chest and both legs just beginning to lift off the floor together, legs straight, hands still interlocked behind the back.",
+        "TOP: head, shoulders, chest AND BOTH THIGHS lifted completely off the floor, as high as he can, legs straight with the knees LOCKED, back strongly arched, looking forward, hands still interlocked behind the back; only his lower belly and hips stay on the floor."
+      ],
+      "check": [
+        "Three poses, head on the right, feet on the left",
+        "Hands interlocked behind the back in ALL three poses (not under the thighs, not on the floor)",
+        "TOP: chest AND both thighs clear of the floor, higher than chart 2's back extension",
+        "Legs straight"
+      ],
+      "draft": [
+        "Chart 2's back extension kept the hands on the floor under the thighs. Here the hands are clasped behind the back, so the lift can go higher."
+      ],
+      "suggest": {
+        "file": "c3-ex3-back-extension-hands-behind-back.png",
+        "poses": 3,
+        "anchor": "hips",
+        "cycle": [
+          1,
+          2,
+          3,
+          2
+        ],
+        "reps_per_cycle": 1
+      }
+    },
+    "chin-forehead-push-up-c3": {
+      "chart": 3,
+      "slot": "ex4",
+      "exercise": "a CHIN-FOREHEAD PUSH-UP (on the palms and toes, knees OFF the floor)",
+      "kept": "(not made yet)",
+      "layout": "Same scale, all on the same invisible floor line, with generous empty space between the figures so they do not touch or overlap.",
+      "poses": [
+        "UP: arms fully straightened, palms flat directly under the shoulders, only the palms and toes touching the floor, the body one straight line from the heels to the head (hips NOT piked up, back NOT sagging, knees NOT on the floor).",
+        "CHIN: lowered until the CHIN touches the floor in front of the hands (the head pushed forward past the hands), elbows bent, palms still flat on the floor under the shoulders, only the palms, toes and chin touching the floor, the body one straight line.",
+        "FOREHEAD: the FOREHEAD touching the floor behind the hands (the head tucked back toward the hands so the forehead rests on the floor on the body side of the hands), elbows bent and tucked in, palms flat, only the palms, toes and forehead touching the floor, the body one straight line."
+      ],
+      "check": [
+        "Three poses, facing right: UP, CHIN, FOREHEAD",
+        "Only palms and toes touch the floor (knees OFF the floor) in UP",
+        "CHIN: the chin on the floor in front of the hands",
+        "FOREHEAD: the forehead on the floor behind the hands, clearly different from CHIN",
+        "Body a straight line, back straight"
+      ],
+      "draft": [
+        "The booklet does not say whether this push-up is on the toes or the knees. I assumed palms and toes, continuing chart 2. If it should be the knees, tell me and I will change one phrase.",
+        "'Forehead on the floor behind the hands' is physically awkward. If Grok's FOREHEAD pose is not clearly different from CHIN, send me what it gives and I will check it against the booklet.",
+        "The booklet stresses three separate movements (chin, forehead, arms straightened), not one continuous one. The build will hold each pose."
+      ],
+      "suggest": {
+        "file": "c3-ex4-chin-forehead-push-up.png",
+        "poses": 3,
+        "anchor": "span-right",
+        "cycle": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "reps_per_cycle": 1
+      }
+    },
+    "half-knee-bends-c3": {
+      "chart": 3,
+      "slot": "jump",
+      "exercise": "HALF KNEE BENDS",
+      "kept": "(not made yet)",
+      "layout": "Same scale, all three figures standing on the same invisible floor line (the toes of the third figure stay on that line while the heels lift), with wide empty gaps so the figures never touch.",
+      "poses": [
+        "START: standing upright, feet together, hands on the hips, back straight.",
+        "HALF BEND: knees bent to an angle of about 110 degrees (a HALF bend, NOT a deep squat, knees NOT bent past a right angle), back upright and straight, hands on the hips, both feet flat on the floor, feet together.",
+        "RISE: straightened to a fully upright position and raised UP ON THE TOES, the heels lifted off the floor and the toes still touching the floor, legs straight, back upright and straight, hands on the hips."
+      ],
+      "check": [
+        "Three poses",
+        "Feet together and hands on the hips in every pose",
+        "Back upright and straight in every pose (no leaning forward)",
+        "HALF BEND: a moderate knee bend, not a deep squat",
+        "RISE: heels off the floor, toes on it"
+      ],
+      "draft": [
+        "The booklet gives 'about 110 degrees' for the knee angle and says not to bend past a right angle. I read a half bend as a moderate bend, well short of a squat.",
+        "Each count is taken as bend, rise onto the toes, return to standing: one cycle per count."
+      ],
+      "suggest": {
+        "file": "c3-jump-half-knee-bends.png",
+        "poses": 3,
+        "anchor": "span-center",
+        "cycle": [
+          1,
+          2,
+          3
+        ],
+        "jumps_per_cycle": 1
+      }
     }
   }
 }
