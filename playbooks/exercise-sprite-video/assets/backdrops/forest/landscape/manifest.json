@@ -1,0 +1,37 @@
+{
+ "hash": "f22c8f33426a",
+ "layers": [
+  [
+   "sky",
+   "00-sky.png"
+  ],
+  [
+   "clouds",
+   "01-clouds.png"
+  ],
+  [
+   "mountains-far",
+   "02-mountains-far.png"
+  ],
+  [
+   "mountains-near",
+   "03-mountains-near.png"
+  ],
+  [
+   "trees-back",
+   "04-trees-back.png"
+  ],
+  [
+   "trees-front",
+   "05-trees-front.png"
+  ],
+  [
+   "ground",
+   "06-ground.png"
+  ]
+ ],
+ "size": [
+  1920,
+  1080
+ ]
+}

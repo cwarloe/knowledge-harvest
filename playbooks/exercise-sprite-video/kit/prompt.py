@@ -23,7 +23,7 @@ def build(spec, ch):
         "IGNORE the poses in the reference image completely.",
         "",
         f"Create a NEW wide {ch['generator']['aspect']} pose sheet of that same boy doing {spec['exercise']}, shown {words} times left to right, "
-        f"{ch['view']}. {spec.get('layout', 'Same scale, all on the same invisible floor line, wide empty gaps so the figures never touch.')}",
+        f"{spec.get('view', ch['view'])}. {spec.get('layout', 'Same scale, all on the same invisible floor line, wide empty gaps so the figures never touch.')}",
     ]
     if spec.get("rule"): lines += ["", spec["rule"]]
     lines += ["", f"THE {words} POSES (official exercise, follow exactly):"] + [f"{i}. {p}" for i, p in enumerate(spec["poses"], 1)]

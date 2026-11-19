@@ -1,0 +1,8 @@
+{
+  "_about": "Example scene: a blue floor mat under the lying exercises, a soft contact shadow under the boy, and a water bottle in front. Try it:  python3 kit/build.py --data ... --scene config/scene.example-mat.json --preview --only ex4",
+  "props": [
+    {"id": "mat", "kind": "mat", "enabled": true, "slots": ["ex2", "ex3", "ex4"], "z": "behind", "color": "#2f6fb5", "edge": "#1f4c80", "pad": 0.12, "thickness": 30},
+    {"id": "contact-shadow", "kind": "shadow", "enabled": true, "slots": "*", "z": "behind", "opacity": 0.28, "width": 0.95, "height": 26, "blur": 10},
+    {"id": "water-bottle", "kind": "image", "enabled": true, "file": "assets/props/water-bottle.png", "slots": "*", "z": "front", "x": 0.14, "scale": 0.045, "lift": 0}
+  ]
+}

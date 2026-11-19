@@ -1,0 +1,65 @@
+{
+ "version": "1",
+ "source": "ex2-partial-sit-up.png",
+ "source_hash": "17c10e97e347",
+ "key": {
+  "lo": 28,
+  "hi": 95
+ },
+ "n": 3,
+ "poses": [
+  {
+   "file": "p1.png",
+   "offset": [
+    33,
+    386
+   ],
+   "size": [
+    421,
+    105
+   ],
+   "anchors": {
+    "head": 23.0,
+    "span-left": 27.0,
+    "span-right": 408.0,
+    "span-center": 190.25819672131146
+   }
+  },
+  {
+   "file": "p2.png",
+   "offset": [
+    506,
+    309
+   ],
+   "size": [
+    392,
+    175
+   ],
+   "anchors": {
+    "head": 50.833333333333336,
+    "span-left": 80.0,
+    "span-right": 382.0,
+    "span-center": 229.53082191780823
+   }
+  },
+  {
+   "file": "p3.png",
+   "offset": [
+    988,
+    271
+   ],
+   "size": [
+    332,
+    215
+   ],
+   "anchors": {
+    "head": 56.0,
+    "span-left": 78.0,
+    "span-right": 321.0,
+    "span-center": 197.19354838709677
+   }
+  }
+ ],
+ "floor": 491,
+ "top": 271
+}

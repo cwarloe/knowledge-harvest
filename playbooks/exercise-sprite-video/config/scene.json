@@ -1,0 +1,14 @@
+{
+  "_about": "What sits between the backdrop and the boy (z: behind) or in front of him (z: front). Layer order, bottom to top: backdrop layers, props behind, the boy, props in front, then the on-screen text. Props are OFF in the default look; switch one on with \"enabled\": true, or try a scene without editing this file: --scene my-scene.json.",
+  "props": [
+    {"id": "mat", "kind": "mat", "enabled": false, "slots": ["ex2", "ex3", "ex4"], "z": "behind",
+     "color": "#2f6fb5", "edge": "#1f4c80", "pad": 0.12, "thickness": 30,
+     "_hint": "A floor mat under the lying exercises. 'pad' is extra width on each side as a fraction of the boy's width."},
+    {"id": "contact-shadow", "kind": "shadow", "enabled": false, "slots": "*", "z": "behind",
+     "opacity": 0.28, "width": 0.95, "height": 26, "blur": 10,
+     "_hint": "A soft shadow under the boy. The generator's own shadow is keyed out, so this puts a consistent one back."},
+    {"id": "example-image-prop", "kind": "image", "enabled": false, "file": "assets/props/water-bottle.png", "slots": "*", "z": "front",
+     "x": 0.14, "scale": 0.045, "lift": 0,
+     "_hint": "Any transparent PNG. x is the horizontal centre as a fraction of the frame; it stands on the ground line."}
+  ]
+}

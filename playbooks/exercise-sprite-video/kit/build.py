@@ -20,12 +20,14 @@ Useful flags
 Timing is never typed here. Every rep count, step count, break and jump window is read from the
 data file, so the video cannot disagree with the plan.
 """
-import argparse, hashlib, json, math, os, random, subprocess, sys
+import argparse, hashlib, json, math, os, random, shutil, subprocess, sys
 import numpy as np
 from PIL import Image, ImageDraw
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
+ASSETS = os.path.join(ROOT, "assets")          # layers as real files: sprites, backdrops, props (committed)
+BAKE_VERSION = "1"                              # bump when the cut-out or backdrop drawing changes
 sys.path.insert(0, HERE)
 from keyer import key as chroma_key
 from recolor import recolor
@@ -45,46 +47,84 @@ CODE_VERSION = sha(open(__file__, "rb").read(), open(os.path.join(HERE, "keyer.p
                    open(os.path.join(HERE, "recolor.py"), "rb").read())   # editing code never serves a stale cache
 
 
-# ---------- backdrop (a layer of its own) ----------
-def backdrop(theme, F):
-    b = theme["backdrop"]; W, H = F["W"], F["H"]; gy = int(H * F["ground"])
-    if b.get("style") == "image" and b.get("image"):
-        im = Image.open(os.path.join(ROOT, b["image"])).convert("RGB")
-        s = max(W / im.width, H / im.height); im = im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS)
-        return im.crop(((im.width - W) // 2, (im.height - H) // 2, (im.width - W) // 2 + W, (im.height - H) // 2 + H))
-    S = 2; rnd = random.Random(b.get("seed", 7))
-    im = Image.new("RGB", (W * S, H * S)); d = ImageDraw.Draw(im)
-    top, bot = rgb(b["sky_top"]), rgb(b["sky_bottom"])
+# ---------- backdrop: several layers, each its own file ----------
+def draw_forest(b, F):
+    """Return ordered {layer name: RGBA image}. Same drawing order as before so the look is unchanged."""
+    W, H = F["W"], F["H"]; gy = int(H * F["ground"]); S = 2; rnd = random.Random(b.get("seed", 7))
+    def canvas(fill=(0, 0, 0, 0)): im = Image.new("RGBA", (W * S, H * S), fill); return im, ImageDraw.Draw(im)
+    out = {}
+    im, d = canvas((0, 0, 0, 255)); top, bot = rgb(b["sky_top"]), rgb(b["sky_bottom"])
     for y in range(gy * S):
-        t = y / (gy * S); d.line([(0, y), (W * S, y)], fill=tuple(int(top[i] + (bot[i] - top[i]) * t) for i in range(3)))
+        t = y / (gy * S); d.line([(0, y), (W * S, y)], fill=tuple(int(top[i] + (bot[i] - top[i]) * t) for i in range(3)) + (255,))
+    out["sky"] = im
+    im, d = canvas()
     for _ in range(7):
-        cx, cy, s = rnd.randint(0, W) * S, rnd.randint(int(H * .06), int(H * .30)) * S, rnd.randint(60, 120) * S
+        cx, cy, s_ = rnd.randint(0, W) * S, rnd.randint(int(H * .06), int(H * .30)) * S, rnd.randint(60, 120) * S
         for dx, dy, r in ((0, 0, 1), (.8, .2, .8), (-.8, .25, .75), (.3, -.25, .7)):
-            d.ellipse([cx + dx * s - r * s, cy + dy * s - r * s * .55, cx + dx * s + r * s, cy + dy * s + r * s * .55], fill=(255, 255, 255))
-    def ridge(base, amp, col, seed):
-        r = random.Random(seed); pts = [(0, gy * S)]
+            d.ellipse([cx + dx * s_ - r * s_, cy + dy * s_ - r * s_ * .55, cx + dx * s_ + r * s_, cy + dy * s_ + r * s_ * .55], fill=(255, 255, 255, 255))
+    out["clouds"] = im
+    for name, (base, amp, col, seed) in {"mountains-far": (int(H * .55), int(H * .10), rgb(b["mountains"][0]), 1),
+                                         "mountains-near": (int(H * .62), int(H * .08), rgb(b["mountains"][1]), 2)}.items():
+        im, d = canvas(); r = random.Random(seed); pts = [(0, gy * S)]
         for x in range(0, W * S + 80 * S, 80 * S): pts.append((x, (base - r.randint(0, amp)) * S))
-        pts.append((W * S, gy * S)); d.polygon(pts, fill=col)
-    ridge(int(H * .55), int(H * .10), rgb(b["mountains"][0]), 1)
-    ridge(int(H * .62), int(H * .08), rgb(b["mountains"][1]), 2)
-    def pine(x, base, h, col):
-        w = h * .42; d.rectangle([x - w * .06, base - h * .12, x + w * .06, base], fill=(86, 60, 40))
+        pts.append((W * S, gy * S)); d.polygon(pts, fill=col + (255,)); out[name] = im
+    def pine(d, x, base, h, col):
+        w = h * .42; d.rectangle([x - w * .06, base - h * .12, x + w * .06, base], fill=(86, 60, 40, 255))
         for k in range(3):
             y0 = base - h * (.12 + .27 * k); y1 = y0 - h * .42; ww = w * (1 - .24 * k)
-            d.polygon([(x - ww / 2, y0), (x + ww / 2, y0), (x, y1)], fill=col)
-    for row, (col, hmin, hmax, step) in enumerate([(rgb(b["trees"][0]), .13, .19, 70), (rgb(b["trees"][1]), .17, .26, 110)]):
-        x = -20 * S
+            d.polygon([(x - ww / 2, y0), (x + ww / 2, y0), (x, y1)], fill=col + (255,))
+    for row, (name, col, hmin, hmax, step) in enumerate([("trees-back", rgb(b["trees"][0]), .13, .19, 70), ("trees-front", rgb(b["trees"][1]), .17, .26, 110)]):
+        im, d = canvas(); x = -20 * S
         while x < W * S + 60 * S:
-            pine(x, (gy - 6 + row * 14) * S, rnd.randint(int(H * hmin), int(H * hmax)) * S, col); x += int(rnd.uniform(.7, 1.3) * step * S)
-    d.rectangle([0, gy * S, W * S, H * S], fill=rgb(b["ground"]))
-    d.rectangle([0, gy * S, W * S, (gy + 10) * S], fill=rgb(b["ground_line"]))
+            pine(d, x, (gy - 6 + row * 14) * S, rnd.randint(int(H * hmin), int(H * hmax)) * S, col); x += int(rnd.uniform(.7, 1.3) * step * S)
+        out[name] = im
+    im, d = canvas()
+    d.rectangle([0, gy * S, W * S, H * S], fill=rgb(b["ground"]) + (255,)); d.rectangle([0, gy * S, W * S, (gy + 10) * S], fill=rgb(b["ground_line"]) + (255,))
     for _ in range(60):
         px, py = rnd.randint(0, W) * S, rnd.randint(gy + 20, H - 10) * S
-        d.ellipse([px, py, px + rnd.randint(6, 16) * S, py + rnd.randint(3, 7) * S], fill=rgb(b["pebbles"]))
-    return im.resize((W, H), Image.LANCZOS)
+        d.ellipse([px, py, px + rnd.randint(6, 16) * S, py + rnd.randint(3, 7) * S], fill=rgb(b["pebbles"]) + (255,))
+    out["ground"] = im
+    return {k: v.resize((W, H), Image.LANCZOS) for k, v in out.items()}
 
 
-# ---------- the boy (a layer of his own) ----------
+def backdrop_layers(theme, F, fmt):
+    """Ordered [(name, RGBA)]. Cached on disk as assets/backdrops/<id>/<format>/NN-<name>.png (one file per layer)."""
+    b = theme["backdrop"]; bid = b.get("id", "forest"); d = os.path.join(ASSETS, "backdrops", bid, fmt); mp = os.path.join(d, "manifest.json")
+    want = sha(json.dumps({k: v for k, v in b.items() if k != "overrides"}, sort_keys=True), F["W"], F["H"], F["ground"], BAKE_VERSION)
+    if os.path.exists(mp) and jload(mp).get("hash") == want:
+        layers = [(n, Image.open(os.path.join(d, f)).convert("RGBA")) for n, f in jload(mp)["layers"]]
+    else:
+        os.makedirs(d, exist_ok=True)
+        for f in os.listdir(d):
+            if f.endswith(".png"): os.remove(os.path.join(d, f))
+        if b.get("style") == "image" and b.get("image"):
+            im = Image.open(os.path.join(ROOT, b["image"])).convert("RGB"); sc = max(F["W"] / im.width, F["H"] / im.height)
+            im = im.resize((round(im.width * sc), round(im.height * sc)), Image.LANCZOS)
+            drawn = {"picture": im.crop(((im.width - F["W"]) // 2, (im.height - F["H"]) // 2, (im.width - F["W"]) // 2 + F["W"], (im.height - F["H"]) // 2 + F["H"])).convert("RGBA")}
+        else: drawn = draw_forest(b, F)
+        names = []
+        for i, (n, im) in enumerate(drawn.items()):
+            fn = f"{i:02d}-{n}.png"; im.save(os.path.join(d, fn)); names.append([n, fn])
+        json.dump({"hash": want, "layers": names, "size": [F["W"], F["H"]]}, open(mp, "w"), indent=1)
+        layers = [(n, Image.open(os.path.join(d, f)).convert("RGBA")) for n, f in names]
+    out = []
+    for n, im in layers:                       # any layer can be swapped for your own file, without touching code
+        ov = (b.get("overrides") or {}).get(n)
+        if ov:
+            o = Image.open(os.path.join(ROOT, ov)).convert("RGBA")
+            if o.size != (F["W"], F["H"]): o = o.resize((F["W"], F["H"]), Image.LANCZOS)
+            im = o
+        out.append((n, im))
+    return out
+
+
+def flatten(layers, size):
+    base = Image.new("RGBA", size, (0, 0, 0, 255))
+    for _, im in layers: base.alpha_composite(im)
+    return base
+
+
+# ---------- the boy: baked once into assets/sprites/<strip>/ (one transparent file per pose) ----------
 def components(mask, ds=4, dil=1):
     """Label connected shapes on a downsampled, lightly dilated mask."""
     h, w = mask.shape; H, W = h // ds, w // ds
@@ -102,13 +142,12 @@ def components(mask, ds=4, dil=1):
     return lab, ds
 
 
-def split(path, n, theme):
-    """Strip -> n cut-out poses, left to right. Split by connected shape: neighbours overlap in x."""
-    rgba = recolor(chroma_key(Image.open(path), **theme["key"]), theme.get("recolor")); a = np.array(rgba)
-    lab, ds = components(a[..., 3] > 128)
+def split_rgba(rgba, n, label):
+    """Cut-out strip -> n poses, left to right. Split by connected shape: neighbours overlap in x."""
+    a = np.array(rgba); lab, ds = components(a[..., 3] > 128)
     ids = list(range(1, lab.max() + 1)); area = {i: int((lab == i).sum()) for i in ids}
     big = sorted([i for i in ids if area[i] > 400], key=lambda i: -area[i])[:n]
-    if len(big) != n: raise SystemExit(f"{path}: expected {n} poses, found {len(big)}. Check 'poses' in config/strips.json or regenerate the strip.")
+    if len(big) != n: raise SystemExit(f"{label}: expected {n} poses, found {len(big)}. Check 'poses' in config/strips.json or regenerate the strip.")
     cent = {i: np.argwhere(lab == i).mean(axis=0) for i in ids}
     for i in ids:                                         # fold stray fragments into the nearest pose
         if i not in big and area[i] > 6:
@@ -118,40 +157,100 @@ def split(path, n, theme):
     poses = []
     for i in big:
         b = a.copy(); b[..., 3] = np.where(full == i, b[..., 3], 0); ys, xs = np.nonzero(b[..., 3] > 16)
-        p = Image.fromarray(b[ys.min():ys.max() + 1, xs.min():xs.max() + 1], "RGBA"); p.offset = (int(xs.min()), int(ys.min())); poses.append(p)
+        poses.append((Image.fromarray(b[ys.min():ys.max() + 1, xs.min():xs.max() + 1], "RGBA"), (int(xs.min()), int(ys.min()))))
     return poses
 
 
-def anchor_x(p, how):
+def anchors_of(p):
+    """Every anchor a pose can be pinned by, in the pose's own pixel coordinates."""
     a = np.array(p)[..., 3] > 128; h, w = a.shape
-    if how == "head":
-        xs = np.nonzero(a[:max(6, int(h * .12))].any(axis=0))[0]; return float(xs.mean())
-    xs = np.nonzero(a[-14:].any(axis=0))[0]
-    return {"span-left": float(xs.min()), "span-right": float(xs.max()), "span-center": float(xs.mean())}[how]
+    head = np.nonzero(a[:max(6, int(h * .12))].any(axis=0))[0]; feet = np.nonzero(a[-14:].any(axis=0))[0]
+    return {"head": float(head.mean()), "span-left": float(feet.min()), "span-right": float(feet.max()), "span-center": float(feet.mean())}
 
 
-def compose(name, strip, theme, F, fmt, work):
-    """Write layer_pK.png (the boy alone, transparent) and pK.png (boy over backdrop). Cached."""
-    path = os.path.join(ROOT, "sheets", strip["file"])
-    tag = sha(filehash(path), json.dumps(strip, sort_keys=True), json.dumps(theme["key"]), json.dumps(theme.get("recolor")),
-              json.dumps(theme["backdrop"], sort_keys=True), json.dumps(F, sort_keys=True), CODE_VERSION)
-    out = os.path.join(work, "frames", f"{name}-{fmt}-{tag}")
+def bake(name, strip, theme):
+    """sheets/<file> -> assets/sprites/<name>/p1..pN.png + meta.json. Re-bakes only if the strip or the key changed."""
+    src = os.path.join(ROOT, "sheets", strip["file"]); h = filehash(src); d = os.path.join(ASSETS, "sprites", name); mp = os.path.join(d, "meta.json")
+    if os.path.exists(mp):
+        m = jload(mp)
+        if m.get("source_hash") == h and m.get("key") == theme["key"] and m.get("n") == strip["poses"] and m.get("version") == BAKE_VERSION: return m
+    os.makedirs(d, exist_ok=True)
+    for f in os.listdir(d):
+        if f.endswith(".png"): os.remove(os.path.join(d, f))
+    poses = split_rgba(chroma_key(Image.open(src), **theme["key"]), strip["poses"], src)     # neutral colours: recolour happens at build time
+    meta = {"version": BAKE_VERSION, "source": strip["file"], "source_hash": h, "key": theme["key"], "n": strip["poses"], "poses": []}
+    for k, (p, off) in enumerate(poses, 1):
+        p.save(os.path.join(d, f"p{k}.png")); meta["poses"].append({"file": f"p{k}.png", "offset": list(off), "size": list(p.size), "anchors": anchors_of(p)})
+    meta["floor"] = max(o[1] + p.size[1] for p, o in poses); meta["top"] = min(o[1] for p, o in poses)
+    json.dump(meta, open(mp, "w"), indent=1); return meta
+
+
+def load_sprites(name, strip, theme):
+    meta = bake(name, strip, theme); d = os.path.join(ASSETS, "sprites", name)
+    return [recolor(Image.open(os.path.join(d, m["file"])).convert("RGBA"), theme.get("recolor")) for m in meta["poses"]], meta
+
+
+# ---------- props: anything between the backdrop and the boy, or in front of him ----------
+def prop_applies(prop, slot):
+    return prop.get("enabled", True) and (prop.get("slots", "*") == "*" or slot in prop["slots"])
+
+
+def render_props(scene, slot, geom, F, z):
+    """RGBA frame-sized layer of every enabled prop for this slot and depth (z = 'behind' | 'front'), or None."""
+    props = [p for p in scene.get("props", []) if prop_applies(p, slot) and p.get("z", "behind") == z]
+    if not props: return None
+    W, H, gy, k = F["W"], F["H"], geom["gy"], F["H"] / 1080.0
+    layer = Image.new("RGBA", (W, H), (0, 0, 0, 0)); floor_y = gy + 10
+    ux0, ux1 = geom["X0"] - geom["L"] * geom["s"], geom["X0"] + geom["R"] * geom["s"]; cx, uw = (ux0 + ux1) / 2, ux1 - ux0
+    for p in props:
+        kind = p["kind"]
+        if kind == "mat":
+            w = uw * (1 + 2 * p.get("pad", .12)); t = p.get("thickness", 18) * k; x0 = cx - w / 2
+            d = ImageDraw.Draw(layer); r = max(2, int(t / 2))
+            d.rounded_rectangle([x0, floor_y, x0 + w, floor_y + t], radius=r, fill=rgb(p["edge"]) + (255,))
+            d.rounded_rectangle([x0, floor_y, x0 + w, floor_y + t * .62], radius=r, fill=rgb(p["color"]) + (255,))
+        elif kind == "shadow":
+            from PIL import ImageFilter
+            sh = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(sh); hh = p.get("height", 26) * k
+            d.ellipse([cx - uw * p.get("width", .95) / 2, floor_y - hh * .35, cx + uw * p.get("width", .95) / 2, floor_y + hh * .65],
+                      fill=(0, 0, 0, int(255 * p.get("opacity", .28))))
+            layer.alpha_composite(sh.filter(ImageFilter.GaussianBlur(p.get("blur", 10) * k)))
+        elif kind == "image":
+            im = Image.open(os.path.join(ROOT, p["file"])).convert("RGBA"); w = max(1, round(W * p.get("scale", .1))); h = max(1, round(im.height * w / im.width))
+            im = im.resize((w, h), Image.LANCZOS); layer.alpha_composite(im, (round(p.get("x", .5) * W - w / 2), round(floor_y - h + p.get("lift", 0) * k)))
+        else: raise SystemExit(f"unknown prop kind '{kind}' (mat | shadow | image)")
+    return layer
+
+
+def compose(name, strip, theme, scene, F, fmt, work, slot):
+    """Per pose: layer_pN.png (boy alone), plus backdrop.png, props_*.png and the finished pN.png. Cached."""
+    meta = bake(name, strip, theme); blayers = backdrop_layers(theme, F, fmt)
+    tag = sha(meta["source_hash"], json.dumps(strip, sort_keys=True), json.dumps(theme["key"]), json.dumps(theme.get("recolor")), json.dumps(scene, sort_keys=True),
+              json.dumps(theme["backdrop"], sort_keys=True), json.dumps(F, sort_keys=True), slot, CODE_VERSION)
+    out = os.path.join(work, "frames", f"{slot}-{name}-{fmt}-{tag}")
     if os.path.exists(os.path.join(out, "DONE")): return out
     os.makedirs(out, exist_ok=True)
-    poses = split(path, strip["poses"], theme); bg = backdrop(theme, F)
-    floor = max(p.offset[1] + p.size[1] for p in poses); top = min(p.offset[1] for p in poses)
-    anchors = [anchor_x(p, strip["anchor"]) for p in poses]
+    poses, meta = load_sprites(name, strip, theme); how = strip["anchor"]
+    floor, top = meta["floor"], meta["top"]; anchors = [m["anchors"][how] for m in meta["poses"]]
     L = max(anchors); R = max(p.size[0] - a for p, a in zip(poses, anchors))
-    bw, bh = F["box"]; s = min(bw / (L + R), bh / (floor - top))
-    gy = int(F["H"] * F["ground"]); X0 = F["W"] / 2 + (L - R) * s / 2
-    for k, (p, ax) in enumerate(zip(poses, anchors), 1):
+    bw, bh = F["box"]; s = min(bw / (L + R), bh / (floor - top)); gy = int(F["H"] * F["ground"]); X0 = F["W"] / 2 + (L - R) * s / 2
+    geom = dict(gy=gy, X0=X0, s=s, L=L, R=R)
+    bg = flatten(blayers, (F["W"], F["H"])); bg.save(os.path.join(out, "backdrop.png"))
+    behind, front = render_props(scene, slot, geom, F, "behind"), render_props(scene, slot, geom, F, "front")
+    if behind: behind.save(os.path.join(out, "props_behind.png"))
+    if front: front.save(os.path.join(out, "props_front.png"))
+    for k, (p, m, ax) in enumerate(zip(poses, meta["poses"], anchors), 1):
         w, h = max(1, round(p.size[0] * s)), max(1, round(p.size[1] * s))
         layer = Image.new("RGBA", (F["W"], F["H"]), (0, 0, 0, 0))
-        layer.alpha_composite(p.resize((w, h), Image.LANCZOS), (round(X0 - ax * s), gy + 10 - round((floor - p.offset[1]) * s)))
+        layer.alpha_composite(p.resize((w, h), Image.LANCZOS), (round(X0 - ax * s), gy + 10 - round((floor - m["offset"][1]) * s)))
         layer.save(os.path.join(out, f"layer_p{k}.png"))
-        f = bg.convert("RGBA"); f.alpha_composite(layer); f.convert("RGB").save(os.path.join(out, f"p{k}.png"))
-    open(os.path.join(out, "DONE"), "w").write("ok")
-    return out
+        f = bg.copy()
+        if behind: f.alpha_composite(behind)
+        f.alpha_composite(layer)
+        if front: f.alpha_composite(front)
+        f.convert("RGB").save(os.path.join(out, f"p{k}.png"))
+    json.dump({"geom": {"gy": gy, "X0": X0, "scale": s, "L": L, "R": R}, "poses": strip["poses"]}, open(os.path.join(out, "geom.json"), "w"))
+    open(os.path.join(out, "DONE"), "w").write("ok"); return out
 
 
 # ---------- video ----------
@@ -232,7 +331,7 @@ def breakcard(args, work, theme, F, hud, secs, nxt, fmt):
     if args.preview: secs = min(secs, 2)
     cache = os.path.join(work, "cache"); os.makedirs(cache, exist_ok=True)
     bgpng = os.path.join(work, f"backdrop-{fmt}-{sha(json.dumps(theme['backdrop'], sort_keys=True), json.dumps(F, sort_keys=True), CODE_VERSION)}.png")
-    if not os.path.exists(bgpng): backdrop(theme, F).save(bgpng)
+    if not os.path.exists(bgpng): flatten(backdrop_layers(theme, F, fmt), (F["W"], F["H"])).convert("RGB").save(bgpng)
     vf = hud.breakcard(secs, nxt)
     out = os.path.join(cache, sha(bgpng, vf, secs, theme["fps"], CODE_VERSION) + ".mp4")
     if os.path.exists(out): return out
@@ -242,71 +341,112 @@ def breakcard(args, work, theme, F, hud, secs, nxt, fmt):
     os.replace(tmp, out); return out
 
 
+def make_plan(data, chart, level, only):
+    """The whole video as a list of timed segments, read straight from the data file. Render and export both use it."""
+    lv, timing, ex5 = chart["levels"][level], data["timing"]["secondsPerExercise"], chart["exercises"][4]; plan = []
+    for i in range(4):
+        slot = f"ex{i + 1}"; name, allot, reps = chart["exercises"][i]["name"], timing[i], lv["reps"][i]
+        if not only or slot in only: plan.append(dict(kind="exercise", slot=slot, name=name, dur=allot, allot=allot, off=0.0, reps=reps, n=i + 1))
+        if not only: plan.append(dict(kind="break", secs=data["appDefaults"]["transitionSeconds"], next=chart["exercises"][i + 1]["name"]))
+    if not only or "run" in only or "jump" in only:
+        allot, steps = timing[4], lv["steps"]; every, jcount = ex5["jumpEvery"], ex5["jumpCount"]; window = ex5.get("jumpWindowSeconds", 12)
+        sets = steps // every; step_s = (allot - sets * window) / steps; off, done, k = 0.0, 0, 0
+        while done < steps:
+            block = min(every, steps - done); dur = block * step_s
+            if not only or "run" in only: plan.append(dict(kind="run", slot="run", name=ex5["name"], dur=dur, allot=allot, off=off, steps=steps, step_s=step_s, label=f"run block {k + 1}"))
+            off += dur; done += block
+            if done < steps:
+                if not only or "jump" in only: plan.append(dict(kind="jumps", slot="jump", name=ex5["jumpName"], dur=window, allot=allot, off=off, count=jcount, label=f"jumps {k + 1}"))
+                off += window
+            k += 1
+    return plan, ex5
+
+
+def export_layers(dirpath, plan, theme, scene, reg, slots, F, fmt, work, chart_id, level, data_path, with_composites=False):
+    """Write the scene as separate files any other tool can recombine: backdrop layers, props, the boy per pose, and scene.json."""
+    root = os.path.join(dirpath, f"chart{chart_id}-{fmt}"); os.makedirs(os.path.join(root, "backdrop"), exist_ok=True)
+    for i, (n, im) in enumerate(backdrop_layers(theme, F, fmt)): im.save(os.path.join(root, "backdrop", f"{i:02d}-{n}.png"))
+    flatten(backdrop_layers(theme, F, fmt), (F["W"], F["H"])).convert("RGB").save(os.path.join(root, "backdrop.png"))
+    man = {"_about": "Layer pack. Stack, bottom to top: backdrop, props_behind, boy (one file per pose), props_front, then the on-screen text from 'segments'. All PNGs are frame-sized.",
+           "chart": chart_id, "level": level, "format": fmt, "size": [F["W"], F["H"]], "fps": theme["fps"], "ground_y": int(F["H"] * F["ground"]),
+           "data_file": os.path.basename(data_path), "strings": theme["strings"], "slots": {}, "segments": []}
+    for slot in sorted({p["slot"] for p in plan if "slot" in p}):
+        st = reg["strips"][slots[slot]]; src = compose(slots[slot], st, theme, scene, F, fmt, work, slot); sd = os.path.join(root, slot); os.makedirs(sd, exist_ok=True)
+        files = {"boy": [], "composite": []}
+        for k in range(1, st["poses"] + 1):
+            shutil.copy(os.path.join(src, f"layer_p{k}.png"), os.path.join(sd, f"boy_p{k}.png")); files["boy"].append(f"{slot}/boy_p{k}.png")
+            if with_composites: shutil.copy(os.path.join(src, f"p{k}.png"), os.path.join(sd, f"composite_p{k}.png")); files["composite"].append(f"{slot}/composite_p{k}.png")
+        for extra in ("props_behind.png", "props_front.png"):
+            if os.path.exists(os.path.join(src, extra)): shutil.copy(os.path.join(src, extra), os.path.join(sd, extra)); files[extra[:-4]] = f"{slot}/{extra}"
+        man["slots"][slot] = {"strip": slots[slot], "anchor": st["anchor"], "cycle": st["cycle"], "files": files, **jload(os.path.join(src, "geom.json"))}
+    for p in plan:
+        seg = {k: v for k, v in p.items() if k not in ("label",)}
+        if p["kind"] in ("exercise", "run", "jumps") and "cycle_s" in p: seg["cycle_seconds"] = round(p["cycle_s"], 4)
+        man["segments"].append(seg)
+    json.dump(man, open(os.path.join(root, "scene.json"), "w"), indent=1); return root
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--data", required=True, help="5bx-charts.json (the plan; never copied into this kit)")
+    ap.add_argument("--data", help="5bx-charts.json (the plan; never copied into this kit)")
     ap.add_argument("--chart", type=int, default=1); ap.add_argument("--level", default="A+")
     ap.add_argument("--format", default="landscape", choices=["landscape", "portrait"])
     ap.add_argument("--out", default="out.mp4"); ap.add_argument("--work", default=os.path.join(ROOT, ".work"))
-    ap.add_argument("--theme", default=os.path.join(ROOT, "config", "theme.json"))
+    ap.add_argument("--theme", default=os.path.join(ROOT, "config", "theme.json")); ap.add_argument("--scene", default=os.path.join(ROOT, "config", "scene.json"))
     ap.add_argument("--preview", action="store_true"); ap.add_argument("--no-fade", action="store_true")
     ap.add_argument("--only", default="", help="comma list of slots: ex1,ex2,ex3,ex4,run,jump")
-    ap.add_argument("--list", action="store_true")
+    ap.add_argument("--list", action="store_true"); ap.add_argument("--bake", action="store_true", help="write assets/ (sprites + backdrop layers) and stop")
+    ap.add_argument("--export", metavar="DIR", help="write the layer pack (separate PNGs + scene.json) to DIR instead of a video")
+    ap.add_argument("--with-composites", action="store_true", help="with --export: also write the finished frames (redundant; the layers recreate them)")
     args = ap.parse_args()
 
-    data = jload(args.data); theme = jload(args.theme); reg = jload(os.path.join(ROOT, "config", "strips.json"))
+    theme = jload(args.theme); reg = jload(os.path.join(ROOT, "config", "strips.json")); scene = jload(args.scene)
+    if args.bake:
+        for name, st in reg["strips"].items():
+            if os.path.exists(os.path.join(ROOT, "sheets", st["file"])): print(f"  sprites {name}: {len(bake(name, st, theme)['poses'])} poses")
+        for fmt, F in theme["formats"].items(): print(f"  backdrop {theme['backdrop'].get('id', 'forest')}/{fmt}: {len(backdrop_layers(theme, F, fmt))} layers")
+        return
+    if not args.data: raise SystemExit("--data is required (path to 5bx-charts.json)")
+    data = jload(args.data)
     chart = next((c for c in data["charts"] if c["id"] == args.chart), None)
     if chart is None: raise SystemExit(f"chart {args.chart} not in {args.data}")
     slots = reg["charts"].get(str(args.chart), {}); need = SLOTS + ["run", "jump"]
-    missing = [s for s in need if s not in slots or slots[s] not in reg["strips"] or not os.path.exists(os.path.join(ROOT, "sheets", reg["strips"][slots[s]]["file"]))]
+    missing = [x for x in need if x not in slots or slots[x] not in reg["strips"] or not os.path.exists(os.path.join(ROOT, "sheets", reg["strips"][slots[x]]["file"]))]
     names = {f"ex{i + 1}": chart["exercises"][i]["name"] for i in range(4)}; names["run"] = chart["exercises"][4]["name"]; names["jump"] = chart["exercises"][4].get("jumpName", "")
     if args.list or missing:
         print(f"chart {args.chart}:")
-        for s in need: print(f"  {s:5s} {names[s]:40s} -> {slots.get(s, '(no strip yet)')}{'  MISSING' if s in missing else ''}")
+        for x in need: print(f"  {x:5s} {names[x]:40s} -> {slots.get(x, '(no strip yet)')}{'  MISSING' if x in missing else ''}")
         if missing and not args.list: raise SystemExit(f"\nchart {args.chart} needs strips for: {', '.join(missing)}. See README: 'Add an exercise'.")
         return
-    only = [s for s in args.only.split(",") if s]
-    for s in only:
-        if s not in need: raise SystemExit(f"--only: unknown slot {s}")
+    only = [x for x in args.only.split(",") if x]
+    for x in only:
+        if x not in need: raise SystemExit(f"--only: unknown slot {x}")
 
     F = theme["formats"][args.format]; fps = theme["fps"]; fade_max = 0 if args.no_fade else theme["fade_max_seconds"]
-    lv, timing = chart["levels"][args.level], data["timing"]["secondsPerExercise"]; ex5 = chart["exercises"][4]
-    os.makedirs(args.work, exist_ok=True); hud = Hud(theme, F); S = theme["strings"]
-    def want(slot): return not only or slot in only
-    def frames(slot): return compose(slots[slot], reg["strips"][slots[slot]], theme, F, args.format, args.work)
+    plan, ex5 = make_plan(data, chart, args.level, only); os.makedirs(args.work, exist_ok=True); hud = Hud(theme, F); S = theme["strings"]
+    lv = chart["levels"][args.level]; sstep = lambda sl: reg["strips"][slots[sl]]
+    def frames(slot): return compose(slots[slot], sstep(slot), theme, scene, F, args.format, args.work, slot)
+    for p in plan:                                                     # cycle length per segment, from the data
+        if p["kind"] == "exercise": p["cycle_s"] = p["allot"] / p["reps"] * sstep(p["slot"])["reps_per_cycle"]
+        elif p["kind"] == "run": p["cycle_s"] = p["step_s"] / sstep("run")["steps_per_cycle"]
+        elif p["kind"] == "jumps": p["cycle_s"] = p["dur"] / (ex5["jumpCount"] / sstep("jump")["jumps_per_cycle"])
+    if args.export:
+        root = export_layers(args.export, plan, theme, scene, reg, slots, F, args.format, args.work, args.chart, args.level, args.data, args.with_composites)
+        print("wrote layer pack:", root); return
 
     parts = []
-    for i in range(4):
-        slot = f"ex{i + 1}"; st = reg["strips"][slots[slot]]
-        if want(slot):
-            name, allot, reps = chart["exercises"][i]["name"], timing[i], lv["reps"][i]
-            ov = hud.exercise(S["kicker"].format(n=i + 1), name, S["reps"].format(reps=reps), allot)
-            parts.append(segment(args, args.work, frames(slot), st["cycle"], allot / reps * st["reps_per_cycle"], allot, ov, fps, fade_max, name))
-        if not only:                                      # breaks only in a whole-video build
-            parts.append(breakcard(args, args.work, theme, F, hud, data["appDefaults"]["transitionSeconds"], chart["exercises"][i + 1]["name"], args.format))
-
-    if want("run") or want("jump"):
-        allot, steps = timing[4], lv["steps"]; every, jcount = ex5["jumpEvery"], ex5["jumpCount"]; window = ex5.get("jumpWindowSeconds", 12)
-        sets = steps // every; step_s = (allot - sets * window) / steps
-        run_st, jmp_st = reg["strips"][slots["run"]], reg["strips"][slots["jump"]]
-        print(f"  ex5: {steps} steps, {sets} jump sets, {step_s:.3f}s/step, {60 / step_s:.0f} steps/min")
-        off, done, k = 0.0, 0, 0
-        while done < steps:
-            block = min(every, steps - done); dur = block * step_s
-            if want("run"):
-                ov = hud.exercise(S["kicker"].format(n=5), ex5["name"], S["steps"].format(steps=steps), allot, off)
-                parts.append(segment(args, args.work, frames("run"), run_st["cycle"], step_s / run_st["steps_per_cycle"], dur, ov, fps, fade_max, f"run block {k + 1}"))
-            off += dur; done += block
-            if done < steps:
-                if want("jump"):
-                    ov = hud.exercise(S["jump_kicker"], S["jump_title"].format(count=jcount, name=ex5["jumpName"]), S["jump_target"], allot, off)
-                    parts.append(segment(args, args.work, frames("jump"), jmp_st["cycle"], window / (jcount / jmp_st["jumps_per_cycle"]), window, ov, fps, fade_max, f"jumps {k + 1}"))
-                off += window
-            k += 1
-
+    for p in plan:
+        if p["kind"] == "break": parts.append(breakcard(args, args.work, theme, F, hud, p["secs"], p["next"], args.format)); continue
+        st = sstep(p["slot"])
+        if p["kind"] == "exercise": ov = hud.exercise(S["kicker"].format(n=p["n"]), p["name"], S["reps"].format(reps=p["reps"]), p["allot"]); label = p["name"]
+        elif p["kind"] == "run": ov = hud.exercise(S["kicker"].format(n=5), p["name"], S["steps"].format(steps=p["steps"]), p["allot"], p["off"]); label = p["label"]
+        else: ov = hud.exercise(S["jump_kicker"], S["jump_title"].format(count=p["count"], name=p["name"]), S["jump_target"], p["allot"], p["off"]); label = p["label"]
+        parts.append(segment(args, args.work, frames(p["slot"]), st["cycle"], p["cycle_s"], p["dur"], ov, fps, fade_max, label))
+    steps = lv["steps"]
+    if not only or "run" in only: print(f"  ex5: {steps} steps, {60 / [x for x in plan if x['kind'] == 'run'][0]['step_s']:.0f} steps/min")
     lst = os.path.join(args.work, "all.txt")
     with open(lst, "w") as f:
-        for p in parts: f.write(f"file '{p}'\n")
+        for q in parts: f.write(f"file '{q}'\n")
     tmp = args.out + ".part.mp4"
     run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", lst, "-c", "copy", "-movflags", "+faststart", tmp])
     run(["ffmpeg", "-v", "error", "-i", tmp, "-f", "null", "-"])       # full-decode check before it counts

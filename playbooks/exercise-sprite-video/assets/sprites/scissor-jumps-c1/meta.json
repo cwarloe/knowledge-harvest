@@ -1,0 +1,82 @@
+{
+ "version": "1",
+ "source": "ex5-scissor-jumps.png",
+ "source_hash": "df72e21d883e",
+ "key": {
+  "lo": 28,
+  "hi": 95
+ },
+ "n": 4,
+ "poses": [
+  {
+   "file": "p1.png",
+   "offset": [
+    28,
+    211
+   ],
+   "size": [
+    363,
+    395
+   ],
+   "anchors": {
+    "head": 188.5,
+    "span-left": 34.0,
+    "span-right": 350.0,
+    "span-center": 214.5818181818182
+   }
+  },
+  {
+   "file": "p2.png",
+   "offset": [
+    436,
+    145
+   ],
+   "size": [
+    209,
+    414
+   ],
+   "anchors": {
+    "head": 136.5,
+    "span-left": 72.0,
+    "span-right": 154.0,
+    "span-center": 99.94444444444444
+   }
+  },
+  {
+   "file": "p3.png",
+   "offset": [
+    722,
+    211
+   ],
+   "size": [
+    340,
+    394
+   ],
+   "anchors": {
+    "head": 173.0,
+    "span-left": 9.0,
+    "span-right": 337.0,
+    "span-center": 202.45283018867926
+   }
+  },
+  {
+   "file": "p4.png",
+   "offset": [
+    1112,
+    144
+   ],
+   "size": [
+    209,
+    415
+   ],
+   "anchors": {
+    "head": 136.0,
+    "span-left": 72.0,
+    "span-right": 154.0,
+    "span-center": 99.94444444444444
+   }
+  }
+ ],
+ "floor": 606,
+ "top": 144
+}

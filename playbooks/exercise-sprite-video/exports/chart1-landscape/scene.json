@@ -1,0 +1,381 @@
+{
+ "_about": "Layer pack. Stack, bottom to top: backdrop, props_behind, boy (one file per pose), props_front, then the on-screen text from 'segments'. All PNGs are frame-sized.",
+ "chart": 1,
+ "level": "A+",
+ "format": "landscape",
+ "size": [
+  1920,
+  1080
+ ],
+ "fps": 30,
+ "ground_y": 864,
+ "data_file": "5bx-charts.json",
+ "strings": {
+  "kicker": "EXERCISE {n} OF 5",
+  "reps": "{reps} reps",
+  "steps": "{steps} steps",
+  "left": "LEFT",
+  "break": "BREAK",
+  "next": "NEXT",
+  "jump_kicker": "PAUSE THE RUN",
+  "jump_title": "{count} {name}",
+  "jump_target": "jump now"
+ },
+ "slots": {
+  "ex1": {
+   "strip": "toe-touch-c1",
+   "anchor": "span-center",
+   "cycle": [
+    1,
+    2,
+    1,
+    3
+   ],
+   "files": {
+    "boy": [
+     "ex1/boy_p1.png",
+     "ex1/boy_p2.png",
+     "ex1/boy_p3.png"
+    ],
+    "composite": []
+   },
+   "geom": {
+    "gy": 864,
+    "X0": 973.4736842105264,
+    "scale": 0.9624060150375939,
+    "L": 228.0,
+    "R": 200.0
+   },
+   "poses": 3
+  },
+  "ex2": {
+   "strip": "partial-sit-up-c1",
+   "anchor": "span-right",
+   "cycle": [
+    1,
+    2,
+    3,
+    2
+   ],
+   "files": {
+    "boy": [
+     "ex2/boy_p1.png",
+     "ex2/boy_p2.png",
+     "ex2/boy_p3.png"
+    ],
+    "composite": []
+   },
+   "geom": {
+    "gy": 864,
+    "X0": 1534.5454545454545,
+    "scale": 2.909090909090909,
+    "L": 408.0,
+    "R": 13.0
+   },
+   "poses": 3
+  },
+  "ex3": {
+   "strip": "alternate-leg-raise-c1",
+   "anchor": "span-left",
+   "cycle": [
+    1,
+    2,
+    1,
+    3
+   ],
+   "files": {
+    "boy": [
+     "ex3/boy_p1.png",
+     "ex3/boy_p2.png",
+     "ex3/boy_p3.png"
+    ],
+    "composite": []
+   },
+   "geom": {
+    "gy": 864,
+    "X0": 213.42465753424665,
+    "scale": 3.4246575342465753,
+    "L": 1.0,
+    "R": 437.0
+   },
+   "poses": 3
+  },
+  "ex4": {
+   "strip": "knee-push-up-c1",
+   "anchor": "span-right",
+   "cycle": [
+    1,
+    2,
+    3,
+    2
+   ],
+   "files": {
+    "boy": [
+     "ex4/boy_p1.png",
+     "ex4/boy_p2.png",
+     "ex4/boy_p3.png"
+    ],
+    "composite": []
+   },
+   "geom": {
+    "gy": 864,
+    "X0": 1161.8300653594772,
+    "scale": 2.0915032679738563,
+    "L": 335.0,
+    "R": 142.0
+   },
+   "poses": 3
+  },
+  "jump": {
+   "strip": "scissor-jumps-c1",
+   "anchor": "head",
+   "cycle": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": {
+    "boy": [
+     "jump/boy_p1.png",
+     "jump/boy_p2.png",
+     "jump/boy_p3.png",
+     "jump/boy_p4.png"
+    ],
+    "composite": []
+   },
+   "geom": {
+    "gy": 864,
+    "X0": 969.6969696969697,
+    "scale": 1.3852813852813852,
+    "L": 188.5,
+    "R": 174.5
+   },
+   "poses": 4
+  },
+  "run": {
+   "strip": "stationary-run-c1",
+   "anchor": "head",
+   "cycle": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": {
+    "boy": [
+     "run/boy_p1.png",
+     "run/boy_p2.png",
+     "run/boy_p3.png",
+     "run/boy_p4.png"
+    ],
+    "composite": []
+   },
+   "geom": {
+    "gy": 864,
+    "X0": 973.355155482815,
+    "scale": 1.0474631751227497,
+    "L": 155.0,
+    "R": 129.5
+   },
+   "poses": 4
+  }
+ },
+ "segments": [
+  {
+   "kind": "exercise",
+   "slot": "ex1",
+   "name": "Toe touching",
+   "dur": 120,
+   "allot": 120,
+   "off": 0.0,
+   "reps": 20,
+   "n": 1,
+   "cycle_s": 12.0,
+   "cycle_seconds": 12.0
+  },
+  {
+   "kind": "break",
+   "secs": 10,
+   "next": "Partial sit-up"
+  },
+  {
+   "kind": "exercise",
+   "slot": "ex2",
+   "name": "Partial sit-up",
+   "dur": 60,
+   "allot": 60,
+   "off": 0.0,
+   "reps": 18,
+   "n": 2,
+   "cycle_s": 3.3333333333333335,
+   "cycle_seconds": 3.3333
+  },
+  {
+   "kind": "break",
+   "secs": 10,
+   "next": "Alternate leg raise"
+  },
+  {
+   "kind": "exercise",
+   "slot": "ex3",
+   "name": "Alternate leg raise",
+   "dur": 60,
+   "allot": 60,
+   "off": 0.0,
+   "reps": 18,
+   "n": 3,
+   "cycle_s": 6.666666666666667,
+   "cycle_seconds": 6.6667
+  },
+  {
+   "kind": "break",
+   "secs": 10,
+   "next": "Knee push-up"
+  },
+  {
+   "kind": "exercise",
+   "slot": "ex4",
+   "name": "Knee push-up",
+   "dur": 60,
+   "allot": 60,
+   "off": 0.0,
+   "reps": 13,
+   "n": 4,
+   "cycle_s": 4.615384615384615,
+   "cycle_seconds": 4.6154
+  },
+  {
+   "kind": "break",
+   "secs": 10,
+   "next": "Stationary run"
+  },
+  {
+   "kind": "run",
+   "slot": "run",
+   "name": "Stationary run",
+   "dur": 56.25,
+   "allot": 360,
+   "off": 0.0,
+   "steps": 400,
+   "step_s": 0.75,
+   "cycle_s": 0.75,
+   "cycle_seconds": 0.75
+  },
+  {
+   "kind": "jumps",
+   "slot": "jump",
+   "name": "scissor jumps",
+   "dur": 12,
+   "allot": 360,
+   "off": 56.25,
+   "count": 10,
+   "cycle_s": 2.4,
+   "cycle_seconds": 2.4
+  },
+  {
+   "kind": "run",
+   "slot": "run",
+   "name": "Stationary run",
+   "dur": 56.25,
+   "allot": 360,
+   "off": 68.25,
+   "steps": 400,
+   "step_s": 0.75,
+   "cycle_s": 0.75,
+   "cycle_seconds": 0.75
+  },
+  {
+   "kind": "jumps",
+   "slot": "jump",
+   "name": "scissor jumps",
+   "dur": 12,
+   "allot": 360,
+   "off": 124.5,
+   "count": 10,
+   "cycle_s": 2.4,
+   "cycle_seconds": 2.4
+  },
+  {
+   "kind": "run",
+   "slot": "run",
+   "name": "Stationary run",
+   "dur": 56.25,
+   "allot": 360,
+   "off": 136.5,
+   "steps": 400,
+   "step_s": 0.75,
+   "cycle_s": 0.75,
+   "cycle_seconds": 0.75
+  },
+  {
+   "kind": "jumps",
+   "slot": "jump",
+   "name": "scissor jumps",
+   "dur": 12,
+   "allot": 360,
+   "off": 192.75,
+   "count": 10,
+   "cycle_s": 2.4,
+   "cycle_seconds": 2.4
+  },
+  {
+   "kind": "run",
+   "slot": "run",
+   "name": "Stationary run",
+   "dur": 56.25,
+   "allot": 360,
+   "off": 204.75,
+   "steps": 400,
+   "step_s": 0.75,
+   "cycle_s": 0.75,
+   "cycle_seconds": 0.75
+  },
+  {
+   "kind": "jumps",
+   "slot": "jump",
+   "name": "scissor jumps",
+   "dur": 12,
+   "allot": 360,
+   "off": 261.0,
+   "count": 10,
+   "cycle_s": 2.4,
+   "cycle_seconds": 2.4
+  },
+  {
+   "kind": "run",
+   "slot": "run",
+   "name": "Stationary run",
+   "dur": 56.25,
+   "allot": 360,
+   "off": 273.0,
+   "steps": 400,
+   "step_s": 0.75,
+   "cycle_s": 0.75,
+   "cycle_seconds": 0.75
+  },
+  {
+   "kind": "jumps",
+   "slot": "jump",
+   "name": "scissor jumps",
+   "dur": 12,
+   "allot": 360,
+   "off": 329.25,
+   "count": 10,
+   "cycle_s": 2.4,
+   "cycle_seconds": 2.4
+  },
+  {
+   "kind": "run",
+   "slot": "run",
+   "name": "Stationary run",
+   "dur": 18.75,
+   "allot": 360,
+   "off": 341.25,
+   "steps": 400,
+   "step_s": 0.75,
+   "cycle_s": 0.75,
+   "cycle_seconds": 0.75
+  }
+ ]
+}

@@ -1,0 +1,65 @@
+{
+ "version": "1",
+ "source": "ex1-toe-touching.png",
+ "source_hash": "6f6ce8022261",
+ "key": {
+  "lo": 28,
+  "hi": 95
+ },
+ "n": 3,
+ "poses": [
+  {
+   "file": "p1.png",
+   "offset": [
+    200,
+    41
+   ],
+   "size": [
+    130,
+    665
+   ],
+   "anchors": {
+    "head": 60.5,
+    "span-left": 24.0,
+    "span-right": 126.0,
+    "span-center": 75.0
+   }
+  },
+  {
+   "file": "p2.png",
+   "offset": [
+    547,
+    349
+   ],
+   "size": [
+    317,
+    355
+   ],
+   "anchors": {
+    "head": 96.5,
+    "span-left": 65.0,
+    "span-right": 169.0,
+    "span-center": 117.0
+   }
+  },
+  {
+   "file": "p3.png",
+   "offset": [
+    922,
+    115
+   ],
+   "size": [
+    311,
+    591
+   ],
+   "anchors": {
+    "head": 119.0,
+    "span-left": 176.0,
+    "span-right": 280.0,
+    "span-center": 228.0
+   }
+  }
+ ],
+ "floor": 706,
+ "top": 41
+}

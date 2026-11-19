@@ -1,0 +1,18 @@
+{
+  "_about": "Edit-tool test, 2026-11-19. Model gpt-image-2.5-sunburst, 4 takes each, about 433 credits per take. The strip is passed as the reference; the prompt says what to change and what to keep.",
+  "edits": [
+    {
+      "target": "scissor-jumps-c1", "problem": "Stance B (third figure) was a lunge with a bent back knee and a lean, not a clean mirror of stance A.",
+      "prompt": "Change: in the THIRD figure only (counting left to right, the second standing scissor stance), redraw the legs and arms as a clean mirror of the FIRST figure's stance. Both legs straight with the same wide stride as the first figure, torso upright (no forward lean, back knee NOT bent), but swapped: the leg that is forward in the first figure is now the back leg, and the leg that is back is now forward. Both arms stay straight at shoulder height, with the arm that is back in the first figure now forward and the arm that is forward now back. Keep the far-side arm and leg in their darker shade.\n\nPreserve: figures 1, 2 and 4 exactly as they are (pose, colors, position). In the third figure keep the face, hair, cyan tank top, red shorts, white socks, blue sneakers, outline weight and flat cartoon art style. Keep the flat magenta background, the image size, and the horizontal position of every figure.\n\nConstraints: no new objects, no text, no ground shadow, no redesign of the character.",
+      "result": "Form fixed in all 4 takes: straight legs, upright torso, no lunge. Untouched figures 96-98% the same shape. Stance B now looks almost the same as stance A in profile (inherent). Several takes lost the darker far-side arm.",
+      "kept": "sheets/candidates/scissor-jumps-upright-stance-b.png (take 3). Not wired in."
+    },
+    {
+      "target": "stationary-run-c1", "problem": "The lifted foot rides higher than the booklet's 'about 4 inches'.",
+      "prompt": "Change: in FIGURES 1 AND 3 only (counting left to right, the two figures with one foot lifted), lower the lifted foot so it is only about 4 inches (10 cm) off the floor, with the knee bent only slightly, like a small jogging-on-the-spot step. The other foot stays flat on the floor. Keep which foot is lifted in each figure (figure 1: the lighter near foot; figure 3: the darker far foot).\n\nPreserve: figures 2 and 4 exactly as they are. In figures 1 and 3 keep the face, hair, arms, cyan tank top, red shorts, white socks, blue sneakers, outline weight and flat cartoon art style. Keep the flat magenta background, the image size, and the horizontal position and size of every figure.\n\nConstraints: no new objects, no text, no ground shadow, no redesign of the character.",
+      "result": "Lifted foot visibly lower in takes 1-3, far-side shading kept. Untouched figures 96-99% the same shape.",
+      "kept": "sheets/candidates/stationary-run-lower-lift.png (take 3). Not wired in."
+    }
+  ],
+  "_observed": ["Output size changed (1376x768 -> 1280x720) even though 'keep image size' was in the prompt.", "The tool re-renders the strip; it is not a mask brush.", "The ground shadow reappeared in some takes. The key removes it."]
+}
