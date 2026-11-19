@@ -234,7 +234,7 @@
       "chart": 2,
       "slot": "ex4",
       "exercise": "a PUSH-UP (on the palms and toes, knees OFF the floor)",
-      "kept": "(not made yet)",
+      "kept": "Grok Imagine, first take, kept as made (3 figures).",
       "layout": "Same scale, all on the same invisible floor line, with generous empty space between the figures so they do not touch or overlap.",
       "poses": [
         "DOWN: face down with the chest touching the floor, palms flat on the floor directly under the shoulders, elbows bent and tucked close to the ribs, only the palms and the toes touching the floor, the body one straight line from head to heels.",
@@ -261,7 +261,11 @@
           2
         ],
         "reps_per_cycle": 1
-      }
+      },
+      "learned": [
+        "Right on the first try, with the prompt unchanged: palms and toes only, knees off the floor, body one straight line, arms fully straight at the top.",
+        "The DOWN pose has the chest a hair above the floor rather than literally on it. At video size it reads as touching. The booklet says the chest must touch the floor, so look at this on a real screen."
+      ]
     },
     "astride-jumps-c2": {
       "chart": 2,

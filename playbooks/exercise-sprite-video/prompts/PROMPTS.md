@@ -538,7 +538,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - Movement: Straighten arms to lift body with only palms and toes on the floor. Back straight.
 - Note: Chest must touch floor for each completed movement after arms have been fully extended.
 
-**Status:** (not made yet)
+**Kept:** Grok Imagine, first take, kept as made (3 figures).
 
 **Check before you keep a take:**
 
@@ -584,6 +584,11 @@ Draw the arm and leg on the far side of the body in a noticeably darker shade of
 
 BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
 ```
+
+**What went wrong, and the fix:**
+
+- Right on the first try, with the prompt unchanged: palms and toes only, knees off the floor, body one straight line, arms fully straight at the top.
+- The DOWN pose has the chest a hair above the floor rather than literally on it. At video size it reads as touching. The booklet says the chest must touch the floor, so look at this on a real screen.
 
 ---
 

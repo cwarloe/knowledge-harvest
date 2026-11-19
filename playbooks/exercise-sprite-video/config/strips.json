@@ -85,6 +85,18 @@
         5
       ],
       "reps_per_cycle": 1
+    },
+    "push-up-c2": {
+      "file": "c2-ex4-push-up.png",
+      "poses": 3,
+      "anchor": "span-right",
+      "cycle": [
+        1,
+        2,
+        3,
+        2
+      ],
+      "reps_per_cycle": 1
     }
   },
   "charts": {
@@ -98,7 +110,8 @@
     },
     "2": {
       "ex1": "toe-touch-c2",
-      "run": "stationary-run-c1"
+      "run": "stationary-run-c1",
+      "ex4": "push-up-c2"
     }
   }
 }

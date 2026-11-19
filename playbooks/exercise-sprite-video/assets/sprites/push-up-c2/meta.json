@@ -1,0 +1,65 @@
+{
+ "version": "1",
+ "source": "c2-ex4-push-up.png",
+ "source_hash": "00a31ed20f1a",
+ "key": {
+  "lo": 28,
+  "hi": 95
+ },
+ "n": 3,
+ "poses": [
+  {
+   "file": "p1.png",
+   "offset": [
+    46,
+    338
+   ],
+   "size": [
+    414,
+    127
+   ],
+   "anchors": {
+    "head": 353.5,
+    "span-left": 4.0,
+    "span-right": 312.0,
+    "span-center": 183.1504424778761
+   }
+  },
+  {
+   "file": "p2.png",
+   "offset": [
+    480,
+    296
+   ],
+   "size": [
+    388,
+    169
+   ],
+   "anchors": {
+    "head": 340.0,
+    "span-left": 4.0,
+    "span-right": 295.0,
+    "span-center": 174.3181818181818
+   }
+  },
+  {
+   "file": "p3.png",
+   "offset": [
+    885,
+    203
+   ],
+   "size": [
+    355,
+    261
+   ],
+   "anchors": {
+    "head": 307.5,
+    "span-left": 8.0,
+    "span-right": 317.0,
+    "span-center": 182.42056074766356
+   }
+  }
+ ],
+ "floor": 465,
+ "top": 203
+}
