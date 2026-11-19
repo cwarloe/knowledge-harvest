@@ -122,7 +122,7 @@
       "chart": 2,
       "slot": "ex1",
       "exercise": "TOE TOUCHES WITH A BOUNCE",
-      "kept": "(not made yet)",
+      "kept": "Grok Imagine take, kept (5 figures: it added an extra bounce pose). Cycle start, touch, press, rebound, stretch back.",
       "layout": "Same scale, feet on the same invisible floor line, with wide empty gaps so the figures never touch.",
       "poses": [
         "START: standing tall, feet about shoulder-width apart, both arms straight up overhead, upper arms beside the ears.",
@@ -150,7 +150,11 @@
           4
         ],
         "reps_per_cycle": 1
-      }
+      },
+      "learned": [
+        "Asked for 4 poses; Grok Imagine returned 5. Poses 2 and 3 are almost the same depth (3 px apart) and pose 4 is the real press (31 px lower), so the extra one works as the rebound after the press.",
+        "Pose 1 came back in a front-facing three-quarter view with the feet wide apart; the other four are side views. It matches 'feet astride' but is a camera change."
+      ]
     },
     "sit-up-c2": {
       "chart": 2,

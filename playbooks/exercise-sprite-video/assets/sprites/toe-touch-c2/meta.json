@@ -1,0 +1,99 @@
+{
+ "version": "1",
+ "source": "c2-ex1-toe-touching.png",
+ "source_hash": "2535808da595",
+ "key": {
+  "lo": 28,
+  "hi": 95
+ },
+ "n": 5,
+ "poses": [
+  {
+   "file": "p1.png",
+   "offset": [
+    118,
+    70
+   ],
+   "size": [
+    140,
+    518
+   ],
+   "anchors": {
+    "head": 51.56666666666667,
+    "span-left": 0.0,
+    "span-right": 122.0,
+    "span-center": 41.94827586206897
+   }
+  },
+  {
+   "file": "p2.png",
+   "offset": [
+    334,
+    333
+   ],
+   "size": [
+    202,
+    248
+   ],
+   "anchors": {
+    "head": 54.5,
+    "span-left": 9.0,
+    "span-right": 133.0,
+    "span-center": 62.50515463917526
+   }
+  },
+  {
+   "file": "p3.png",
+   "offset": [
+    576,
+    336
+   ],
+   "size": [
+    192,
+    244
+   ],
+   "anchors": {
+    "head": 51.5,
+    "span-left": 7.0,
+    "span-right": 131.0,
+    "span-center": 58.37362637362637
+   }
+  },
+  {
+   "file": "p4.png",
+   "offset": [
+    804,
+    364
+   ],
+   "size": [
+    196,
+    217
+   ],
+   "anchors": {
+    "head": 51.0,
+    "span-left": 14.0,
+    "span-right": 147.0,
+    "span-center": 75.30973451327434
+   }
+  },
+  {
+   "file": "p5.png",
+   "offset": [
+    990,
+    102
+   ],
+   "size": [
+    189,
+    484
+   ],
+   "anchors": {
+    "head": 62.0,
+    "span-left": 68.0,
+    "span-right": 180.0,
+    "span-center": 120.02272727272727
+   }
+  }
+ ],
+ "floor": 588,
+ "top": 70
+}

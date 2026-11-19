@@ -358,7 +358,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - Movement: Touch floor and press (bounce) once then stretch upward and backward bend.
 - Note: Do not strain to keep knees straight.
 
-**Status:** (not made yet)
+**Kept:** Grok Imagine take, kept (5 figures: it added an extra bounce pose). Cycle start, touch, press, rebound, stretch back.
 
 **Check before you keep a take:**
 
@@ -406,6 +406,11 @@ Draw the arm and leg on the far side of the body in a noticeably darker shade of
 
 BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
 ```
+
+**What went wrong, and the fix:**
+
+- Asked for 4 poses; Grok Imagine returned 5. Poses 2 and 3 are almost the same depth (3 px apart) and pose 4 is the real press (31 px lower), so the extra one works as the rebound after the press.
+- Pose 1 came back in a front-facing three-quarter view with the feet wide apart; the other four are side views. It matches 'feet astride' but is a camera change.
 
 ---
 

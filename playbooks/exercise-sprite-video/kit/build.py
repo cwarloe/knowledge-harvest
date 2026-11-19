@@ -410,17 +410,19 @@ def main():
     data = jload(args.data)
     chart = next((c for c in data["charts"] if c["id"] == args.chart), None)
     if chart is None: raise SystemExit(f"chart {args.chart} not in {args.data}")
-    slots = reg["charts"].get(str(args.chart), {}); need = SLOTS + ["run", "jump"]
-    missing = [x for x in need if x not in slots or slots[x] not in reg["strips"] or not os.path.exists(os.path.join(ROOT, "sheets", reg["strips"][slots[x]]["file"]))]
+    slots = reg["charts"].get(str(args.chart), {}); all_slots = SLOTS + ["run", "jump"]
+    only = [x for x in args.only.split(",") if x]
+    for x in only:
+        if x not in all_slots: raise SystemExit(f"--only: unknown slot {x}")
+    def is_missing(x): return x not in slots or slots[x] not in reg["strips"] or not os.path.exists(os.path.join(ROOT, "sheets", reg["strips"][slots[x]]["file"]))
+    need = [x for x in all_slots if not only or x in only]                 # a chart can be previewed one exercise at a time while the rest is still being made
+    missing = [x for x in need if is_missing(x)]
     names = {f"ex{i + 1}": chart["exercises"][i]["name"] for i in range(4)}; names["run"] = chart["exercises"][4]["name"]; names["jump"] = chart["exercises"][4].get("jumpName", "")
     if args.list or missing:
         print(f"chart {args.chart}:")
-        for x in need: print(f"  {x:5s} {names[x]:40s} -> {slots.get(x, '(no strip yet)')}{'  MISSING' if x in missing else ''}")
+        for x in all_slots: print(f"  {x:5s} {names[x]:40s} -> {slots.get(x, '(no strip yet)')}{'  MISSING' if is_missing(x) else ''}")
         if missing and not args.list: raise SystemExit(f"\nchart {args.chart} needs strips for: {', '.join(missing)}. See README: 'Add an exercise'.")
         return
-    only = [x for x in args.only.split(",") if x]
-    for x in only:
-        if x not in need: raise SystemExit(f"--only: unknown slot {x}")
 
     F = theme["formats"][args.format]; fps = theme["fps"]; fade_max = 0 if args.no_fade else theme["fade_max_seconds"]
     plan, ex5 = make_plan(data, chart, args.level, only); os.makedirs(args.work, exist_ok=True); hud = Hud(theme, F); S = theme["strings"]

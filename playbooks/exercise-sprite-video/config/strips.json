@@ -1,15 +1,104 @@
 {
   "_about": "The registry. A strip is one image of one exercise (all its poses). A chart maps each slot to a strip. To add an exercise: drop the PNG in sheets/, add it under 'strips', point a chart slot at it. Nothing else.",
   "strips": {
-    "toe-touch-c1":           {"file": "ex1-toe-touching.png",        "poses": 3, "anchor": "span-center", "cycle": [1, 2, 1, 3], "reps_per_cycle": 2},
-    "partial-sit-up-c1":      {"file": "ex2-partial-sit-up.png",      "poses": 3, "anchor": "span-right",  "cycle": [1, 2, 3, 2], "reps_per_cycle": 1},
-    "alternate-leg-raise-c1": {"file": "ex3-alternate-leg-raise.png", "poses": 3, "anchor": "span-left",   "cycle": [1, 2, 1, 3], "reps_per_cycle": 2},
-    "knee-push-up-c1":        {"file": "ex4-knee-push-up.png",        "poses": 3, "anchor": "span-right",  "cycle": [1, 2, 3, 2], "reps_per_cycle": 1},
-    "stationary-run-c1":      {"file": "ex5-stationary-run.png",      "poses": 4, "anchor": "head",        "cycle": [1, 2, 3, 4], "steps_per_cycle": 1},
-    "scissor-jumps-c1":       {"file": "ex5-scissor-jumps.png",       "poses": 4, "anchor": "head",        "cycle": [1, 2, 3, 4], "jumps_per_cycle": 2}
+    "toe-touch-c1": {
+      "file": "ex1-toe-touching.png",
+      "poses": 3,
+      "anchor": "span-center",
+      "cycle": [
+        1,
+        2,
+        1,
+        3
+      ],
+      "reps_per_cycle": 2
+    },
+    "partial-sit-up-c1": {
+      "file": "ex2-partial-sit-up.png",
+      "poses": 3,
+      "anchor": "span-right",
+      "cycle": [
+        1,
+        2,
+        3,
+        2
+      ],
+      "reps_per_cycle": 1
+    },
+    "alternate-leg-raise-c1": {
+      "file": "ex3-alternate-leg-raise.png",
+      "poses": 3,
+      "anchor": "span-left",
+      "cycle": [
+        1,
+        2,
+        1,
+        3
+      ],
+      "reps_per_cycle": 2
+    },
+    "knee-push-up-c1": {
+      "file": "ex4-knee-push-up.png",
+      "poses": 3,
+      "anchor": "span-right",
+      "cycle": [
+        1,
+        2,
+        3,
+        2
+      ],
+      "reps_per_cycle": 1
+    },
+    "stationary-run-c1": {
+      "file": "ex5-stationary-run.png",
+      "poses": 4,
+      "anchor": "head",
+      "cycle": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "steps_per_cycle": 1
+    },
+    "scissor-jumps-c1": {
+      "file": "ex5-scissor-jumps.png",
+      "poses": 4,
+      "anchor": "head",
+      "cycle": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "jumps_per_cycle": 2
+    },
+    "toe-touch-c2": {
+      "file": "c2-ex1-toe-touching.png",
+      "poses": 5,
+      "anchor": "span-center",
+      "cycle": [
+        1,
+        2,
+        4,
+        3,
+        5
+      ],
+      "reps_per_cycle": 1
+    }
   },
   "charts": {
-    "1": {"ex1": "toe-touch-c1", "ex2": "partial-sit-up-c1", "ex3": "alternate-leg-raise-c1",
-          "ex4": "knee-push-up-c1", "run": "stationary-run-c1", "jump": "scissor-jumps-c1"}
+    "1": {
+      "ex1": "toe-touch-c1",
+      "ex2": "partial-sit-up-c1",
+      "ex3": "alternate-leg-raise-c1",
+      "ex4": "knee-push-up-c1",
+      "run": "stationary-run-c1",
+      "jump": "scissor-jumps-c1"
+    },
+    "2": {
+      "ex1": "toe-touch-c2",
+      "run": "stationary-run-c1"
+    }
   }
 }
