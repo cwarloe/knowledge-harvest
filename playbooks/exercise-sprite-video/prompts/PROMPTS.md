@@ -411,6 +411,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 
 - Asked for 4 poses; Grok Imagine returned 5. Poses 2 and 3 are almost the same depth (3 px apart) and pose 4 is the real press (31 px lower), so the extra one works as the rebound after the press.
 - Pose 1 came back in a front-facing three-quarter view with the feet wide apart; the other four are side views. It matches 'feet astride' but is a camera change.
+- The author liked the slight turn toward the camera in the first figure (not a pure 90 degree side view). Later strips ask for it on purpose; see config/character.json 'view'.
 
 ---
 
@@ -441,7 +442,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 ```text
 Using the attached reference image ONLY for the character's appearance and art style (a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges). IGNORE the poses in the reference image completely.
 
-Create a NEW wide 16:9 pose sheet of that same boy doing a SIT-UP, shown THREE times left to right, strict side view facing right. In every pose he lies on his back with his HEAD ON THE LEFT and his FEET ON THE RIGHT, same scale, all on the same invisible floor line, wide empty gaps so the figures never touch. Draw only the boy: no chair, no objects.
+Create a NEW wide 16:9 pose sheet of that same boy doing a SIT-UP, shown THREE times left to right, three-quarter view, turned slightly toward the camera (about 30 to 45 degrees off a pure side view), facing right, with the SAME camera angle in every pose. In every pose he lies on his back with his HEAD ON THE LEFT and his FEET ON THE RIGHT, same scale, all on the same invisible floor line, wide empty gaps so the figures never touch. Draw only the boy: no chair, no objects.
 
 THE THREE POSES (official exercise, follow exactly):
 1. START: lying flat on his back, legs straight on the floor with the feet about six inches apart, arms straight and resting at his sides.
@@ -456,7 +457,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 **Prompt for the very first strip (no reference, character in words):**
 
 ```text
-Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown THREE times, left to right, doing a SIT-UP, strict side view facing right. This is a pose-by-pose animation reference, so all three figures must be the same character at the same scale. In every pose he lies on his back with his HEAD ON THE LEFT and his FEET ON THE RIGHT, same scale, all on the same invisible floor line, wide empty gaps so the figures never touch. Draw only the boy: no chair, no objects.
+Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown THREE times, left to right, doing a SIT-UP, three-quarter view, turned slightly toward the camera (about 30 to 45 degrees off a pure side view), facing right, with the SAME camera angle in every pose. This is a pose-by-pose animation reference, so all three figures must be the same character at the same scale. In every pose he lies on his back with his HEAD ON THE LEFT and his FEET ON THE RIGHT, same scale, all on the same invisible floor line, wide empty gaps so the figures never touch. Draw only the boy: no chair, no objects.
 
 CHARACTER (keep identical in every pose): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.
 
@@ -494,7 +495,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 ```text
 Using the attached reference image ONLY for the character's appearance and art style (a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges). IGNORE the poses in the reference image completely.
 
-Create a NEW wide 16:9 pose sheet of that same boy doing a BACK EXTENSION, shown THREE times left to right, strict side view facing right. In every pose he lies FACE DOWN, flat on his belly, with his HEAD ON THE RIGHT looking right and his FEET ON THE LEFT. Same scale, all on the same invisible floor line, wide empty gaps between figures.
+Create a NEW wide 16:9 pose sheet of that same boy doing a BACK EXTENSION, shown THREE times left to right, three-quarter view, turned slightly toward the camera (about 30 to 45 degrees off a pure side view), facing right, with the SAME camera angle in every pose. In every pose he lies FACE DOWN, flat on his belly, with his HEAD ON THE RIGHT looking right and his FEET ON THE LEFT. Same scale, all on the same invisible floor line, wide empty gaps between figures.
 
 KEY BODY RULE FOR ALL THREE POSES: his arms are NOT pushing up and NOT planted in front of him. Both arms are STRAIGHT and stretched back along his sides, with the hands tucked flat, palms down, UNDER THE FRONT OF HIS THIGHS. Elbows straight.
 
@@ -511,7 +512,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 **Prompt for the very first strip (no reference, character in words):**
 
 ```text
-Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown THREE times, left to right, doing a BACK EXTENSION, strict side view facing right. This is a pose-by-pose animation reference, so all three figures must be the same character at the same scale. In every pose he lies FACE DOWN, flat on his belly, with his HEAD ON THE RIGHT looking right and his FEET ON THE LEFT. Same scale, all on the same invisible floor line, wide empty gaps between figures.
+Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown THREE times, left to right, doing a BACK EXTENSION, three-quarter view, turned slightly toward the camera (about 30 to 45 degrees off a pure side view), facing right, with the SAME camera angle in every pose. This is a pose-by-pose animation reference, so all three figures must be the same character at the same scale. In every pose he lies FACE DOWN, flat on his belly, with his HEAD ON THE RIGHT looking right and his FEET ON THE LEFT. Same scale, all on the same invisible floor line, wide empty gaps between figures.
 
 CHARACTER (keep identical in every pose): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.
 
@@ -555,7 +556,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 ```text
 Using the attached reference image ONLY for the character's appearance and art style (a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges). IGNORE the poses in the reference image completely.
 
-Create a NEW wide 16:9 pose sheet of that same boy doing a PUSH-UP (on the palms and toes, knees OFF the floor), shown THREE times left to right, strict side view facing right. Same scale, all on the same invisible floor line, with generous empty space between the figures so they do not touch or overlap.
+Create a NEW wide 16:9 pose sheet of that same boy doing a PUSH-UP (on the palms and toes, knees OFF the floor), shown THREE times left to right, three-quarter view, turned slightly toward the camera (about 30 to 45 degrees off a pure side view), facing right, with the SAME camera angle in every pose. Same scale, all on the same invisible floor line, with generous empty space between the figures so they do not touch or overlap.
 
 THE THREE POSES (official exercise, follow exactly):
 1. DOWN: face down with the chest touching the floor, palms flat on the floor directly under the shoulders, elbows bent and tucked close to the ribs, only the palms and the toes touching the floor, the body one straight line from head to heels.
@@ -570,7 +571,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 **Prompt for the very first strip (no reference, character in words):**
 
 ```text
-Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown THREE times, left to right, doing a PUSH-UP (on the palms and toes, knees OFF the floor), strict side view facing right. This is a pose-by-pose animation reference, so all three figures must be the same character at the same scale. Same scale, all on the same invisible floor line, with generous empty space between the figures so they do not touch or overlap.
+Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown THREE times, left to right, doing a PUSH-UP (on the palms and toes, knees OFF the floor), three-quarter view, turned slightly toward the camera (about 30 to 45 degrees off a pure side view), facing right, with the SAME camera angle in every pose. This is a pose-by-pose animation reference, so all three figures must be the same character at the same scale. Same scale, all on the same invisible floor line, with generous empty space between the figures so they do not touch or overlap.
 
 CHARACTER (keep identical in every pose): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.
 

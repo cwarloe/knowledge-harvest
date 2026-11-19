@@ -31,7 +31,8 @@
         "The model draws a ground shadow even when told not to; the key removes it."
       ],
       "chart": 1,
-      "slot": "ex1"
+      "slot": "ex1",
+      "view": "strict side view facing right"
     },
     "partial-sit-up-c1": {
       "exercise": "a PARTIAL SIT-UP",
@@ -47,7 +48,8 @@
         "Takes 2 and 3 sat almost fully upright. Take 4 lifted only the head and shoulders in the middle pose."
       ],
       "chart": 1,
-      "slot": "ex2"
+      "slot": "ex2",
+      "view": "strict side view facing right"
     },
     "alternate-leg-raise-c1": {
       "exercise": "an ALTERNATE LEG RAISE",
@@ -65,7 +67,8 @@
         "The darker far-side shading is what lets near leg and far leg read differently in profile."
       ],
       "chart": 1,
-      "slot": "ex3"
+      "slot": "ex3",
+      "view": "strict side view facing right"
     },
     "knee-push-up-c1": {
       "exercise": "a KNEE PUSH-UP",
@@ -81,7 +84,8 @@
         "Take 4 was kept because the chest actually touches the floor at the bottom and the arms are fully straight at the top. Then it became the first character reference."
       ],
       "chart": 1,
-      "slot": "ex4"
+      "slot": "ex4",
+      "view": "strict side view facing right"
     },
     "stationary-run-c1": {
       "exercise": "a STATIONARY RUN (running in place)",
@@ -99,7 +103,8 @@
         "The model lifts the foot higher than the booklet's 4 inches. An edit pass ('lower the lifted foot to about 4 inches') brought it down; see edits.json."
       ],
       "chart": 1,
-      "slot": "run"
+      "slot": "run",
+      "view": "strict side view facing right"
     },
     "scissor-jumps-c1": {
       "exercise": "SCISSOR JUMPS",
@@ -116,7 +121,8 @@
         "Stance B came out as a lunge with a bent back knee. An edit pass made it upright; see edits.json."
       ],
       "chart": 1,
-      "slot": "jump"
+      "slot": "jump",
+      "view": "strict side view facing right"
     },
     "toe-touch-c2": {
       "chart": 2,
@@ -153,8 +159,10 @@
       },
       "learned": [
         "Asked for 4 poses; Grok Imagine returned 5. Poses 2 and 3 are almost the same depth (3 px apart) and pose 4 is the real press (31 px lower), so the extra one works as the rebound after the press.",
-        "Pose 1 came back in a front-facing three-quarter view with the feet wide apart; the other four are side views. It matches 'feet astride' but is a camera change."
-      ]
+        "Pose 1 came back in a front-facing three-quarter view with the feet wide apart; the other four are side views. It matches 'feet astride' but is a camera change.",
+        "The author liked the slight turn toward the camera in the first figure (not a pure 90 degree side view). Later strips ask for it on purpose; see config/character.json 'view'."
+      ],
+      "view": "strict side view facing right"
     },
     "sit-up-c2": {
       "chart": 2,
