@@ -1,0 +1,33 @@
+{
+  "_about": "Everything about how the video LOOKS and SAYS. No code changes needed for any of this.",
+  "fps": 30,
+  "fade_max_seconds": 0.30,
+  "key": {"lo": 28, "hi": 95},
+  "recolor": {"shorts": null, "shoes": null, "tank": null,
+              "_hint": "Hue in degrees (0 red, 52 yellow, 120 green, 210 blue, 280 purple). null leaves it alone."},
+  "backdrop": {
+    "style": "forest",
+    "image": null,
+    "sky_top": "#60b2ec", "sky_bottom": "#cee4fa",
+    "mountains": ["#78a8be", "#5c9496"],
+    "trees": ["#3a7854", "#26603e"],
+    "ground": "#deb26e", "ground_line": "#aa7c46", "pebbles": "#be9256",
+    "seed": 7
+  },
+  "hud": {
+    "font": "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+    "mono": "/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf",
+    "outline": "0x101820@0.9", "outline_width": 5,
+    "kicker": "0xffd36b", "title": "white", "target": "0xff9a3c", "clock": "white", "label": "0xfff2cf",
+    "bar_fill": "0xff9a3c", "bar_back": "0x101820@0.55", "break_dim": "0x101820@0.5"
+  },
+  "strings": {
+    "kicker": "EXERCISE {n} OF 5", "reps": "{reps} reps", "steps": "{steps} steps",
+    "left": "LEFT", "break": "BREAK", "next": "NEXT",
+    "jump_kicker": "PAUSE THE RUN", "jump_title": "{count} {name}", "jump_target": "jump now"
+  },
+  "formats": {
+    "landscape": {"W": 1920, "H": 1080, "ground": 0.80, "box": [1500, 640], "kicker": 26, "title": 56, "target": 44, "clock": 84, "bar": 16},
+    "portrait":  {"W": 1080, "H": 1920, "ground": 0.74, "box": [980, 960],  "kicker": 34, "title": 74, "target": 62, "clock": 118, "bar": 22}
+  }
+}

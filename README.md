@@ -24,6 +24,7 @@ Start with the [Capability Transfer Framework](docs/capability-transfer/README.m
 ### Playbooks
 
 - [Instructions → training video](playbooks/instructions-to-training-video/README.md): turn a written procedure (docx, PDF, slides, web page, notes) into a short captioned walkthrough video, with no screen recording. A way to reproduce a capability when the steps already exist in writing.
+- [Exercise sprite video](playbooks/exercise-sprite-video/README.md): turn a workout plan into a full video with a generated cartoon character, a timer and break cards. Built for change: look, wording, character and exercises are each one config file.
 
 ## Features
 

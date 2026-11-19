@@ -1,0 +1,10 @@
+{
+  "_about": "The character, in words. Pasted into every strip prompt, so a new strip is the same boy. Edit here, not in prompts.",
+  "name": "sprite boy",
+  "description": "a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges",
+  "locked": ["Blue sneakers. No green shoes (Charles, 2026-11-19).", "Clothing as in the original Grok sprites."],
+  "view": "strict side view facing right",
+  "far_side": "Draw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.",
+  "background": "perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.",
+  "generator": {"model": "gemini-3-pro-image", "aspect": "16:9", "resolution": "1K", "variations": 4}
+}
