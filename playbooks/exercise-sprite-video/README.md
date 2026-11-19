@@ -78,6 +78,10 @@ The ElevenLabs edit tool takes "change this, keep that" and re-renders the strip
 - **It cannot invent a visual difference that profile hides.** Scissor stance A and B still look alike.
 - Candidates from the test are in `sheets/candidates/`. They are not wired in.
 
+## Make the strips with a different tool
+
+The prompts, settings and lessons are published so the strips do not depend on one vendor: `docs/HOW-TO-GENERATE-STRIPS.md` (method, checklist, what to test in a new tool) and `prompts/PROMPTS.md` (paste-ready text for every strip, with and without a reference image). The demo site has the same thing with a copy button on each prompt. Regenerate after any change: `python3 kit/prompt.py --all --data path/to/5bx-charts.json`.
+
 ## Add an exercise, or a whole chart
 
 1. See what the plan says: `python3 kit/prompt.py --booklet --data … --chart 2 --slot ex3`
@@ -125,6 +129,8 @@ sheets/                 the chosen strips (chart 1); sheets/candidates/ = edit-t
 assets/                 baked layers: sprites/, backdrops/, props/   (real files, committed)
 exports/                a layer pack for chart 1 landscape (separate PNGs + scene.json)
 config/scene.json       props between/in front of the layers; scene.example-mat.json is a ready example
+docs/HOW-TO-GENERATE-STRIPS.md   the method for making strips with ANY image tool
+prompts/PROMPTS.md      every prompt, settings, what went wrong and the fix (generated: `kit/prompt.py --all`)
 docs/LAYERS-AND-IDEAS.md   brainstorm: every way to split this into layers, tagged by effort
 docs/CHARTS-2-6.md      what the five remaining charts need, from the data
 prompts/strips.json     the pose lists that produced them

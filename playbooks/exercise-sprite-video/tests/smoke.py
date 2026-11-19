@@ -78,6 +78,9 @@ with tempfile.TemporaryDirectory() as tmp:
         dd = json.load(open(os.path.join(demo, "data.json")))
         refs = [l["file"] for l in dd["layers"]] + [q["file"] for sl in dd["slots"].values() for q in sl["poses"]] + [q["file"] for q in dd["props"] if q["kind"] == "image"]
         check(all(os.path.exists(os.path.join(demo, f)) for f in refs), f"every file the demo refers to exists ({len(refs)} files)")
+        pj = json.load(open(os.path.join(demo, "prompts.json")))
+        check(len(pj["strips"]) == len(reg["strips"]) and all("prompt_with_reference" in q and "prompt_first_strip" in q for q in pj["strips"]), "published prompts cover every strip, with and without a reference")
+        check(not any(w in open(os.path.join(demo, "PROMPTS.md"), encoding="utf-8").read().lower() for w in ("charles", "@gmail")), "published prompts carry no personal names or addresses")
         check(os.path.exists(os.path.join(demo, "index.html")) and "5BX Sprite Boy" in open(os.path.join(demo, "index.html"), encoding="utf-8").read(), "demo index.html written")
     else: print(r.stderr[-600:])
 print("\nALL PASS" if not fails else f"\n{len(fails)} FAILED"); sys.exit(1 if fails else 0)

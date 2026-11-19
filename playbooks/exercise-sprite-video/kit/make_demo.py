@@ -70,9 +70,17 @@ def main():
         w = 900; A = A.resize((w, round(A.height * w / A.width))); B = B.resize((w, round(B.height * w / B.width)))
         im = Image.new("RGB", (w, A.height + B.height + 6), (20, 24, 30)); im.paste(A, (0, 0)); im.paste(B, (0, A.height + 6)); im.save(os.path.join(out, name + ".jpg"), quality=78)
 
-    page = open(os.path.join(HERE, "demo", "page.html"), encoding="utf-8").read()       # the page itself; the wrapper below makes it a standalone file
-    open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(
-        '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n' + page + "\n</html>\n")
+    # prompts: the data the prompts page reads, the two documents, and the strips themselves (reference images for other tools)
+    shutil.rmtree(os.path.join(out, "strips"), ignore_errors=True); os.makedirs(os.path.join(out, "strips"), exist_ok=True)
+    sh([sys.executable, os.path.join(HERE, "prompt.py"), "--all", "--data", a.data])
+    shutil.copy(os.path.join(ROOT, "prompts", "prompts.json"), os.path.join(out, "prompts.json")); shutil.copy(os.path.join(ROOT, "prompts", "PROMPTS.md"), os.path.join(out, "PROMPTS.md"))
+    shutil.copy(os.path.join(ROOT, "docs", "HOW-TO-GENERATE-STRIPS.md"), os.path.join(out, "HOW-TO-GENERATE-STRIPS.md"))
+    for st in reg["strips"].values(): shutil.copy(os.path.join(ROOT, "sheets", st["file"]), os.path.join(out, "strips", st["file"]))
+
+    for name in ("page", "prompts"):                                  # the page itself; the wrapper makes it a standalone file
+        page = open(os.path.join(HERE, "demo", name + ".html"), encoding="utf-8").read()
+        open(os.path.join(out, "index.html" if name == "page" else "prompts.html"), "w", encoding="utf-8").write(
+            '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n' + page + "\n</html>\n")
 
     if a.reel: build_reel(a.data, out)
     size = sum(os.path.getsize(os.path.join(dp, fn)) for dp, _, fns in os.walk(out) for fn in fns)

@@ -1,0 +1,124 @@
+<title>5BX Strip Prompts</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;600&display=swap">
+<style>
+/* Layout concept: a reference sheet. One column, each exercise folds open to its prompts. Same look as the demo. */
+:root {
+  --bg: #edf3f7; --surface: #ffffff; --ink: #121c26; --muted: #4b5b69; --line: #cbd8e2;
+  --link: #135a9e; --accent: #ff9a3c; --on-accent: #121c26; --stage: #1b2430; --chip: #e3ecf2; --code: #f3f7fa;
+  --font-display: "Oswald", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0c131a; --surface: #141e28; --ink: #e9eff4; --muted: #9fb0be; --line: #2a3947; --link: #6cb6ff; --stage: #0a1017; --chip: #1d2a36; --code: #0f1923; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0c131a; --surface: #141e28; --ink: #e9eff4; --muted: #9fb0be; --line: #2a3947; --link: #6cb6ff; --stage: #0a1017; --chip: #1d2a36; --code: #0f1923; color-scheme: dark; }
+
+body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--font-body); }
+* { box-sizing: border-box; }
+.wrap { max-width: 860px; margin: 0 auto; padding-block: 20px 56px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 32px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing: .01em; line-height: 1.1; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2.2rem, 7vw, 3.4rem); text-transform: uppercase; }
+h2 { font-size: 1.5rem; text-transform: uppercase; }
+h3 { font-size: .95rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 500; }
+p, ol, ul { margin: 0; max-width: 64ch; }
+.lede { font-size: 1.1rem; color: var(--muted); margin-top: 10px; }
+.kicker { font-family: var(--font-display); letter-spacing: .12em; text-transform: uppercase; font-size: .85rem; color: var(--link); margin-bottom: 6px; }
+a { color: var(--link); }
+section { display: grid; gap: 14px; min-width: 0; }
+ol, ul { padding-left: 1.3rem; display: grid; gap: 6px; }
+.note { color: var(--muted); font-size: .92rem; }
+.links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+details { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; min-width: 0; }
+summary { cursor: pointer; padding: 14px; min-height: 48px; font-family: var(--font-display); font-size: 1.15rem; text-transform: uppercase; letter-spacing: .03em; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+summary small { font-family: var(--font-body); font-size: .85rem; color: var(--muted); text-transform: none; letter-spacing: 0; }
+.body { padding: 0 14px 16px; display: grid; gap: 14px; min-width: 0; }
+.body img { display: block; width: 100%; height: auto; border-radius: 6px; background: var(--stage); }
+pre { margin: 0; padding: 12px; background: var(--code); border: 1px solid var(--line); border-radius: 6px; font: .85rem/1.5 var(--font-mono); white-space: pre-wrap; overflow-wrap: anywhere; max-height: 22rem; overflow: auto; user-select: text; -webkit-user-select: text; }
+.codehead { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+button { font: 600 .95rem var(--font-body); color: var(--on-accent); background: var(--accent); border: 0; border-radius: 999px; padding: 9px 16px; min-height: 40px; cursor: pointer; }
+button:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px solid var(--link); outline-offset: 2px; }
+.facts { display: grid; gap: 4px; font-size: .95rem; }
+.warn { border-left: 4px solid var(--accent); padding: 8px 12px; background: var(--surface); border-radius: 0 6px 6px 0; max-width: 64ch; }
+</style>
+
+<main class="wrap">
+  <header>
+    <div class="kicker">Make them with any tool</div>
+    <h1>Strip Prompts</h1>
+    <p class="lede">Every prompt used for the chart 1 strips, with the settings, what went wrong and the fix. Paste into any image tool that can follow a long description.</p>
+  </header>
+
+  <section>
+    <h2>Before you start</h2>
+    <ol>
+      <li>Open an exercise below and tap <b>Copy</b> on the prompt.</li>
+      <li>If your tool accepts a reference image, attach the <a href="strips/ex1-toe-touching.png" target="_blank" rel="noopener">standing reference strip</a> and use the first prompt. If not, use the second (character in words).</li>
+      <li>Make it wide, 16:9, at least about 1300 pixels across. Ask for 4 takes.</li>
+      <li>Pick the take whose form matches the plan's wording, not the prettiest one.</li>
+    </ol>
+    <div class="links">
+      <a href="HOW-TO-GENERATE-STRIPS.md">The full method (text)</a>
+      <a href="PROMPTS.md">All prompts in one file (text)</a>
+      <a href="index.html">Back to the demo</a>
+    </div>
+    <p class="warn" id="gen"></p>
+  </section>
+
+  <section>
+    <h2>The character and the background</h2>
+    <p class="note">Already inside every prompt below. Here on their own, for tools where you set the character once.</p>
+    <div id="chars" style="display:grid; gap:14px"></div>
+  </section>
+
+  <section>
+    <h2>Chart 1 strips</h2>
+    <div id="strips" style="display:grid; gap:12px"></div>
+  </section>
+
+  <section>
+    <h2>Edit prompts</h2>
+    <p class="note">Change one thing, keep the rest. Pass the strip to the tool as the image to edit.</p>
+    <div id="edits" style="display:grid; gap:12px"></div>
+  </section>
+
+  <p class="warn">Exercise form is checked against the booklet's wording, not by an expert. Have someone who knows the exercises look at every finished strip, and check the image tool's terms before you publish generated art.</p>
+</main>
+
+<script>
+(async function () {
+  const el = (tag, props = {}, kids = []) => { const e = Object.assign(document.createElement(tag), props); kids.forEach((k) => e.append(k)); return e; };
+  const nice = (t) => t.replace(/^an?\s+/i, '').toLowerCase().replace(/^./, (c) => c.toUpperCase());
+  function flash(btn, text) { const old = btn.dataset.label || btn.textContent; btn.dataset.label = old; btn.textContent = text; setTimeout(() => (btn.textContent = old), 1800); }
+  async function copy(text, pre, btn) {
+    try { await navigator.clipboard.writeText(text); flash(btn, 'Copied'); return; } catch (e) { /* fall through */ }
+    try { const r = document.createRange(); r.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(r); if (document.execCommand('copy')) { flash(btn, 'Copied'); return; } } catch (e) { /* fall through */ }
+    flash(btn, 'Text selected: press and hold to copy');
+  }
+  function block(title, text) {
+    const pre = el('pre', { textContent: text, tabIndex: 0 }), b = el('button', { type: 'button', textContent: 'Copy' }); b.onclick = () => copy(text, pre, b);
+    return el('div', { style: 'display:grid; gap:8px; min-width:0' }, [el('div', { className: 'codehead' }, [el('h3', { textContent: title }), b]), pre]);
+  }
+  try {
+    const D = await (await fetch('prompts.json')).json(), g = D.generation;
+    document.getElementById('gen').textContent = `Worked with ${g.model}, ${g.aspect}, ${g.resolution}, ${g.variations} takes each. ${g.reference}`;
+    const chars = document.getElementById('chars');
+    chars.append(block('The character', D.character.description + '.'), block('The background', D.character.background), block('Near and far limbs', D.character.far_side));
+    const host = document.getElementById('strips');
+    D.strips.forEach((s, i) => {
+      const kids = [el('img', { src: 'strips/' + s.file, alt: s.exercise + ' pose strip as made', loading: 'lazy' })];
+      const facts = el('div', { className: 'facts' });
+      if (s.booklet) { facts.append(el('div', {}, [el('b', { textContent: 'The plan says: ' }), document.createTextNode(`starts ${s.booklet.start.toLowerCase()} ${s.booklet.movement}`)])); s.booklet.notes.forEach((n) => facts.append(el('div', { textContent: 'Note: ' + n }))); }
+      facts.append(el('div', {}, [el('b', { textContent: 'Kept: ' }), document.createTextNode(s.kept)])); kids.push(facts);
+      kids.push(block('Prompt with a reference image attached', s.prompt_with_reference), block('Prompt with no reference (character in words)', s.prompt_first_strip));
+      if (s.learned.length) kids.push(el('div', { style: 'display:grid; gap:6px' }, [el('h3', { textContent: 'What went wrong, and the fix' }), el('ul', {}, s.learned.map((x) => el('li', { textContent: x })))]));
+      const d = el('details', { open: i === 0 }, [el('summary', {}, [document.createTextNode(nice(s.exercise)), el('small', { textContent: s.poses + ' poses' })]), el('div', { className: 'body' }, kids)]);
+      host.append(d);
+    });
+    const eh = document.getElementById('edits');
+    D.edits.forEach((e) => eh.append(el('details', {}, [el('summary', {}, [document.createTextNode(e.target), el('small', { textContent: 'edit' })]),
+      el('div', { className: 'body' }, [el('p', {}, [el('b', { textContent: 'Problem: ' }), document.createTextNode(e.problem)]), block('Edit prompt', e.prompt), el('p', {}, [el('b', { textContent: 'Result: ' }), document.createTextNode(e.result)])])])));
+  } catch (e) { document.getElementById('gen').textContent = 'Could not load the prompts: ' + e.message; console.error(e); }
+})();
+</script>

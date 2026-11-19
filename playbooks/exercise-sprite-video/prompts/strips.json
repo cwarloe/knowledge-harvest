@@ -1,58 +1,110 @@
 {
   "_about": "Pose lists for every strip in sheets/, reconstructed from the prompts that produced them (2026-11-19). Same pose text; the surrounding wording now comes from config/character.json. 'rule' is a rule that applies to every pose.",
-  "_generation": "gemini-3-pro-image, 16:9, 1K, 4 variations, one pinned character reference. The strip kept is noted per entry. Pin a NEUTRAL (standing) strip as the reference for prone exercises: a push-up reference leaked its arms into the leg raise.",
+  "_generation": {
+    "model": "gemini-3-pro-image",
+    "aspect": "16:9",
+    "resolution": "1K (about 1376x768)",
+    "variations": 4,
+    "reference": "None for the first strip. After that, one pinned image of the character, and the words 'use only for appearance, ignore the poses'. Prone exercises: pin a standing strip, not a lying one.",
+    "credits_each": "about 1,218 without a reference, 1,827 with one (ElevenLabs, 2026-11-19)",
+    "order": [
+      "knee-push-up-c1 (pilot, no reference)",
+      "toe-touch-c1",
+      "partial-sit-up-c1",
+      "stationary-run-c1",
+      "scissor-jumps-c1",
+      "alternate-leg-raise-c1"
+    ]
+  },
   "strips": {
     "toe-touch-c1": {
-      "exercise": "TOE TOUCHES", "kept": "take 1 of 4",
+      "exercise": "TOE TOUCHES",
+      "kept": "take 1 of 4",
       "layout": "Same scale, feet on the same invisible floor line, with wide empty gaps so the figures never touch.",
       "poses": [
         "START: standing tall, feet about shoulder-width apart, both arms straight up overhead, upper arms beside the ears.",
         "FOLD: deep forward bend, torso folded down toward the legs, knees only slightly bent (not forced straight, not deeply squatting), fingertips touching the floor beside the feet, head hanging relaxed.",
-        "STRETCH BACK: standing again with arms still stretched up and reaching backward, a gentle backward bend, hips pushed slightly forward, chest and face lifted toward the sky, knees straight."]
+        "STRETCH BACK: standing again with arms still stretched up and reaching backward, a gentle backward bend, hips pushed slightly forward, chest and face lifted toward the sky, knees straight."
+      ],
+      "learned": [
+        "Take 2's backward bend swept the arms down behind him; the booklet says up and back. Take 1 kept the arms up and reaching back.",
+        "The model draws a ground shadow even when told not to; the key removes it."
+      ]
     },
     "partial-sit-up-c1": {
-      "exercise": "a PARTIAL SIT-UP", "kept": "take 4 of 4 (take 1 bent the knees)",
+      "exercise": "a PARTIAL SIT-UP",
+      "kept": "take 4 of 4 (take 1 bent the knees)",
       "layout": "In every pose he lies on his back with his HEAD ON THE LEFT and his FEET ON THE RIGHT, same scale, all on the same invisible floor line, wide empty gaps so the figures never touch.",
       "poses": [
         "START: lying flat on his back, LEGS STRAIGHT and flat on the floor with the feet a few inches apart, arms straight and resting at his sides.",
         "LIFTING: head and shoulders lifted clear off the floor, chin slightly tucked, arms reaching forward along his sides, LEGS STILL STRAIGHT AND FLAT.",
-        "TOP: upper body raised only far enough that he can see his heels, looking down toward his feet, arms reaching forward toward the shins, LEGS STAY COMPLETELY STRAIGHT with heels on the floor (knees NOT bent, NOT sitting fully upright, hands NOT behind the head)."]
+        "TOP: upper body raised only far enough that he can see his heels, looking down toward his feet, arms reaching forward toward the shins, LEGS STAY COMPLETELY STRAIGHT with heels on the floor (knees NOT bent, NOT sitting fully upright, hands NOT behind the head)."
+      ],
+      "learned": [
+        "Take 1 bent the knees at the top: the booklet says keep the legs straight. Always include 'knees NOT bent' and 'NOT sitting fully upright, hands NOT behind the head'.",
+        "Takes 2 and 3 sat almost fully upright. Take 4 lifted only the head and shoulders in the middle pose."
+      ]
     },
     "alternate-leg-raise-c1": {
-      "exercise": "an ALTERNATE LEG RAISE", "kept": "retry take 1 of 4 (first batch failed: push-up arms leaked in from the reference)",
+      "exercise": "an ALTERNATE LEG RAISE",
+      "kept": "retry take 1 of 4 (first batch failed: push-up arms leaked in from the reference)",
       "layout": "In every pose he lies FACE DOWN, flat on his belly, with his HEAD ON THE RIGHT looking right and his FEET ON THE LEFT. Same scale, all on the same invisible floor line, wide empty gaps between figures.",
       "rule": "KEY BODY RULE FOR ALL THREE POSES: his arms are NOT pushing up and NOT planted in front of him. Both arms are STRAIGHT and stretched back along his sides, with the hands tucked flat, palms down, UNDER THE FRONT OF HIS THIGHS. Elbows straight. Shoulders stay low.",
       "poses": [
         "START: lying completely flat face down, legs straight and together, chin near the floor, arms straight back with palms under the thighs.",
         "FIRST LEG: head and chest lifted only slightly off the floor (a small lift), arms still straight back under the thighs, the leg NEAREST the viewer raised straight up behind him with the knee LOCKED STRAIGHT (a straight line from hip to heel, about 35 to 40 degrees above the floor, thigh clearly lifted off his hand), the other leg flat on the floor.",
-        "OTHER LEG: same lifted head and chest, arms still straight back under the thighs, now the leg FARTHEST from the viewer is raised with the knee LOCKED STRAIGHT, and the near leg is flat on the floor."]
+        "OTHER LEG: same lifted head and chest, arms still straight back under the thighs, now the leg FARTHEST from the viewer is raised with the knee LOCKED STRAIGHT, and the near leg is flat on the floor."
+      ],
+      "learned": [
+        "First batch failed all four times: the push-up strip, used as the reference, leaked push-up arms and a bent kicking leg into this exercise.",
+        "Fix: use a neutral standing strip as the reference, say 'use it only for appearance, ignore its poses', and spell out the geometry (arms straight back, palms under the thighs, knee locked straight).",
+        "The darker far-side shading is what lets near leg and far leg read differently in profile."
+      ]
     },
     "knee-push-up-c1": {
-      "exercise": "a KNEE PUSH-UP", "kept": "take 4 of 4 of the no-reference pilot (this one became the first character reference)",
+      "exercise": "a KNEE PUSH-UP",
+      "kept": "take 4 of 4 of the no-reference pilot (this one became the first character reference)",
       "layout": "Same scale, all three standing on the same invisible floor line, with generous empty space between the three figures so they do not touch or overlap.",
       "poses": [
         "DOWN position: face-down, chest touching the floor, elbows bent and tucked close to the ribs, palms flat on the floor directly under the shoulders. The KNEES are on the floor and the lower legs are bent up behind him with the feet in the air. Body is a straight line from the knees to the head.",
         "MIDDLE position: halfway up, elbows bent about 90 degrees, chest a hand-width above the floor, knees still on the floor, body still a straight line from knees to head.",
-        "UP position: arms fully straightened, palms flat on the floor directly under the shoulders, upper body raised, KNEES STILL ON THE FLOOR, lower legs bent up behind with feet in the air, body one straight diagonal line from the knees to the head (hips NOT piked up, back NOT sagging)."]
+        "UP position: arms fully straightened, palms flat on the floor directly under the shoulders, upper body raised, KNEES STILL ON THE FLOOR, lower legs bent up behind with feet in the air, body one straight diagonal line from the knees to the head (hips NOT piked up, back NOT sagging)."
+      ],
+      "learned": [
+        "This was the pilot: no reference image, the character described in words. It came out right in all four takes.",
+        "Take 4 was kept because the chest actually touches the floor at the bottom and the arms are fully straight at the top. Then it became the first character reference."
+      ]
     },
     "stationary-run-c1": {
-      "exercise": "a STATIONARY RUN (running in place)", "kept": "retry take 3 of 4 (first batch lifted the same leg twice)",
+      "exercise": "a STATIONARY RUN (running in place)",
+      "kept": "retry take 3 of 4 (first batch lifted the same leg twice)",
       "layout": "Same scale, same invisible floor line, wide empty gaps. He does not travel forward: jogging on the spot with small quick steps, the lifted foot only a few inches off the floor, knee bent only slightly, NOT a sprint stride, NOT high knees, NOT a long stride. Arms bent about 90 degrees and pumping like a jogger.",
       "rule": "The boy's NEAR leg and near arm are closest to the viewer, in the normal colors. His FAR leg and far arm are in a noticeably darker shade. The two lifts must use DIFFERENT legs.",
       "poses": [
         "NEAR FOOT LIFTED: the NEAR (lighter) foot lifted a few inches off the floor with the knee slightly bent; the FAR (darker) foot flat on the floor. Near arm bent and swinging forward, far arm bent and back.",
         "PASSING: both feet close to the floor under the hips, standing nearly upright, near arm back and far arm forward, both arms bent.",
         "FAR FOOT LIFTED: the FAR (darker) foot lifted a few inches off the floor with the knee slightly bent; the NEAR (lighter) foot planted flat. Far arm bent and forward, near arm bent and back. Clearly different from pose 1: the lifted foot is the darker one.",
-        "PASSING: both feet close to the floor, nearly upright, near arm forward and far arm back, both arms bent."]
+        "PASSING: both feet close to the floor, nearly upright, near arm forward and far arm back, both arms bent."
+      ],
+      "learned": [
+        "First batch: the same (near) leg was lifted in both lift poses, so it read as hopping on one foot. Fix: name the near and far legs, shade the far one, and say 'the two lifts must use DIFFERENT legs'.",
+        "The model lifts the foot higher than the booklet's 4 inches. An edit pass ('lower the lifted foot to about 4 inches') brought it down; see edits.json."
+      ]
     },
     "scissor-jumps-c1": {
-      "exercise": "SCISSOR JUMPS", "kept": "take 1 of 4. Known weak spot: stance A and B look alike in profile; only shading differs",
+      "exercise": "SCISSOR JUMPS",
+      "kept": "take 1 of 4. Known weak spot: stance A and B look alike in profile; only shading differs",
       "layout": "Same scale, wide empty gaps. The two standing poses rest on the same invisible floor line; the two jumping poses are drawn clearly higher, with both feet well above that line.",
       "poses": [
         "STANCE A, on the floor: the leg NEAREST the viewer extended forward and the other leg extended backward in a wide scissor stance, both feet on the floor; the arm FARTHEST from the viewer extended forward and the near arm extended backward, both arms straight at SHOULDER HEIGHT.",
         "JUMP, in the air: jumped straight up, both feet well off the floor, legs and arms passing each other mid-switch (legs close together under the hips, arms crossing near the body), knees slightly bent.",
         "STANCE B, on the floor: the mirror of stance A. The leg FARTHEST from the viewer is now forward and the near leg is back; the NEAR arm extended forward and the far arm backward, arms straight at shoulder height, both feet on the floor.",
-        "JUMP, in the air: the same airborne switching pose as pose 2, both feet well above the floor line."]
+        "JUMP, in the air: the same airborne switching pose as pose 2, both feet well above the floor line."
+      ],
+      "learned": [
+        "Stance A and stance B look almost the same in profile; only the shading differs. A front view would fix it.",
+        "Stance B came out as a lunge with a bent back knee. An edit pass made it upright; see edits.json."
+      ]
     }
   }
 }
