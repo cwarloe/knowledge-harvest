@@ -1,0 +1,184 @@
+{
+ "character": {
+  "_about": "The character, in words. Pasted into every strip prompt, so a new strip is the same boy. Edit here, not in prompts.",
+  "name": "sprite boy",
+  "description": "a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges",
+  "locked": [
+   "Blue sneakers. No green shoes (author decision, 2026-11-19).",
+   "Clothing as in the original Grok sprites."
+  ],
+  "view": "strict side view facing right",
+  "far_side": "Draw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.",
+  "background": "perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.",
+  "generator": {
+   "model": "gemini-3-pro-image",
+   "aspect": "16:9",
+   "resolution": "1K",
+   "variations": 4
+  }
+ },
+ "generation": {
+  "model": "gemini-3-pro-image",
+  "aspect": "16:9",
+  "resolution": "1K (about 1376x768)",
+  "variations": 4,
+  "reference": "None for the first strip. After that, one pinned image of the character, and the words 'use only for appearance, ignore the poses'. Prone exercises: pin a standing strip, not a lying one.",
+  "credits_each": "about 1,218 without a reference, 1,827 with one (ElevenLabs, 2026-11-19)",
+  "order": [
+   "knee-push-up-c1 (pilot, no reference)",
+   "toe-touch-c1",
+   "partial-sit-up-c1",
+   "stationary-run-c1",
+   "scissor-jumps-c1",
+   "alternate-leg-raise-c1"
+  ]
+ },
+ "strips": [
+  {
+   "key": "toe-touch-c1",
+   "exercise": "TOE TOUCHES",
+   "file": "ex1-toe-touching.png",
+   "poses": 3,
+   "kept": "take 1 of 4",
+   "booklet": {
+    "name": "Toe touching",
+    "start": "Feet astride, arms upward.",
+    "movement": "Forward bend to floor touching then stretch upward and backward bend.",
+    "notes": [
+     "Do not strain to keep knees straight."
+    ]
+   },
+   "learned": [
+    "Take 2's backward bend swept the arms down behind him; the booklet says up and back. Take 1 kept the arms up and reaching back.",
+    "The model draws a ground shadow even when told not to; the key removes it."
+   ],
+   "prompt_with_reference": "Using the attached reference image ONLY for the character's appearance and art style (a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges). IGNORE the poses in the reference image completely.\n\nCreate a NEW wide 16:9 pose sheet of that same boy doing TOE TOUCHES, shown THREE times left to right, strict side view facing right. Same scale, feet on the same invisible floor line, with wide empty gaps so the figures never touch.\n\nTHE THREE POSES (official exercise, follow exactly):\n1. START: standing tall, feet about shoulder-width apart, both arms straight up overhead, upper arms beside the ears.\n2. FOLD: deep forward bend, torso folded down toward the legs, knees only slightly bent (not forced straight, not deeply squatting), fingertips touching the floor beside the feet, head hanging relaxed.\n3. STRETCH BACK: standing again with arms still stretched up and reaching backward, a gentle backward bend, hips pushed slightly forward, chest and face lifted toward the sky, knees straight.\n\nDraw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.\n\nBACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.",
+   "prompt_first_strip": "Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown THREE times, left to right, doing TOE TOUCHES, strict side view facing right. This is a pose-by-pose animation reference, so all three figures must be the same character at the same scale. Same scale, feet on the same invisible floor line, with wide empty gaps so the figures never touch.\n\nCHARACTER (keep identical in every pose): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.\n\nTHE THREE POSES (official exercise, follow exactly):\n1. START: standing tall, feet about shoulder-width apart, both arms straight up overhead, upper arms beside the ears.\n2. FOLD: deep forward bend, torso folded down toward the legs, knees only slightly bent (not forced straight, not deeply squatting), fingertips touching the floor beside the feet, head hanging relaxed.\n3. STRETCH BACK: standing again with arms still stretched up and reaching backward, a gentle backward bend, hips pushed slightly forward, chest and face lifted toward the sky, knees straight.\n\nDraw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.\n\nBACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows."
+  },
+  {
+   "key": "partial-sit-up-c1",
+   "exercise": "a PARTIAL SIT-UP",
+   "file": "ex2-partial-sit-up.png",
+   "poses": 3,
+   "kept": "take 4 of 4 (take 1 bent the knees)",
+   "booklet": {
+    "name": "Partial sit-up",
+    "start": "Back lying, feet 6\" apart, arms at sides.",
+    "movement": "Sit up just far enough to see your heels.",
+    "notes": [
+     "Keep legs straight, head and shoulders must clear the floor."
+    ]
+   },
+   "learned": [
+    "Take 1 bent the knees at the top: the booklet says keep the legs straight. Always include 'knees NOT bent' and 'NOT sitting fully upright, hands NOT behind the head'.",
+    "Takes 2 and 3 sat almost fully upright. Take 4 lifted only the head and shoulders in the middle pose."
+   ],
+   "prompt_with_reference": "Using the attached reference image ONLY for the character's appearance and art style (a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges). IGNORE the poses in the reference image completely.\n\nCreate a NEW wide 16:9 pose sheet of that same boy doing a PARTIAL SIT-UP, shown THREE times left to right, strict side view facing right. In every pose he lies on his back with his HEAD ON THE LEFT and his FEET ON THE RIGHT, same scale, all on the same invisible floor line, wide empty gaps so the figures never touch.\n\nTHE THREE POSES (official exercise, follow exactly):\n1. START: lying flat on his back, LEGS STRAIGHT and flat on the floor with the feet a few inches apart, arms straight and resting at his sides.\n2. LIFTING: head and shoulders lifted clear off the floor, chin slightly tucked, arms reaching forward along his sides, LEGS STILL STRAIGHT AND FLAT.\n3. TOP: upper body raised only far enough that he can see his heels, looking down toward his feet, arms reaching forward toward the shins, LEGS STAY COMPLETELY STRAIGHT with heels on the floor (knees NOT bent, NOT sitting fully upright, hands NOT behind the head).\n\nDraw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.\n\nBACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.",
+   "prompt_first_strip": "Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown THREE times, left to right, doing a PARTIAL SIT-UP, strict side view facing right. This is a pose-by-pose animation reference, so all three figures must be the same character at the same scale. In every pose he lies on his back with his HEAD ON THE LEFT and his FEET ON THE RIGHT, same scale, all on the same invisible floor line, wide empty gaps so the figures never touch.\n\nCHARACTER (keep identical in every pose): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.\n\nTHE THREE POSES (official exercise, follow exactly):\n1. START: lying flat on his back, LEGS STRAIGHT and flat on the floor with the feet a few inches apart, arms straight and resting at his sides.\n2. LIFTING: head and shoulders lifted clear off the floor, chin slightly tucked, arms reaching forward along his sides, LEGS STILL STRAIGHT AND FLAT.\n3. TOP: upper body raised only far enough that he can see his heels, looking down toward his feet, arms reaching forward toward the shins, LEGS STAY COMPLETELY STRAIGHT with heels on the floor (knees NOT bent, NOT sitting fully upright, hands NOT behind the head).\n\nDraw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.\n\nBACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows."
+  },
+  {
+   "key": "alternate-leg-raise-c1",
+   "exercise": "an ALTERNATE LEG RAISE",
+   "file": "ex3-alternate-leg-raise.png",
+   "poses": 3,
+   "kept": "retry take 1 of 4 (first batch failed: push-up arms leaked in from the reference)",
+   "booklet": {
+    "name": "Alternate leg raise",
+    "start": "Front lying, palms placed under the thighs.",
+    "movement": "Raise head and one leg, repeat using legs alternately.",
+    "notes": [
+     "Keep leg straight at the knee, thighs must clear the palms.",
+     "Count one each time second leg touches floor."
+    ]
+   },
+   "learned": [
+    "First batch failed all four times: the push-up strip, used as the reference, leaked push-up arms and a bent kicking leg into this exercise.",
+    "Fix: use a neutral standing strip as the reference, say 'use it only for appearance, ignore its poses', and spell out the geometry (arms straight back, palms under the thighs, knee locked straight).",
+    "The darker far-side shading is what lets near leg and far leg read differently in profile."
+   ],
+   "prompt_with_reference": "Using the attached reference image ONLY for the character's appearance and art style (a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges). IGNORE the poses in the reference image completely.\n\nCreate a NEW wide 16:9 pose sheet of that same boy doing an ALTERNATE LEG RAISE, shown THREE times left to right, strict side view facing right. In every pose he lies FACE DOWN, flat on his belly, with his HEAD ON THE RIGHT looking right and his FEET ON THE LEFT. Same scale, all on the same invisible floor line, wide empty gaps between figures.\n\nKEY BODY RULE FOR ALL THREE POSES: his arms are NOT pushing up and NOT planted in front of him. Both arms are STRAIGHT and stretched back along his sides, with the hands tucked flat, palms down, UNDER THE FRONT OF HIS THIGHS. Elbows straight. Shoulders stay low.\n\nTHE THREE POSES (official exercise, follow exactly):\n1. START: lying completely flat face down, legs straight and together, chin near the floor, arms straight back with palms under the thighs.\n2. FIRST LEG: head and chest lifted only slightly off the floor (a small lift), arms still straight back under the thighs, the leg NEAREST the viewer raised straight up behind him with the knee LOCKED STRAIGHT (a straight line from hip to heel, about 35 to 40 degrees above the floor, thigh clearly lifted off his hand), the other leg flat on the floor.\n3. OTHER LEG: same lifted head and chest, arms still straight back under the thighs, now the leg FARTHEST from the viewer is raised with the knee LOCKED STRAIGHT, and the near leg is flat on the floor.\n\nDraw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.\n\nBACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.",
+   "prompt_first_strip": "Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown THREE times, left to right, doing an ALTERNATE LEG RAISE, strict side view facing right. This is a pose-by-pose animation reference, so all three figures must be the same character at the same scale. In every pose he lies FACE DOWN, flat on his belly, with his HEAD ON THE RIGHT looking right and his FEET ON THE LEFT. Same scale, all on the same invisible floor line, wide empty gaps between figures.\n\nCHARACTER (keep identical in every pose): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.\n\nKEY BODY RULE FOR ALL THREE POSES: his arms are NOT pushing up and NOT planted in front of him. Both arms are STRAIGHT and stretched back along his sides, with the hands tucked flat, palms down, UNDER THE FRONT OF HIS THIGHS. Elbows straight. Shoulders stay low.\n\nTHE THREE POSES (official exercise, follow exactly):\n1. START: lying completely flat face down, legs straight and together, chin near the floor, arms straight back with palms under the thighs.\n2. FIRST LEG: head and chest lifted only slightly off the floor (a small lift), arms still straight back under the thighs, the leg NEAREST the viewer raised straight up behind him with the knee LOCKED STRAIGHT (a straight line from hip to heel, about 35 to 40 degrees above the floor, thigh clearly lifted off his hand), the other leg flat on the floor.\n3. OTHER LEG: same lifted head and chest, arms still straight back under the thighs, now the leg FARTHEST from the viewer is raised with the knee LOCKED STRAIGHT, and the near leg is flat on the floor.\n\nDraw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.\n\nBACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows."
+  },
+  {
+   "key": "knee-push-up-c1",
+   "exercise": "a KNEE PUSH-UP",
+   "file": "ex4-knee-push-up.png",
+   "poses": 3,
+   "kept": "take 4 of 4 of the no-reference pilot (this one became the first character reference)",
+   "booklet": {
+    "name": "Knee push-up",
+    "start": "Front lying, hands under the shoulders, palms flat on the floor.",
+    "movement": "Straighten arms lifting upper body, keeping the knees on the floor. Bend arms to lower body.",
+    "notes": [
+     "Keep body straight from the knees, arms must be fully extended, chest must touch floor to complete one movement."
+    ]
+   },
+   "learned": [
+    "This was the pilot: no reference image, the character described in words. It came out right in all four takes.",
+    "Take 4 was kept because the chest actually touches the floor at the bottom and the arms are fully straight at the top. Then it became the first character reference."
+   ],
+   "prompt_with_reference": "Using the attached reference image ONLY for the character's appearance and art style (a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges). IGNORE the poses in the reference image completely.\n\nCreate a NEW wide 16:9 pose sheet of that same boy doing a KNEE PUSH-UP, shown THREE times left to right, strict side view facing right. Same scale, all three standing on the same invisible floor line, with generous empty space between the three figures so they do not touch or overlap.\n\nTHE THREE POSES (official exercise, follow exactly):\n1. DOWN position: face-down, chest touching the floor, elbows bent and tucked close to the ribs, palms flat on the floor directly under the shoulders. The KNEES are on the floor and the lower legs are bent up behind him with the feet in the air. Body is a straight line from the knees to the head.\n2. MIDDLE position: halfway up, elbows bent about 90 degrees, chest a hand-width above the floor, knees still on the floor, body still a straight line from knees to head.\n3. UP position: arms fully straightened, palms flat on the floor directly under the shoulders, upper body raised, KNEES STILL ON THE FLOOR, lower legs bent up behind with feet in the air, body one straight diagonal line from the knees to the head (hips NOT piked up, back NOT sagging).\n\nDraw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.\n\nBACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.",
+   "prompt_first_strip": "Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown THREE times, left to right, doing a KNEE PUSH-UP, strict side view facing right. This is a pose-by-pose animation reference, so all three figures must be the same character at the same scale. Same scale, all three standing on the same invisible floor line, with generous empty space between the three figures so they do not touch or overlap.\n\nCHARACTER (keep identical in every pose): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.\n\nTHE THREE POSES (official exercise, follow exactly):\n1. DOWN position: face-down, chest touching the floor, elbows bent and tucked close to the ribs, palms flat on the floor directly under the shoulders. The KNEES are on the floor and the lower legs are bent up behind him with the feet in the air. Body is a straight line from the knees to the head.\n2. MIDDLE position: halfway up, elbows bent about 90 degrees, chest a hand-width above the floor, knees still on the floor, body still a straight line from knees to head.\n3. UP position: arms fully straightened, palms flat on the floor directly under the shoulders, upper body raised, KNEES STILL ON THE FLOOR, lower legs bent up behind with feet in the air, body one straight diagonal line from the knees to the head (hips NOT piked up, back NOT sagging).\n\nDraw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.\n\nBACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows."
+  },
+  {
+   "key": "stationary-run-c1",
+   "exercise": "a STATIONARY RUN (running in place)",
+   "file": "ex5-stationary-run.png",
+   "poses": 4,
+   "kept": "retry take 3 of 4 (first batch lifted the same leg twice)",
+   "booklet": {
+    "name": "Stationary run",
+    "start": "Count a step each time left foot touches floor. Lift feet approximately 4 inches off floor.",
+    "movement": "Every 75 steps do 10 \"scissor jumps\". Repeat this sequence until required number of steps is completed.",
+    "notes": [
+     "Scissor jumps - Stand with right leg and left arm extended forward, and left leg and right arm extended backward.",
+     "Jump up - change position of arms and legs before landing. Repeat (arms shoulder high)."
+    ]
+   },
+   "learned": [
+    "First batch: the same (near) leg was lifted in both lift poses, so it read as hopping on one foot. Fix: name the near and far legs, shade the far one, and say 'the two lifts must use DIFFERENT legs'.",
+    "The model lifts the foot higher than the booklet's 4 inches. An edit pass ('lower the lifted foot to about 4 inches') brought it down; see edits.json."
+   ],
+   "prompt_with_reference": "Using the attached reference image ONLY for the character's appearance and art style (a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges). IGNORE the poses in the reference image completely.\n\nCreate a NEW wide 16:9 pose sheet of that same boy doing a STATIONARY RUN (running in place), shown FOUR times left to right, strict side view facing right. Same scale, same invisible floor line, wide empty gaps. He does not travel forward: jogging on the spot with small quick steps, the lifted foot only a few inches off the floor, knee bent only slightly, NOT a sprint stride, NOT high knees, NOT a long stride. Arms bent about 90 degrees and pumping like a jogger.\n\nThe boy's NEAR leg and near arm are closest to the viewer, in the normal colors. His FAR leg and far arm are in a noticeably darker shade. The two lifts must use DIFFERENT legs.\n\nTHE FOUR POSES (official exercise, follow exactly):\n1. NEAR FOOT LIFTED: the NEAR (lighter) foot lifted a few inches off the floor with the knee slightly bent; the FAR (darker) foot flat on the floor. Near arm bent and swinging forward, far arm bent and back.\n2. PASSING: both feet close to the floor under the hips, standing nearly upright, near arm back and far arm forward, both arms bent.\n3. FAR FOOT LIFTED: the FAR (darker) foot lifted a few inches off the floor with the knee slightly bent; the NEAR (lighter) foot planted flat. Far arm bent and forward, near arm bent and back. Clearly different from pose 1: the lifted foot is the darker one.\n4. PASSING: both feet close to the floor, nearly upright, near arm forward and far arm back, both arms bent.\n\nDraw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.\n\nBACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.",
+   "prompt_first_strip": "Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown FOUR times, left to right, doing a STATIONARY RUN (running in place), strict side view facing right. This is a pose-by-pose animation reference, so all four figures must be the same character at the same scale. Same scale, same invisible floor line, wide empty gaps. He does not travel forward: jogging on the spot with small quick steps, the lifted foot only a few inches off the floor, knee bent only slightly, NOT a sprint stride, NOT high knees, NOT a long stride. Arms bent about 90 degrees and pumping like a jogger.\n\nCHARACTER (keep identical in every pose): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.\n\nThe boy's NEAR leg and near arm are closest to the viewer, in the normal colors. His FAR leg and far arm are in a noticeably darker shade. The two lifts must use DIFFERENT legs.\n\nTHE FOUR POSES (official exercise, follow exactly):\n1. NEAR FOOT LIFTED: the NEAR (lighter) foot lifted a few inches off the floor with the knee slightly bent; the FAR (darker) foot flat on the floor. Near arm bent and swinging forward, far arm bent and back.\n2. PASSING: both feet close to the floor under the hips, standing nearly upright, near arm back and far arm forward, both arms bent.\n3. FAR FOOT LIFTED: the FAR (darker) foot lifted a few inches off the floor with the knee slightly bent; the NEAR (lighter) foot planted flat. Far arm bent and forward, near arm bent and back. Clearly different from pose 1: the lifted foot is the darker one.\n4. PASSING: both feet close to the floor, nearly upright, near arm forward and far arm back, both arms bent.\n\nDraw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.\n\nBACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows."
+  },
+  {
+   "key": "scissor-jumps-c1",
+   "exercise": "SCISSOR JUMPS",
+   "file": "ex5-scissor-jumps.png",
+   "poses": 4,
+   "kept": "take 1 of 4. Known weak spot: stance A and B look alike in profile; only shading differs",
+   "booklet": {
+    "name": "Stationary run",
+    "start": "Count a step each time left foot touches floor. Lift feet approximately 4 inches off floor.",
+    "movement": "Every 75 steps do 10 \"scissor jumps\". Repeat this sequence until required number of steps is completed.",
+    "notes": [
+     "Scissor jumps - Stand with right leg and left arm extended forward, and left leg and right arm extended backward.",
+     "Jump up - change position of arms and legs before landing. Repeat (arms shoulder high)."
+    ]
+   },
+   "learned": [
+    "Stance A and stance B look almost the same in profile; only the shading differs. A front view would fix it.",
+    "Stance B came out as a lunge with a bent back knee. An edit pass made it upright; see edits.json."
+   ],
+   "prompt_with_reference": "Using the attached reference image ONLY for the character's appearance and art style (a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges). IGNORE the poses in the reference image completely.\n\nCreate a NEW wide 16:9 pose sheet of that same boy doing SCISSOR JUMPS, shown FOUR times left to right, strict side view facing right. Same scale, wide empty gaps. The two standing poses rest on the same invisible floor line; the two jumping poses are drawn clearly higher, with both feet well above that line.\n\nTHE FOUR POSES (official exercise, follow exactly):\n1. STANCE A, on the floor: the leg NEAREST the viewer extended forward and the other leg extended backward in a wide scissor stance, both feet on the floor; the arm FARTHEST from the viewer extended forward and the near arm extended backward, both arms straight at SHOULDER HEIGHT.\n2. JUMP, in the air: jumped straight up, both feet well off the floor, legs and arms passing each other mid-switch (legs close together under the hips, arms crossing near the body), knees slightly bent.\n3. STANCE B, on the floor: the mirror of stance A. The leg FARTHEST from the viewer is now forward and the near leg is back; the NEAR arm extended forward and the far arm backward, arms straight at shoulder height, both feet on the floor.\n4. JUMP, in the air: the same airborne switching pose as pose 2, both feet well above the floor line.\n\nDraw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.\n\nBACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.",
+   "prompt_first_strip": "Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown FOUR times, left to right, doing SCISSOR JUMPS, strict side view facing right. This is a pose-by-pose animation reference, so all four figures must be the same character at the same scale. Same scale, wide empty gaps. The two standing poses rest on the same invisible floor line; the two jumping poses are drawn clearly higher, with both feet well above that line.\n\nCHARACTER (keep identical in every pose): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.\n\nTHE FOUR POSES (official exercise, follow exactly):\n1. STANCE A, on the floor: the leg NEAREST the viewer extended forward and the other leg extended backward in a wide scissor stance, both feet on the floor; the arm FARTHEST from the viewer extended forward and the near arm extended backward, both arms straight at SHOULDER HEIGHT.\n2. JUMP, in the air: jumped straight up, both feet well off the floor, legs and arms passing each other mid-switch (legs close together under the hips, arms crossing near the body), knees slightly bent.\n3. STANCE B, on the floor: the mirror of stance A. The leg FARTHEST from the viewer is now forward and the near leg is back; the NEAR arm extended forward and the far arm backward, arms straight at shoulder height, both feet on the floor.\n4. JUMP, in the air: the same airborne switching pose as pose 2, both feet well above the floor line.\n\nDraw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.\n\nBACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows."
+  }
+ ],
+ "edits": [
+  {
+   "target": "scissor-jumps-c1",
+   "problem": "Stance B (third figure) was a lunge with a bent back knee and a lean, not a clean mirror of stance A.",
+   "prompt": "Change: in the THIRD figure only (counting left to right, the second standing scissor stance), redraw the legs and arms as a clean mirror of the FIRST figure's stance. Both legs straight with the same wide stride as the first figure, torso upright (no forward lean, back knee NOT bent), but swapped: the leg that is forward in the first figure is now the back leg, and the leg that is back is now forward. Both arms stay straight at shoulder height, with the arm that is back in the first figure now forward and the arm that is forward now back. Keep the far-side arm and leg in their darker shade.\n\nPreserve: figures 1, 2 and 4 exactly as they are (pose, colors, position). In the third figure keep the face, hair, cyan tank top, red shorts, white socks, blue sneakers, outline weight and flat cartoon art style. Keep the flat magenta background, the image size, and the horizontal position of every figure.\n\nConstraints: no new objects, no text, no ground shadow, no redesign of the character.",
+   "result": "Form fixed in all 4 takes: straight legs, upright torso, no lunge. Untouched figures 96-98% the same shape. Stance B now looks almost the same as stance A in profile (inherent). Several takes lost the darker far-side arm.",
+   "kept": "sheets/candidates/scissor-jumps-upright-stance-b.png (take 3). Not wired in."
+  },
+  {
+   "target": "stationary-run-c1",
+   "problem": "The lifted foot rides higher than the booklet's 'about 4 inches'.",
+   "prompt": "Change: in FIGURES 1 AND 3 only (counting left to right, the two figures with one foot lifted), lower the lifted foot so it is only about 4 inches (10 cm) off the floor, with the knee bent only slightly, like a small jogging-on-the-spot step. The other foot stays flat on the floor. Keep which foot is lifted in each figure (figure 1: the lighter near foot; figure 3: the darker far foot).\n\nPreserve: figures 2 and 4 exactly as they are. In figures 1 and 3 keep the face, hair, arms, cyan tank top, red shorts, white socks, blue sneakers, outline weight and flat cartoon art style. Keep the flat magenta background, the image size, and the horizontal position and size of every figure.\n\nConstraints: no new objects, no text, no ground shadow, no redesign of the character.",
+   "result": "Lifted foot visibly lower in takes 1-3, far-side shading kept. Untouched figures 96-99% the same shape.",
+   "kept": "sheets/candidates/stationary-run-lower-lift.png (take 3). Not wired in."
+  }
+ ]
+}

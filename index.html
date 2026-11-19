@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>5BX Sprite Boy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;600&display=swap">
+<style>
+/* Layout concept: one column on a phone, the viewer splits into stage + controls on wide screens.
+   Look: the video's own world (open sky blue, pine, sand, one hot orange) on cool neutrals. */
+:root {
+  --bg: #edf3f7; --surface: #ffffff; --ink: #121c26; --muted: #4b5b69; --line: #cbd8e2;
+  --link: #135a9e; --accent: #ff9a3c; --on-accent: #121c26; --stage: #1b2430; --chip: #e3ecf2;
+  --font-display: "Oswald", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0c131a; --surface: #141e28; --ink: #e9eff4; --muted: #9fb0be; --line: #2a3947; --link: #6cb6ff; --stage: #0a1017; --chip: #1d2a36; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0c131a; --surface: #141e28; --ink: #e9eff4; --muted: #9fb0be; --line: #2a3947; --link: #6cb6ff; --stage: #0a1017; --chip: #1d2a36; color-scheme: dark; }
+
+body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--font-body); }
+* { box-sizing: border-box; }
+.wrap { max-width: 1060px; margin: 0 auto; padding-block: 20px 56px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 40px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing: .01em; line-height: 1.1; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2.2rem, 7vw, 3.6rem); text-transform: uppercase; }
+h2 { font-size: 1.6rem; text-transform: uppercase; }
+h3 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 500; }
+p { margin: 0; max-width: 62ch; }
+.lede { font-size: 1.15rem; color: var(--muted); margin-top: 10px; }
+section { display: grid; gap: 14px; min-width: 0; }
+.kicker { font-family: var(--font-display); letter-spacing: .12em; text-transform: uppercase; font-size: .85rem; color: var(--link); margin-bottom: 6px; }
+video, canvas, figure img { display: block; width: 100%; height: auto; border-radius: 6px; background: var(--stage); }
+canvas { aspect-ratio: 16 / 9; }
+.note { color: var(--muted); font-size: .92rem; }
+
+.viewer { display: grid; gap: 16px; min-width: 0; }
+@media (min-width: 880px) { .viewer { grid-template-columns: minmax(0, 1fr) 340px; align-items: start; } }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: grid; gap: 14px; min-width: 0; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; }
+button, .chip { font: 500 .95rem var(--font-body); color: var(--ink); background: var(--chip); border: 1px solid var(--line); border-radius: 999px; padding: 9px 14px; min-height: 40px; cursor: pointer; }
+button[aria-pressed="true"], button.on { background: var(--accent); color: var(--on-accent); border-color: transparent; font-weight: 600; }
+button:focus-visible, input:focus-visible { outline: 3px solid var(--link); outline-offset: 2px; }
+.toggles { display: grid; gap: 4px 12px; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.toggles label { display: flex; align-items: center; gap: 8px; min-height: 36px; font-size: .95rem; }
+input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--link); }
+.hue { display: grid; grid-template-columns: 62px 1fr 28px; gap: 10px; align-items: center; min-height: 40px; }
+.hue span.sw { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--ink); }
+input[type="range"] { width: 100%; height: 28px; accent-color: var(--link); }
+.status { color: var(--muted); font-size: .9rem; min-height: 1.3em; }
+
+table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .06em; font-weight: 500; font-size: .85rem; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+figure { margin: 0; display: grid; gap: 8px; min-width: 0; }
+figcaption { color: var(--muted); font-size: .92rem; max-width: 62ch; }
+.pair { display: grid; gap: 22px; }
+@media (min-width: 880px) { .pair { grid-template-columns: 1fr 1fr; } }
+ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; max-width: 62ch; }
+.warn { border-left: 4px solid var(--accent); padding: 8px 12px; background: var(--surface); border-radius: 0 6px 6px 0; max-width: 62ch; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<main class="wrap">
+  <header>
+    <div class="kicker">Chart 1 · level A+ · 11 min 40 s</div>
+    <h1>5BX Sprite Boy</h1>
+    <p class="lede">A full 5BX workout video, built from layers you can switch, swap and recolor. Everything on this page runs from the same files as the real video.</p>
+  </header>
+
+  <section id="watch">
+    <h2>Watch</h2>
+    <video id="reel" controls playsinline preload="metadata" src="reel.mp4" aria-label="Forty-second highlight reel"></video>
+    <p class="note">A 40-second cut: the four exercises, the run, the scissor jumps, then the same video recolored, then with a mat, a shadow and a prop. The full video plays every exercise at the booklet's real pace, with a countdown and break cards.</p>
+  </section>
+
+  <section id="take-apart">
+    <h2>Take it apart</h2>
+    <p>Pick an exercise, then switch layers off, add a mat, or change his colors. This is the same build the video uses.</p>
+    <div class="viewer">
+      <div style="display:grid; gap:10px; min-width:0">
+        <canvas id="stage" aria-label="Animated preview of the sprite boy doing the selected exercise"></canvas>
+        <div class="row" id="slots" role="group" aria-label="Exercise"></div>
+        <div class="row">
+          <button id="play" type="button" aria-pressed="true">Pause</button>
+          <span class="row" id="speeds" role="group" aria-label="Playback speed"></span>
+        </div>
+        <p class="status" id="status" role="status">Loading…</p>
+      </div>
+      <div class="panel">
+        <div>
+          <h3>Backdrop layers</h3>
+          <div class="toggles" id="layers"></div>
+        </div>
+        <div>
+          <h3>Scene</h3>
+          <div class="toggles" id="props"></div>
+        </div>
+        <div>
+          <h3>His colors</h3>
+          <div id="hues" style="display:grid; gap:2px"></div>
+          <div class="row" id="presets" style="margin-top:10px"></div>
+          <p class="note" style="margin-top:8px">Colors change on the cut-out boy only. No regeneration, no credits.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cost">
+    <h2>What a change costs</h2>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Change</th><th>Credits</th><th>Time</th></tr></thead>
+      <tbody>
+        <tr><td>Shoe, shorts or tank color</td><td class="num">none</td><td>seconds for one exercise</td></tr>
+        <tr><td>Swap one backdrop layer, or a whole backdrop</td><td class="num">none</td><td>one re-render</td></tr>
+        <tr><td>Add a mat, a shadow or any prop picture</td><td class="num">none</td><td>about 10 s for one exercise</td></tr>
+        <tr><td>Change the wording, or switch language</td><td class="num">none</td><td>one re-render</td></tr>
+        <tr><td>Portrait instead of landscape</td><td class="num">none</td><td>about 8 s for one exercise</td></tr>
+        <tr><td>Fix one pose by editing the strip</td><td class="num">about 1,700 for 4 takes (about $0.31)</td><td>about a minute, then a check</td></tr>
+        <tr><td>Regenerate a whole exercise strip</td><td class="num">about 7,300 for 4 takes (about $1.33)</td><td>about a minute, then a check</td></tr>
+        <tr><td>A new look for the boy</td><td class="num">about 56,000 (about $10)</td><td>an afternoon</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Measured on the first build. The full 11:40 video re-renders in about 5½ minutes; an unchanged rebuild takes 3 seconds because every piece is cached.</p>
+  </section>
+
+  <section id="edit-test">
+    <h2>Fixing a pose by editing</h2>
+    <p>The image tool can be told "change this, keep that". Untouched figures kept 96 to 99 percent of their shape, at about a quarter of the cost of regenerating.</p>
+    <div class="pair">
+      <figure>
+        <img src="edit-run.jpg" alt="Running strip before and after: the lifted foot is lower in the second row" loading="lazy">
+        <figcaption><b>Run.</b> Top: the original. Bottom: the lifted foot brought down toward the booklet's four inches.</figcaption>
+      </figure>
+      <figure>
+        <img src="edit-scissor.jpg" alt="Scissor jump strip before and after: the third figure is no longer a lunge" loading="lazy">
+        <figcaption><b>Scissor jumps.</b> Top: the original. Bottom: the third figure is no longer a lunge. In profile, the two stances still look alike; only a front view can fix that.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="prompts">
+    <h2>Make the strips with any tool</h2>
+    <p>Every prompt, the settings that worked, what went wrong and the fix are published, so the strips can be made with other image tools, possibly more cheaply.</p>
+    <p><a href="prompts.html"><b>Open the prompts</b></a>, with a copy button on each one.</p>
+  </section>
+
+  <section id="next">
+    <h2>What is next</h2>
+    <ul class="plain">
+      <li><b>Charts 2 to 6.</b> 26 more exercise strips, each written from the booklet's own wording. Astride and jack jumps and chart 3's toe touch cannot be read from the side, so they likely need a front view.</li>
+      <li><b>Not built yet:</b> voiceover, a character on the break cards, a drag-and-drop editor, a different backdrop for each chart.</li>
+    </ul>
+    <p class="warn">Exercise form has been checked against the booklet's wording, not by someone who knows the exercises. That review comes before this is shared as instruction.</p>
+  </section>
+</main>
+
+<script>
+(async function () {
+  const $ = (id) => document.getElementById(id), status = $('status');
+  const fail = (e) => { status.textContent = 'Could not load the viewer: ' + e.message; console.error(e); };
+  try {
+    const D = await (await fetch('data.json')).json();
+    const W = D.frame[0], H = D.frame[1], K = W / 1920;                 // K scales the full-size HUD numbers to this canvas
+    const cv = $('stage'); cv.width = W; cv.height = H; const ctx = cv.getContext('2d');
+    const loadImg = (src) => new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = () => no(new Error('image failed: ' + src)); i.src = src; });
+    const layerImgs = await Promise.all(D.layers.map((l) => loadImg(l.file)));
+    const spriteImgs = {}; await Promise.all(D.order.map(async (s) => { spriteImgs[s] = await Promise.all(D.slots[s].poses.map((p) => loadImg(p.file))); }));
+    const propImgs = {}; await Promise.all(D.props.filter((p) => p.kind === 'image').map(async (p) => { propImgs[p.id] = await loadImg(p.file); }));
+
+    const defaults = { shorts: 0, shoes: 225, tank: 195 };              // where each color sits on the hue wheel today
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const st = { slot: 'ex1', playing: !reduce, speed: 4, time: 0, last: performance.now(), layers: {}, props: {}, hue: { shorts: null, shoes: null, tank: null } };
+    D.layers.forEach((l) => (st.layers[l.name] = true)); D.props.forEach((p) => (st.props[p.id] = false));
+
+    /* ---------- recolor: same hue-band rule as the video build ---------- */
+    const inBand = (h, b) => (b[0] > b[1] ? h >= b[0] || h <= b[1] : h >= b[0] && h <= b[1]);
+    function rgb2hsv(r, g, b) { r /= 255; g /= 255; b /= 255; const mx = Math.max(r, g, b), mn = Math.min(r, g, b), d = mx - mn; let h = 0;
+      if (d) { if (mx === r) h = ((g - b) / d) % 6; else if (mx === g) h = (b - r) / d + 2; else h = (r - g) / d + 4; h *= 60; if (h < 0) h += 360; } return [h, mx ? d / mx : 0, mx]; }
+    function hsv2rgb(h, s, v) { const c = v * s, x = c * (1 - Math.abs(((h / 60) % 2) - 1)), m = v - c; let r, g, b;
+      if (h < 60) [r, g, b] = [c, x, 0]; else if (h < 120) [r, g, b] = [x, c, 0]; else if (h < 180) [r, g, b] = [0, c, x]; else if (h < 240) [r, g, b] = [0, x, c]; else if (h < 300) [r, g, b] = [x, 0, c]; else [r, g, b] = [c, 0, x];
+      return [Math.round((r + m) * 255), Math.round((g + m) * 255), Math.round((b + m) * 255)]; }
+    const cache = new Map();
+    function tinted(img, tag) {
+      const ch = Object.entries(st.hue).filter(([, v]) => v !== null); if (!ch.length) return img;
+      const key = tag + '|' + ch.map(([k, v]) => k + v).join(','); if (cache.has(key)) return cache.get(key);
+      const c = document.createElement('canvas'); c.width = img.width; c.height = img.height; const x = c.getContext('2d'); x.drawImage(img, 0, 0);
+      const id = x.getImageData(0, 0, c.width, c.height), px = id.data;
+      for (let i = 0; i < px.length; i += 4) { if (px[i + 3] < 16) continue; const [h, s, v] = rgb2hsv(px[i], px[i + 1], px[i + 2]);
+        for (const [name, target] of ch) { const r = D.regions[name]; if (inBand(h, r.h) && s >= r.smin && v >= r.vmin) { const o = hsv2rgb(target, s, v); px[i] = o[0]; px[i + 1] = o[1]; px[i + 2] = o[2]; break; } } }
+      x.putImageData(id, 0, 0); cache.set(key, c); return c;
+    }
+
+    /* ---------- drawing ---------- */
+    const rr = (x, y, w, h, r) => { ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(x, y, w, h, r); else ctx.rect(x, y, w, h); ctx.fill(); };
+    function drawProps(info, z) {
+      for (const p of D.props) { if (!st.props[p.id] || (p.z || 'behind') !== z) continue; if (p.slots !== '*' && !p.slots.includes(st.slot)) continue;
+        const u0 = info.union[0], u1 = info.union[1], cx = (u0 + u1) / 2, uw = u1 - u0, fy = D.floor;
+        if (p.kind === 'mat') { const w = uw * (1 + 2 * (p.pad ?? .12)), t = (p.thickness ?? 30) * K * 1.0, x0 = cx - w / 2;
+          ctx.fillStyle = p.edge; rr(x0, fy, w, t, t / 2); ctx.fillStyle = p.color; rr(x0, fy, w, t * .62, t / 2); }
+        else if (p.kind === 'shadow') { const rx = (uw * (p.width ?? .95)) / 2, ry = ((p.height ?? 26) * K) / 2 + 3;
+          ctx.save(); ctx.translate(cx, fy + 2); ctx.scale(1, ry / rx); const g = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
+          g.addColorStop(0, `rgba(0,0,0,${p.opacity ?? .28})`); g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, rx, 0, 7); ctx.fill(); ctx.restore(); }
+        else if (p.kind === 'image') { const im = propImgs[p.id], w = W * (p.scale ?? .1), h = im.height * w / im.width; ctx.drawImage(im, (p.x ?? .5) * W - w / 2, fy - h + (p.lift ?? 0) * K, w, h); }
+      }
+    }
+    function hudText(s, y, size, fill) { ctx.font = `600 ${size}px Oswald, "Arial Narrow", Arial, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'top'; ctx.lineJoin = 'round';
+      ctx.lineWidth = size * .16; ctx.strokeStyle = 'rgba(16,24,32,.92)'; ctx.strokeText(s, W / 2, y); ctx.fillStyle = fill; ctx.fillText(s, W / 2, y); }
+    function frame() {
+      const info = D.slots[st.slot], T = st.time;
+      ctx.fillStyle = '#1b2430'; ctx.fillRect(0, 0, W, H);
+      D.layers.forEach((l, i) => { if (st.layers[l.name]) ctx.drawImage(layerImgs[i], 0, 0, W, H); });
+      drawProps(info, 'behind');
+      const n = info.cycle.length, per = info.cycle_s / n, tc = ((T % info.cycle_s) + info.cycle_s) % info.cycle_s, i = Math.min(n - 1, Math.floor(tc / per)), lt = tc - i * per;
+      const fade = Math.min(0.30, 0.45 * per); let a = 0; if (lt > per - fade) { const q = (lt - (per - fade)) / fade; a = q * q * (3 - 2 * q); }
+      const cur = info.cycle[i] - 1, nxt = info.cycle[(i + 1) % n] - 1, P = info.poses;
+      const put = (k, alpha) => { const p = P[k]; ctx.globalAlpha = alpha; ctx.drawImage(tinted(spriteImgs[st.slot][k], st.slot + ':' + k), p.x, p.y, p.w, p.h); ctx.globalAlpha = 1; };
+      if (a > 0 && nxt !== cur) { put(cur, 1 - a); put(nxt, a); } else put(cur, 1);
+      drawProps(info, 'front');
+      hudText(info.kicker, H * .02, 26 * K, '#ffd36b'); hudText(info.title.toUpperCase(), H * .02 + 38 * K, 56 * K, '#ffffff'); hudText(info.target, H * .02 + 104 * K, 44 * K, '#ff9a3c');
+      const left = Math.max(0, info.allot - (T % info.allot)), m = Math.floor(left / 60), s = Math.floor(left % 60);
+      hudText(`${m}:${String(s).padStart(2, '0')}`, D.floor + 18 * K, 84 * K, '#ffffff'); hudText(D.strings.left, D.floor + 18 * K + 92 * K, 24 * K, '#fff2cf');
+      ctx.fillStyle = 'rgba(16,24,32,.55)'; ctx.fillRect(0, H - 16 * K, W, 16 * K); ctx.fillStyle = '#ff9a3c'; ctx.fillRect(0, H - 16 * K, W * ((T % info.allot) / info.allot), 16 * K);
+    }
+    function tick(now) { const dt = Math.min(0.1, (now - st.last) / 1000); st.last = now; if (st.playing) st.time += dt * st.speed; frame(); requestAnimationFrame(tick); }
+
+    /* ---------- controls ---------- */
+    const mk = (tag, props = {}, kids = []) => { const e = Object.assign(document.createElement(tag), props); kids.forEach((k) => e.append(k)); return e; };
+    D.order.forEach((s) => { const b = mk('button', { type: 'button', textContent: D.slots[s].title.replace(/^./, (c) => c.toUpperCase()).replace(/ jumps?$/i, ' jumps'), id: 'slot-' + s });
+      b.setAttribute('aria-pressed', s === st.slot); b.onclick = () => { st.slot = s; st.time = 0; document.querySelectorAll('#slots button').forEach((x) => x.setAttribute('aria-pressed', x === b)); }; $('slots').append(b); });
+    const pb = $('play'); pb.setAttribute('aria-pressed', st.playing); pb.textContent = st.playing ? 'Pause' : 'Play';
+    pb.onclick = () => { st.playing = !st.playing; pb.setAttribute('aria-pressed', st.playing); pb.textContent = st.playing ? 'Pause' : 'Play'; };
+    [[1, 'Real pace'], [4, '4×'], [10, '10×']].forEach(([v, label]) => { const b = mk('button', { type: 'button', textContent: label }); b.setAttribute('aria-pressed', v === st.speed);
+      b.onclick = () => { st.speed = v; document.querySelectorAll('#speeds button').forEach((x) => x.setAttribute('aria-pressed', x === b)); }; $('speeds').append(b); });
+    const toggle = (host, id, label, obj, key) => { const l = mk('label'), c = mk('input', { type: 'checkbox', id, checked: obj[key] }); c.onchange = () => (obj[key] = c.checked); l.append(c, label); host.append(l); };
+    D.layers.forEach((l) => toggle($('layers'), 'layer-' + l.name, l.name.replace('-', ' '), st.layers, l.name));
+    D.props.forEach((p) => toggle($('props'), 'prop-' + p.id, { mat: 'Floor mat', 'contact-shadow': 'Soft shadow', 'water-bottle': 'Water bottle' }[p.id] || p.id, st.props, p.id));
+    const labels = { shorts: 'Shorts', shoes: 'Shoes', tank: 'Tank' }, sliders = {};
+    Object.keys(labels).forEach((k) => { const row = mk('div', { className: 'hue' }), name = mk('label', { textContent: labels[k], htmlFor: 'hue-' + k }), sw = mk('span', { className: 'sw' }),
+      r = mk('input', { type: 'range', min: 0, max: 359, value: defaults[k], id: 'hue-' + k }); sw.style.background = `hsl(${defaults[k]} 75% 50%)`; sliders[k] = { r, sw };
+      r.oninput = () => { st.hue[k] = +r.value; sw.style.background = `hsl(${r.value} 75% 50%)`; }; row.append(name, r, sw); $('hues').append(row); });
+    const setHues = (o) => { Object.keys(labels).forEach((k) => { st.hue[k] = k in o ? o[k] : null; const v = st.hue[k] ?? defaults[k]; sliders[k].r.value = v; sliders[k].sw.style.background = `hsl(${v} 75% 50%)`; }); };
+    [['Original', {}], ['Red shoes, blue shorts', { shoes: 2, shorts: 215 }], ['Yellow shorts', { shorts: 52 }], ['Purple tank', { tank: 275 }]].forEach(([label, o]) => { const b = mk('button', { type: 'button', textContent: label }); b.onclick = () => setHues(o); $('presets').append(b); });
+
+    status.textContent = 'Real pace is the video’s own timing; 4× and 10× show the loop faster.';
+    requestAnimationFrame(tick);
+  } catch (e) { fail(e); }
+})();
+</script>
+
+</html>
