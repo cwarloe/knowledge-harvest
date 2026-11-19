@@ -33,6 +33,13 @@ k = key(Image.open(os.path.join(ROOT, "sheets", reg["strips"]["toe-touch-c1"]["f
 r = recolor(k, {"shorts": 215, "shoes": 2, "tank": 120})
 check(np.array_equal(np.array(k)[..., 3], np.array(r)[..., 3]), "recolor leaves transparency untouched")
 check(np.array_equal(np.array(k), np.array(recolor(k, {}))), "recolor with no changes is a no-op")
+# a strip that already has real transparency must give the same sprites as the magenta route
+from keyer import has_real_transparency
+src = os.path.join(ROOT, "sheets", reg["strips"]["knee-push-up-c1"]["file"]); mg = Image.open(src); tp = key(mg, **theme["key"])
+check(not has_real_transparency(mg) and has_real_transparency(tp), "a real transparent strip is detected; a magenta one is not")
+pm = [p for p, _ in build.split_rgba(key(mg, **theme["key"]), 3, "magenta")]; pt = [p for p, _ in build.split_rgba(key(tp, **theme["key"]), 3, "transparent")]
+check(len(pm) == len(pt) == 3 and all(x.size == y.size and np.array_equal(np.array(x)[..., 3] > 128, np.array(y)[..., 3] > 128) for x, y in zip(pm, pt)), "transparent route and magenta route give identical sprites")
+check(not has_real_transparency(Image.new("RGB", (400, 200), (210, 210, 210))), "a painted-in checkerboard is not mistaken for transparency")
 for c, slots in reg["charts"].items():
     for slot, key_ in slots.items(): check(key_ in reg["strips"], f"chart {c} slot {slot} points at a known strip")
 

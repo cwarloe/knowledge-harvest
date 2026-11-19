@@ -16,6 +16,22 @@ Why one image and not one image per pose: generated separately, the character dr
 4. **Image settings:** wide 16:9, at least about 1300 pixels across, 4 takes per prompt.
 5. **The plan's own wording for the exercise**, so you can check form: `python3 kit/prompt.py --booklet --data path/to/5bx-charts.json --chart 1 --slot ex3`.
 
+## Magenta background or a transparent one?
+
+The kit accepts either. **Default to magenta**; use a transparent PNG only if your tool gives you a real one.
+
+| | Flat magenta background (the default) | Transparent PNG straight from the tool |
+|---|---|---|
+| Works in | Any image tool, because it is just a colour in the prompt | Only tools that really output transparency. Support varies, and some will not |
+| Cutting out | The kit keys it out (one rule, `kit/keyer.py`) | Nothing to do |
+| Edges | Clean, with a despill step for the pink rim | Depends on the tool: soft or haloed edges are common |
+| Main risk | The background is not exactly #FF00FF, and a ground shadow appears anyway (both handled) | **A checkerboard drawn into the picture instead of real transparency.** That is not transparency, and the boy ends up surrounded by grey squares |
+| Tested here | Yes, end to end, on all six strips | Tested with a stand-in: a transparent version of a real strip gives identical sprites. Not tested with a tool that makes its own |
+
+How to tell a real transparent PNG from a fake: open it on a dark or coloured background. A real one shows that colour through the gaps. A fake still shows grey and white squares. The kit also refuses to treat a picture with painted-in squares as transparent.
+
+If you try a transparent route, check the edges at full size (look for a light halo around the hair and shoes) and compare one pose against the magenta version before committing to it.
+
 ## The steps
 
 1. Open `prompts/PROMPTS.md` and copy the prompt for your exercise.
@@ -54,7 +70,7 @@ I only ran this through ElevenLabs: `gemini-3-pro-image` to generate, `gpt-image
 
 - **Most current image models accept a reference image** in the chat or API. Some have a dedicated "character reference" or "style reference" setting. Read the tool's own current documentation for how, and test with the leg-raise prompt, which shows quickly whether the reference is leaking.
 - **If a tool cannot take a reference image at all:** use the first-strip prompt (character in words) for every strip, expect more drift between exercises, and fix drift with recolouring and edit passes.
-- **If a tool will not draw a flat magenta background:** use any flat plain colour. The key is one short rule in `kit/keyer.py` and is easy to change to another colour. Ask for that change and the kit will take it.
+- **If a tool will not draw a flat magenta background:** either ask it for a real transparent PNG (the kit takes that as is, see above) or use any flat plain colour. The key is one short rule in `kit/keyer.py` and is easy to change to another colour.
 - **If the image is not exactly 16:9 or the size differs:** that is fine. Poses are cut out by shape and scaled, so only the pose count and clean separation matter.
 - **Check each tool's terms** before using generated art in anything you publish or sell.
 

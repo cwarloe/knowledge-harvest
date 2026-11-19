@@ -14,7 +14,16 @@ def magenta_excess(rgb):
     return np.minimum(r, b) - g
 
 
+def has_real_transparency(im):
+    """True for a PNG that already carries a see-through background (not a picture of a checkerboard)."""
+    if im.mode not in ("RGBA", "LA", "PA") and "transparency" not in im.info: return False
+    a = np.array(im.convert("RGBA"))[..., 3]
+    return bool((a < 250).mean() > 0.05)          # a real cut-out has a lot of see-through pixels
+
+
 def key(im, lo=28, hi=95):
+    """Magenta background -> transparency. A strip that already has real transparency is used as it is."""
+    if has_real_transparency(im): return im.convert("RGBA")
     rgb = np.array(im.convert("RGB"))
     ex = magenta_excess(rgb)
     alpha = np.clip((hi - ex) / (hi - lo), 0, 1)

@@ -108,6 +108,7 @@ so each one needs its own strips: **26 more across the five charts** (`docs/CHAR
 - **The character is locked in `config/character.json`:** blue sneakers, no green shoes, original clothing. It is pasted into every prompt.
 - **Don't fight the shadow.** The model adds a ground shadow even when told not to. The key removes it.
 - **Key by hue, not by exact colour.** The background is not exactly #FF00FF. See `kit/keyer.py`.
+- **Magenta or transparent: either works.** Default to magenta (works in every tool). A tool that gives a *real* transparent PNG can be used as is; a checkerboard painted into the picture is not transparency. See `docs/HOW-TO-GENERATE-STRIPS.md`.
 - **Nothing about the plan is typed into this kit.** Reps, steps, breaks, jump windows all come from the data file.
 
 ## Known weak spots
