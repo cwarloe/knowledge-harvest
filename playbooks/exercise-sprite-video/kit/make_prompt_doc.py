@@ -62,7 +62,7 @@ def main():
     if not specs: sys.exit(f"no prompts for chart {a.chart} in prompts/strips.json")
     chart = next(c for c in data["charts"] if c["id"] == a.chart)
     def pretty(v):
-        i = {"ex1": 0, "ex2": 1, "ex3": 2, "ex4": 3}.get(v["slot"])
+        i = {"ex1": 0, "ex2": 1, "ex3": 2, "ex4": 3, "run": 4}.get(v["slot"])
         name = chart["exercises"][i]["name"] if i is not None else chart["exercises"][4].get("jumpName", v["exercise"])
         return name[0].upper() + name[1:]
 
@@ -86,7 +86,8 @@ def main():
     for row in t.rows:
         for c, w in zip(row.cells, (0.4, 2.2, 0.7, 0.7, 2.7)): c.width = Inches(w)
     doc.add_paragraph().paragraph_format.space_after = Pt(2)
-    para(doc, "Nothing to make for the stationary run: chart 2 uses the same wording as chart 1 (lift the feet about 4 inches), so chart 1's run strip is reused.", size=10.5, color=MUTED)
+    if not any(v["slot"] == "run" for _, v in specs):
+        para(doc, f"Nothing to make for the stationary run: chart {a.chart} words it the same as an earlier chart, so that chart's run strip is reused.", size=10.5, color=MUTED)
 
     doc.add_heading("How to use it", 1)
     bullets(doc, [

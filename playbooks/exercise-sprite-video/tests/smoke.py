@@ -89,10 +89,12 @@ with tempfile.TemporaryDirectory() as tmp:
         check({q["key"] for q in pj["strips"]} >= set(reg["strips"]) and all("prompt_with_reference" in q and "prompt_first_strip" in q for q in pj["strips"]), f"published prompts cover every registered strip and the {sum(1 for q in pj['strips'] if not q['image'])} not made yet, with and without a reference")
         docs = [f for f in os.listdir(demo) if f.endswith("-image-prompts.docx")]
         check(bool(docs), f"a Word document of prompts is built for each later chart ({', '.join(docs)})")
-        if docs:
-            import docx as _d
-            txt = "\n".join(p_.text for p_ in _d.Document(os.path.join(demo, docs[0])).paragraphs) + "\n".join(c.text for t_ in _d.Document(os.path.join(demo, docs[0])).tables for r_ in t_.rows for c in r_.cells)
-            check(txt.count("PROMPT 1") == 5 and txt.count("PROMPT 2") == 5 and "charles" not in txt.lower(), "the chart 2 document holds 5 strips x 2 prompts and no personal names")
+        import docx as _d
+        for dn in docs:
+            cid = int(dn.split("-")[1]); want_n = sum(1 for q in json.load(open(os.path.join(ROOT, "prompts", "strips.json")))["strips"].values() if q.get("chart") == cid)
+            dd_ = _d.Document(os.path.join(demo, dn))
+            txt = "\n".join(p_.text for p_ in dd_.paragraphs) + "\n".join(c.text for t_ in dd_.tables for r_ in t_.rows for c in r_.cells)
+            check(txt.count("PROMPT 1") == want_n and txt.count("PROMPT 2") == want_n and "charles" not in txt.lower(), f"{dn} holds {want_n} strips x 2 prompts and no personal names")
         check(not any(w in open(os.path.join(demo, "PROMPTS.md"), encoding="utf-8").read().lower() for w in ("charles", "@gmail")), "published prompts carry no personal names or addresses")
         check(os.path.exists(os.path.join(demo, "index.html")) and "5BX Sprite Boy" in open(os.path.join(demo, "index.html"), encoding="utf-8").read(), "demo index.html written")
     else: print(r.stderr[-600:])
