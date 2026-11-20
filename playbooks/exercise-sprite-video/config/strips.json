@@ -230,14 +230,16 @@
     "back-extension-arms-sideways-c4": {
       "file": "c4-ex3-back-extension-arms-sideways.png",
       "poses": 3,
-      "anchor": "hips",
+      "anchor": "span-center",
       "cycle": [
         1,
         2,
         3,
         2
       ],
-      "reps_per_cycle": 1
+      "reps_per_cycle": 1,
+      "rows": 2,
+      "row": 0
     },
     "wide-hand-push-up-c4": {
       "file": "c4-ex4-wide-hand-push-up.png",
@@ -312,7 +314,8 @@
     "4": {
       "ex2": "sit-up-toe-touch-c4",
       "ex4": "wide-hand-push-up-c4",
-      "run": "high-knee-run-c4"
+      "run": "high-knee-run-c4",
+      "ex3": "back-extension-arms-sideways-c4"
     },
     "5": {
       "run": "high-knee-run-c4"

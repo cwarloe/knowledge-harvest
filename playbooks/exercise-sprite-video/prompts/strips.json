@@ -643,9 +643,9 @@
       "chart": 4,
       "slot": "ex3",
       "exercise": "a BACK EXTENSION WITH THE ARMS STRETCHED SIDEWAYS",
-      "kept": "(not made yet)",
-      "view": "three-quarter view from slightly above, looking down at him, so that both outstretched arms are visible, facing right, with the SAME camera angle in every pose",
-      "layout": "In every pose he lies FACE DOWN, flat on his belly, with his HEAD ON THE RIGHT and his FEET ON THE LEFT. Same scale, all on the same invisible floor line, wide empty gaps between figures.",
+      "kept": "ChatGPT retake 1, row 1 (front view). The side three-quarter row failed: the near arm trailed back along the body.",
+      "view": "seen from the FRONT and slightly above, his head nearer the camera and his feet farther away, so that both arms stick out to the left and right of his body like a T",
+      "layout": "In every pose he lies FACE DOWN, flat on his belly, head toward the camera. Same scale, all on the same invisible floor line, wide empty gaps between figures.",
       "rule": "KEY BODY RULE FOR ALL THREE POSES: his arms are stretched straight out SIDEWAYS from the shoulders, like the letter T, one arm out to each side of his body, palms down. His arms are NOT under his thighs and NOT in front of him.",
       "poses": [
         "START: lying completely flat face down, legs straight and together, chin near the floor, both arms stretched straight out sideways on the floor.",
@@ -659,12 +659,13 @@
         "Legs together, the same camera angle in every pose"
       ],
       "draft": [
-        "Stretched-out arms point toward and away from the camera in a pure side view, which would hide them. I asked for a three-quarter view from slightly above. If the arms still do not show, try 'seen from above and slightly in front of his head' and tell me what you get."
+        "Front view chosen after a two-camera test: it is the only one that shows both arms as a T. The lift reads as the head and chest rising toward the camera and the feet rising behind; it is subtler than in a side view.",
+        "A side three-quarter view made the near arm trail back along the body (a swimmer, not a T), so it was rejected."
       ],
       "suggest": {
         "file": "c4-ex3-back-extension-arms-sideways.png",
         "poses": 3,
-        "anchor": "hips",
+        "anchor": "span-center",
         "cycle": [
           1,
           2,

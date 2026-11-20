@@ -1003,7 +1003,7 @@
     {
      "slot": "ex3",
      "name": "Back extension, arms sideways",
-     "built": false
+     "built": true
     },
     {
      "slot": "ex4",
@@ -1062,6 +1062,47 @@
      "kicker": "EXERCISE 2 OF 5",
      "title": "Sit-up, toe touch",
      "target": "22 reps"
+    },
+    "ex3": {
+     "strip": "back-extension-arms-sideways-c4",
+     "cycle": [
+      1,
+      2,
+      3,
+      2
+     ],
+     "cycle_s": 1.2,
+     "allot": 60,
+     "poses": [
+      {
+       "file": "sprites/c4/back-extension-arms-sideways-c4/p1.png",
+       "x": 200.23,
+       "y": 219.63,
+       "w": 880,
+       "h": 363
+      },
+      {
+       "file": "sprites/c4/back-extension-arms-sideways-c4/p2.png",
+       "x": 209.59,
+       "y": 202.78,
+       "w": 857,
+       "h": 367
+      },
+      {
+       "file": "sprites/c4/back-extension-arms-sideways-c4/p3.png",
+       "x": 207.72,
+       "y": 156.0,
+       "w": 865,
+       "h": 414
+      }
+     ],
+     "union": [
+      200.23,
+      1079.77
+     ],
+     "kicker": "EXERCISE 3 OF 5",
+     "title": "Back extension, arms sideways",
+     "target": "50 reps"
     },
     "ex4": {
      "strip": "wide-hand-push-up-c4",
@@ -1155,6 +1196,7 @@
    },
    "order": [
     "ex2",
+    "ex3",
     "ex4",
     "run"
    ],

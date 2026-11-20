@@ -1,80 +1,80 @@
 {
  "version": "4",
  "source": "c4-ex3-back-extension-arms-sideways.png",
- "source_hash": "3a1e9c67a3e4",
+ "source_hash": "3423b690fe2e",
  "key": {
   "lo": 28,
   "hi": 95
  },
  "n": 3,
- "rows": null,
- "row": null,
+ "rows": 2,
+ "row": 0,
  "erase": null,
  "poses": [
   {
    "file": "p1.png",
    "offset": [
-    25,
-    427
+    49,
+    146
    ],
    "size": [
-    531,
-    200
+    470,
+    194
    ],
    "anchors": {
-    "head": 262.25,
-    "span-left": 183.0,
-    "span-right": 247.0,
-    "span-center": 215.0,
-    "hips": 185.59453645945365,
-    "shoes": 37.08716136631331,
-    "shoe-left": 6.0,
-    "shoe-right": 90.0
+    "head": 233.5,
+    "span-left": 207.0,
+    "span-right": 263.0,
+    "span-center": 235.0,
+    "hips": 232.8789209535759,
+    "shoes": 234.59612724757952,
+    "shoe-left": 197.0,
+    "shoe-right": 269.0
    }
   },
   {
    "file": "p2.png",
    "offset": [
-    582,
-    394
+    611,
+    137
    ],
    "size": [
-    518,
-    212
+    458,
+    196
    ],
    "anchors": {
-    "head": 336.5,
-    "span-left": 171.0,
-    "span-right": 234.0,
-    "span-center": 202.5,
-    "hips": 182.00206896551725,
-    "shoes": 38.49341438703141,
-    "shoe-left": 6.0,
-    "shoe-right": 82.0
+    "head": 224.0,
+    "span-left": 177.0,
+    "span-right": 283.0,
+    "span-center": 230.0,
+    "hips": 202.00407055630936,
+    "shoes": 224.8550135501355,
+    "shoe-left": 189.0,
+    "shoe-right": 259.0
    }
   },
   {
    "file": "p3.png",
    "offset": [
-    1130,
-    336
+    1166,
+    112
    ],
    "size": [
-    520,
-    223
+    462,
+    221
    ],
    "anchors": {
-    "head": 370.70526315789476,
-    "span-left": 187.0,
-    "span-right": 306.0,
-    "span-center": 246.5,
-    "hips": 185.89505081749888,
-    "shoes": 41.0175983436853,
-    "shoe-left": 6.0,
-    "shoe-right": 91.0
+    "head": 226.0,
+    "span-left": 188.0,
+    "span-right": 274.0,
+    "span-center": 231.0,
+    "hips": 188.85744680851064,
+    "shoes": 226.37848101265823,
+    "shoe-left": 191.0,
+    "shoe-right": 260.0
    }
   }
  ],
- "floor": 627,
- "top": 336
+ "floor": 340,
+ "top": 112
 }

@@ -992,6 +992,82 @@
    "notes": "chart 4 semi-squat jumps: crouch, jump, crouch (feet swapped), jump | crouch 1 has the far (left) foot ahead and crouch 3 the near (right) foot ahead, the reverse of the strip's wording; handled by starting the cycle at pose 3. The two jump poses are the same | tentative pick | REJECTED after review: ballet look (pointed toes, limp curved arms), smirk, tight-looking shorts, rounded back in the crouch. Retake prompt on the prompts page.",
    "wired": true,
    "sheet": "sheets/c4-jump-semi-squat-jumps.png"
+  },
+  {
+   "id": "c4-ex3-02",
+   "file": "library/images/c4-ex3-02.png",
+   "chart": 4,
+   "slot": "ex3",
+   "exercise": "a BACK EXTENSION WITH THE ARMS STRETCHED SIDEWAYS",
+   "strip": "back-extension-arms-sideways-c4",
+   "tool": "chatgpt",
+   "view": "front",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'a BACK EXTENSION WITH THE ARMS STRETCHED SIDEWAYS'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "rows": 2,
+    "row": 0,
+    "figures": 3,
+    "fringe_pct": 2.52,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "3423b690fe2e"
+   },
+   "grades": {
+    "form": 4,
+    "legibility": 4,
+    "character": 5,
+    "angle": 4,
+    "key": 4
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "notes": "retake sheet, row 1: seen from the front and slightly above, head toward the camera; arms in a T | exactly two arms in a clean T; flat start; calm face; lift is subtler from the front (head, chest and feet rise) | tentative pick: front-view row of the retake sheet",
+   "wired": true,
+   "sheet": "sheets/c4-ex3-back-extension-arms-sideways.png"
+  },
+  {
+   "id": "c4-ex3-03",
+   "file": "library/images/c4-ex3-02.png",
+   "chart": 4,
+   "slot": "ex3",
+   "exercise": "a BACK EXTENSION WITH THE ARMS STRETCHED SIDEWAYS",
+   "strip": "back-extension-arms-sideways-c4",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'a BACK EXTENSION WITH THE ARMS STRETCHED SIDEWAYS'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "rows": 2,
+    "row": 1,
+    "figures": 3,
+    "fringe_pct": 2.68,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "3423b690fe2e"
+   },
+   "grades": {
+    "form": 2,
+    "legibility": 3,
+    "character": 5,
+    "angle": 4,
+    "key": 4
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "rejected",
+   "notes": "retake sheet, row 2: side three-quarter from above; near arm trails back along the body, far arm forward (not a T) | near arm trails back along the body, far arm forward: a swimmer, not a T"
   }
  ]
 }
