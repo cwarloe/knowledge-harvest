@@ -1313,7 +1313,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - Movement: Lift head, shoulders, arms, chest and both legs as high as possible.
 - Note: Keep legs straight, raise chest and both thighs completely off floor.
 
-**Kept:** (not made yet)
+**Kept:** ChatGPT retake 1, row 1 (front view). The side three-quarter row failed: the near arm trailed back along the body.
 
 **Check before you keep a take:**
 
@@ -1324,14 +1324,15 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 
 **My decisions to check [DRAFT]:**
 
-- Stretched-out arms point toward and away from the camera in a pure side view, which would hide them. I asked for a three-quarter view from slightly above. If the arms still do not show, try 'seen from above and slightly in front of his head' and tell me what you get.
+- Front view chosen after a two-camera test: it is the only one that shows both arms as a T. The lift reads as the head and chest rising toward the camera and the feet rising behind; it is subtler than in a side view.
+- A side three-quarter view made the near arm trail back along the body (a swimmer, not a T), so it was rejected.
 
 **Prompt, with a character reference attached:**
 
 ```text
 Using the attached reference image ONLY for the character's appearance and art style (a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges). IGNORE the poses in the reference image completely.
 
-Create a NEW wide 16:9 pose sheet of that same boy doing a BACK EXTENSION WITH THE ARMS STRETCHED SIDEWAYS, shown THREE times left to right, three-quarter view from slightly above, looking down at him, so that both outstretched arms are visible, facing right, with the SAME camera angle in every pose. In every pose he lies FACE DOWN, flat on his belly, with his HEAD ON THE RIGHT and his FEET ON THE LEFT. Same scale, all on the same invisible floor line, wide empty gaps between figures.
+Create a NEW wide 16:9 pose sheet of that same boy doing a BACK EXTENSION WITH THE ARMS STRETCHED SIDEWAYS, shown THREE times left to right, seen from the FRONT and slightly above, his head nearer the camera and his feet farther away, so that both arms stick out to the left and right of his body like a T. In every pose he lies FACE DOWN, flat on his belly, head toward the camera. Same scale, all on the same invisible floor line, wide empty gaps between figures.
 
 KEY BODY RULE FOR ALL THREE POSES: his arms are stretched straight out SIDEWAYS from the shoulders, like the letter T, one arm out to each side of his body, palms down. His arms are NOT under his thighs and NOT in front of him.
 
@@ -1350,7 +1351,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 **Prompt for the very first strip (no reference, character in words):**
 
 ```text
-Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown THREE times, left to right, doing a BACK EXTENSION WITH THE ARMS STRETCHED SIDEWAYS, three-quarter view from slightly above, looking down at him, so that both outstretched arms are visible, facing right, with the SAME camera angle in every pose. This is a pose-by-pose animation reference, so all three figures must be the same character at the same scale. In every pose he lies FACE DOWN, flat on his belly, with his HEAD ON THE RIGHT and his FEET ON THE LEFT. Same scale, all on the same invisible floor line, wide empty gaps between figures.
+Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown THREE times, left to right, doing a BACK EXTENSION WITH THE ARMS STRETCHED SIDEWAYS, seen from the FRONT and slightly above, his head nearer the camera and his feet farther away, so that both arms stick out to the left and right of his body like a T. This is a pose-by-pose animation reference, so all three figures must be the same character at the same scale. In every pose he lies FACE DOWN, flat on his belly, head toward the camera. Same scale, all on the same invisible floor line, wide empty gaps between figures.
 
 CHARACTER (keep identical in every pose): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.
 
