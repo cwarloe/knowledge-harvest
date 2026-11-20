@@ -21,19 +21,23 @@ def has_real_transparency(im):
     return bool((a < 250).mean() > 0.05)          # a real cut-out has a lot of see-through pixels
 
 
-def clean_cutout(im, ring=2, feather=0.7):
+def clean_cutout(im, ring=2, feather=0.0):
     """A cut-out that already has transparency, from another tool, usually has a hard-edged rim still tinted with the old background colour.
-    Remove the tint on the outermost pixels (the same despill as the key), give the see-through pixels a dark colour so resizing cannot pull
-    magenta in, and soften the edge slightly. Measured on a ChatGPT cut-out: 80% of the outline pixels were tinted before, none after."""
+    Remove the tint (the same despill as the key) on the outer pixels and on any half-see-through pixel, and give fully see-through pixels a
+    dark colour so resizing cannot pull magenta in. The alpha channel is left exactly as it came (so the figure's outline and size do not change)
+    unless feather > 0, which softens the edge by that many pixels and widens the figure by about as much.
+    Measured on a ChatGPT cut-out: 82% of the outline pixels were tinted before, none after."""
     from PIL import ImageFilter
-    a = np.array(im.convert("RGBA")); solid = a[..., 3] > 128; band = np.zeros_like(solid); cur = solid.copy()
+    a = np.array(im.convert("RGBA")); al = a[..., 3]; solid = al > 128; band = np.zeros_like(solid); cur = solid.copy()
     for _ in range(ring):                                                    # the outer `ring` pixels of the figure
         n = cur.copy(); n[1:] &= cur[:-1]; n[:-1] &= cur[1:]; n[:, 1:] &= cur[:, :-1]; n[:, :-1] &= cur[:, 1:]; band |= cur & ~n; cur = n
+    fix = (band | ((al > 0) & (al < 255)))
     rgb = a[..., :3].astype(np.int16); ex = np.maximum(np.minimum(rgb[..., 0], rgb[..., 2]) - rgb[..., 1], 0)
-    for c in (0, 2): rgb[..., c] = np.where(band, rgb[..., c] - ex, rgb[..., c])
-    rgb = np.clip(rgb, 0, 255); rgb[~solid] = (24, 24, 28)                    # outline colour behind the edge, never the old background
-    alpha = Image.fromarray((solid * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(feather)); al = np.array(alpha)
-    return Image.fromarray(np.dstack([rgb.astype(np.uint8), np.where(solid, np.maximum(al, 200), al).astype(np.uint8)]), "RGBA")
+    for c in (0, 2): rgb[..., c] = np.where(fix, rgb[..., c] - ex, rgb[..., c])
+    rgb = np.clip(rgb, 0, 255); rgb[al == 0] = (24, 24, 28)                  # outline colour behind the edge, never the old background
+    if feather > 0:
+        soft = np.array(Image.fromarray((solid * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(feather))); al = np.where(solid, np.maximum(soft, 200), soft)
+    return Image.fromarray(np.dstack([rgb.astype(np.uint8), al.astype(np.uint8)]), "RGBA")
 
 
 def key(im, lo=28, hi=95):
