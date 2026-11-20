@@ -219,8 +219,9 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; max-width: 
         else if (p.kind === 'image') { const im = propImgs[p.id], w = W * (p.scale ?? .1), h = im.height * w / im.width; ctx.drawImage(im, (p.x ?? .5) * W - w / 2, fy - h + (p.lift ?? 0) * K, w, h); }
       }
     }
-    function hudText(s, y, size, fill) { ctx.font = `600 ${size}px Oswald, "Arial Narrow", Arial, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'top'; ctx.lineJoin = 'round';
-      ctx.lineWidth = size * .16; ctx.strokeStyle = 'rgba(16,24,32,.92)'; ctx.strokeText(s, W / 2, y); ctx.fillStyle = fill; ctx.fillText(s, W / 2, y); }
+    function hudText(s, y, size, fill, align = 'center') { const m = (D.hud.margin || 40) * K, x = align === 'left' ? m : align === 'right' ? W - m : W / 2;
+      ctx.font = `600 ${size}px Oswald, "Arial Narrow", Arial, sans-serif`; ctx.textAlign = align; ctx.textBaseline = 'top'; ctx.lineJoin = 'round';
+      ctx.lineWidth = size * .16; ctx.strokeStyle = 'rgba(16,24,32,.92)'; ctx.strokeText(s, x, y); ctx.fillStyle = fill; ctx.fillText(s, x, y); }
     function frame() {
       const C = D.charts[st.chart], info = C.slots[st.slot], T = st.time;
       ctx.fillStyle = '#1b2430'; ctx.fillRect(0, 0, W, H);
@@ -234,9 +235,10 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; max-width: 
       const put = (k, alpha) => { const p = P[k]; ctx.globalAlpha = alpha; ctx.drawImage(tinted(spriteImgs[st.chart][st.slot][k], st.chart + ':' + st.slot + ':' + k), p.x, p.y, p.w, p.h); ctx.globalAlpha = 1; };
       if (a > 0 && nxt !== cur) { put(cur, 1 - a); put(nxt, a); } else put(cur, 1);
       drawProps(info, 'front');
-      const Q = D.hud; hudText(info.kicker, H * .02, Q.kicker * K, '#ffd36b'); hudText(info.title.toUpperCase(), H * .02 + (Q.kicker + 12) * K, Q.title * K, '#ffffff'); hudText(info.target, H * .02 + (Q.kicker + Q.title + 22) * K, Q.target * K, '#ff9a3c');
+      const Q = D.hud, hs = info.hud || { side: 'center', clock: 'center' }, ta = hs.side, ca = hs.clock === 'same' ? hs.side : hs.clock === 'opposite' ? ({ left: 'right', right: 'left' }[hs.side] || 'center') : 'center';
+      hudText(info.kicker, H * .02, Q.kicker * K, '#ffd36b', ta); hudText(info.title.toUpperCase(), H * .02 + (Q.kicker + 12) * K, Q.title * K, '#ffffff', ta); hudText(info.target, H * .02 + (Q.kicker + Q.title + 22) * K, Q.target * K, '#ff9a3c', ta);
       const left = Math.max(0, info.allot - (T % info.allot)), m = Math.floor(left / 60), s = Math.floor(left % 60);
-      hudText(`${m}:${String(s).padStart(2, '0')}`, D.floor + 18 * K, 84 * K, '#ffffff'); hudText(D.strings.left, D.floor + 18 * K + 92 * K, 24 * K, '#fff2cf');
+      hudText(`${m}:${String(s).padStart(2, '0')}`, D.floor + 18 * K, Q.clock * K, '#ffffff', ca); hudText(D.strings.left, D.floor + 18 * K + (Q.clock + 8) * K, Q.kicker * .9 * K, '#fff2cf', ca);
       ctx.fillStyle = 'rgba(16,24,32,.55)'; ctx.fillRect(0, H - 16 * K, W, 16 * K); ctx.fillStyle = '#ff9a3c'; ctx.fillRect(0, H - 16 * K, W * ((T % info.allot) / info.allot), 16 * K);
     }
     function tick(now) { const dt = Math.min(0.1, (now - st.last) / 1000); st.last = now; if (st.playing) st.time += dt * st.speed; frame(); requestAnimationFrame(tick); }

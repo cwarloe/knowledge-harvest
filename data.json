@@ -62,33 +62,38 @@
      "poses": [
       {
        "file": "sprites/c1/toe-touch-c1/p1.png",
-       "x": 596.99,
-       "y": 122.67,
-       "w": 90,
-       "h": 460
+       "x": 591.39,
+       "y": 62.67,
+       "w": 102,
+       "h": 520
       },
       {
        "file": "sprites/c1/toe-touch-c1/p2.png",
-       "x": 569.74,
-       "y": 335.72,
-       "w": 219,
-       "h": 246
+       "x": 560.57,
+       "y": 303.51,
+       "w": 248,
+       "h": 278
       },
       {
        "file": "sprites/c1/toe-touch-c1/p3.png",
-       "x": 490.99,
-       "y": 173.85,
-       "w": 215,
-       "h": 409
+       "x": 471.55,
+       "y": 120.53,
+       "w": 243,
+       "h": 462
       }
      ],
      "union": [
-      490.99,
-      789.01
+      471.55,
+      808.45
      ],
      "kicker": "EXERCISE 1 OF 5",
      "title": "Toe touching",
-     "target": "20 reps"
+     "target": "20 reps",
+     "hud": {
+      "side": "left",
+      "box_h": 780,
+      "clock": "opposite"
+     }
     },
     "ex2": {
      "strip": "partial-sit-up-c1",
@@ -129,7 +134,12 @@
      ],
      "kicker": "EXERCISE 2 OF 5",
      "title": "Partial sit-up",
-     "target": "18 reps"
+     "target": "18 reps",
+     "hud": {
+      "side": "left",
+      "box_h": 690,
+      "clock": "opposite"
+     }
     },
     "ex3": {
      "strip": "alternate-leg-raise-c1",
@@ -170,7 +180,12 @@
      ],
      "kicker": "EXERCISE 3 OF 5",
      "title": "Alternate leg raise",
-     "target": "18 reps"
+     "target": "18 reps",
+     "hud": {
+      "side": "left",
+      "box_h": 690,
+      "clock": "opposite"
+     }
     },
     "ex4": {
      "strip": "knee-push-up-c1",
@@ -211,7 +226,12 @@
      ],
      "kicker": "EXERCISE 4 OF 5",
      "title": "Knee push-up",
-     "target": "13 reps"
+     "target": "13 reps",
+     "hud": {
+      "side": "left",
+      "box_h": 690,
+      "clock": "opposite"
+     }
     },
     "jump": {
      "strip": "scissor-jumps-c1",
@@ -226,40 +246,45 @@
      "poses": [
       {
        "file": "sprites/c1/scissor-jumps-c1/p1.png",
-       "x": 449.54,
-       "y": 189.38,
-       "w": 361,
-       "h": 393
+       "x": 424.69,
+       "y": 138.08,
+       "w": 409,
+       "h": 445
       },
       {
        "file": "sprites/c1/scissor-jumps-c1/p2.png",
-       "x": 552.08,
-       "y": 123.66,
-       "w": 208,
-       "h": 412
+       "x": 540.62,
+       "y": 63.79,
+       "w": 235,
+       "h": 466
       },
       {
        "file": "sprites/c1/scissor-jumps-c1/p3.png",
-       "x": 491.93,
-       "y": 189.38,
-       "w": 339,
-       "h": 392
+       "x": 472.62,
+       "y": 138.08,
+       "w": 383,
+       "h": 443
       },
       {
        "file": "sprites/c1/scissor-jumps-c1/p4.png",
-       "x": 553.44,
-       "y": 122.67,
-       "w": 208,
-       "h": 413
+       "x": 542.15,
+       "y": 62.67,
+       "w": 235,
+       "h": 467
       }
      ],
      "union": [
-      449.54,
-      830.46
+      424.69,
+      855.31
      ],
      "kicker": "PAUSE THE RUN",
      "title": "10 scissor jumps",
-     "target": "jump now"
+     "target": "jump now",
+     "hud": {
+      "side": "left",
+      "box_h": 780,
+      "clock": "opposite"
+     }
     },
     "run": {
      "strip": "stationary-run-c1",
@@ -274,40 +299,45 @@
      "poses": [
       {
        "file": "sprites/c1/stationary-run-c1/p1.png",
-       "x": 540.81,
-       "y": 122.67,
-       "w": 206,
-       "h": 453
+       "x": 527.87,
+       "y": 62.67,
+       "w": 233,
+       "h": 512
       },
       {
        "file": "sprites/c1/stationary-run-c1/p2.png",
-       "x": 566.41,
-       "y": 123.42,
-       "w": 159,
-       "h": 459
+       "x": 556.81,
+       "y": 63.52,
+       "w": 180,
+       "h": 519
       },
       {
        "file": "sprites/c1/stationary-run-c1/p3.png",
-       "x": 567.91,
-       "y": 124.93,
-       "w": 173,
-       "h": 456
+       "x": 558.51,
+       "y": 65.22,
+       "w": 196,
+       "h": 516
       },
       {
        "file": "sprites/c1/stationary-run-c1/p4.png",
-       "x": 532.91,
-       "y": 125.68,
-       "w": 202,
-       "h": 455
+       "x": 518.94,
+       "y": 66.07,
+       "w": 228,
+       "h": 514
       }
      ],
      "union": [
-      532.91,
-      747.09
+      518.94,
+      761.06
      ],
      "kicker": "EXERCISE 5 OF 5",
      "title": "Stationary run",
-     "target": "400 steps"
+     "target": "400 steps",
+     "hud": {
+      "side": "left",
+      "box_h": 780,
+      "clock": "opposite"
+     }
     }
    },
    "order": [
@@ -370,47 +400,52 @@
      "poses": [
       {
        "file": "sprites/c2/toe-touch-c2/p1.png",
-       "x": 583.61,
-       "y": 122.67,
-       "w": 124,
-       "h": 460
+       "x": 576.25,
+       "y": 62.67,
+       "w": 141,
+       "h": 520
       },
       {
        "file": "sprites/c2/toe-touch-c2/p2.png",
-       "x": 576.51,
-       "y": 356.22,
-       "w": 179,
-       "h": 220
+       "x": 568.22,
+       "y": 326.68,
+       "w": 203,
+       "h": 249
       },
       {
        "file": "sprites/c2/toe-touch-c2/p3.png",
-       "x": 578.28,
-       "y": 358.88,
-       "w": 171,
-       "h": 217
+       "x": 570.23,
+       "y": 329.69,
+       "w": 193,
+       "h": 245
       },
       {
        "file": "sprites/c2/toe-touch-c2/p4.png",
-       "x": 571.18,
-       "y": 383.75,
-       "w": 174,
-       "h": 193
+       "x": 562.2,
+       "y": 357.8,
+       "w": 197,
+       "h": 218
       },
       {
        "file": "sprites/c2/toe-touch-c2/p5.png",
-       "x": 524.11,
-       "y": 151.08,
-       "w": 168,
-       "h": 430
+       "x": 509.0,
+       "y": 94.79,
+       "w": 190,
+       "h": 486
       }
      ],
      "union": [
-      524.11,
-      755.89
+      509.0,
+      771.0
      ],
      "kicker": "EXERCISE 1 OF 5",
      "title": "Toe touching",
-     "target": "30 reps"
+     "target": "30 reps",
+     "hud": {
+      "side": "left",
+      "box_h": 780,
+      "clock": "opposite"
+     }
     },
     "ex2": {
      "strip": "sit-up-c2",
@@ -451,7 +486,12 @@
      ],
      "kicker": "EXERCISE 2 OF 5",
      "title": "Sit-up",
-     "target": "23 reps"
+     "target": "23 reps",
+     "hud": {
+      "side": "left",
+      "box_h": 690,
+      "clock": "opposite"
+     }
     },
     "ex3": {
      "strip": "back-extension-c2",
@@ -492,7 +532,12 @@
      ],
      "kicker": "EXERCISE 3 OF 5",
      "title": "Back extension",
-     "target": "33 reps"
+     "target": "33 reps",
+     "hud": {
+      "side": "left",
+      "box_h": 690,
+      "clock": "opposite"
+     }
     },
     "ex4": {
      "strip": "push-up-c2",
@@ -533,7 +578,12 @@
      ],
      "kicker": "EXERCISE 4 OF 5",
      "title": "Push-up",
-     "target": "20 reps"
+     "target": "20 reps",
+     "hud": {
+      "side": "left",
+      "box_h": 690,
+      "clock": "opposite"
+     }
     },
     "jump": {
      "strip": "astride-jumps-c2",
@@ -548,40 +598,45 @@
      "poses": [
       {
        "file": "sprites/c2/astride-jumps-c2/p1.png",
-       "x": 586.43,
-       "y": 201.42,
-       "w": 99,
-       "h": 380
+       "x": 579.44,
+       "y": 151.69,
+       "w": 112,
+       "h": 430
       },
       {
        "file": "sprites/c2/astride-jumps-c2/p2.png",
-       "x": 490.1,
-       "y": 150.41,
-       "w": 300,
-       "h": 353
+       "x": 470.54,
+       "y": 94.03,
+       "w": 339,
+       "h": 399
       },
       {
        "file": "sprites/c2/astride-jumps-c2/p3.png",
-       "x": 494.1,
-       "y": 231.85,
-       "w": 287,
-       "h": 351
+       "x": 475.06,
+       "y": 186.09,
+       "w": 325,
+       "h": 397
       },
       {
        "file": "sprites/c2/astride-jumps-c2/p4.png",
-       "x": 587.15,
-       "y": 122.67,
-       "w": 97,
-       "h": 381
+       "x": 580.26,
+       "y": 62.67,
+       "w": 109,
+       "h": 431
       }
      ],
      "union": [
-      490.1,
-      789.9
+      470.54,
+      809.46
      ],
      "kicker": "PAUSE THE RUN",
      "title": "10 astride jumps",
-     "target": "jump now"
+     "target": "jump now",
+     "hud": {
+      "side": "left",
+      "box_h": 780,
+      "clock": "opposite"
+     }
     },
     "run": {
      "strip": "stationary-run-c1",
@@ -596,40 +651,45 @@
      "poses": [
       {
        "file": "sprites/c2/stationary-run-c1/p1.png",
-       "x": 540.81,
-       "y": 122.67,
-       "w": 206,
-       "h": 453
+       "x": 527.87,
+       "y": 62.67,
+       "w": 233,
+       "h": 512
       },
       {
        "file": "sprites/c2/stationary-run-c1/p2.png",
-       "x": 566.41,
-       "y": 123.42,
-       "w": 159,
-       "h": 459
+       "x": 556.81,
+       "y": 63.52,
+       "w": 180,
+       "h": 519
       },
       {
        "file": "sprites/c2/stationary-run-c1/p3.png",
-       "x": 567.91,
-       "y": 124.93,
-       "w": 173,
-       "h": 456
+       "x": 558.51,
+       "y": 65.22,
+       "w": 196,
+       "h": 516
       },
       {
        "file": "sprites/c2/stationary-run-c1/p4.png",
-       "x": 532.91,
-       "y": 125.68,
-       "w": 202,
-       "h": 455
+       "x": 518.94,
+       "y": 66.07,
+       "w": 228,
+       "h": 514
       }
      ],
      "union": [
-      532.91,
-      747.09
+      518.94,
+      761.06
      ],
      "kicker": "EXERCISE 5 OF 5",
      "title": "Stationary run",
-     "target": "500 steps"
+     "target": "500 steps",
+     "hud": {
+      "side": "left",
+      "box_h": 780,
+      "clock": "opposite"
+     }
     }
    },
    "order": [
@@ -699,47 +759,52 @@
      "poses": [
       {
        "file": "sprites/c3/toe-touch-c3/p1.png",
-       "x": 539.82,
-       "y": 122.67,
-       "w": 207,
-       "h": 460
+       "x": 526.75,
+       "y": 62.67,
+       "w": 234,
+       "h": 520
       },
       {
        "file": "sprites/c3/toe-touch-c3/p2.png",
-       "x": 539.82,
-       "y": 327.37,
-       "w": 233,
-       "h": 255
+       "x": 526.75,
+       "y": 294.08,
+       "w": 264,
+       "h": 289
       },
       {
        "file": "sprites/c3/toe-touch-c3/p3.png",
-       "x": 539.82,
-       "y": 328.16,
-       "w": 233,
-       "h": 255
+       "x": 526.75,
+       "y": 294.97,
+       "w": 264,
+       "h": 288
       },
       {
        "file": "sprites/c3/toe-touch-c3/p4.png",
-       "x": 507.02,
-       "y": 328.96,
-       "w": 238,
-       "h": 254
+       "x": 489.67,
+       "y": 295.86,
+       "w": 269,
+       "h": 287
       },
       {
        "file": "sprites/c3/toe-touch-c3/p5.png",
-       "x": 527.96,
-       "y": 169.3,
-       "w": 217,
-       "h": 413
+       "x": 513.35,
+       "y": 115.38,
+       "w": 246,
+       "h": 467
       }
      ],
      "union": [
-      507.02,
-      772.98
+      489.67,
+      790.33
      ],
      "kicker": "EXERCISE 1 OF 5",
      "title": "Toe touching",
-     "target": "30 reps"
+     "target": "30 reps",
+     "hud": {
+      "side": "left",
+      "box_h": 780,
+      "clock": "opposite"
+     }
     },
     "ex2": {
      "strip": "sit-up-hands-behind-head-c3",
@@ -780,7 +845,12 @@
      ],
      "kicker": "EXERCISE 2 OF 5",
      "title": "Sit-up, hands behind head",
-     "target": "32 reps"
+     "target": "32 reps",
+     "hud": {
+      "side": "left",
+      "box_h": 690,
+      "clock": "opposite"
+     }
     },
     "ex3": {
      "strip": "back-extension-hands-behind-back-c3",
@@ -821,7 +891,12 @@
      ],
      "kicker": "EXERCISE 3 OF 5",
      "title": "Back extension, hands behind back",
-     "target": "47 reps"
+     "target": "47 reps",
+     "hud": {
+      "side": "left",
+      "box_h": 690,
+      "clock": "opposite"
+     }
     },
     "ex4": {
      "strip": "chin-forehead-push-up-c3",
@@ -861,7 +936,12 @@
      ],
      "kicker": "EXERCISE 4 OF 5",
      "title": "Chin-forehead push-up",
-     "target": "24 reps"
+     "target": "24 reps",
+     "hud": {
+      "side": "left",
+      "box_h": 690,
+      "clock": "opposite"
+     }
     },
     "jump": {
      "strip": "half-knee-bends-c3",
@@ -875,33 +955,38 @@
      "poses": [
       {
        "file": "sprites/c3/half-knee-bends-c3/p1.png",
-       "x": 563.18,
-       "y": 142.78,
-       "w": 132,
-       "h": 440
+       "x": 553.16,
+       "y": 85.41,
+       "w": 149,
+       "h": 497
       },
       {
        "file": "sprites/c3/half-knee-bends-c3/p2.png",
-       "x": 569.47,
-       "y": 190.63,
-       "w": 147,
-       "h": 392
+       "x": 560.26,
+       "y": 139.5,
+       "w": 167,
+       "h": 443
       },
       {
        "file": "sprites/c3/half-knee-bends-c3/p3.png",
-       "x": 585.33,
-       "y": 122.67,
-       "w": 119,
-       "h": 459
+       "x": 578.2,
+       "y": 62.67,
+       "w": 135,
+       "h": 519
       }
      ],
      "union": [
-      563.18,
-      716.82
+      553.16,
+      726.84
      ],
      "kicker": "PAUSE THE RUN",
      "title": "10 half knee bends",
-     "target": "jump now"
+     "target": "jump now",
+     "hud": {
+      "side": "left",
+      "box_h": 780,
+      "clock": "opposite"
+     }
     },
     "run": {
      "strip": "stationary-run-c1",
@@ -916,40 +1001,45 @@
      "poses": [
       {
        "file": "sprites/c3/stationary-run-c1/p1.png",
-       "x": 540.81,
-       "y": 122.67,
-       "w": 206,
-       "h": 453
+       "x": 527.87,
+       "y": 62.67,
+       "w": 233,
+       "h": 512
       },
       {
        "file": "sprites/c3/stationary-run-c1/p2.png",
-       "x": 566.41,
-       "y": 123.42,
-       "w": 159,
-       "h": 459
+       "x": 556.81,
+       "y": 63.52,
+       "w": 180,
+       "h": 519
       },
       {
        "file": "sprites/c3/stationary-run-c1/p3.png",
-       "x": 567.91,
-       "y": 124.93,
-       "w": 173,
-       "h": 456
+       "x": 558.51,
+       "y": 65.22,
+       "w": 196,
+       "h": 516
       },
       {
        "file": "sprites/c3/stationary-run-c1/p4.png",
-       "x": 532.91,
-       "y": 125.68,
-       "w": 202,
-       "h": 455
+       "x": 518.94,
+       "y": 66.07,
+       "w": 228,
+       "h": 514
       }
      ],
      "union": [
-      532.91,
-      747.09
+      518.94,
+      761.06
      ],
      "kicker": "EXERCISE 5 OF 5",
      "title": "Stationary run",
-     "target": "550 steps"
+     "target": "550 steps",
+     "hud": {
+      "side": "left",
+      "box_h": 780,
+      "clock": "opposite"
+     }
     }
    },
    "order": [
@@ -1037,7 +1127,12 @@
      ],
      "kicker": "EXERCISE 2 OF 5",
      "title": "Sit-up, toe touch",
-     "target": "22 reps"
+     "target": "22 reps",
+     "hud": {
+      "side": "left",
+      "box_h": 690,
+      "clock": "opposite"
+     }
     },
     "ex3": {
      "strip": "back-extension-arms-sideways-c4",
@@ -1078,7 +1173,12 @@
      ],
      "kicker": "EXERCISE 3 OF 5",
      "title": "Back extension, arms sideways",
-     "target": "50 reps"
+     "target": "50 reps",
+     "hud": {
+      "side": "left",
+      "box_h": 690,
+      "clock": "opposite"
+     }
     },
     "ex4": {
      "strip": "wide-hand-push-up-c4",
@@ -1119,7 +1219,12 @@
      ],
      "kicker": "EXERCISE 4 OF 5",
      "title": "Wide-hand push-up",
-     "target": "42 reps"
+     "target": "42 reps",
+     "hud": {
+      "side": "left",
+      "box_h": 690,
+      "clock": "opposite"
+     }
     },
     "run": {
      "strip": "high-knee-run-c4",
@@ -1134,40 +1239,45 @@
      "poses": [
       {
        "file": "sprites/c4/high-knee-run-c4/p1.png",
-       "x": 509.44,
-       "y": 122.67,
-       "w": 186,
-       "h": 458
+       "x": 492.41,
+       "y": 62.67,
+       "w": 210,
+       "h": 518
       },
       {
        "file": "sprites/c4/high-knee-run-c4/p2.png",
-       "x": 600.9,
-       "y": 122.67,
-       "w": 166,
-       "h": 460
+       "x": 595.8,
+       "y": 62.67,
+       "w": 188,
+       "h": 520
       },
       {
        "file": "sprites/c4/high-knee-run-c4/p3.png",
-       "x": 577.72,
-       "y": 122.67,
-       "w": 193,
-       "h": 460
+       "x": 569.6,
+       "y": 62.67,
+       "w": 218,
+       "h": 520
       },
       {
        "file": "sprites/c4/high-knee-run-c4/p4.png",
-       "x": 601.2,
-       "y": 122.67,
-       "w": 157,
-       "h": 460
+       "x": 596.14,
+       "y": 62.67,
+       "w": 177,
+       "h": 520
       }
      ],
      "union": [
-      509.44,
-      770.56
+      492.41,
+      787.59
      ],
      "kicker": "EXERCISE 5 OF 5",
      "title": "Stationary run",
-     "target": "400 steps"
+     "target": "400 steps",
+     "hud": {
+      "side": "left",
+      "box_h": 780,
+      "clock": "opposite"
+     }
     }
    },
    "order": [
@@ -1227,40 +1337,45 @@
      "poses": [
       {
        "file": "sprites/c5/high-knee-run-c4/p1.png",
-       "x": 509.44,
-       "y": 122.67,
-       "w": 186,
-       "h": 458
+       "x": 492.41,
+       "y": 62.67,
+       "w": 210,
+       "h": 518
       },
       {
        "file": "sprites/c5/high-knee-run-c4/p2.png",
-       "x": 600.9,
-       "y": 122.67,
-       "w": 166,
-       "h": 460
+       "x": 595.8,
+       "y": 62.67,
+       "w": 188,
+       "h": 520
       },
       {
        "file": "sprites/c5/high-knee-run-c4/p3.png",
-       "x": 577.72,
-       "y": 122.67,
-       "w": 193,
-       "h": 460
+       "x": 569.6,
+       "y": 62.67,
+       "w": 218,
+       "h": 520
       },
       {
        "file": "sprites/c5/high-knee-run-c4/p4.png",
-       "x": 601.2,
-       "y": 122.67,
-       "w": 157,
-       "h": 460
+       "x": 596.14,
+       "y": 62.67,
+       "w": 177,
+       "h": 520
       }
      ],
      "union": [
-      509.44,
-      770.56
+      492.41,
+      787.59
      ],
      "kicker": "EXERCISE 5 OF 5",
      "title": "Stationary run",
-     "target": "500 steps"
+     "target": "500 steps",
+     "hud": {
+      "side": "left",
+      "box_h": 780,
+      "clock": "opposite"
+     }
     }
    },
    "order": [
@@ -1317,40 +1432,45 @@
      "poses": [
       {
        "file": "sprites/c6/high-knee-run-c4/p1.png",
-       "x": 509.44,
-       "y": 122.67,
-       "w": 186,
-       "h": 458
+       "x": 492.41,
+       "y": 62.67,
+       "w": 210,
+       "h": 518
       },
       {
        "file": "sprites/c6/high-knee-run-c4/p2.png",
-       "x": 600.9,
-       "y": 122.67,
-       "w": 166,
-       "h": 460
+       "x": 595.8,
+       "y": 62.67,
+       "w": 188,
+       "h": 520
       },
       {
        "file": "sprites/c6/high-knee-run-c4/p3.png",
-       "x": 577.72,
-       "y": 122.67,
-       "w": 193,
-       "h": 460
+       "x": 569.6,
+       "y": 62.67,
+       "w": 218,
+       "h": 520
       },
       {
        "file": "sprites/c6/high-knee-run-c4/p4.png",
-       "x": 601.2,
-       "y": 122.67,
-       "w": 157,
-       "h": 460
+       "x": 596.14,
+       "y": 62.67,
+       "w": 177,
+       "h": 520
       }
      ],
      "union": [
-      509.44,
-      770.56
+      492.41,
+      787.59
      ],
      "kicker": "EXERCISE 5 OF 5",
      "title": "Stationary run",
-     "target": "600 steps"
+     "target": "600 steps",
+     "hud": {
+      "side": "left",
+      "box_h": 780,
+      "clock": "opposite"
+     }
     }
    },
    "order": [
@@ -1364,7 +1484,8 @@
   "kicker": 26,
   "title": 50,
   "target": 38,
-  "clock": 84
+  "clock": 84,
+  "margin": 44
  },
  "props": [
   {
