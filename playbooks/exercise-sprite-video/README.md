@@ -90,6 +90,17 @@ The ElevenLabs edit tool takes "change this, keep that" and re-renders the strip
 
 The prompts, settings and lessons are published so the strips do not depend on one vendor: `docs/HOW-TO-GENERATE-STRIPS.md` (method, checklist, what to test in a new tool) and `prompts/PROMPTS.md` (paste-ready text for every strip, with and without a reference image). The demo site has the same thing with a copy button on each prompt. Regenerate after any change: `python3 kit/prompt.py --all --data path/to/5bx-charts.json`.
 
+## Backgrounds that match the boy
+
+The first backdrop was drawn in code in a blocky style; the boy is now a smooth cartoon. `python3 kit/prompt_bg.py --publish` writes prompts for six settings (forest, beach, desert, snow, city park, gym), landscape and portrait, to `prompts/BACKGROUNDS.md` and the prompts page. They work in two steps: one master scene fixes the horizon, light and scale, then each of seven depth layers (sky, clouds, far, near, ground, back, front) is redrawn from it on flat magenta. The horizon, the floor line where the boy stands (80% down in landscape, 74% in portrait), the empty strip around his feet and the calm middle third all come from `config/theme.json`, so the prompts follow the build.
+
+```bash
+python3 kit/import_backdrop.py --id beach --dir path/to/layers     # cut out the magenta, fit to the frame, write assets/backdrops/beach/landscape/
+# then set "backdrop": {"id": "beach"} in config/theme.json and rebuild
+```
+
+The importer also writes `preview.png` with the floor line and the boy's height marked, so placement can be checked before any render. Layers from different settings can be mixed: every set shares one horizon and one floor line.
+
 ## Add an exercise, or a whole chart
 
 1. See what the plan says: `python3 kit/prompt.py --booklet --data … --chart 2 --slot ex3`
@@ -159,7 +170,7 @@ prompts/PROMPTS.md      every prompt, settings, what went wrong and the fix (gen
 docs/LAYERS-AND-IDEAS.md   brainstorm: every way to split this into layers, tagged by effort
 docs/CHARTS-2-6.md      what the five remaining charts need, from the data
 prompts/strips.json     the pose lists that produced them
-kit/build.py            the builder     kit/library.py   the strip library     kit/builds.py   build records: list, check, rebuild     kit/prompt.py   prompt maker     kit/make_demo.py   the demo page
+kit/build.py            the builder     kit/library.py   the strip library     kit/builds.py   build records: list, check, rebuild     kit/prompt_bg.py   background prompts     kit/import_backdrop.py   generated layers -> a backdrop     kit/prompt.py   prompt maker     kit/make_demo.py   the demo page
 kit/keyer.py            background -> transparency     kit/recolor.py   free recolour
 tests/smoke.py          15-second check
 ```

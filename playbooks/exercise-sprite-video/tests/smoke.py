@@ -131,6 +131,34 @@ t3 = reg["strips"]["toe-touch-c3"]; m3 = json.load(open(os.path.join(ROOT, "asse
 a_ = [build.pose_anchor(t3, k, q) for k, q in enumerate(m3, 1)]
 check(abs((m3[3]["anchors"]["shoe-right"] - t3["nudge"]["4"][0]) - a_[3]) < 1e-6 and a_[0] == m3[0]["anchors"]["shoe-left"], "pose_anchor: a per-pose anchor override and nudge move only that pose")
 
+# background prompts and importing generated layers
+import prompt_bg, import_backdrop
+bspec = json.load(open(os.path.join(ROOT, "prompts", "backgrounds.spec.json"))); allbg = prompt_bg.build_all(theme, bspec)
+check(set(allbg) == {"landscape", "portrait"} and all(len(e["items"]) == 8 for f in allbg.values() for e in f.values()) and len(allbg["landscape"]) == len(bspec["environments"]), f"background prompts: {len(bspec['environments'])} environments x 2 formats, a master and 7 layers each")
+fl = round(theme["formats"]["landscape"]["ground"] * 100); mp_ = allbg["landscape"]["forest"]["items"][0]["prompt"]
+check(f"{fl}% down from the top" in mp_ and f"horizon {fl - 24}% " not in mp_ and f"{fl - 24}% down from the top" in mp_, "background prompts: floor line and horizon come from theme.json")
+allt = "\n".join(i["prompt"] for f in allbg.values() for e in f.values() for i in e["items"])
+check("{" not in allt and "}" not in allt and "charles" not in allt.lower(), "background prompts: every placeholder filled, no personal names")
+check(all(("#FF00FF" in i["prompt"]) or i["plane"] in ("master", "sky") for f in allbg.values() for e in f.values() for i in e["items"]), "background prompts: every cut-out layer asks for a flat magenta background")
+bc = allbg["landscape"]["beach"]["numbers"]; check(bc["ground_top"] > bc["horizon"] and bc["back"] >= bc["ground_top"] + 3, "background prompts: beach land starts below the horizon and its back row stands on the sand")
+with tempfile.TemporaryDirectory() as t3:
+    src = os.path.join(t3, "layers"); os.makedirs(src); W_, H_ = 640, 360
+    for i_, pl_ in enumerate(import_backdrop.PLANES):
+        im_ = Image.new("RGB", (W_, H_), (255, 0, 255))
+        if pl_ == "sky": im_ = Image.new("RGB", (W_, H_), (90, 170, 235))
+        else:
+            from PIL import ImageDraw; ImageDraw.Draw(im_).rectangle((100 + 40 * i_, 150, 220 + 40 * i_, 260), fill=(40 + 20 * i_, 120, 70))
+        im_.save(os.path.join(src, f"bg-test-landscape-{i_ + 1:02d}-{pl_}.png"))
+    old_assets = build.ASSETS; build.ASSETS = os.path.join(t3, "assets")
+    try:
+        import_backdrop.run(src, "testset", "landscape", build.ASSETS, theme)
+        th2 = json.loads(json.dumps(theme)); th2["backdrop"] = {"id": "testset"}
+        lay = build.backdrop_layers(th2, theme["formats"]["landscape"], "landscape"); F_ = theme["formats"]["landscape"]
+        check([n for n, _ in lay] == import_backdrop.PLANES and all(im.size == (F_["W"], F_["H"]) for _, im in lay), "importer: seven layers saved at frame size and read back by the build, in stacking order")
+        a_ = np.array(lay[2][1])[..., 3]; check(a_[5, 5] == 0 and a_[int(F_["H"] * .5), int(F_["W"] * .3)] > 200, "importer: magenta becomes see-through, the drawn shape stays")
+        check(np.array(lay[0][1])[..., 3].min() == 255, "importer: the sky stays fully opaque")
+    finally: build.ASSETS = old_assets
+
 import copy, builds
 th_p, sc_p = os.path.join(ROOT, "config", "theme.json"), os.path.join(ROOT, "config", "scene.json")
 rec = {"chart": 3, "inputs": builds.inputs_now(data_path, th_p, sc_p, 3, reg["charts"]["3"], reg, theme, build.CODE_VERSION)}

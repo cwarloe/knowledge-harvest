@@ -38,6 +38,10 @@ summary small { font-family: var(--font-body); font-size: .85rem; color: var(--m
 pre { margin: 0; padding: 12px; background: var(--code); border: 1px solid var(--line); border-radius: 6px; font: .85rem/1.5 var(--font-mono); white-space: pre-wrap; overflow-wrap: anywhere; max-height: 22rem; overflow: auto; user-select: text; -webkit-user-select: text; }
 .codehead { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
 button { font: 600 .95rem var(--font-body); color: var(--on-accent); background: var(--accent); border: 0; border-radius: 999px; padding: 9px 16px; min-height: 40px; cursor: pointer; }
+select { font: 500 1rem var(--font-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; min-height: 44px; width: 100%; }
+select:focus-visible { outline: 3px solid var(--link); outline-offset: 2px; }
+.picks { display: grid; gap: 10px; max-width: 520px; }
+.picks label { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .06em; font-size: .85rem; color: var(--muted); }
 button:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px solid var(--link); outline-offset: 2px; }
 .facts { display: grid; gap: 4px; font-size: .95rem; }
 .warn { border-left: 4px solid var(--accent); padding: 8px 12px; background: var(--surface); border-radius: 0 6px 6px 0; max-width: 64ch; }
@@ -61,6 +65,7 @@ button:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px soli
     <div class="links">
       <a href="HOW-TO-GENERATE-STRIPS.md">The full method (text)</a>
       <a href="PROMPTS.md">All prompts in one file (text)</a>
+      <a href="BACKGROUNDS.md">Background prompts (text)</a>
       <span id="docs" style="display:contents"></span>
       <a href="index.html">Back to the demo</a>
     </div>
@@ -76,6 +81,15 @@ button:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px soli
   <section>
     <h2>Strips, by chart</h2>
     <div id="strips" style="display:grid; gap:12px"></div>
+  </section>
+
+  <section id="bg">
+    <h2>Background layers</h2>
+    <p class="note">The boy is now a smooth cartoon, so the backgrounds should match. Make one master scene first, then redraw each depth layer from it so they all share one horizon, light and scale. Pick a setting and a shape.</p>
+    <ol id="bghow"></ol>
+    <div class="picks"><label for="bgenv">Setting</label><select id="bgenv"></select><label for="bgfmt">Shape</label><select id="bgfmt"></select><p class="note" id="bgnums"></p></div>
+    <div id="bgitems" style="display:grid; gap:12px"></div>
+    <p class="note" id="bgfail" hidden></p>
   </section>
 
   <section>
@@ -120,6 +134,16 @@ button:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px soli
       const d = el('details', { open: i === 0 }, [el('summary', {}, [document.createTextNode(nice(s.exercise)), el('small', { textContent: 'chart ' + s.chart + ' · ' + s.poses + ' poses' })]), el('div', { className: 'body' }, kids)]);
       host.append(d);
     });
+    try {
+      const B = await (await fetch('backgrounds.json')).json(), how = document.getElementById('bghow'), envSel = document.getElementById('bgenv'), fmtSel = document.getElementById('bgfmt'), items = document.getElementById('bgitems');
+      B.how.forEach((t) => how.append(el('li', { textContent: t })));
+      Object.keys(B.formats).forEach((f) => fmtSel.append(el('option', { value: f, textContent: f === 'landscape' ? 'Landscape (wide 16:9)' : 'Portrait (tall 9:16)' })));
+      Object.entries(B.formats.landscape).forEach(([k, e]) => envSel.append(el('option', { value: k, textContent: e.title })));
+      const show = () => { const e = B.formats[fmtSel.value][envSel.value], n = e.numbers; items.replaceChildren();
+        document.getElementById('bgnums').textContent = `${n.W} by ${n.H}. Horizon ${n.horizon}% down, ground starts ${n.ground_top}%, his feet on ${n.floor}%, back-row bases ${n.back}%, front-frame bases ${n.front}%. Other light: swap the LIGHT line for ` + Object.values(B.lights).slice(1).map((t) => '"' + t.split(',')[0] + '"').join(' or ') + '.';
+        e.items.forEach((it, i) => items.append(el('details', { open: i === 0 }, [el('summary', {}, [document.createTextNode(it.title), el('small', { textContent: 'save as ' + it.file })]), el('div', { className: 'body' }, [block('Prompt', it.prompt)])]))); };
+      envSel.onchange = show; fmtSel.onchange = show; show();
+    } catch (e) { const f = document.getElementById('bgfail'); f.hidden = false; f.textContent = 'Could not load the background prompts: ' + e.message; console.error(e); }
     const eh = document.getElementById('edits');
     D.edits.forEach((e) => eh.append(el('details', {}, [el('summary', {}, [document.createTextNode(e.target), el('small', { textContent: 'edit' })]),
       el('div', { className: 'body' }, [el('p', {}, [el('b', { textContent: 'Problem: ' }), document.createTextNode(e.problem)]), block('Edit prompt', e.prompt), el('p', {}, [el('b', { textContent: 'Result: ' }), document.createTextNode(e.result)])])])));

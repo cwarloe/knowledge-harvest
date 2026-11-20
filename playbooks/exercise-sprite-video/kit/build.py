@@ -91,7 +91,7 @@ def backdrop_layers(theme, F, fmt):
     """Ordered [(name, RGBA)]. Cached on disk as assets/backdrops/<id>/<format>/NN-<name>.png (one file per layer)."""
     b = theme["backdrop"]; bid = b.get("id", "forest"); d = os.path.join(ASSETS, "backdrops", bid, fmt); mp = os.path.join(d, "manifest.json")
     want = sha(json.dumps({k: v for k, v in b.items() if k != "overrides"}, sort_keys=True), F["W"], F["H"], F["ground"], BAKE_VERSION)
-    if os.path.exists(mp) and jload(mp).get("hash") == want:
+    if os.path.exists(mp) and (jload(mp).get("source") == "images" or jload(mp).get("hash") == want):          # imported images are used as they are
         layers = [(n, Image.open(os.path.join(d, f)).convert("RGBA")) for n, f in jload(mp)["layers"]]
     else:
         os.makedirs(d, exist_ok=True)

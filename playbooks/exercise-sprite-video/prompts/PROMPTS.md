@@ -1412,7 +1412,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 **My decisions to check [DRAFT]:**
 
 - The booklet: sit up and raise the legs bent, twist to touch the right elbow to the left knee, and alternate the direction each time. A side view would hide which elbow goes to which knee, so I asked for a view from the foot end. If Grok struggles, try a plain side view and tell me.
-- One cycle is start, twist right, start, twist left: two counts per cycle. [DRAFT] Tell me if each twist is its own count (then one count per picture).
+- One cycle is start, twist right, start, twist left: two twists make one cycle. [AUTHOR, confirmed 2026-11-20]
 
 **Prompt, with a character reference attached:**
 
@@ -1637,7 +1637,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - The booklet's circle goes: touch right foot, then up and round backwards, with the arms above the head, as a full circle. A full circle also passes the LEFT side before coming down to the left-foot touch. To keep the strip to six figures I have asked for the right-hand lean only. I will mirror that figure in the build for the left-hand lean (front view is symmetrical).
 - As in chart 3: front view because the touches land at different places across the floor; left and right are the boy's own; the second half of the counts runs the order in reverse, which needs no extra picture.
 - If a bend seen from the front gives trouble, try 'three-quarter front view' and tell me.
-- The booklet says 'reverse clasped' and 'keep hands tightly reverse clasped at all times' but does not define it. I read it as fingers interlocked with the palms facing outward overhead. [UNKNOWN: author] Tell me if you mean something else (for example the hands clasped behind the back).
+- Reverse clasp: fingers interlocked with the palms turned OUTWARD, away from the head. [AUTHOR, confirmed 2026-11-20]
 
 **Prompt, with a character reference attached:**
 
@@ -1753,7 +1753,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 
 **My decisions to check [DRAFT]:**
 
-- The booklet says 'raise arms, head, chest and both legs as high as possible, then press back once' and does not say what the press looks like. I read it as one small extra lift at the top. [UNKNOWN: author] Tell me what the press should look like.
+- The press back is one small extra lift at the top. [AUTHOR, confirmed 2026-11-20]
 
 **Prompt, with a character reference attached:**
 
@@ -1810,7 +1810,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 
 **My decisions to check [DRAFT]:**
 
-- The booklet does not say toes or knees; I assumed palms and toes. 'Slap chest' could mean one hand or both; I drew both hands against the chest. [DRAFT: author]
+- Both hands slap the chest. The booklet does not say toes or knees; palms and toes assumed. [AUTHOR confirmed both hands, 2026-11-20]
 - The booklet: 'push off floor and slap chest before returning to starting position', 'chest slap must be heard'.
 
 **Prompt, with a character reference attached:**

@@ -1,0 +1,105 @@
+{
+  "_about": "Background prompts. Numbers (horizon, floor line, clear strip, base lines) are computed from config/theme.json by kit/prompt_bg.py, so they follow the build. Edit the words here; run `python3 kit/prompt_bg.py --publish` to rebuild prompts/backgrounds.json and BACKGROUNDS.md.",
+  "horizon_above_floor": 24,
+  "planes": ["sky", "clouds", "far", "near", "ground", "back", "front"],
+  "plane_names": {
+    "sky": "SKY", "clouds": "CLOUDS", "far": "FAR LAYER", "near": "NEAR LAYER", "ground": "GROUND", "back": "BACK ROW", "front": "FRONT FRAME"
+  },
+  "style": "STYLE: clean cartoon video-game illustration that matches a friendly cartoon boy character who will be placed on top: smooth rounded vector-like shapes, flat cel shading with ONE soft shadow tone, vivid saturated but harmonious colors, crisp clean edges. A medium-weight dark outline ONLY on the nearest objects; the farther the object, the thinner the outline, and no outline at all on the farthest shapes. NOT pixel art: no visible pixels, no dithering, no 8-bit, 16-bit or 64-bit look, no noise, no painterly texture, no photo realism.",
+  "camera": "CAMERA: a low, level, straight-on side view, like a 2.5D side-scrolling game. ONE horizon line {horizon}% down from the top of the image, shared by every layer. No tilt, no wide-angle distortion, no dramatic vanishing points.",
+  "stage": "THE STAGE (very important): a cartoon boy about {boy_h}% of the image height will be pasted on top, standing with his feet on an invisible line {floor}% down from the top, in the middle. Keep the strip from {strip_top}% to {strip_bottom}% down the image completely flat, smooth and empty (no rocks, plants, lines or shadows bigger than a pebble) so he stands on clean ground. Keep the middle third of the image (left to right) calm, with lower contrast and no strong shapes, so his silhouette reads clearly; put the interest and detail in the left and right thirds. Nothing may rise in front of the stage strip.",
+  "light": "LIGHT: {light} One light direction in every layer.",
+  "depth": "DEPTH: objects shrink steadily with distance and every layer sits on the same horizon. Atmospheric perspective: the farther a layer is, the lighter, bluer, simpler and lower in contrast it is (but never blurry: keep the edges crisp); the nearer a layer is, the darker, warmer, more saturated and more detailed.",
+  "keying": "COLOR RULE: do not use pink, magenta or saturated purple anywhere in the artwork (the magenta background is removed by software). Use blue-grey for haze and distance. All edges crisp: no glow, feathering, blur or airbrushed edges against the background.",
+  "lights": {
+    "morning": "bright clear morning, the sun high in the upper left, warm soft light, soft shadows falling slightly to the right and behind objects.",
+    "golden": "golden evening, the sun low on the left, warm orange-gold light, long soft shadows falling to the right, a warmer sky near the horizon.",
+    "overcast": "soft overcast day, even cool light, no cast shadows, slightly muted colors, a pale grey-blue sky."
+  },
+  "environments": {
+    "forest": {
+      "title": "Pine forest and mountains",
+      "setting": "a sunny pine forest trail below a blue mountain range",
+      "ground_top": "horizon",
+      "planes": {
+        "sky": "a smooth soft blue gradient, deeper blue at the top and pale near the horizon, with a gentle glow where the sun is. No clouds, no objects.",
+        "clouds": "five to seven soft puffy cartoon clouds, white with one pale blue-grey shadow tone, mostly in the upper half, a few small ones lower; none near the horizon line and none in the lower half.",
+        "far": "a distant blue-grey mountain range with a few small snowy caps, hazy and simple, the peaks about 22% of the image height; the base sits on the horizon.",
+        "near": "closer rounded green-blue foothills with a few tiny pine silhouettes along the ridge, about 14% of the image height, slightly darker than the far range; the base sits on the horizon.",
+        "ground": "a warm sandy-tan trail and meadow floor from the horizon to the bottom edge: lighter and flatter near the horizon, a little warmer at the bottom, a thin soft grass fringe along the horizon line, tiny perspective pebbles and a few faint trail marks only far away (none near the stage strip).",
+        "back": "a loose row of medium pine trees about 28% of the image height standing on the ground, bases at the back base line, spaced unevenly with a wide calm gap in the middle third; mid-green, very thin outline.",
+        "front": "three or four large dark-green pine trees and a few bushes and small rocks standing ONLY in the far left and far right quarters, bases at the front base line, tops reaching about 45% of the image height; medium outline; the middle half of the image completely clear."
+      }
+    },
+    "beach": {
+      "title": "Tropical beach",
+      "setting": "a bright tropical beach with calm sea and palm trees",
+      "ground_top": "shore",
+      "planes": {
+        "sky": "a smooth gradient from clear turquoise-blue at the top to pale cream-blue near the horizon, with a gentle glow where the sun is. No clouds, no objects.",
+        "clouds": "four to six small puffy tropical clouds with flat soft bottoms, white with one pale blue-grey shadow tone, in the upper half only.",
+        "far": "a calm deep-blue sea from the horizon line down to the shoreline (the horizon is a perfectly straight flat line), with a faint pale blue-green island silhouette on the left side near the horizon and a few tiny white sail shapes; keep the sea simple and flat in color with only a few light horizontal highlights. It continues down to the shoreline.",
+        "near": "lighter turquoise shallow water along the shore with small gentle white foam waves and a thin shiny wet-sand band, between the sea and the dry sand, roughly {shore_band}; keep it simple.",
+        "ground": "warm light sand from the shoreline down to the bottom edge: lighter near the shoreline, slightly warmer at the bottom, a few tiny shells and pebbles only far away (none near the stage strip).",
+        "back": "a loose row of slim palm trees leaning slightly, standing on the sand with bases at the back base line, about 30% of the image height, mid-green with brown trunks, spaced unevenly with a wide gap in the middle third; very thin outline.",
+        "front": "ONLY in the far left and far right quarters: large palm trunks with big fronds, a few rocks and tufts of beach grass, bases at the front base line, tops reaching about 45% of the image height; medium outline; the middle half of the image completely clear."
+      }
+    },
+    "desert": {
+      "title": "Desert canyon",
+      "setting": "a sunlit desert canyon with mesas and cacti",
+      "ground_top": "horizon",
+      "planes": {
+        "sky": "a smooth gradient from deep clear blue at the top to a pale peach-cream near the horizon, with a gentle glow where the sun is. No clouds, no objects.",
+        "clouds": "three or four thin streaky white clouds in the upper half only, with one pale blue-grey shadow tone.",
+        "far": "distant pale blue-lavender mesas and buttes with flat tops, hazy and very simple, about 20% of the image height; the base sits on the horizon. Use blue-grey for the haze, not purple.",
+        "near": "closer terracotta-orange mesas and rock walls with a few horizontal rock strata stripes, one taller butte in the left third, about 15% of the image height; the base sits on the horizon.",
+        "ground": "packed pale-orange sand from the horizon to the bottom edge: lighter near the horizon, warmer at the bottom, faint far-away cracked-earth lines and a few tiny pebbles (none near the stage strip).",
+        "back": "scattered small desert shrubs and a few small saguaro cacti standing on the sand with bases at the back base line, about 24% of the image height, spaced unevenly with a wide gap in the middle third; very thin outline.",
+        "front": "ONLY in the far left and far right quarters: large saguaro cacti and a few boulders, bases at the front base line, tops reaching about 45% of the image height; medium outline; the middle half of the image completely clear."
+      }
+    },
+    "snow": {
+      "title": "Snowy mountains",
+      "setting": "a crisp snowy alpine valley on a clear winter day",
+      "ground_top": "horizon",
+      "planes": {
+        "sky": "a smooth gradient from clear pale blue at the top to near-white blue near the horizon, with a gentle glow where the sun is. No clouds, no objects.",
+        "clouds": "a few thin high wispy white clouds in the upper half only, with one pale blue-grey shadow tone.",
+        "far": "jagged snow-capped alpine peaks in blue-white with one soft blue-grey shadow tone, hazy and simple, about 24% of the image height; the base sits on the horizon. Use blue-grey for shadows, not purple.",
+        "near": "lower rounded snowy slopes with a band of dark-green pine forest along the base, about 14% of the image height; the base sits on the horizon.",
+        "ground": "a smooth white-blue snow field from the horizon to the bottom edge with soft light-blue shadow shapes: lighter near the horizon, a little bluer at the bottom, a few tiny far-away ripples (nothing near the stage strip).",
+        "back": "a loose row of snow-dusted fir trees about 28% of the image height standing on the snow with bases at the back base line, spaced unevenly with a wide gap in the middle third; very thin outline.",
+        "front": "ONLY in the far left and far right quarters: big snow-covered fir trees and a snow-capped rock, bases at the front base line, tops reaching about 45% of the image height; medium outline; the middle half of the image completely clear."
+      }
+    },
+    "city": {
+      "title": "City park plaza",
+      "setting": "a tidy city park plaza in the morning with a skyline behind it",
+      "ground_top": "horizon",
+      "planes": {
+        "sky": "a smooth soft blue gradient, deeper at the top and pale near the horizon, with a gentle glow where the sun is. No clouds, no objects.",
+        "clouds": "five or six soft puffy cartoon clouds, white with one pale blue-grey shadow tone, in the upper half only.",
+        "far": "a faint skyline of tall glass towers in pale blue-grey, very simple (a few window grid hints only), about 24% of the image height; the base sits on the horizon.",
+        "near": "mid-rise buildings in warm brick and cream with simple windows, slightly darker and more detailed than the towers, about 15% of the image height; the base sits on the horizon.",
+        "ground": "a smooth pale-stone plaza from the horizon to the bottom edge with a slightly lighter wide central path, a soft grass edge along the horizon, and tiny paving lines only far away (none near the stage strip).",
+        "back": "a loose row of rounded street trees and low hedges standing on the plaza with bases at the back base line, about 26% of the image height, spaced unevenly with a wide gap in the middle third; very thin outline.",
+        "front": "ONLY in the far left and far right quarters: a lamp post, a park bench and a larger leafy tree, bases at the front base line, tops reaching about 45% of the image height; medium outline; the middle half of the image completely clear."
+      }
+    },
+    "gym": {
+      "title": "Indoor gym",
+      "setting": "a bright, clean indoor gym with big windows",
+      "ground_top": "horizon",
+      "planes": {
+        "sky": "the BACK WALL: a smooth light warm-grey wall with a very gentle top-to-bottom gradient, filling the whole image. No objects.",
+        "clouds": "WINDOWS AND WALL FEATURES: three large tall windows showing a bright pale-blue sky, a round wall clock and a plain banner without any writing, all in the upper two thirds of the image, mostly in the left and right thirds.",
+        "far": "FAR EQUIPMENT: faint pale blue-grey silhouettes of a weight rack, a row of benches and a tall shelf along the back wall, very simple, about 20% of the image height; the base sits on the wall-floor line (the horizon).",
+        "near": "NEARER EQUIPMENT: a pull-up rack, a stack of exercise balls and a plant in a pot, slightly darker and more detailed, about 16% of the image height; the base sits on the wall-floor line (the horizon).",
+        "ground": "THE FLOOR: a smooth light wooden gym floor from the wall-floor line to the bottom edge with very faint long board lines, lighter near the wall and a little warmer at the bottom (nothing near the stage strip).",
+        "back": "MIDDLE ROW: a few stacked exercise mats, a low bench and a kettlebell rack standing on the floor with bases at the back base line, about 24% of the image height, spaced unevenly with a wide gap in the middle third; very thin outline.",
+        "front": "ONLY in the far left and far right quarters: a big rolled mat, a dumbbell rack and a leafy plant, bases at the front base line, tops reaching about 40% of the image height; medium outline; the middle half of the image completely clear."
+      }
+    }
+  }
+}

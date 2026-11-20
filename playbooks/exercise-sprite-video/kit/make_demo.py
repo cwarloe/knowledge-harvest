@@ -90,6 +90,8 @@ def main():
     shutil.rmtree(os.path.join(out, "strips"), ignore_errors=True); os.makedirs(os.path.join(out, "strips"), exist_ok=True)
     sh([sys.executable, os.path.join(HERE, "prompt.py"), "--all", "--data", a.data])
     shutil.copy(os.path.join(ROOT, "prompts", "prompts.json"), os.path.join(out, "prompts.json")); shutil.copy(os.path.join(ROOT, "prompts", "PROMPTS.md"), os.path.join(out, "PROMPTS.md"))
+    sh([sys.executable, os.path.join(HERE, "prompt_bg.py"), "--publish"])
+    for fn in ("backgrounds.json", "BACKGROUNDS.md"): shutil.copy(os.path.join(ROOT, "prompts", fn), os.path.join(out, fn))
     shutil.copy(os.path.join(ROOT, "docs", "HOW-TO-GENERATE-STRIPS.md"), os.path.join(out, "HOW-TO-GENERATE-STRIPS.md"))
     for st in reg["strips"].values(): shutil.copy(os.path.join(ROOT, "sheets", st["file"]), os.path.join(out, "strips", st["file"]))
     for cid in sorted(prompted):                    # a Word document of prompts for each chart still to build
