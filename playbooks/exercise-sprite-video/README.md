@@ -99,6 +99,8 @@ python3 kit/import_backdrop.py --id beach --dir path/to/layers     # cut out the
 # then set "backdrop": {"id": "beach"} in config/theme.json and rebuild
 ```
 
+`python3 kit/check_backdrop.py picture.png --out previews/` grades any background against the stage: floor contrast against his skin (orange and tan floors make his legs melt into them), how busy the middle third is, how flat the strip around his feet is, and writes a preview with the real run and push-up sprites on it. Candidates and verdicts so far: `library/backgrounds/`.
+
 The importer also writes `preview.png` with the floor line and the boy's height marked, so placement can be checked before any render. Layers from different settings can be mixed: every set shares one horizon and one floor line.
 
 ## Add an exercise, or a whole chart

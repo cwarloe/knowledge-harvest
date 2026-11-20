@@ -164,6 +164,16 @@ with tempfile.TemporaryDirectory() as t3:
         check(np.array(lay[0][1])[..., 3].min() == 255, "importer: the sky stays fully opaque")
     finally: build.ASSETS = old_assets
 
+# background checker: an orange floor must be flagged, a cool grey one passed, on the real stage numbers
+import check_backdrop
+Fl = theme["formats"]["landscape"]
+with tempfile.TemporaryDirectory() as t4:
+    for nm_, col_ in (("orange", (252, 185, 88)), ("grey", (170, 175, 185))):
+        im_ = Image.new("RGB", (Fl["W"], Fl["H"]), (200, 205, 190)); im_.paste(Image.new("RGB", (Fl["W"], int(Fl["H"] * .35)), col_), (0, int(Fl["H"] * .65))); im_.save(os.path.join(t4, nm_ + ".png"))
+    mo, mg = (check_backdrop.measure(os.path.join(t4, n_ + ".png"), Fl) for n_ in ("orange", "grey"))
+    check(mo["de_skin"] < 30 <= 40 <= mg["de_skin"] and "MELT" in check_backdrop.verdict(mo)[0] and check_backdrop.verdict(mg)[0].endswith("clear"), "background checker: an orange floor is flagged as melting his legs, a cool grey one passes")
+    check(mg["busy"] < 1 and mg["strip_std"] < 3, "background checker: a plain picture is calm and its stage strip flat")
+
 import copy, builds
 th_p, sc_p = os.path.join(ROOT, "config", "theme.json"), os.path.join(ROOT, "config", "scene.json")
 rec = {"chart": 3, "inputs": builds.inputs_now(data_path, th_p, sc_p, 3, reg["charts"]["3"], reg, theme, build.CODE_VERSION)}

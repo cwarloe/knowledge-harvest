@@ -1,0 +1,35 @@
+{
+ "_about": "Background candidates from ChatGPT (2026-11-20), landscape 1920x1080, judged against the stage with kit/check_backdrop.py and sprite previews. Not wired into any build.",
+ "entries": [
+  {
+   "id": "gym",
+   "file": "bg-cand-gym-landscape.png",
+   "verdict": "best base; change the floor",
+   "notes": "calm centre, cream wall and teal band make the boy pop, equipment small and to the sides. Floor is orange: legs melt into it (distance to skin 12). Change to cool grey/blue rubber."
+  },
+  {
+   "id": "arcade",
+   "file": "bg-cand-arcade-landscape.png",
+   "verdict": "second; strongest contrast",
+   "notes": "calmest centre (1.3% busy), grey floor (51 from skin), dark teal wall makes cyan tank and skin pop. Round emblem sits behind his belly; cabinets cropped at the edges. Good for a later chart."
+  },
+  {
+   "id": "loft",
+   "file": "bg-cand-loft-landscape.png",
+   "verdict": "rework",
+   "notes": "busiest behind him (12.9%): three big gridded windows, one right behind his head; orange brick fights the red shorts and skin. Floor is good. Keep only with blue-grey painted brick and the windows moved to the sides."
+  },
+  {
+   "id": "workshop",
+   "file": "bg-cand-workshop-landscape.png",
+   "verdict": "rework or skip",
+   "notes": "gold gears dwarf him; beige floor nearly the same as skin (22). Fun as a story level only after the floor is made stone grey and the gold toned down."
+  },
+  {
+   "id": "library",
+   "file": "bg-cand-library-landscape.png",
+   "verdict": "not for exercise",
+   "notes": "busy shelves both sides and an arch behind him; orange floor melts his legs (9). Better as a calm break-card background."
+  }
+ ]
+}
