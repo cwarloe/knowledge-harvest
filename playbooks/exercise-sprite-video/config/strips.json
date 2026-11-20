@@ -214,6 +214,74 @@
         3
       ],
       "jumps_per_cycle": 1
+    },
+    "sit-up-toe-touch-c4": {
+      "file": "c4-ex2-sit-up-toe-touch.png",
+      "poses": 3,
+      "anchor": "shoes",
+      "cycle": [
+        1,
+        2,
+        3,
+        2
+      ],
+      "reps_per_cycle": 1
+    },
+    "back-extension-arms-sideways-c4": {
+      "file": "c4-ex3-back-extension-arms-sideways.png",
+      "poses": 3,
+      "anchor": "hips",
+      "cycle": [
+        1,
+        2,
+        3,
+        2
+      ],
+      "reps_per_cycle": 1
+    },
+    "wide-hand-push-up-c4": {
+      "file": "c4-ex4-wide-hand-push-up.png",
+      "poses": 3,
+      "anchor": "shoes",
+      "cycle": [
+        1,
+        2,
+        3,
+        2
+      ],
+      "reps_per_cycle": 1,
+      "erase": [
+        [
+          171,
+          505,
+          198,
+          516
+        ]
+      ]
+    },
+    "high-knee-run-c4": {
+      "file": "c4-run-knees-waist-high.png",
+      "poses": 4,
+      "anchor": "shoes",
+      "cycle": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "steps_per_cycle": 1
+    },
+    "semi-squat-jumps-c4": {
+      "file": "c4-jump-semi-squat-jumps.png",
+      "poses": 4,
+      "anchor": "shoes",
+      "cycle": [
+        3,
+        2,
+        1,
+        4
+      ],
+      "jumps_per_cycle": 2
     }
   },
   "charts": {
@@ -240,6 +308,19 @@
       "ex4": "chin-forehead-push-up-c3",
       "run": "stationary-run-c1",
       "jump": "half-knee-bends-c3"
+    },
+    "4": {
+      "ex2": "sit-up-toe-touch-c4",
+      "ex3": "back-extension-arms-sideways-c4",
+      "ex4": "wide-hand-push-up-c4",
+      "run": "high-knee-run-c4",
+      "jump": "semi-squat-jumps-c4"
+    },
+    "5": {
+      "run": "high-knee-run-c4"
+    },
+    "6": {
+      "run": "high-knee-run-c4"
     }
   }
 }

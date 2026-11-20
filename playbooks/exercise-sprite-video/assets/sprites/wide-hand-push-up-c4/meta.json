@@ -1,0 +1,87 @@
+{
+ "version": "4",
+ "source": "c4-ex4-wide-hand-push-up.png",
+ "source_hash": "fab0bd337f1e",
+ "key": {
+  "lo": 28,
+  "hi": 95
+ },
+ "n": 3,
+ "rows": null,
+ "row": null,
+ "erase": [
+  [
+   171,
+   505,
+   198,
+   516
+  ]
+ ],
+ "poses": [
+  {
+   "file": "p1.png",
+   "offset": [
+    32,
+    478
+   ],
+   "size": [
+    506,
+    182
+   ],
+   "anchors": {
+    "head": 341.801652892562,
+    "span-left": 86.0,
+    "span-right": 189.0,
+    "span-center": 135.659793814433,
+    "hips": 162.17863720073666,
+    "shoes": 22.067776456599287,
+    "shoe-left": 7.0,
+    "shoe-right": 40.0
+   }
+  },
+  {
+   "file": "p2.png",
+   "offset": [
+    594,
+    388
+   ],
+   "size": [
+    490,
+    268
+   ],
+   "anchors": {
+    "head": 333.5,
+    "span-left": 73.0,
+    "span-right": 176.0,
+    "span-center": 124.5,
+    "hips": 142.43396226415095,
+    "shoes": 21.75064935064935,
+    "shoe-left": 7.0,
+    "shoe-right": 43.0
+   }
+  },
+  {
+   "file": "p3.png",
+   "offset": [
+    1145,
+    304
+   ],
+   "size": [
+    490,
+    351
+   ],
+   "anchors": {
+    "head": 342.0,
+    "span-left": 111.0,
+    "span-right": 215.0,
+    "span-center": 161.7,
+    "hips": 150.04725738396624,
+    "shoes": 21.195704057279237,
+    "shoe-left": 7.0,
+    "shoe-right": 49.0
+   }
+  }
+ ],
+ "floor": 660,
+ "top": 304
+}

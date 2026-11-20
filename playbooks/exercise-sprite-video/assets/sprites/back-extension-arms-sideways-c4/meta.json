@@ -1,0 +1,80 @@
+{
+ "version": "4",
+ "source": "c4-ex3-back-extension-arms-sideways.png",
+ "source_hash": "3a1e9c67a3e4",
+ "key": {
+  "lo": 28,
+  "hi": 95
+ },
+ "n": 3,
+ "rows": null,
+ "row": null,
+ "erase": null,
+ "poses": [
+  {
+   "file": "p1.png",
+   "offset": [
+    25,
+    427
+   ],
+   "size": [
+    531,
+    200
+   ],
+   "anchors": {
+    "head": 262.25,
+    "span-left": 183.0,
+    "span-right": 247.0,
+    "span-center": 215.0,
+    "hips": 185.59453645945365,
+    "shoes": 37.08716136631331,
+    "shoe-left": 6.0,
+    "shoe-right": 90.0
+   }
+  },
+  {
+   "file": "p2.png",
+   "offset": [
+    582,
+    394
+   ],
+   "size": [
+    518,
+    212
+   ],
+   "anchors": {
+    "head": 336.5,
+    "span-left": 171.0,
+    "span-right": 234.0,
+    "span-center": 202.5,
+    "hips": 182.00206896551725,
+    "shoes": 38.49341438703141,
+    "shoe-left": 6.0,
+    "shoe-right": 82.0
+   }
+  },
+  {
+   "file": "p3.png",
+   "offset": [
+    1130,
+    336
+   ],
+   "size": [
+    520,
+    223
+   ],
+   "anchors": {
+    "head": 370.70526315789476,
+    "span-left": 187.0,
+    "span-right": 306.0,
+    "span-center": 246.5,
+    "hips": 185.89505081749888,
+    "shoes": 41.0175983436853,
+    "shoe-left": 6.0,
+    "shoe-right": 91.0
+   }
+  }
+ ],
+ "floor": 627,
+ "top": 336
+}

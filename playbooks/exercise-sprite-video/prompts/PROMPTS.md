@@ -1039,7 +1039,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - Note: Keep arms in contact with the sides of the head throughout the movement.
 - Note: Allow knees to bend slightly.
 
-**Status:** (not made yet)
+**Kept:** (not made yet)
 
 **Check before you keep a take:**
 
@@ -1096,7 +1096,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - Movement: Lift head, shoulders, arms, chest and both legs as high as possible.
 - Note: Keep legs straight, raise chest and both thighs completely off floor.
 
-**Status:** (not made yet)
+**Kept:** (not made yet)
 
 **Check before you keep a take:**
 
@@ -1157,7 +1157,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - Movement: Straighten arms to lift body.
 - Note: Chest must touch floor for each completed movement.
 
-**Status:** (not made yet)
+**Kept:** (not made yet)
 
 **Check before you keep a take:**
 
@@ -1212,7 +1212,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - Note: Semi-squat jumps - Drop to a half crouch position with hands on knees and arms straight, keep back as straight as possible, right foot slightly ahead of left.
 - Note: Jump to upright position with body straight and feet leaving floor. Reverse position of feet before landing. Return to half crouch position and repeat.
 
-**Status:** (not made yet)
+**Kept:** (not made yet)
 
 **Check before you keep a take:**
 
@@ -1276,7 +1276,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - Note: Semi-squat jumps - Drop to a half crouch position with hands on knees and arms straight, keep back as straight as possible, right foot slightly ahead of left.
 - Note: Jump to upright position with body straight and feet leaving floor. Reverse position of feet before landing. Return to half crouch position and repeat.
 
-**Status:** (not made yet)
+**Kept:** (not made yet)
 
 **Check before you keep a take:**
 

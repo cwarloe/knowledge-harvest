@@ -1,0 +1,80 @@
+{
+ "version": "4",
+ "source": "c4-ex2-sit-up-toe-touch.png",
+ "source_hash": "408c6050b1e5",
+ "key": {
+  "lo": 28,
+  "hi": 95
+ },
+ "n": 3,
+ "rows": null,
+ "row": null,
+ "erase": null,
+ "poses": [
+  {
+   "file": "p1.png",
+   "offset": [
+    13,
+    418
+   ],
+   "size": [
+    623,
+    200
+   ],
+   "anchors": {
+    "head": 164.6,
+    "span-left": 221.0,
+    "span-right": 610.0,
+    "span-center": 415.5,
+    "hips": 358.999674585096,
+    "shoes": 578.752308984047,
+    "shoe-left": 543.0,
+    "shoe-right": 607.0
+   }
+  },
+  {
+   "file": "p2.png",
+   "offset": [
+    630,
+    270
+   ],
+   "size": [
+    527,
+    347
+   ],
+   "anchors": {
+    "head": 30.5,
+    "span-left": 217.0,
+    "span-right": 515.0,
+    "span-center": 366.0,
+    "hips": 252.67962716378162,
+    "shoes": 482.7786458333333,
+    "shoe-left": 446.0,
+    "shoe-right": 512.0
+   }
+  },
+  {
+   "file": "p3.png",
+   "offset": [
+    1230,
+    323
+   ],
+   "size": [
+    359,
+    295
+   ],
+   "anchors": {
+    "head": 180.0,
+    "span-left": 24.0,
+    "span-right": 346.0,
+    "span-center": 185.0,
+    "hips": 91.40306803023566,
+    "shoes": 315.488271068636,
+    "shoe-left": 280.0,
+    "shoe-right": 345.0
+   }
+  }
+ ],
+ "floor": 618,
+ "top": 270
+}

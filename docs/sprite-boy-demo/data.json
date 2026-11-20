@@ -988,7 +988,7 @@
   },
   "4": {
    "label": "Chart 4",
-   "status": "planned",
+   "status": "partial",
    "all": [
     {
      "slot": "ex1",
@@ -998,36 +998,262 @@
     {
      "slot": "ex2",
      "name": "Sit-up, toe touch",
-     "built": false
+     "built": true
     },
     {
      "slot": "ex3",
      "name": "Back extension, arms sideways",
-     "built": false
+     "built": true
     },
     {
      "slot": "ex4",
      "name": "Wide-hand push-up",
-     "built": false
+     "built": true
     },
     {
      "slot": "run",
      "name": "Stationary run",
-     "built": false
+     "built": true
     },
     {
      "slot": "jump",
      "name": "semi-squat jumps",
-     "built": false
+     "built": true
     }
    ],
-   "slots": {},
-   "order": [],
+   "slots": {
+    "ex2": {
+     "strip": "sit-up-toe-touch-c4",
+     "cycle": [
+      1,
+      2,
+      3,
+      2
+     ],
+     "cycle_s": 2.7273,
+     "allot": 60,
+     "poses": [
+      {
+       "file": "sprites/c4/sit-up-toe-touch-c4/p1.png",
+       "x": 258.08,
+       "y": 337.46,
+       "w": 764,
+       "h": 245
+      },
+      {
+       "file": "sprites/c4/sit-up-toe-touch-c4/p2.png",
+       "x": 375.75,
+       "y": 156.0,
+       "w": 646,
+       "h": 425
+      },
+      {
+       "file": "sprites/c4/sit-up-toe-touch-c4/p3.png",
+       "x": 580.86,
+       "y": 220.98,
+       "w": 440,
+       "h": 362
+      }
+     ],
+     "union": [
+      258.08,
+      1021.92
+     ],
+     "kicker": "EXERCISE 2 OF 5",
+     "title": "Sit-up, toe touch",
+     "target": "22 reps"
+    },
+    "ex3": {
+     "strip": "back-extension-arms-sideways-c4",
+     "cycle": [
+      1,
+      2,
+      3,
+      2
+     ],
+     "cycle_s": 1.2,
+     "allot": 60,
+     "poses": [
+      {
+       "file": "sprites/c4/back-extension-arms-sideways-c4/p1.png",
+       "x": 250.94,
+       "y": 289.42,
+       "w": 779,
+       "h": 293
+      },
+      {
+       "file": "sprites/c4/back-extension-arms-sideways-c4/p2.png",
+       "x": 256.21,
+       "y": 241.04,
+       "w": 759,
+       "h": 311
+      },
+      {
+       "file": "sprites/c4/back-extension-arms-sideways-c4/p3.png",
+       "x": 250.5,
+       "y": 156.0,
+       "w": 762,
+       "h": 327
+      }
+     ],
+     "union": [
+      250.5,
+      1029.5
+     ],
+     "kicker": "EXERCISE 3 OF 5",
+     "title": "Back extension, arms sideways",
+     "target": "50 reps"
+    },
+    "ex4": {
+     "strip": "wide-hand-push-up-c4",
+     "cycle": [
+      1,
+      2,
+      3,
+      2
+     ],
+     "cycle_s": 1.4286,
+     "allot": 60,
+     "poses": [
+      {
+       "file": "sprites/c4/wide-hand-push-up-c4/p1.png",
+       "x": 336.78,
+       "y": 364.54,
+       "w": 606,
+       "h": 218
+      },
+      {
+       "file": "sprites/c4/wide-hand-push-up-c4/p2.png",
+       "x": 337.16,
+       "y": 256.67,
+       "w": 587,
+       "h": 321
+      },
+      {
+       "file": "sprites/c4/wide-hand-push-up-c4/p3.png",
+       "x": 337.82,
+       "y": 156.0,
+       "w": 587,
+       "h": 421
+      }
+     ],
+     "union": [
+      336.78,
+      943.22
+     ],
+     "kicker": "EXERCISE 4 OF 5",
+     "title": "Wide-hand push-up",
+     "target": "42 reps"
+    },
+    "jump": {
+     "strip": "semi-squat-jumps-c4",
+     "cycle": [
+      3,
+      2,
+      1,
+      4
+     ],
+     "cycle_s": 3.0,
+     "allot": 360,
+     "poses": [
+      {
+       "file": "sprites/c4/semi-squat-jumps-c4/p1.png",
+       "x": 602.58,
+       "y": 273.07,
+       "w": 130,
+       "h": 310
+      },
+      {
+       "file": "sprites/c4/semi-squat-jumps-c4/p2.png",
+       "x": 555.28,
+       "y": 156.0,
+       "w": 109,
+       "h": 364
+      },
+      {
+       "file": "sprites/c4/semi-squat-jumps-c4/p3.png",
+       "x": 547.86,
+       "y": 273.07,
+       "w": 132,
+       "h": 310
+      },
+      {
+       "file": "sprites/c4/semi-squat-jumps-c4/p4.png",
+       "x": 554.91,
+       "y": 156.0,
+       "w": 110,
+       "h": 364
+      }
+     ],
+     "union": [
+      547.86,
+      732.14
+     ],
+     "kicker": "PAUSE THE RUN",
+     "title": "10 semi-squat jumps",
+     "target": "jump now"
+    },
+    "run": {
+     "strip": "high-knee-run-c4",
+     "cycle": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "cycle_s": 0.7125,
+     "allot": 360,
+     "poses": [
+      {
+       "file": "sprites/c4/high-knee-run-c4/p1.png",
+       "x": 518.9,
+       "y": 156.0,
+       "w": 173,
+       "h": 425
+      },
+      {
+       "file": "sprites/c4/high-knee-run-c4/p2.png",
+       "x": 603.73,
+       "y": 156.0,
+       "w": 154,
+       "h": 427
+      },
+      {
+       "file": "sprites/c4/high-knee-run-c4/p3.png",
+       "x": 582.23,
+       "y": 156.0,
+       "w": 179,
+       "h": 427
+      },
+      {
+       "file": "sprites/c4/high-knee-run-c4/p4.png",
+       "x": 604.01,
+       "y": 156.0,
+       "w": 145,
+       "h": 427
+      }
+     ],
+     "union": [
+      518.9,
+      761.1
+     ],
+     "kicker": "EXERCISE 5 OF 5",
+     "title": "Stationary run",
+     "target": "400 steps"
+    }
+   },
+   "order": [
+    "ex2",
+    "ex3",
+    "ex4",
+    "run",
+    "jump"
+   ],
    "prompts_ready": true
   },
   "5": {
    "label": "Chart 5",
-   "status": "planned",
+   "status": "partial",
    "all": [
     {
      "slot": "ex1",
@@ -1052,7 +1278,7 @@
     {
      "slot": "run",
      "name": "Stationary run",
-     "built": false
+     "built": true
     },
     {
      "slot": "jump",
@@ -1060,13 +1286,64 @@
      "built": false
     }
    ],
-   "slots": {},
-   "order": [],
+   "slots": {
+    "run": {
+     "strip": "high-knee-run-c4",
+     "cycle": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "cycle_s": 0.54,
+     "allot": 360,
+     "poses": [
+      {
+       "file": "sprites/c5/high-knee-run-c4/p1.png",
+       "x": 518.9,
+       "y": 156.0,
+       "w": 173,
+       "h": 425
+      },
+      {
+       "file": "sprites/c5/high-knee-run-c4/p2.png",
+       "x": 603.73,
+       "y": 156.0,
+       "w": 154,
+       "h": 427
+      },
+      {
+       "file": "sprites/c5/high-knee-run-c4/p3.png",
+       "x": 582.23,
+       "y": 156.0,
+       "w": 179,
+       "h": 427
+      },
+      {
+       "file": "sprites/c5/high-knee-run-c4/p4.png",
+       "x": 604.01,
+       "y": 156.0,
+       "w": 145,
+       "h": 427
+      }
+     ],
+     "union": [
+      518.9,
+      761.1
+     ],
+     "kicker": "EXERCISE 5 OF 5",
+     "title": "Stationary run",
+     "target": "500 steps"
+    }
+   },
+   "order": [
+    "run"
+   ],
    "prompts_ready": true
   },
   "6": {
    "label": "Chart 6",
-   "status": "planned",
+   "status": "partial",
    "all": [
     {
      "slot": "ex1",
@@ -1091,7 +1368,7 @@
     {
      "slot": "run",
      "name": "Stationary run",
-     "built": false
+     "built": true
     },
     {
      "slot": "jump",
@@ -1099,8 +1376,59 @@
      "built": false
     }
    ],
-   "slots": {},
-   "order": [],
+   "slots": {
+    "run": {
+     "strip": "high-knee-run-c4",
+     "cycle": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "cycle_s": 0.4,
+     "allot": 360,
+     "poses": [
+      {
+       "file": "sprites/c6/high-knee-run-c4/p1.png",
+       "x": 518.9,
+       "y": 156.0,
+       "w": 173,
+       "h": 425
+      },
+      {
+       "file": "sprites/c6/high-knee-run-c4/p2.png",
+       "x": 603.73,
+       "y": 156.0,
+       "w": 154,
+       "h": 427
+      },
+      {
+       "file": "sprites/c6/high-knee-run-c4/p3.png",
+       "x": 582.23,
+       "y": 156.0,
+       "w": 179,
+       "h": 427
+      },
+      {
+       "file": "sprites/c6/high-knee-run-c4/p4.png",
+       "x": 604.01,
+       "y": 156.0,
+       "w": 145,
+       "h": 427
+      }
+     ],
+     "union": [
+      518.9,
+      761.1
+     ],
+     "kicker": "EXERCISE 5 OF 5",
+     "title": "Stationary run",
+     "target": "600 steps"
+    }
+   },
+   "order": [
+    "run"
+   ],
    "prompts_ready": true
   }
  },

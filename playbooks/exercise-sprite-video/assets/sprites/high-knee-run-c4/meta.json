@@ -1,0 +1,101 @@
+{
+ "version": "4",
+ "source": "c4-run-knees-waist-high.png",
+ "source_hash": "8acdb7cea077",
+ "key": {
+  "lo": 28,
+  "hi": 95
+ },
+ "n": 4,
+ "rows": null,
+ "row": null,
+ "erase": null,
+ "poses": [
+  {
+   "file": "p1.png",
+   "offset": [
+    66,
+    138
+   ],
+   "size": [
+    278,
+    684
+   ],
+   "anchors": {
+    "head": 130.0,
+    "span-left": 48.0,
+    "span-right": 161.0,
+    "span-center": 104.5,
+    "hips": 125.29568884723524,
+    "shoes": 225.29764453961457,
+    "shoe-left": 184.0,
+    "shoe-right": 270.0
+   }
+  },
+  {
+   "file": "p2.png",
+   "offset": [
+    488,
+    138
+   ],
+   "size": [
+    248,
+    687
+   ],
+   "anchors": {
+    "head": 129.5,
+    "span-left": 69.0,
+    "span-right": 175.0,
+    "span-center": 122.0,
+    "hips": 111.80017388784235,
+    "shoes": 88.70532060027286,
+    "shoe-left": 44.0,
+    "shoe-right": 137.0
+   }
+  },
+  {
+   "file": "p3.png",
+   "offset": [
+    878,
+    138
+   ],
+   "size": [
+    288,
+    687
+   ],
+   "anchors": {
+    "head": 131.5,
+    "span-left": 54.0,
+    "span-right": 168.0,
+    "span-center": 111.0,
+    "hips": 110.63979348689436,
+    "shoes": 123.3230352303523,
+    "shoe-left": 60.0,
+    "shoe-right": 242.0
+   }
+  },
+  {
+   "file": "p4.png",
+   "offset": [
+    1320,
+    138
+   ],
+   "size": [
+    234,
+    687
+   ],
+   "anchors": {
+    "head": 113.5,
+    "span-left": 69.0,
+    "span-right": 174.0,
+    "span-center": 121.5,
+    "hips": 100.03232098077459,
+    "shoes": 88.25720026791694,
+    "shoe-left": 44.0,
+    "shoe-right": 138.0
+   }
+  }
+ ],
+ "floor": 825,
+ "top": 138
+}

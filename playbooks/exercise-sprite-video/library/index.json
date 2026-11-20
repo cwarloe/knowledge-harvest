@@ -797,6 +797,201 @@
    "expert_reviewed": false,
    "verdict": "chosen",
    "notes": "3x3 sheet row 3; up, chest and chin low, head down. Forehead lands in FRONT of the hands (booklet: behind) | forehead lands in front of the hands, booklet says behind; chin step is not distinct from the up step | tentative pick; form caveat"
+  },
+  {
+   "id": "c4-ex2-01",
+   "file": "library/images/c4-ex2-01.png",
+   "chart": 4,
+   "slot": "ex2",
+   "exercise": "a SIT-UP THAT ENDS BY TOUCHING THE TOES, with the arms kept straight overhead against the ears",
+   "strip": "sit-up-toe-touch-c4",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'a SIT-UP THAT ENDS BY TOUCHING THE TOES, with the arms kept straight overhead against the ears'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "rows": null,
+    "row": null,
+    "figures": 3,
+    "fringe_pct": 2.19,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "408c6050b1e5"
+   },
+   "grades": {
+    "form": 5,
+    "legibility": 5,
+    "character": 5,
+    "angle": 5,
+    "key": 4
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "notes": "chart 4 sit-up; arms overhead against the head, fingertips reach toes in pose 3 | arms stay against the head throughout; fingertips reach the toes; legs straight | tentative pick",
+   "wired": true,
+   "sheet": "sheets/c4-ex2-sit-up-toe-touch.png"
+  },
+  {
+   "id": "c4-ex3-01",
+   "file": "library/images/c4-ex3-01.png",
+   "chart": 4,
+   "slot": "ex3",
+   "exercise": "a BACK EXTENSION WITH THE ARMS STRETCHED SIDEWAYS",
+   "strip": "back-extension-arms-sideways-c4",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'a BACK EXTENSION WITH THE ARMS STRETCHED SIDEWAYS'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "rows": null,
+    "row": null,
+    "figures": 3,
+    "fringe_pct": 2.52,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "3a1e9c67a3e4"
+   },
+   "grades": {
+    "form": 3,
+    "legibility": 4,
+    "character": 5,
+    "angle": 4,
+    "key": 5
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "notes": "chart 4 back extension, arms sideways, seen from slightly above | arms sideways in a T as asked; but pose 1 is floating, not lying flat on the floor (booklet: start front lying); retake pose 1 flat | tentative pick",
+   "wired": true,
+   "sheet": "sheets/c4-ex3-back-extension-arms-sideways.png"
+  },
+  {
+   "id": "c4-ex4-01",
+   "file": "library/images/c4-ex4-01.png",
+   "chart": 4,
+   "slot": "ex4",
+   "exercise": "a WIDE-HAND PUSH-UP (on the palms and toes, knees OFF the floor)",
+   "strip": "wide-hand-push-up-c4",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'a WIDE-HAND PUSH-UP (on the palms and toes, knees OFF the floor)'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "rows": null,
+    "row": null,
+    "figures": 3,
+    "fringe_pct": 2.59,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "fab0bd337f1e"
+   },
+   "grades": {
+    "form": 4,
+    "legibility": 5,
+    "character": 5,
+    "angle": 5,
+    "key": 4
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "notes": "chart 4 wide-hand push-up, three-quarter front view | hands wide and level with the head; chest to floor in pose 1; tiny stray speck on the back in pose 1 (erased in strips.json) | tentative pick",
+   "wired": true,
+   "sheet": "sheets/c4-ex4-wide-hand-push-up.png"
+  },
+  {
+   "id": "c4-run-01",
+   "file": "library/images/c4-run-01.png",
+   "chart": 4,
+   "slot": "run",
+   "exercise": "a STATIONARY RUN (running in place) with the KNEES LIFTED WAIST HIGH",
+   "strip": "high-knee-run-c4",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 4,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'a STATIONARY RUN (running in place) with the KNEES LIFTED WAIST HIGH'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "rows": null,
+    "row": null,
+    "figures": 4,
+    "fringe_pct": 2.14,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "8acdb7cea077"
+   },
+   "grades": {
+    "form": 5,
+    "legibility": 5,
+    "character": 5,
+    "angle": 5,
+    "key": 5
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "notes": "chart 4 run, knee up waist high; far leg darker | knee lifts waist high; lifted legs are different (near then far darker); stays in place | tentative pick",
+   "wired": true,
+   "sheet": "sheets/c4-run-knees-waist-high.png"
+  },
+  {
+   "id": "c4-jump-01",
+   "file": "library/images/c4-jump-01.png",
+   "chart": 4,
+   "slot": "jump",
+   "exercise": "SEMI-SQUAT JUMPS",
+   "strip": "semi-squat-jumps-c4",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 4,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'SEMI-SQUAT JUMPS'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "rows": null,
+    "row": null,
+    "figures": 4,
+    "fringe_pct": 2.04,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "33d44728eaad"
+   },
+   "grades": {
+    "form": 4,
+    "legibility": 4,
+    "character": 5,
+    "angle": 5,
+    "key": 5
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "notes": "chart 4 semi-squat jumps: crouch, jump, crouch (feet swapped), jump | crouch 1 has the far (left) foot ahead and crouch 3 the near (right) foot ahead, the reverse of the strip's wording; handled by starting the cycle at pose 3. The two jump poses are the same | tentative pick",
+   "wired": true,
+   "sheet": "sheets/c4-jump-semi-squat-jumps.png"
   }
  ]
 }

@@ -1,0 +1,101 @@
+{
+ "version": "4",
+ "source": "c4-jump-semi-squat-jumps.png",
+ "source_hash": "33d44728eaad",
+ "key": {
+  "lo": 28,
+  "hi": 95
+ },
+ "n": 4,
+ "rows": null,
+ "row": null,
+ "erase": null,
+ "poses": [
+  {
+   "file": "p1.png",
+   "offset": [
+    89,
+    278
+   ],
+   "size": [
+    249,
+    595
+   ],
+   "anchors": {
+    "head": 175.5,
+    "span-left": 7.0,
+    "span-right": 135.0,
+    "span-center": 71.0,
+    "hips": 51.80814508431435,
+    "shoes": 67.27707531610776,
+    "shoe-left": 15.0,
+    "shoe-right": 129.0
+   }
+  },
+  {
+   "file": "p2.png",
+   "offset": [
+    522,
+    53
+   ],
+   "size": [
+    210,
+    699
+   ],
+   "anchors": {
+    "head": 97.5,
+    "span-left": 47.0,
+    "span-right": 209.0,
+    "span-center": 145.3116883116883,
+    "hips": 93.59480449919657,
+    "shoes": 158.17022538552789,
+    "shoe-left": 115.0,
+    "shoe-right": 207.0
+   }
+  },
+  {
+   "file": "p3.png",
+   "offset": [
+    918,
+    278
+   ],
+   "size": [
+    253,
+    595
+   ],
+   "anchors": {
+    "head": 180.5,
+    "span-left": 112.0,
+    "span-right": 243.0,
+    "span-center": 177.5,
+    "hips": 66.07387541143484,
+    "shoes": 172.43387732132808,
+    "shoe-left": 119.0,
+    "shoe-right": 236.0
+   }
+  },
+  {
+   "file": "p4.png",
+   "offset": [
+    1355,
+    53
+   ],
+   "size": [
+    211,
+    699
+   ],
+   "anchors": {
+    "head": 97.5,
+    "span-left": 47.0,
+    "span-right": 209.0,
+    "span-center": 144.34615384615384,
+    "hips": 93.50672060550698,
+    "shoes": 158.88921282798833,
+    "shoe-left": 116.0,
+    "shoe-right": 205.0
+   }
+  }
+ ],
+ "floor": 873,
+ "top": 53
+}

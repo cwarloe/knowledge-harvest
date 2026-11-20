@@ -211,15 +211,19 @@ def bake(name, strip, theme):
     if os.path.exists(mp):
         m = jload(mp)
         if (m.get("source_hash") == h and m.get("key") == theme["key"] and m.get("n") == strip["poses"] and m.get("version") == BAKE_VERSION
-                and m.get("rows") == strip.get("rows") and m.get("row") == strip.get("row")): return m
+                and m.get("rows") == strip.get("rows") and m.get("row") == strip.get("row") and m.get("erase") == strip.get("erase")): return m
     os.makedirs(d, exist_ok=True)
     for f in os.listdir(d):
         if f.endswith(".png"): os.remove(os.path.join(d, f))
     rgba = chroma_key(Image.open(src), **theme["key"])                       # neutral colours: recolour happens at build time
+    if strip.get("erase"):                                                   # a stray speck the generator left: "erase": [[x0, y0, x1, y1]] in sheet pixels, cleared before the poses are split
+        arr = np.array(rgba)
+        for x0, y0, x1, y1 in strip["erase"]: arr[y0:y1, x0:x1, 3] = 0
+        rgba = Image.fromarray(arr, "RGBA")
     if strip.get("rows"):                                                    # several exercises on one sheet: take this strip's row
         y0, y1 = row_bounds(rgba, strip["rows"], src)[strip["row"]]; rgba = rgba.crop((0, y0, rgba.width, y1))
     poses = split_rgba(rgba, strip["poses"], src)
-    meta = {"version": BAKE_VERSION, "source": strip["file"], "source_hash": h, "key": theme["key"], "n": strip["poses"], "rows": strip.get("rows"), "row": strip.get("row"), "poses": []}
+    meta = {"version": BAKE_VERSION, "source": strip["file"], "source_hash": h, "key": theme["key"], "n": strip["poses"], "rows": strip.get("rows"), "row": strip.get("row"), "erase": strip.get("erase"), "poses": []}
     for k, (p, off) in enumerate(poses, 1):
         p.save(os.path.join(d, f"p{k}.png")); meta["poses"].append({"file": f"p{k}.png", "offset": list(off), "size": list(p.size), "anchors": anchors_of(p)})
     meta["floor"] = max(o[1] + p.size[1] for p, o in poses); meta["top"] = min(o[1] for p, o in poses)
