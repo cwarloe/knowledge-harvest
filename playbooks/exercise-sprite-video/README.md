@@ -99,6 +99,8 @@ python3 kit/import_backdrop.py --id beach --dir path/to/layers     # cut out the
 # then set "backdrop": {"id": "beach"} in config/theme.json and rebuild
 ```
 
+A scene can also carry an `overlay` prop: a full-frame picture on magenta (a floor mat drawn in the floor's perspective, light beams, a foreground fringe) cut out at build time and drawn behind or in front of the boy. Put it in `config/scene.json` as `{"kind": "overlay", "file": "assets/mat-teal.png", "z": "behind", "slots": "*"}`; swap the file (or pass another `--scene`) to change the mat per chart. The kit's older `mat` prop is only a thin bar below the feet.
+
 `python3 kit/check_backdrop.py picture.png --out previews/` grades any background against the stage: floor contrast against his skin (orange and tan floors make his legs melt into them), how busy the middle third is, how flat the strip around his feet is, and writes a preview with the real run and push-up sprites on it. Candidates and verdicts so far: `library/backgrounds/`.
 
 The importer also writes `preview.png` with the floor line and the boy's height marked, so placement can be checked before any render. Layers from different settings can be mixed: every set shares one horizon and one floor line.

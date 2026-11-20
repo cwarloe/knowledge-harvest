@@ -176,6 +176,14 @@ with tempfile.TemporaryDirectory() as t4:
     check(dk[1] == "black outline" and md[0] > dk[0] + 8, "background checker: a dark charcoal floor loses his black outline; a mid grey is clearly better")
     check(mg["busy"] < 1 and mg["strip_std"] < 3, "background checker: a plain picture is calm and its stage strip flat")
 
+# an overlay prop: a full-frame picture on magenta is cut out and drawn between the backdrop and the boy
+with tempfile.TemporaryDirectory() as t5:
+    Fo = theme["formats"]["landscape"]; ov = Image.new("RGB", (Fo["W"], Fo["H"]), (255, 0, 255)); ov.paste(Image.new("RGB", (800, 120), (33, 118, 120)), (500, 780)); ovp = os.path.join(ROOT, "assets", "_test_overlay.png"); ov.save(ovp)
+    try:
+        lay = np.array(build.render_props({"props": [{"id": "m", "kind": "overlay", "file": "assets/_test_overlay.png", "z": "behind", "slots": "*"}]}, "ex2", {"gy": int(Fo["H"] * Fo["ground"]), "X0": 960, "L": 300, "R": 300, "s": 1}, Fo, "behind"))
+        check(lay[5, 5, 3] == 0 and lay[840, 900, 3] == 255 and tuple(lay[840, 900, :3]) == (33, 118, 120), "overlay prop: the magenta is cut out, the mat colour is kept, full frame")
+    finally: os.remove(ovp)
+
 import copy, builds
 th_p, sc_p = os.path.join(ROOT, "config", "theme.json"), os.path.join(ROOT, "config", "scene.json")
 rec = {"chart": 3, "inputs": builds.inputs_now(data_path, th_p, sc_p, 3, reg["charts"]["3"], reg, theme, build.CODE_VERSION)}

@@ -65,6 +65,17 @@ def layer(theme, spec, fmt, envk, light, plane):
     return "\n".join(lines)
 
 
+def gym_keeper(theme, spec, fmt):
+    g = spec["gym_keeper"]; F = theme["formats"][fmt]; W, H, floor = F["W"], F["H"], round(F["ground"] * 100)
+    n = {"W": W, "H": H, "aspect": "wide 16:9" if W > H else "tall 9:16", "floor": floor, "wall_floor": floor - 19, "strip_top": floor - 7, "strip_bottom": floor + 6, "mat_top": floor - 7, "mat_bottom": floor + 10}
+    half = min(.48, F["box"][0] / W / 2 + .06); n.update(near_left=round((.5 - half) * 100), near_right=round((.5 + half) * 100), far_left=round((.5 - half + .03) * 100), far_right=round((.5 + half - .03) * 100))
+    items = []
+    if fmt == "landscape": items.append({"plane": "finish", "title": "Finishing pass on the keeper (attach the grey-floor gym)", "file": f"bg-gym-{fmt}-final.png", "prompt": g["finish"].format(**n)})
+    else: items.append({"plane": "portrait-room", "title": "Tall version of the room (attach the finished wide gym)", "file": f"bg-gym-{fmt}-final.png", "prompt": g["portrait_room"].format(**n)})
+    for m in g["mats"]: items.append({"plane": "mat-" + m["id"], "title": f"Floor mat overlay, {m['name']} (attach the finished gym of this shape)", "file": f"bg-gym-{fmt}-mat-{m['id']}.png", "prompt": g["mat"].format(name=m["name"], hex=m["hex"], border=m["border"], edge=m["edge"], **n)})
+    return {"title": g["title"], "numbers": {k: n[k] for k in ("W", "H", "floor", "strip_top", "strip_bottom")} | {"horizon": n["wall_floor"], "ground_top": n["wall_floor"], "boy_h": round(F["box"][1] / H * 100), "back": n["strip_top"], "front": n["strip_bottom"]}, "items": items}
+
+
 def build_all(theme, spec, light="morning"):
     out = {}
     for fmt in ("landscape", "portrait"):
@@ -74,6 +85,7 @@ def build_all(theme, spec, light="morning"):
             for i, pl in enumerate(spec["planes"], 1):
                 items.append({"plane": pl, "title": f"Layer {i}: {spec['plane_names'][pl].title()}", "file": f"{stem}-{i:02d}-{pl}.png", "prompt": layer(theme, spec, fmt, envk, light, pl)})
             out.setdefault(fmt, {})[envk] = {"title": env["title"], "numbers": {k: n[k] for k in ("W", "H", "floor", "horizon", "ground_top", "boy_h", "strip_top", "strip_bottom", "back", "front")}, "items": items}
+    for fmt in ("landscape", "portrait"): out[fmt]["gym-keeper"] = gym_keeper(theme, spec, fmt)
     return out
 
 

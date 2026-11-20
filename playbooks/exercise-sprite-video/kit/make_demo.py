@@ -72,7 +72,11 @@ def main():
     props = []
     for p in example["props"]:
         q = {k: v for k, v in p.items() if not k.startswith("_")}
-        if p["kind"] == "image":
+        if p["kind"] == "overlay":                                 # the viewer needs it already cut out and at the demo's frame size
+            from keyer import key as _key
+            im = _key(Image.open(os.path.join(ROOT, p["file"]))).convert("RGBA").resize((round(1920 * f), round(1080 * f)), Image.LANCZOS)
+            os.makedirs(os.path.join(out, "props"), exist_ok=True); fn = "overlay-" + os.path.splitext(os.path.basename(p["file"]))[0] + ".png"; im.save(os.path.join(out, "props", fn), optimize=True); q["file"] = "props/" + fn
+        elif p["kind"] == "image":
             os.makedirs(os.path.join(out, "props"), exist_ok=True); shutil.copy(os.path.join(ROOT, p["file"]), os.path.join(out, "props", os.path.basename(p["file"]))); q["file"] = "props/" + os.path.basename(p["file"])
         props.append(q)
     first = next(k for k, v in charts.items() if v["status"] != "planned")

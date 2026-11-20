@@ -856,3 +856,45 @@ Keep the strip 73% to 86% down completely empty, and the middle of the image cal
 COLOR RULE: do not use pink, magenta or saturated purple anywhere in the artwork (the magenta background is removed by software). Use blue-grey for haze and distance. All edges crisp: no glow, feathering, blur or airbrushed edges against the background.
 ```
 
+
+## Gym (keeper): finishing pass, portrait version and floor mats  (`gym-keeper`)
+
+Landscape 1920x1080: horizon 61%, ground starts 61%, boy's feet on 80%, back-row bases 73%, front-frame bases 86%.
+
+### Finishing pass on the keeper (attach the grey-floor gym)  (save as `bg-gym-landscape-final.png`)
+
+```
+Using the attached image as the exact base (a bright cartoon gym with a mid-grey rubber floor), keep EVERYTHING the same except the changes below: same colors, same line weight, same composition, same equipment, plants, lamps and beams. wide 16:9 (1920x1080). No people.
+
+CHANGES:
+1. CENTER WINDOW: make the middle of the three windows one plain large pane with no cross bars (or bars so faint they are barely visible), so nothing busy sits behind a character's head. Keep the left and right windows exactly as they are.
+2. SUNBEAMS: remove the diagonal sunbeam shadows from the middle third of the wall (keep the warm glow on the left third), so the wall behind the center is calm.
+3. FLOOR: keep the mid-grey (about #707680) smooth rubber floor and its faint seams. Keep the strip from 73% to 86% down completely flat, smooth and empty, and keep the whole middle half of the floor empty. Do not add a mat.
+4. Do not move the wall-floor line (61% down).
+5. Do not use pink, magenta or saturated purple anywhere.
+```
+
+### Floor mat overlay, muted teal (attach the finished gym of this shape)  (save as `bg-gym-landscape-mat-teal.png`)
+
+```
+Using the attached image as the exact reference for the room and its floor perspective, draw ONLY a large rectangular exercise mat lying flat on that floor, as a separate full-frame image: wide 16:9 (1920x1080), exactly the same size and framing as the reference. Everything that is not the mat must be perfectly flat solid magenta (#FF00FF): no background, no room, no floor, no shadow, no gradient.
+
+THE MAT: muted teal, about #217678, with rounded corners, a slightly lighter top surface, a thin lighter border line near the edge (about #5FA3A5) and a thin darker front edge (about #164f52) so it has a little thickness. It is completely plain: no logo, no text, no stitching texture, no pattern.
+POSITION AND PERSPECTIVE (follow exactly): the near edge of the mat is 90% down from the top and runs from 5% to 95% across; the far edge is 73% down and runs from 8% to 92%, so it narrows slightly with distance, matching the floor seams in the reference. A character will stand and lie in the middle of the mat with his feet on the line 80% down, so keep the top surface perfectly flat and clean.
+All edges crisp: no glow, feathering or blur against the magenta. No pink, magenta or saturated purple in the mat itself.
+
+ALSO GIVE ME a second image: the same mat placed on the reference room, as a preview.
+```
+
+### Floor mat overlay, deep navy (attach the finished gym of this shape)  (save as `bg-gym-landscape-mat-navy.png`)
+
+```
+Using the attached image as the exact reference for the room and its floor perspective, draw ONLY a large rectangular exercise mat lying flat on that floor, as a separate full-frame image: wide 16:9 (1920x1080), exactly the same size and framing as the reference. Everything that is not the mat must be perfectly flat solid magenta (#FF00FF): no background, no room, no floor, no shadow, no gradient.
+
+THE MAT: deep navy, about #243B66, with rounded corners, a slightly lighter top surface, a thin lighter border line near the edge (about #4B6FB5) and a thin darker front edge (about #18284a) so it has a little thickness. It is completely plain: no logo, no text, no stitching texture, no pattern.
+POSITION AND PERSPECTIVE (follow exactly): the near edge of the mat is 90% down from the top and runs from 5% to 95% across; the far edge is 73% down and runs from 8% to 92%, so it narrows slightly with distance, matching the floor seams in the reference. A character will stand and lie in the middle of the mat with his feet on the line 80% down, so keep the top surface perfectly flat and clean.
+All edges crisp: no glow, feathering or blur against the magenta. No pink, magenta or saturated purple in the mat itself.
+
+ALSO GIVE ME a second image: the same mat placed on the reference room, as a preview.
+```
+

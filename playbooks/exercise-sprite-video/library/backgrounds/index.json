@@ -36,6 +36,12 @@
    "file": "gym-floor-mockup.png",
    "verdict": "DECISION 2026-11-20: gym is the base; floor lighter than charcoal",
    "notes": "Author chose the charcoal-floor version of the gym (the file was not saved here). Weakest part of him on charcoal (74,79,90) is his black outline, 26 under deuteranopia; a mid grey around (112,118,128) scores 36 (weakest then his tank). The mock-up (recoloured from the orange gym) shows charcoal, lighter grey, and lighter grey with the kit's mat prop, which is a thin bar and does not read as a mat. A coloured mat adds no contrast: the best mat colours tie with the grey floor (about 37); choose it for looks. Next edit: floor to #707680 and a big perspective mat painted into the picture (muted teal #217678 with a darker edge)."
+  },
+  {
+   "id": "gym-keeper-v1",
+   "file": "bg-keeper-gym-landscape-v1.png",
+   "verdict": "KEEPER (author, 2026-11-20): lighter grey floor, no mat baked in",
+   "notes": "The orange gym recoloured to a mid-grey rubber floor (about #707680). Remaining polish for a ChatGPT pass: plain centre window, no sunbeams in the middle third (prompts page: Gym keeper). The mat is a separate full-frame overlay in floor perspective (prop kind 'overlay'); see gym-keeper-mat-standin-preview.png for the intended look."
   }
  ]
 }

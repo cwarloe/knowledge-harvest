@@ -276,7 +276,12 @@ def render_props(scene, slot, geom, F, z):
         elif kind == "image":
             im = Image.open(os.path.join(ROOT, p["file"])).convert("RGBA"); w = max(1, round(W * p.get("scale", .1))); h = max(1, round(im.height * w / im.width))
             im = im.resize((w, h), Image.LANCZOS); layer.alpha_composite(im, (round(p.get("x", .5) * W - w / 2), round(floor_y - h + p.get("lift", 0) * k)))
-        else: raise SystemExit(f"unknown prop kind '{kind}' (mat | shadow | image)")
+        elif kind == "overlay":                                    # a full-frame picture (a floor mat in perspective, light beams, a foreground fringe); magenta becomes see-through
+            im = chroma_key(Image.open(os.path.join(ROOT, p["file"]))).convert("RGBA")
+            if im.size != (W, H): im = im.resize((W, H), Image.LANCZOS)
+            if p.get("opacity", 1) < 1: im.putalpha(im.getchannel("A").point(lambda v: int(v * p["opacity"])))
+            layer.alpha_composite(im)
+        else: raise SystemExit(f"unknown prop kind '{kind}' (mat | shadow | image | overlay)")
     return layer
 
 
