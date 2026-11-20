@@ -86,29 +86,29 @@
      "poses": [
       {
        "file": "sprites/c1/toe-touch-c1/p1.png",
-       "x": 600.86,
+       "x": 600.11,
        "y": 156.0,
        "w": 83,
        "h": 427
       },
       {
        "file": "sprites/c1/toe-touch-c1/p2.png",
-       "x": 573.91,
+       "x": 574.83,
        "y": 353.61,
        "w": 203,
        "h": 228
       },
       {
        "file": "sprites/c1/toe-touch-c1/p3.png",
-       "x": 502.7,
+       "x": 501.78,
        "y": 203.48,
        "w": 200,
        "h": 379
       }
      ],
      "union": [
-      502.7,
-      777.3
+      501.78,
+      778.22
      ],
      "kicker": "EXERCISE 1 OF 5",
      "title": "Toe touching",
@@ -127,29 +127,29 @@
      "poses": [
       {
        "file": "sprites/c1/partial-sit-up-c1/p1.png",
-       "x": 231.76,
+       "x": 231.13,
        "y": 379.03,
        "w": 816,
        "h": 204
       },
       {
        "file": "sprites/c1/partial-sit-up-c1/p2.png",
-       "x": 282.18,
+       "x": 288.63,
        "y": 229.7,
        "w": 760,
        "h": 339
       },
       {
        "file": "sprites/c1/partial-sit-up-c1/p3.png",
-       "x": 400.48,
+       "x": 404.34,
        "y": 156.0,
        "w": 644,
        "h": 417
       }
      ],
      "union": [
-      231.76,
-      1048.24
+      231.13,
+      1048.87
      ],
      "kicker": "EXERCISE 2 OF 5",
      "title": "Partial sit-up",
@@ -209,29 +209,29 @@
      "poses": [
       {
        "file": "sprites/c1/knee-push-up-c1/p1.png",
-       "x": 345.1,
+       "x": 327.16,
        "y": 359.57,
        "w": 627,
        "h": 223
       },
       {
        "file": "sprites/c1/knee-push-up-c1/p2.png",
-       "x": 338.13,
+       "x": 326.44,
        "y": 238.27,
        "w": 569,
        "h": 344
       },
       {
        "file": "sprites/c1/knee-push-up-c1/p3.png",
-       "x": 307.45,
+       "x": 325.39,
        "y": 156.0,
        "w": 524,
        "h": 427
       }
      ],
      "union": [
-      307.45,
-      972.55
+      325.39,
+      954.61
      ],
      "kicker": "EXERCISE 4 OF 5",
      "title": "Knee push-up",
@@ -250,36 +250,36 @@
      "poses": [
       {
        "file": "sprites/c1/scissor-jumps-c1/p1.png",
-       "x": 472.38,
+       "x": 463.34,
        "y": 217.88,
        "w": 335,
        "h": 365
       },
       {
        "file": "sprites/c1/scissor-jumps-c1/p2.png",
-       "x": 520.4,
+       "x": 558.45,
        "y": 156.92,
        "w": 193,
        "h": 382
       },
       {
        "file": "sprites/c1/scissor-jumps-c1/p3.png",
-       "x": 486.7,
+       "x": 502.66,
        "y": 217.88,
        "w": 314,
        "h": 364
       },
       {
        "file": "sprites/c1/scissor-jumps-c1/p4.png",
-       "x": 520.87,
+       "x": 559.71,
        "y": 156.0,
        "w": 193,
        "h": 383
       }
      ],
      "union": [
-      472.38,
-      807.62
+      463.34,
+      816.66
      ],
      "kicker": "PAUSE THE RUN",
      "title": "10 scissor jumps",
@@ -394,43 +394,43 @@
      "poses": [
       {
        "file": "sprites/c2/toe-touch-c2/p1.png",
-       "x": 597.43,
+       "x": 587.7,
        "y": 156.0,
        "w": 115,
        "h": 427
       },
       {
        "file": "sprites/c2/toe-touch-c2/p2.png",
-       "x": 580.5,
+       "x": 581.11,
        "y": 372.63,
        "w": 166,
        "h": 204
       },
       {
        "file": "sprites/c2/toe-touch-c2/p3.png",
-       "x": 583.9,
+       "x": 582.75,
        "y": 375.1,
        "w": 158,
        "h": 201
       },
       {
        "file": "sprites/c2/toe-touch-c2/p4.png",
-       "x": 569.95,
+       "x": 576.16,
        "y": 398.16,
        "w": 161,
        "h": 179
       },
       {
        "file": "sprites/c2/toe-touch-c2/p5.png",
-       "x": 533.12,
+       "x": 532.51,
        "y": 182.36,
        "w": 156,
        "h": 399
       }
      ],
      "union": [
-      533.12,
-      746.88
+      532.51,
+      747.49
      ],
      "kicker": "EXERCISE 1 OF 5",
      "title": "Toe touching",
@@ -449,29 +449,29 @@
      "poses": [
       {
        "file": "sprites/c2/sit-up-c2/p1.png",
-       "x": 288.58,
+       "x": 288.01,
        "y": 423.91,
        "w": 703,
        "h": 159
       },
       {
        "file": "sprites/c2/sit-up-c2/p2.png",
-       "x": 401.03,
+       "x": 401.1,
        "y": 210.57,
        "w": 590,
        "h": 367
       },
       {
        "file": "sprites/c2/sit-up-c2/p3.png",
-       "x": 520.1,
+       "x": 520.68,
        "y": 156.0,
        "w": 471,
        "h": 423
       }
      ],
      "union": [
-      288.58,
-      991.42
+      288.01,
+      991.99
      ],
      "kicker": "EXERCISE 2 OF 5",
      "title": "Sit-up",
@@ -531,29 +531,29 @@
      "poses": [
       {
        "file": "sprites/c2/push-up-c2/p1.png",
-       "x": 306.97,
+       "x": 304.62,
        "y": 375.85,
        "w": 674,
        "h": 207
       },
       {
        "file": "sprites/c2/push-up-c2/p2.png",
-       "x": 334.66,
+       "x": 306.23,
        "y": 307.45,
        "w": 632,
        "h": 275
       },
       {
        "file": "sprites/c2/push-up-c2/p3.png",
-       "x": 298.83,
+       "x": 301.18,
        "y": 156.0,
        "w": 578,
        "h": 425
       }
      ],
      "union": [
-      298.83,
-      981.17
+      301.18,
+      978.82
      ],
      "kicker": "EXERCISE 4 OF 5",
      "title": "Push-up",
@@ -572,7 +572,7 @@
      "poses": [
       {
        "file": "sprites/c2/astride-jumps-c2/p1.png",
-       "x": 594.35,
+       "x": 590.31,
        "y": 229.05,
        "w": 92,
        "h": 353
@@ -586,14 +586,14 @@
       },
       {
        "file": "sprites/c2/astride-jumps-c2/p3.png",
-       "x": 507.6,
+       "x": 504.67,
        "y": 257.27,
        "w": 266,
        "h": 325
       },
       {
        "file": "sprites/c2/astride-jumps-c2/p4.png",
-       "x": 595.18,
+       "x": 590.98,
        "y": 156.0,
        "w": 90,
        "h": 354
@@ -723,43 +723,43 @@
      "poses": [
       {
        "file": "sprites/c3/toe-touch-c3/p1.png",
-       "x": 542.01,
+       "x": 547.08,
        "y": 156.0,
        "w": 192,
        "h": 427
       },
       {
        "file": "sprites/c3/toe-touch-c3/p2.png",
-       "x": 522.41,
+       "x": 547.08,
        "y": 345.87,
        "w": 216,
        "h": 237
       },
       {
        "file": "sprites/c3/toe-touch-c3/p3.png",
-       "x": 529.18,
+       "x": 547.08,
        "y": 346.61,
        "w": 216,
        "h": 236
       },
       {
        "file": "sprites/c3/toe-touch-c3/p4.png",
-       "x": 536.93,
+       "x": 516.66,
        "y": 347.34,
        "w": 221,
        "h": 235
       },
       {
        "file": "sprites/c3/toe-touch-c3/p5.png",
-       "x": 531.31,
+       "x": 536.08,
        "y": 199.25,
        "w": 202,
        "h": 383
       }
      ],
      "union": [
-      522.41,
-      757.59
+      516.66,
+      763.34
      ],
      "kicker": "EXERCISE 1 OF 5",
      "title": "Toe touching",
@@ -778,29 +778,29 @@
      "poses": [
       {
        "file": "sprites/c3/sit-up-hands-behind-head-c3/p1.png",
-       "x": 293.24,
+       "x": 292.94,
        "y": 330.09,
        "w": 692,
        "h": 251
       },
       {
        "file": "sprites/c3/sit-up-hands-behind-head-c3/p2.png",
-       "x": 308.94,
+       "x": 307.01,
        "y": 211.65,
        "w": 678,
        "h": 371
       },
       {
        "file": "sprites/c3/sit-up-hands-behind-head-c3/p3.png",
-       "x": 373.15,
+       "x": 373.46,
        "y": 156.0,
        "w": 614,
        "h": 427
       }
      ],
      "union": [
-      293.24,
-      986.76
+      292.94,
+      987.06
      ],
      "kicker": "EXERCISE 2 OF 5",
      "title": "Sit-up, hands behind head",
@@ -859,29 +859,29 @@
      "poses": [
       {
        "file": "sprites/c3/chin-forehead-push-up-c3/p1.png",
-       "x": 266.89,
+       "x": 225.59,
        "y": 156.0,
        "w": 750,
        "h": 425
       },
       {
        "file": "sprites/c3/chin-forehead-push-up-c3/p2.png",
-       "x": 306.84,
+       "x": 224.48,
        "y": 246.78,
        "w": 832,
        "h": 336
       },
       {
        "file": "sprites/c3/chin-forehead-push-up-c3/p3.png",
-       "x": 141.62,
+       "x": 223.97,
        "y": 381.13,
        "w": 828,
        "h": 200
       }
      ],
      "union": [
-      141.62,
-      1138.38
+      223.97,
+      1056.03
      ],
      "kicker": "EXERCISE 4 OF 5",
      "title": "Chin-forehead push-up",
@@ -899,29 +899,29 @@
      "poses": [
       {
        "file": "sprites/c3/half-knee-bends-c3/p1.png",
-       "x": 569.52,
+       "x": 568.75,
        "y": 174.66,
        "w": 122,
        "h": 408
       },
       {
        "file": "sprites/c3/half-knee-bends-c3/p2.png",
-       "x": 573.81,
+       "x": 574.58,
        "y": 219.04,
        "w": 137,
        "h": 364
       },
       {
        "file": "sprites/c3/half-knee-bends-c3/p3.png",
-       "x": 585.91,
+       "x": 589.29,
        "y": 156.0,
        "w": 110,
        "h": 426
       }
      ],
      "union": [
-      569.52,
-      710.48
+      568.75,
+      711.25
      ],
      "kicker": "PAUSE THE RUN",
      "title": "10 half knee bends",
@@ -1062,7 +1062,7 @@
    ],
    "slots": {},
    "order": [],
-   "prompts_ready": false
+   "prompts_ready": true
   },
   "6": {
    "label": "Chart 6",
@@ -1101,7 +1101,7 @@
    ],
    "slots": {},
    "order": [],
-   "prompts_ready": false
+   "prompts_ready": true
   }
  },
  "default_chart": "1",
