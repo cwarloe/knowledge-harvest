@@ -6,7 +6,7 @@
     "Blue sneakers. No green shoes (author decision, 2026-11-19).",
     "Clothing as in the original Grok sprites."
   ],
-  "view": "three-quarter view, turned slightly toward the camera (about 30 to 45 degrees off a pure side view), facing right, with the SAME camera angle in every pose",
+  "view": "side-on body with the head and shoulders turned about 30 to 45 degrees toward the camera, so most of his face (both eyes) and a little of his chest show, facing right, with the SAME angle in every pose",
   "far_side": "Draw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.",
   "background": "perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.",
   "generator": {
@@ -15,5 +15,5 @@
     "resolution": "1K",
     "variations": 4
   },
-  "view_note": "Author preference (2026-11-19): a slight angle toward the camera, not a pure 90 degree side view. Chart 1 strips were made in strict side view and their prompts keep that wording. Use the same angle in every pose of a strip, or the crossfade shows a ghost of the turn."
+  "view_note": "Author preference (2026-11-20): the look of the chart 2 push-up and the ChatGPT chart 3 sheets: the body is side-on so the motion is clear, but the head and shoulders turn toward the camera so the face and a little of the chest show. Chart 1 strips were made in strict side view and their prompts keep that wording. Use the same angle in every pose of a strip, and in every figure on a multi-row sheet, or the crossfade shows a ghost of the turn."
 }
