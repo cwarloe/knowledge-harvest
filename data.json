@@ -8,32 +8,8 @@
  "floor": 582.67,
  "layers": [
   {
-   "name": "sky",
-   "file": "backdrop/00-sky.png"
-  },
-  {
-   "name": "clouds",
-   "file": "backdrop/01-clouds.png"
-  },
-  {
-   "name": "mountains-far",
-   "file": "backdrop/02-mountains-far.png"
-  },
-  {
-   "name": "mountains-near",
-   "file": "backdrop/03-mountains-near.png"
-  },
-  {
-   "name": "trees-back",
-   "file": "backdrop/04-trees-back.png"
-  },
-  {
-   "name": "trees-front",
-   "file": "backdrop/05-trees-front.png"
-  },
-  {
-   "name": "ground",
-   "file": "backdrop/06-ground.png"
+   "name": "picture",
+   "file": "backdrop/00-picture.png"
   }
  ],
  "charts": {
