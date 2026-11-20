@@ -668,27 +668,27 @@
   },
   "3": {
    "label": "Chart 3",
-   "status": "partial",
+   "status": "built",
    "all": [
     {
      "slot": "ex1",
      "name": "Toe touching",
-     "built": false
+     "built": true
     },
     {
      "slot": "ex2",
      "name": "Sit-up, hands behind head",
-     "built": false
+     "built": true
     },
     {
      "slot": "ex3",
      "name": "Back extension, hands behind back",
-     "built": false
+     "built": true
     },
     {
      "slot": "ex4",
      "name": "Chin-forehead push-up",
-     "built": false
+     "built": true
     },
     {
      "slot": "run",
@@ -698,10 +698,235 @@
     {
      "slot": "jump",
      "name": "half knee bends",
-     "built": false
+     "built": true
     }
    ],
    "slots": {
+    "ex1": {
+     "strip": "toe-touch-c3",
+     "cycle": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "cycle_reverse": [
+      1,
+      4,
+      3,
+      2,
+      5
+     ],
+     "cycle_s": 4.0,
+     "allot": 120,
+     "poses": [
+      {
+       "file": "sprites/c3/toe-touch-c3/p1.png",
+       "x": 542.01,
+       "y": 156.0,
+       "w": 192,
+       "h": 427
+      },
+      {
+       "file": "sprites/c3/toe-touch-c3/p2.png",
+       "x": 522.41,
+       "y": 345.87,
+       "w": 216,
+       "h": 237
+      },
+      {
+       "file": "sprites/c3/toe-touch-c3/p3.png",
+       "x": 529.18,
+       "y": 346.61,
+       "w": 216,
+       "h": 236
+      },
+      {
+       "file": "sprites/c3/toe-touch-c3/p4.png",
+       "x": 536.93,
+       "y": 347.34,
+       "w": 221,
+       "h": 235
+      },
+      {
+       "file": "sprites/c3/toe-touch-c3/p5.png",
+       "x": 531.31,
+       "y": 199.25,
+       "w": 202,
+       "h": 383
+      }
+     ],
+     "union": [
+      522.41,
+      757.59
+     ],
+     "kicker": "EXERCISE 1 OF 5",
+     "title": "Toe touching",
+     "target": "30 reps"
+    },
+    "ex2": {
+     "strip": "sit-up-hands-behind-head-c3",
+     "cycle": [
+      1,
+      2,
+      3,
+      2
+     ],
+     "cycle_s": 1.875,
+     "allot": 60,
+     "poses": [
+      {
+       "file": "sprites/c3/sit-up-hands-behind-head-c3/p1.png",
+       "x": 293.24,
+       "y": 330.09,
+       "w": 692,
+       "h": 251
+      },
+      {
+       "file": "sprites/c3/sit-up-hands-behind-head-c3/p2.png",
+       "x": 308.94,
+       "y": 211.65,
+       "w": 678,
+       "h": 371
+      },
+      {
+       "file": "sprites/c3/sit-up-hands-behind-head-c3/p3.png",
+       "x": 373.15,
+       "y": 156.0,
+       "w": 614,
+       "h": 427
+      }
+     ],
+     "union": [
+      293.24,
+      986.76
+     ],
+     "kicker": "EXERCISE 2 OF 5",
+     "title": "Sit-up, hands behind head",
+     "target": "32 reps"
+    },
+    "ex3": {
+     "strip": "back-extension-hands-behind-back-c3",
+     "cycle": [
+      1,
+      2,
+      3,
+      2
+     ],
+     "cycle_s": 1.2766,
+     "allot": 60,
+     "poses": [
+      {
+       "file": "sprites/c3/back-extension-hands-behind-back-c3/p1.png",
+       "x": 237.81,
+       "y": 366.68,
+       "w": 848,
+       "h": 216
+      },
+      {
+       "file": "sprites/c3/back-extension-hands-behind-back-c3/p2.png",
+       "x": 228.98,
+       "y": 287.01,
+       "w": 807,
+       "h": 292
+      },
+      {
+       "file": "sprites/c3/back-extension-hands-behind-back-c3/p3.png",
+       "x": 194.16,
+       "y": 156.0,
+       "w": 829,
+       "h": 418
+      }
+     ],
+     "union": [
+      194.16,
+      1085.84
+     ],
+     "kicker": "EXERCISE 3 OF 5",
+     "title": "Back extension, hands behind back",
+     "target": "47 reps"
+    },
+    "ex4": {
+     "strip": "chin-forehead-push-up-c3",
+     "cycle": [
+      1,
+      2,
+      3
+     ],
+     "cycle_s": 2.5,
+     "allot": 60,
+     "poses": [
+      {
+       "file": "sprites/c3/chin-forehead-push-up-c3/p1.png",
+       "x": 266.89,
+       "y": 156.0,
+       "w": 750,
+       "h": 425
+      },
+      {
+       "file": "sprites/c3/chin-forehead-push-up-c3/p2.png",
+       "x": 306.84,
+       "y": 246.78,
+       "w": 832,
+       "h": 336
+      },
+      {
+       "file": "sprites/c3/chin-forehead-push-up-c3/p3.png",
+       "x": 141.62,
+       "y": 381.13,
+       "w": 828,
+       "h": 200
+      }
+     ],
+     "union": [
+      141.62,
+      1138.38
+     ],
+     "kicker": "EXERCISE 4 OF 5",
+     "title": "Chin-forehead push-up",
+     "target": "24 reps"
+    },
+    "jump": {
+     "strip": "half-knee-bends-c3",
+     "cycle": [
+      1,
+      2,
+      3
+     ],
+     "cycle_s": 1.2,
+     "allot": 360,
+     "poses": [
+      {
+       "file": "sprites/c3/half-knee-bends-c3/p1.png",
+       "x": 569.52,
+       "y": 174.66,
+       "w": 122,
+       "h": 408
+      },
+      {
+       "file": "sprites/c3/half-knee-bends-c3/p2.png",
+       "x": 573.81,
+       "y": 219.04,
+       "w": 137,
+       "h": 364
+      },
+      {
+       "file": "sprites/c3/half-knee-bends-c3/p3.png",
+       "x": 585.91,
+       "y": 156.0,
+       "w": 110,
+       "h": 426
+      }
+     ],
+     "union": [
+      569.52,
+      710.48
+     ],
+     "kicker": "PAUSE THE RUN",
+     "title": "10 half knee bends",
+     "target": "jump now"
+    },
     "run": {
      "strip": "stationary-run-c1",
      "cycle": [
@@ -752,7 +977,12 @@
     }
    },
    "order": [
-    "run"
+    "ex1",
+    "ex2",
+    "ex3",
+    "ex4",
+    "run",
+    "jump"
    ],
    "prompts_ready": true
   },
