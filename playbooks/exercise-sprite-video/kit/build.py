@@ -243,6 +243,45 @@ def pose_xy(strip, k, meta_pose, X0, gy, floor, s):
     return X0 - pose_anchor(strip, k, meta_pose) * s, gy + 10 - (floor - meta_pose["offset"][1]) * s + dy * s
 
 
+def fit_of(strip, fmt):
+    """strips.json "fit": a number, or {"landscape": 0.72, "portrait": 1.0}. Smaller than 1 shrinks the exercise inside the stage box."""
+    f = strip.get("fit", 1.0); return f.get(fmt, 1.0) if isinstance(f, dict) else f
+
+
+def extents(strip, meta):
+    """The figure's width either side of its anchor (L, R) and its height, in sprite pixels, over all poses including flipped ones."""
+    anchors = [pose_anchor(strip, k, m) for k, m in enumerate(meta["poses"], 1)]; mir = [(meta["poses"][k - 1]["size"][0], mirror_anchor(strip, k, meta["poses"][k - 1])) for k in strip.get("mirror", [])]
+    return max(anchors + [a for _, a in mir]), max([m["size"][0] - a for m, a in zip(meta["poses"], anchors)] + [w - a for w, a in mir]), meta["floor"] - meta["top"]
+
+
+def hud_block(theme, F, texts):
+    """Size of the title block (kicker, title, reps) in frame pixels, measured with the real font. Returns (width, bottom edge)."""
+    from PIL import ImageFont
+    font = theme["hud"]["font"]; font = font if os.path.isabs(font) else os.path.join(ROOT, font); kick, title, target = texts; y0 = int(F["H"] * .02)
+    w = max(ImageFont.truetype(font, F[k]).getlength(txt) for k, txt in (("kicker", kick), ("title", title.upper()), ("target", target)))
+    return w + 2 * theme["hud"]["outline_width"], y0 + F["kicker"] + F["title"] + 22 + F["target"] * 1.25
+
+
+def stage_plan(strip, meta, theme, F, fmt, texts):
+    """Where the title goes and how tall the figure may be. "auto": the title block sits top-left or top-right, whichever leaves the figure more room; a standing
+    figure that the block does not reach may use the whole free height; a lying figure is wide, not tall, so it keeps the normal box. "center": the old layout."""
+    h = F.get("hud") or {}; layout = h.get("layout", "center"); base_h = F["box"][1]
+    if layout == "center": return {"side": "center", "clock": "center", "box_h": base_h}
+    sides = ["left", "right"] if layout == "auto" else [layout]; bw = F["box"][0]; fit = fit_of(strip, fmt); L, R, height = extents(strip, meta); floor_y = int(F["H"] * F["ground"]) + 10
+    margin, gap, free_h = h.get("margin", 40), h.get("gap", 26), h.get("free_h", base_h); bwid, bbot = hud_block(theme, F, texts); lying = (L + R) > 1.2 * height; best = None
+    for side in sides:
+        box_h = base_h if lying else free_h
+        for _ in range(3):                                       # the figure's width depends on its size, so settle in a few passes
+            s = fit * min(bw / (L + R), box_h / height); x0 = F["W"] / 2 + (L - R) * s / 2 - L * s; x1 = x0 + (L + R) * s; top = floor_y - height * s
+            bx0, bx1 = (margin, margin + bwid) if side == "left" else (F["W"] - margin - bwid, F["W"] - margin)
+            reaches = bx1 > x0 - gap and bx0 < x1 + gap and bbot + gap > top
+            if not reaches: break
+            box_h = max(base_h * 0.5, floor_y - (bbot + gap) / 1.0) if not lying else base_h
+            if lying: break
+        if best is None or box_h > best["box_h"] + 1: best = {"side": side, "box_h": round(box_h)}
+    best["clock"] = h.get("clock", "opposite"); return best
+
+
 def cycle_pose(c):
     """A cycle entry is a pose number, or "5m": pose 5 flipped left to right (the lean to the other side of a circle bend)."""
     return int(str(c).rstrip("m")), str(c).endswith("m")
@@ -299,11 +338,11 @@ def render_props(scene, slot, geom, F, z):
     return layer
 
 
-def compose(name, strip, theme, scene, F, fmt, work, slot):
+def compose(name, strip, theme, scene, F, fmt, work, slot, plan=None):
     """Per pose: layer_pN.png (boy alone), plus backdrop.png, props_*.png and the finished pN.png. Cached."""
     meta = bake(name, strip, theme); blayers = backdrop_layers(theme, F, fmt)
     tag = sha(meta["source_hash"], json.dumps(strip, sort_keys=True), json.dumps(theme["key"]), json.dumps(theme.get("recolor")), json.dumps(scene, sort_keys=True),
-              json.dumps(theme["backdrop"], sort_keys=True), json.dumps(F, sort_keys=True), slot, CODE_VERSION)
+              json.dumps(theme["backdrop"], sort_keys=True), json.dumps(F, sort_keys=True), slot, json.dumps(plan or {}, sort_keys=True), CODE_VERSION)
     out = os.path.join(work, "frames", f"{slot}-{name}-{fmt}-{tag}")
     if os.path.exists(os.path.join(out, "DONE")): return out
     os.makedirs(out, exist_ok=True)
@@ -311,7 +350,7 @@ def compose(name, strip, theme, scene, F, fmt, work, slot):
     floor, top = meta["floor"], meta["top"]; anchors = [pose_anchor(strip, k, m) for k, m in enumerate(meta["poses"], 1)]
     mir = [(k, meta["poses"][k - 1]["size"][0], mirror_anchor(strip, k, meta["poses"][k - 1])) for k in strip.get("mirror", [])]      # flipped copies of some poses
     L = max(anchors + [a for _, _, a in mir]); R = max([p.size[0] - a for p, a in zip(poses, anchors)] + [w - a for _, w, a in mir])
-    bw, bh = F["box"]; fit = strip.get("fit", 1.0); s = fit * min(bw / (L + R), bh / (floor - top));      # "fit" < 1 shrinks this exercise inside the stage box (lying exercises fill the width and look huge next to standing ones)
+    bw, bh = F["box"]; bh = (plan or {}).get("box_h", bh); fit = fit_of(strip, fmt); s = fit * min(bw / (L + R), bh / (floor - top));      # "fit" < 1 shrinks this exercise inside the stage box (lying exercises fill the width and look huge next to standing ones)
     gy = int(F["H"] * F["ground"]); X0 = F["W"] / 2 + (L - R) * s / 2
     geom = dict(gy=gy, X0=X0, s=s, L=L, R=R)
     bg = flatten(blayers, (F["W"], F["H"])); bg.save(os.path.join(out, "backdrop.png"))
@@ -356,20 +395,26 @@ class Hud:
         self.h = {k: (os.path.join(ROOT, v) if k in ("font", "mono") and not os.path.isabs(v) else v) for k, v in theme["hud"].items()}      # fonts ship in assets/fonts
         self.bord = f"borderw={self.h['outline_width']}:bordercolor={self.h['outline']}"
 
-    def text(self, font, txt, color, size, y, mono=False):
-        return (f"drawtext=fontfile={self.h['mono'] if mono else self.h['font']}:text='{esc(txt)}':fontcolor={color}:{self.bord}:"
-                f"fontsize={size}:x=(w-tw)/2:y={y}")
+    def xexpr(self, align):
+        m = (self.F.get("hud") or {}).get("margin", 40)
+        return {"left": str(m), "right": f"w-tw-{m}"}.get(align, "(w-tw)/2")
 
-    def exercise(self, kicker, title, target, allot, off=0.0):
+    def text(self, font, txt, color, size, y, mono=False, align="center"):
+        return (f"drawtext=fontfile={self.h['mono'] if mono else self.h['font']}:text='{esc(txt)}':fontcolor={color}:{self.bord}:"
+                f"fontsize={size}:x={self.xexpr(align)}:y={y}")
+
+    def exercise(self, kicker, title, target, allot, off=0.0, plan=None):
         F, h = self.F, self.h; W, H = F["W"], F["H"]; gy = int(H * F["ground"]); cy = gy + int((H - gy) * .22)
+        side = (plan or {}).get("side", "center"); copt = (plan or {}).get("clock", "center")
+        calign = side if copt == "same" else {"left": "right", "right": "left"}.get(side, "center") if copt == "opposite" else "center"
         clock = (f"drawtext=fontfile={h['mono']}:text='%{{eif\\:floor(({allot}-{off}-t)/60)\\:d}}\\:%{{eif\\:mod(floor({allot}-{off}-t)\\,60)\\:d\\:2}}':"
-                 f"fontcolor={h['clock']}:{self.bord}:fontsize={F['clock']}:x=(w-tw)/2:y={cy}")
+                 f"fontcolor={h['clock']}:{self.bord}:fontsize={F['clock']}:x={self.xexpr(calign)}:y={cy}")
         return ",".join([
-            self.text(0, kicker, h["kicker"], F["kicker"], int(H * .02)),
-            self.text(0, title.upper(), h["title"], F["title"], int(H * .02) + F["kicker"] + 12),
-            self.text(0, target, h["target"], F["target"], int(H * .02) + F["kicker"] + F["title"] + 22),
+            self.text(0, kicker, h["kicker"], F["kicker"], int(H * .02), align=side),
+            self.text(0, title.upper(), h["title"], F["title"], int(H * .02) + F["kicker"] + 12, align=side),
+            self.text(0, target, h["target"], F["target"], int(H * .02) + F["kicker"] + F["title"] + 22, align=side),
             clock,
-            self.text(0, self.s["left"], h["label"], int(F["kicker"] * .9), cy + F["clock"] + 8),
+            self.text(0, self.s["left"], h["label"], int(F["kicker"] * .9), cy + F["clock"] + 8, align=calign),
             f"drawbox=x=0:y={H - F['bar']}:w={W}:h={F['bar']}:color={h['bar_back']}:t=fill",
             f"drawbox=x=0:y={H - F['bar']}:w='{W}*(({off}+t)/{allot})':h={F['bar']}:color={h['bar_fill']}@1:t=fill"])
 
@@ -459,7 +504,7 @@ def make_plan(data, chart, level, only):
     return plan, ex5
 
 
-def export_layers(dirpath, plan, theme, scene, reg, slots, F, fmt, work, chart_id, level, data_path, with_composites=False):
+def export_layers(dirpath, plan, theme, scene, reg, slots, F, fmt, work, chart_id, level, data_path, with_composites=False, stage=None):
     """Write the scene as separate files any other tool can recombine: backdrop layers, props, the boy per pose, and scene.json."""
     root = os.path.join(dirpath, f"chart{chart_id}-{fmt}"); os.makedirs(os.path.join(root, "backdrop"), exist_ok=True)
     for i, (n, im) in enumerate(backdrop_layers(theme, F, fmt)): im.save(os.path.join(root, "backdrop", f"{i:02d}-{n}.png"))
@@ -468,7 +513,7 @@ def export_layers(dirpath, plan, theme, scene, reg, slots, F, fmt, work, chart_i
            "chart": chart_id, "level": level, "format": fmt, "size": [F["W"], F["H"]], "fps": theme["fps"], "ground_y": int(F["H"] * F["ground"]),
            "data_file": os.path.basename(data_path), "strings": theme["strings"], "slots": {}, "segments": []}
     for slot in sorted({p["slot"] for p in plan if "slot" in p}):
-        st = reg["strips"][slots[slot]]; src = compose(slots[slot], st, theme, scene, F, fmt, work, slot); sd = os.path.join(root, slot); os.makedirs(sd, exist_ok=True)
+        st = reg["strips"][slots[slot]]; src = compose(slots[slot], st, theme, scene, F, fmt, work, slot, (stage or {}).get(slot)); sd = os.path.join(root, slot); os.makedirs(sd, exist_ok=True)
         files = {"boy": [], "composite": []}
         for k in range(1, st["poses"] + 1):
             shutil.copy(os.path.join(src, f"layer_p{k}.png"), os.path.join(sd, f"boy_p{k}.png")); files["boy"].append(f"{slot}/boy_p{k}.png")
@@ -477,7 +522,7 @@ def export_layers(dirpath, plan, theme, scene, reg, slots, F, fmt, work, chart_i
             shutil.copy(os.path.join(src, f"layer_p{k}m.png"), os.path.join(sd, f"boy_p{k}m.png")); files["boy"].append(f"{slot}/boy_p{k}m.png")
         for extra in ("props_behind.png", "props_front.png"):
             if os.path.exists(os.path.join(src, extra)): shutil.copy(os.path.join(src, extra), os.path.join(sd, extra)); files[extra[:-4]] = f"{slot}/{extra}"
-        man["slots"][slot] = {"strip": slots[slot], "anchor": st["anchor"], "cycle": st["cycle"], **({"cycle_reverse": st["cycle_reverse"]} if st.get("cycle_reverse") else {}), "files": files, **jload(os.path.join(src, "geom.json"))}
+        man["slots"][slot] = {"strip": slots[slot], "anchor": st["anchor"], "hud": (stage or {}).get(slot), "cycle": st["cycle"], **({"cycle_reverse": st["cycle_reverse"]} if st.get("cycle_reverse") else {}), "files": files, **jload(os.path.join(src, "geom.json"))}
     for p in plan:
         seg = {k: v for k, v in p.items() if k not in ("label",)}
         if p["kind"] in ("exercise", "run", "jumps") and "cycle_s" in p: seg["cycle_seconds"] = round(p["cycle_s"], 4)
@@ -529,22 +574,29 @@ def main():
     F = theme["formats"][args.format]; fps = theme["fps"]; fade_max = 0 if args.no_fade else theme["fade_max_seconds"]
     plan, ex5 = make_plan(data, chart, args.level, only); os.makedirs(args.work, exist_ok=True); hud = Hud(theme, F); S = theme["strings"]
     lv = chart["levels"][args.level]; sstep = lambda sl: reg["strips"][slots[sl]]
-    def frames(slot): return compose(slots[slot], sstep(slot), theme, scene, F, args.format, args.work, slot)
+    stage = {}
+    def seg_texts(p):
+        if p["kind"] == "exercise": return S["kicker"].format(n=p["n"]), p["name"], S["reps"].format(reps=p["reps"])
+        if p["kind"] == "run": return S["kicker"].format(n=5), p["name"], S["steps"].format(steps=p["steps"])
+        return S["jump_kicker"], S["jump_title"].format(count=p["count"], name=p["name"]), S["jump_target"]
+    for p in plan:                                                     # where the title goes and how big the figure may be, per exercise
+        if p.get("slot") and p["slot"] not in stage: stg = sstep(p["slot"]); stage[p["slot"]] = stage_plan(stg, bake(slots[p["slot"]], stg, theme), theme, F, args.format, seg_texts(p))
+    def frames(slot): return compose(slots[slot], sstep(slot), theme, scene, F, args.format, args.work, slot, stage.get(slot))
     for p in plan:                                                     # cycle length per segment, from the data
         if p["kind"] == "exercise": p["cycle_s"] = p["allot"] / p["reps"] * sstep(p["slot"])["reps_per_cycle"]
         elif p["kind"] == "run": p["cycle_s"] = p["step_s"] / sstep("run")["steps_per_cycle"]
         elif p["kind"] == "jumps": p["cycle_s"] = p["dur"] / (ex5["jumpCount"] / sstep("jump")["jumps_per_cycle"])
     if args.export:
-        root = export_layers(args.export, plan, theme, scene, reg, slots, F, args.format, args.work, args.chart, args.level, args.data, args.with_composites)
+        root = export_layers(args.export, plan, theme, scene, reg, slots, F, args.format, args.work, args.chart, args.level, args.data, args.with_composites, stage)
         print("wrote layer pack:", root); return
 
     parts = []
     for p in plan:
         if p["kind"] == "break": parts.append(breakcard(args, args.work, theme, F, hud, p["secs"], p["next"], args.format)); continue
         st = sstep(p["slot"])
-        if p["kind"] == "exercise": ov = lambda off=0.0, p=p: hud.exercise(S["kicker"].format(n=p["n"]), p["name"], S["reps"].format(reps=p["reps"]), p["allot"], off); label = p["name"]
-        elif p["kind"] == "run": ov = lambda off=0.0, p=p: hud.exercise(S["kicker"].format(n=5), p["name"], S["steps"].format(steps=p["steps"]), p["allot"], p["off"] + off); label = p["label"]
-        else: ov = lambda off=0.0, p=p: hud.exercise(S["jump_kicker"], S["jump_title"].format(count=p["count"], name=p["name"]), S["jump_target"], p["allot"], p["off"] + off); label = p["label"]
+        if p["kind"] == "exercise": ov = lambda off=0.0, p=p: hud.exercise(S["kicker"].format(n=p["n"]), p["name"], S["reps"].format(reps=p["reps"]), p["allot"], off, stage.get(p["slot"])); label = p["name"]
+        elif p["kind"] == "run": ov = lambda off=0.0, p=p: hud.exercise(S["kicker"].format(n=5), p["name"], S["steps"].format(steps=p["steps"]), p["allot"], p["off"] + off, stage.get(p["slot"])); label = p["label"]
+        else: ov = lambda off=0.0, p=p: hud.exercise(S["jump_kicker"], S["jump_title"].format(count=p["count"], name=p["name"]), S["jump_target"], p["allot"], p["off"] + off, stage.get(p["slot"])); label = p["label"]
         rev = st.get("cycle_reverse") if p["kind"] == "exercise" else None
         if rev:                                                        # "reverse direction after half the number of counts": whole cycles first, then the reversed order
             first = math.floor(p["reps"] / 2 / st["reps_per_cycle"] + 0.5) * p["cycle_s"]

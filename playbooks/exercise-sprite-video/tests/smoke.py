@@ -213,7 +213,17 @@ check(th_a["backdrop"]["id"] == "gym" and os.path.exists(os.path.join(ROOT, th_a
 with tempfile.TemporaryDirectory() as t8:
     base_ = dict(reg["strips"]["knee-push-up-c1"]); base_.pop("fit", None); half_ = dict(base_, fit=0.5); F8 = theme["formats"]["landscape"]
     ga = json.load(open(os.path.join(build.compose("knee-push-up-c1", base_, theme, scene, F8, "landscape", t8, "ex4"), "geom.json")))["geom"]; gb = json.load(open(os.path.join(build.compose("knee-push-up-c1", half_, theme, scene, F8, "landscape", t8, "ex4"), "geom.json")))["geom"]
-    check(abs(gb["scale"] - ga["scale"] / 2) < 1e-9 and ga["gy"] == gb["gy"] and reg["strips"]["knee-push-up-c1"].get("fit", 1) < 1, "fit: half the fit gives half the size on the same floor line; chart 1's lying exercises are fitted down")
+    check(abs(gb["scale"] - ga["scale"] / 2) < 1e-9 and ga["gy"] == gb["gy"] and build.fit_of(reg["strips"]["knee-push-up-c1"], "landscape") < 1, "fit: half the fit gives half the size on the same floor line; chart 1's lying exercises are fitted down")
+
+# the stage planner: a standing figure gets the whole free height when the title sits to one side; a lying figure keeps the normal box; "center" is the old layout
+Fl, Fp = theme["formats"]["landscape"], theme["formats"]["portrait"]
+def _meta(n): return json.load(open(os.path.join(ROOT, "assets", "sprites", n, "meta.json")))
+tx = ("EXERCISE 1 OF 5", "Toe touching", "20 reps"); pl_s = build.stage_plan(reg["strips"]["toe-touch-c1"], _meta("toe-touch-c1"), theme, Fl, "landscape", tx); pl_l = build.stage_plan(reg["strips"]["partial-sit-up-c1"], _meta("partial-sit-up-c1"), theme, Fl, "landscape", tx)
+pl_p = build.stage_plan(reg["strips"]["toe-touch-c1"], _meta("toe-touch-c1"), theme, Fp, "portrait", tx)
+check(pl_s["side"] in ("left", "right") and pl_s["box_h"] == Fl["hud"]["free_h"] and pl_l["box_h"] == Fl["box"][1] and pl_p == {"side": "center", "clock": "center", "box_h": Fp["box"][1]}, "stage planner: standing figure uses the free height with the title at a side, lying figure keeps the box, portrait stays centred")
+long_tx = ("EXERCISE 1 OF 5", "A very long exercise name that cannot fit beside any figure at all " * 3, "20 reps"); pl_long = build.stage_plan(reg["strips"]["toe-touch-c1"], _meta("toe-touch-c1"), theme, Fl, "landscape", long_tx)
+check(pl_long["box_h"] < Fl["hud"]["free_h"], "stage planner: a title block that would reach the figure shrinks the figure instead of covering it")
+check(build.fit_of({"fit": {"landscape": 0.7, "portrait": 1.0}}, "portrait") == 1.0 and build.fit_of({"fit": 0.6}, "landscape") == 0.6 and build.fit_of({}, "landscape") == 1.0, "fit: a number, or one number per shape")
 
 import copy, builds
 th_p, sc_p = os.path.join(ROOT, "config", "theme.json"), os.path.join(ROOT, "config", "scene.json")

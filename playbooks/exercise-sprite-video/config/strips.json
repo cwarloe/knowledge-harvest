@@ -24,7 +24,10 @@
         2
       ],
       "reps_per_cycle": 1,
-      "fit": 0.72
+      "fit": {
+        "landscape": 0.72,
+        "portrait": 1.0
+      }
     },
     "alternate-leg-raise-c1": {
       "file": "ex3-alternate-leg-raise.png",
@@ -37,7 +40,10 @@
         3
       ],
       "reps_per_cycle": 2,
-      "fit": 0.78
+      "fit": {
+        "landscape": 0.78,
+        "portrait": 1.0
+      }
     },
     "knee-push-up-c1": {
       "file": "ex4-knee-push-up.png",
@@ -50,7 +56,10 @@
         2
       ],
       "reps_per_cycle": 1,
-      "fit": 0.75
+      "fit": {
+        "landscape": 0.75,
+        "portrait": 1.0
+      }
     },
     "stationary-run-c1": {
       "file": "ex5-stationary-run.png",

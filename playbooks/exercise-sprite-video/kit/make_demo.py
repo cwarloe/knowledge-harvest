@@ -74,7 +74,7 @@ def main():
                 if seg["kind"] == "exercise": info.update(kicker=S["kicker"].format(n=seg["n"]), title=seg["name"], target=S["reps"].format(reps=seg["reps"]))
                 elif seg["kind"] == "run": info.update(kicker=S["kicker"].format(n=5), title=seg["name"], target=S["steps"].format(steps=seg["steps"]))
                 else: info.update(kicker=S["jump_kicker"], title=S["jump_title"].format(count=seg["count"], name=seg["name"]), target=S["jump_target"])
-                entry["slots"][slot] = info
+                info["hud"] = sl.get("hud"); entry["slots"][slot] = info
     if not layers: sys.exit("no chart has any strips to show")
     props = []
     for p in example["props"]:
@@ -88,7 +88,7 @@ def main():
         props.append(q)
     first = next(k for k, v in charts.items() if v["status"] != "planned")
     data = {"frame": [round(1920 * f), round(1080 * f)], "scale": f, "ground": round(gy * f, 2), "floor": round((gy + 10) * f, 2), "layers": layers,
-            "charts": charts, "default_chart": first, "hud": {k: theme["formats"]["landscape"][k] for k in ("kicker", "title", "target", "clock")}, "props": props, "strings": S,
+            "charts": charts, "default_chart": first, "hud": {**{k: theme["formats"]["landscape"][k] for k in ("kicker", "title", "target", "clock")}, "margin": (theme["formats"]["landscape"].get("hud") or {}).get("margin", 40)}, "props": props, "strings": S,
             "regions": {k: {"h": v["h"], "smin": v["smin"], "vmin": v["vmin"]} for k, v in REGIONS.items()}}
     json.dump(data, open(os.path.join(out, "data.json"), "w"), indent=1)
 

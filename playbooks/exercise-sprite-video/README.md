@@ -143,6 +143,17 @@ python3 kit/library.py list --chart 3 --slot ex1
 
 Each exercise is scaled to fill a stage box (`formats.landscape.box` in `config/theme.json`). A lying exercise fills the width and a standing one fills the height, so left alone the lying boy came out about twice the size of the standing boy (measured by shoe length: 180-210 px against 85-100 px). A strip can set `"fit"` in `config/strips.json` (1.0 fills the box; 0.75 is three quarters of it) without moving his feet. Chart 1's three lying exercises use 0.72 to 0.78. The title block was made more compact so the standing figures could grow about 8%: the box is 690 px tall, and the three text sizes are in the same file.
 
+## Where the title and the clock go
+
+The title block (exercise number, name, reps) and the countdown used to sit in dead centre, and the title capped how tall a standing figure could be. Now each shape (`formats.landscape.hud`, `formats.portrait.hud` in `config/theme.json`) picks a layout:
+
+- `"layout": "auto"` (landscape default): the build measures the title with the real font and the figure's width and height, puts the block top-left or top-right (whichever leaves the figure more room), and lets a standing figure use the whole `free_h` (780 px). A title long enough to reach the figure shrinks the figure instead of covering it. A lying figure is wide, not tall, so it keeps the normal box.
+- `"layout": "left"` or `"right"`: force a side. `"layout": "center"`: the old layout (portrait default, where the tall frame has room above).
+- `"clock"`: `"opposite"` (default: the countdown sits bottom-right when the title is top-left), `"same"` (same side) or `"center"`.
+- `"margin"`, `"gap"` and `"free_h"` tune the spacing and the tallest a standing figure may be.
+
+`fit` in `config/strips.json` can be one number or one per shape, `{"landscape": 0.72, "portrait": 1.0}`: a lying figure is shrunk in landscape but fills the narrow portrait frame.
+
 ## Rules that matter
 
 - **Form is checked by a person.** The generator makes plausible-but-wrong form. Check every strip against the booklet's words, and have someone who knows the exercises watch the final video.

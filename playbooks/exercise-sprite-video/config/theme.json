@@ -71,7 +71,14 @@
       "title": 50,
       "target": 38,
       "clock": 84,
-      "bar": 16
+      "bar": 16,
+      "hud": {
+        "layout": "auto",
+        "clock": "opposite",
+        "margin": 44,
+        "gap": 26,
+        "free_h": 780
+      }
     },
     "portrait": {
       "W": 1080,
@@ -85,7 +92,14 @@
       "title": 74,
       "target": 62,
       "clock": 118,
-      "bar": 22
+      "bar": 22,
+      "hud": {
+        "layout": "center",
+        "clock": "center",
+        "margin": 40,
+        "gap": 30,
+        "free_h": 960
+      }
     }
   },
   "chart_looks": {
