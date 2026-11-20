@@ -12,6 +12,7 @@ from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE); sys.path.insert(0, HERE)
 from recolor import REGIONS
+import build
 
 def jload(p): return json.load(open(p))
 def sh(cmd): 
@@ -56,7 +57,7 @@ def main():
                 g = sl["geom"]; s = g["scale"]; X0 = g["X0"]; floor = meta["floor"]; poses = []
                 sdir = os.path.join("sprites", f"c{cid}", sl["strip"]); os.makedirs(os.path.join(out, sdir), exist_ok=True)      # per chart: the same strip can be scaled differently in another chart
                 for k, m in enumerate(meta["poses"], 1):
-                    ax = m["anchors"][st["anchor"]]; x = X0 - ax * s; y = gy + 10 - (floor - m["offset"][1]) * s; w, h = m["size"][0] * s, m["size"][1] * s
+                    x, y = build.pose_xy(st, k, m, X0, gy, floor, s); w, h = m["size"][0] * s, m["size"][1] * s
                     im = Image.open(os.path.join(ROOT, "assets", "sprites", sl["strip"], m["file"])).convert("RGBA")
                     sw, shh = max(1, round(w * f)), max(1, round(h * f)); im.resize((sw, shh), Image.LANCZOS).save(os.path.join(out, sdir, m["file"]), optimize=True)
                     poses.append({"file": f"{sdir}/{m['file']}".replace(os.sep, "/"), "x": round(x * f, 2), "y": round(y * f, 2), "w": sw, "h": shh})

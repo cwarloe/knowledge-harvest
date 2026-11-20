@@ -1,5 +1,5 @@
 {
- "version": "2",
+ "version": "4",
  "source": "ex5-stationary-run.png",
  "source_hash": "43023e251fcc",
  "key": {
@@ -7,6 +7,8 @@
   "hi": 95
  },
  "n": 4,
+ "rows": null,
+ "row": null,
  "poses": [
   {
    "file": "p1.png",
@@ -23,7 +25,10 @@
     "span-left": 40.0,
     "span-right": 75.0,
     "span-center": 57.5,
-    "hips": 138.22844469087886
+    "hips": 138.22844469087886,
+    "shoes": 111.97382362106575,
+    "shoe-left": 9.0,
+    "shoe-right": 220.0
    }
   },
   {
@@ -41,7 +46,10 @@
     "span-left": 49.0,
     "span-right": 165.0,
     "span-center": 109.89908256880734,
-    "hips": 96.28539892778304
+    "hips": 96.28539892778304,
+    "shoes": 79.91760651629073,
+    "shoe-left": 9.0,
+    "shoe-right": 162.0
    }
   },
   {
@@ -59,7 +67,10 @@
     "span-left": 33.0,
     "span-right": 89.0,
     "span-center": 61.0,
-    "hips": 97.71190180664736
+    "hips": 97.71190180664736,
+    "shoes": 78.7867132867133,
+    "shoe-left": 6.0,
+    "shoe-right": 146.0
    }
   },
   {
@@ -77,7 +88,10 @@
     "span-left": 42.0,
     "span-right": 232.0,
     "span-center": 147.51470588235293,
-    "hips": 142.11566757493188
+    "hips": 142.11566757493188,
+    "shoes": 113.9539786223278,
+    "shoe-left": 7.0,
+    "shoe-right": 230.0
    }
   }
  ],

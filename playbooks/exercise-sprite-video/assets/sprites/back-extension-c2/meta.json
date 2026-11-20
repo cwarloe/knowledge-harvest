@@ -1,5 +1,5 @@
 {
- "version": "2",
+ "version": "4",
  "source": "c2-ex3-back-extension.png",
  "source_hash": "e7eff802987b",
  "key": {
@@ -7,6 +7,8 @@
   "hi": 95
  },
  "n": 3,
+ "rows": null,
+ "row": null,
  "poses": [
   {
    "file": "p1.png",
@@ -23,7 +25,10 @@
     "span-left": 1.0,
     "span-right": 365.0,
     "span-center": 205.6219512195122,
-    "hips": 177.9708423326134
+    "hips": 177.9708423326134,
+    "shoes": 26.686015831134565,
+    "shoe-left": 7.0,
+    "shoe-right": 49.0
    }
   },
   {
@@ -41,7 +46,10 @@
     "span-left": 10.0,
     "span-right": 272.0,
     "span-center": 180.2378048780488,
-    "hips": 177.71239911958915
+    "hips": 177.71239911958915,
+    "shoes": 25.46214355948869,
+    "shoe-left": 7.0,
+    "shoe-right": 50.0
    }
   },
   {
@@ -59,7 +67,10 @@
     "span-left": 129.0,
     "span-right": 234.0,
     "span-center": 181.5,
-    "hips": 172.56228373702422
+    "hips": 172.56228373702422,
+    "shoes": 27.162790697674417,
+    "shoe-left": 6.0,
+    "shoe-right": 54.0
    }
   }
  ],

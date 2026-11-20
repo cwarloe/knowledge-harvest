@@ -1,5 +1,5 @@
 {
- "version": "2",
+ "version": "4",
  "source": "ex2-partial-sit-up.png",
  "source_hash": "17c10e97e347",
  "key": {
@@ -7,6 +7,8 @@
   "hi": 95
  },
  "n": 3,
+ "rows": null,
+ "row": null,
  "poses": [
   {
    "file": "p1.png",
@@ -23,7 +25,10 @@
     "span-left": 27.0,
     "span-right": 408.0,
     "span-center": 190.25819672131146,
-    "hips": 253.23173464813985
+    "hips": 253.23173464813985,
+    "shoes": 395.66905537459286,
+    "shoe-left": 369.0,
+    "shoe-right": 413.0
    }
   },
   {
@@ -41,7 +46,10 @@
     "span-left": 80.0,
     "span-right": 382.0,
     "span-center": 229.53082191780823,
-    "hips": 220.79717813051147
+    "hips": 220.79717813051147,
+    "shoes": 366.0183196462413,
+    "shoe-left": 340.0,
+    "shoe-right": 384.0
    }
   },
   {
@@ -59,7 +67,10 @@
     "span-left": 78.0,
     "span-right": 321.0,
     "span-center": 197.19354838709677,
-    "hips": 153.69306322897484
+    "hips": 153.69306322897484,
+    "shoes": 306.3562421185372,
+    "shoe-left": 280.0,
+    "shoe-right": 324.0
    }
   }
  ],

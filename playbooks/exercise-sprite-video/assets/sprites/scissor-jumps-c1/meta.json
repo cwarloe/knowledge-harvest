@@ -1,5 +1,5 @@
 {
- "version": "2",
+ "version": "4",
  "source": "ex5-scissor-jumps.png",
  "source_hash": "df72e21d883e",
  "key": {
@@ -7,6 +7,8 @@
   "hi": 95
  },
  "n": 4,
+ "rows": null,
+ "row": null,
  "poses": [
   {
    "file": "p1.png",
@@ -23,7 +25,10 @@
     "span-left": 34.0,
     "span-right": 350.0,
     "span-center": 214.5818181818182,
-    "hips": 177.24683671419965
+    "hips": 177.24683671419965,
+    "shoes": 206.02256466703358,
+    "shoe-left": 36.0,
+    "shoe-right": 349.0
    }
   },
   {
@@ -41,7 +46,10 @@
     "span-left": 72.0,
     "span-right": 154.0,
     "span-center": 99.94444444444444,
-    "hips": 102.00644438217988
+    "hips": 102.00644438217988,
+    "shoes": 103.03072348860258,
+    "shoe-left": 57.0,
+    "shoe-right": 157.0
    }
   },
   {
@@ -59,7 +67,10 @@
     "span-left": 9.0,
     "span-right": 337.0,
     "span-center": 202.45283018867926,
-    "hips": 162.02374301675977
+    "hips": 162.02374301675977,
+    "shoes": 163.441042047532,
+    "shoe-left": 8.0,
+    "shoe-right": 336.0
    }
   },
   {
@@ -77,7 +88,10 @@
     "span-left": 72.0,
     "span-right": 154.0,
     "span-center": 99.94444444444444,
-    "hips": 100.728870039382
+    "hips": 100.728870039382,
+    "shoes": 101.66830951207491,
+    "shoe-left": 57.0,
+    "shoe-right": 152.0
    }
   }
  ],

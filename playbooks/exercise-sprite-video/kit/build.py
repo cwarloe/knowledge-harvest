@@ -27,10 +27,10 @@ from PIL import Image, ImageDraw
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 ASSETS = os.path.join(ROOT, "assets")          # layers as real files: sprites, backdrops, props (committed)
-BAKE_VERSION = "2"                              # bump when the cut-out or backdrop drawing changes
+BAKE_VERSION = "4"                              # bump when the cut-out or backdrop drawing changes
 sys.path.insert(0, HERE)
 from keyer import key as chroma_key
-from recolor import recolor
+from recolor import recolor, REGIONS
 
 SLOTS = ["ex1", "ex2", "ex3", "ex4"]
 
@@ -175,6 +175,22 @@ def row_bounds(rgba, n_rows, label="sheet"):
     return [(edges[i], edges[i + 1]) for i in range(n_rows)]
 
 
+def shoe_mask(arr):
+    """His shoes: blue pixels that sit beside a white sock, sole or lace. Blue alone also catches the tank on some strips; white alone catches nothing useful."""
+    a = arr.astype(int); r, g, b = a[..., 0], a[..., 1], a[..., 2]; hsv = np.array(Image.fromarray(arr[..., :3]).convert("HSV")).astype(float)
+    hh, ss, vv = hsv[..., 0] * 360 / 255, hsv[..., 1] / 255, hsv[..., 2] / 255; sr = REGIONS["shoes"]
+    blue = (a[..., 3] > 200) & (((hh >= sr["h"][0]) & (hh <= sr["h"][1]) & (ss >= sr["smin"]) & (vv >= sr["vmin"])) | ((b - g >= 70) & (b - r >= 90)))
+    white = (a[..., 3] > 200) & (np.minimum(np.minimum(r, g), b) > 205) & (np.max(a[..., :3], axis=2) - np.min(a[..., :3], axis=2) < 30)
+    near = white.copy()
+    for _ in range(12): n = near.copy(); n[1:] |= near[:-1]; n[:-1] |= near[1:]; n[:, 1:] |= near[:, :-1]; n[:, :-1] |= near[:, 1:]; near = n
+    m = blue & near
+    lab, ds = components(m, ds=2, dil=1)                                 # keep whole shoe shapes, drop specks
+    if lab.max() == 0: return m
+    area = np.bincount(lab.ravel())[1:]; keep = np.isin(lab, [i + 1 for i, v in enumerate(area) if v >= 0.2 * area.max()])
+    full = np.zeros(m.shape, bool); up = np.kron(keep, np.ones((ds, ds), bool)); full[:up.shape[0], :up.shape[1]] = up
+    return m & full
+
+
 def anchors_of(p):
     """Every anchor a pose can be pinned by, in the pose's own pixel coordinates.
     hips = the red shorts: the part of the body that stays put when he lies on the floor (back extension, sit-up)."""
@@ -182,7 +198,11 @@ def anchors_of(p):
     head = np.nonzero(a[:max(6, int(h * .12))].any(axis=0))[0]; feet = np.nonzero(a[-14:].any(axis=0))[0]
     red = (arr[..., 3] > 200) & (arr[..., 0] > 150) & (arr[..., 1] < 90) & (arr[..., 2] < 90)
     hips = float(np.nonzero(red)[1].mean()) if red.sum() >= 50 else float(feet.mean())
-    return {"head": float(head.mean()), "span-left": float(feet.min()), "span-right": float(feet.max()), "span-center": float(feet.mean()), "hips": hips}
+    shoe = shoe_mask(arr)
+    sx = np.nonzero(shoe)[1] if shoe.sum() >= 30 else None            # where his shoes are: the thing that stays planted
+    shoes = float(sx.mean()) if sx is not None else float(feet.mean())
+    return {"head": float(head.mean()), "span-left": float(feet.min()), "span-right": float(feet.max()), "span-center": float(feet.mean()), "hips": hips, "shoes": shoes,
+            "shoe-left": float(sx.min()) if sx is not None else float(feet.min()), "shoe-right": float(sx.max()) if sx is not None else float(feet.max())}
 
 
 def bake(name, strip, theme):
@@ -204,6 +224,19 @@ def bake(name, strip, theme):
         p.save(os.path.join(d, f"p{k}.png")); meta["poses"].append({"file": f"p{k}.png", "offset": list(off), "size": list(p.size), "anchors": anchors_of(p)})
     meta["floor"] = max(o[1] + p.size[1] for p, o in poses); meta["top"] = min(o[1] for p, o in poses)
     json.dump(meta, open(mp, "w"), indent=1); return meta
+
+
+def pose_anchor(strip, k, meta_pose):
+    """The x (in strip pixels) that pose k is pinned by. strips.json can override the anchor for one pose ("anchor_pose": {"4": "shoe-right"}, for a pose
+    where the usual shoe is hidden behind a hand) and nudge a pose sideways ("nudge": {"4": [dx, dy]}: strip pixels, +x right, +y down)."""
+    how = (strip.get("anchor_pose") or {}).get(str(k), strip["anchor"]); dx = (strip.get("nudge") or {}).get(str(k), (0, 0))[0]
+    return meta_pose["anchors"][how] - dx
+
+
+def pose_xy(strip, k, meta_pose, X0, gy, floor, s):
+    """Where pose k's top-left corner goes in the frame: its anchor at X0, standing on the strip's floor line, plus the vertical nudge."""
+    dy = (strip.get("nudge") or {}).get(str(k), (0, 0))[1]
+    return X0 - pose_anchor(strip, k, meta_pose) * s, gy + 10 - (floor - meta_pose["offset"][1]) * s + dy * s
 
 
 def load_sprites(name, strip, theme):
@@ -251,8 +284,8 @@ def compose(name, strip, theme, scene, F, fmt, work, slot):
     out = os.path.join(work, "frames", f"{slot}-{name}-{fmt}-{tag}")
     if os.path.exists(os.path.join(out, "DONE")): return out
     os.makedirs(out, exist_ok=True)
-    poses, meta = load_sprites(name, strip, theme); how = strip["anchor"]
-    floor, top = meta["floor"], meta["top"]; anchors = [m["anchors"][how] for m in meta["poses"]]
+    poses, meta = load_sprites(name, strip, theme)
+    floor, top = meta["floor"], meta["top"]; anchors = [pose_anchor(strip, k, m) for k, m in enumerate(meta["poses"], 1)]
     L = max(anchors); R = max(p.size[0] - a for p, a in zip(poses, anchors))
     bw, bh = F["box"]; s = min(bw / (L + R), bh / (floor - top)); gy = int(F["H"] * F["ground"]); X0 = F["W"] / 2 + (L - R) * s / 2
     geom = dict(gy=gy, X0=X0, s=s, L=L, R=R)
@@ -263,7 +296,8 @@ def compose(name, strip, theme, scene, F, fmt, work, slot):
     for k, (p, m, ax) in enumerate(zip(poses, meta["poses"], anchors), 1):
         w, h = max(1, round(p.size[0] * s)), max(1, round(p.size[1] * s))
         layer = Image.new("RGBA", (F["W"], F["H"]), (0, 0, 0, 0))
-        layer.alpha_composite(p.resize((w, h), Image.LANCZOS), (round(X0 - ax * s), gy + 10 - round((floor - m["offset"][1]) * s)))
+        px, py = pose_xy(strip, k, m, X0, gy, floor, s)
+        layer.alpha_composite(p.resize((w, h), Image.LANCZOS), (round(px), round(py)))
         layer.save(os.path.join(out, f"layer_p{k}.png"))
         f = bg.copy()
         if behind: f.alpha_composite(behind)
@@ -284,7 +318,8 @@ def esc(t): return t.replace("\\", "\\\\").replace(":", r"\:").replace("'", r"\\
 
 class Hud:
     def __init__(self, theme, F):
-        self.t, self.F, self.h, self.s = theme, F, theme["hud"], theme["strings"]
+        self.t, self.F, self.s = theme, F, theme["strings"]
+        self.h = {k: (os.path.join(ROOT, v) if k in ("font", "mono") and not os.path.isabs(v) else v) for k, v in theme["hud"].items()}      # fonts ship in assets/fonts
         self.bord = f"borderw={self.h['outline_width']}:bordercolor={self.h['outline']}"
 
     def text(self, font, txt, color, size, y, mono=False):
@@ -416,6 +451,8 @@ def main():
     ap.add_argument("--theme", default=os.path.join(ROOT, "config", "theme.json")); ap.add_argument("--scene", default=os.path.join(ROOT, "config", "scene.json"))
     ap.add_argument("--preview", action="store_true"); ap.add_argument("--no-fade", action="store_true")
     ap.add_argument("--only", default="", help="comma list of slots: ex1,ex2,ex3,ex4,run,jump")
+    ap.add_argument("--tag", default="", help="name a variant (a different scene or look); becomes part of the build id")
+    ap.add_argument("--no-record", action="store_true", help="do not write builds/<id>.json")
     ap.add_argument("--list", action="store_true"); ap.add_argument("--bake", action="store_true", help="write assets/ (sprites + backdrop layers) and stop")
     ap.add_argument("--export", metavar="DIR", help="write the layer pack (separate PNGs + scene.json) to DIR instead of a video")
     ap.add_argument("--with-composites", action="store_true", help="with --export: also write the finished frames (redundant; the layers recreate them)")
@@ -479,6 +516,9 @@ def main():
     run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", lst, "-c", "copy", "-movflags", "+faststart", tmp])
     run(["ffmpeg", "-v", "error", "-i", tmp, "-f", "null", "-"])       # full-decode check before it counts
     os.replace(tmp, args.out); print("wrote", args.out)
+    if not (args.preview or only or args.no_record):                   # a full render gets a record of exactly what went in
+        sys.path.insert(0, HERE); import builds
+        builds.record(args, args.theme, args.scene, args.chart, {x: slots[x] for x in all_slots}, reg, theme, CODE_VERSION, args.out)
 
 
 if __name__ == "__main__":

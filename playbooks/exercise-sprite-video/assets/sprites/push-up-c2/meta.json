@@ -1,5 +1,5 @@
 {
- "version": "2",
+ "version": "4",
  "source": "c2-ex4-push-up.png",
  "source_hash": "00a31ed20f1a",
  "key": {
@@ -7,6 +7,8 @@
   "hi": 95
  },
  "n": 3,
+ "rows": null,
+ "row": null,
  "poses": [
   {
    "file": "p1.png",
@@ -23,7 +25,10 @@
     "span-left": 4.0,
     "span-right": 312.0,
     "span-center": 183.1504424778761,
-    "hips": 158.3356926188069
+    "hips": 158.3356926188069,
+    "shoes": 19.90319361277445,
+    "shoe-left": 7.0,
+    "shoe-right": 40.0
    }
   },
   {
@@ -41,7 +46,10 @@
     "span-left": 4.0,
     "span-right": 295.0,
     "span-center": 174.3181818181818,
-    "hips": 153.78838886980418
+    "hips": 153.78838886980418,
+    "shoes": 18.914829659318638,
+    "shoe-left": 7.0,
+    "shoe-right": 43.0
    }
   },
   {
@@ -59,7 +67,10 @@
     "span-left": 8.0,
     "span-right": 317.0,
     "span-center": 182.42056074766356,
-    "hips": 150.82522996057818
+    "hips": 150.82522996057818,
+    "shoes": 22.01706827309237,
+    "shoe-left": 8.0,
+    "shoe-right": 47.0
    }
   }
  ],

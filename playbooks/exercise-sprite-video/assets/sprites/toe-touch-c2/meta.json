@@ -1,5 +1,5 @@
 {
- "version": "2",
+ "version": "4",
  "source": "c2-ex1-toe-touching.png",
  "source_hash": "2535808da595",
  "key": {
@@ -7,6 +7,8 @@
   "hi": 95
  },
  "n": 5,
+ "rows": null,
+ "row": null,
  "poses": [
   {
    "file": "p1.png",
@@ -23,7 +25,10 @@
     "span-left": 0.0,
     "span-right": 122.0,
     "span-center": 41.94827586206897,
-    "hips": 65.2373949579832
+    "hips": 65.2373949579832,
+    "shoes": 64.714709371293,
+    "shoe-left": 2.0,
+    "shoe-right": 136.0
    }
   },
   {
@@ -41,7 +46,10 @@
     "span-left": 9.0,
     "span-right": 133.0,
     "span-center": 62.50515463917526,
-    "hips": 26.88814242526033
+    "hips": 26.88814242526033,
+    "shoes": 40.49824253075571,
+    "shoe-left": 10.0,
+    "shoe-right": 74.0
    }
   },
   {
@@ -59,7 +67,10 @@
     "span-left": 7.0,
     "span-right": 131.0,
     "span-center": 58.37362637362637,
-    "hips": 25.482698357217757
+    "hips": 25.482698357217757,
+    "shoes": 38.4737747205503,
+    "shoe-left": 8.0,
+    "shoe-right": 71.0
    }
   },
   {
@@ -77,7 +88,10 @@
     "span-left": 14.0,
     "span-right": 147.0,
     "span-center": 75.30973451327434,
-    "hips": 24.886852954649566
+    "hips": 24.886852954649566,
+    "shoes": 46.073479729729726,
+    "shoe-left": 16.0,
+    "shoe-right": 76.0
    }
   },
   {
@@ -95,7 +109,10 @@
     "span-left": 68.0,
     "span-right": 180.0,
     "span-center": 120.02272727272727,
-    "hips": 134.3602395209581
+    "hips": 134.3602395209581,
+    "shoes": 122.6672140120416,
+    "shoe-left": 69.0,
+    "shoe-right": 186.0
    }
   }
  ],

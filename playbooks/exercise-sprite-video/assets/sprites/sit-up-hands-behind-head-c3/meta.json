@@ -1,5 +1,5 @@
 {
- "version": "2",
+ "version": "4",
  "source": "c3-ex234-sit-back-push.png",
  "source_hash": "987f179e5b49",
  "key": {
@@ -25,7 +25,10 @@
     "span-left": 112.0,
     "span-right": 470.0,
     "span-center": 297.57184750733137,
-    "hips": 235.4377758164166
+    "hips": 235.4377758164166,
+    "shoes": 441.6378466557912,
+    "shoe-left": 402.0,
+    "shoe-right": 474.0
    }
   },
   {
@@ -43,7 +46,10 @@
     "span-left": 159.0,
     "span-right": 459.0,
     "span-center": 309.18394648829434,
-    "hips": 189.86257309941521
+    "hips": 189.86257309941521,
+    "shoes": 431.7790585975024,
+    "shoe-left": 399.0,
+    "shoe-right": 464.0
    }
   },
   {
@@ -61,7 +67,10 @@
     "span-left": 88.0,
     "span-right": 414.0,
     "span-center": 251.0,
-    "hips": 129.53060787671234
+    "hips": 129.53060787671234,
+    "shoes": 385.208480565371,
+    "shoe-left": 348.0,
+    "shoe-right": 420.0
    }
   }
  ],

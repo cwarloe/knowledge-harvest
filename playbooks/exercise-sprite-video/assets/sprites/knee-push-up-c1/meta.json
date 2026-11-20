@@ -1,5 +1,5 @@
 {
- "version": "2",
+ "version": "4",
  "source": "ex4-knee-push-up.png",
  "source_hash": "93bdc72cd3dd",
  "key": {
@@ -7,6 +7,8 @@
   "hi": 95
  },
  "n": 3,
+ "rows": null,
+ "row": null,
  "poses": [
   {
    "file": "p1.png",
@@ -23,7 +25,10 @@
     "span-left": 60.0,
     "span-right": 308.0,
     "span-center": 189.0,
-    "hips": 148.70396212309993
+    "hips": 148.70396212309993,
+    "shoes": 53.38628411476557,
+    "shoe-left": 3.0,
+    "shoe-right": 93.0
    }
   },
   {
@@ -41,7 +46,10 @@
     "span-left": 67.0,
     "span-right": 313.0,
     "span-center": 212.02083333333334,
-    "hips": 152.1040260065016
+    "hips": 152.1040260065016,
+    "shoes": 53.89856065798492,
+    "shoe-left": 4.0,
+    "shoe-right": 93.0
    }
   },
   {
@@ -59,7 +67,10 @@
     "span-left": 71.0,
     "span-right": 335.0,
     "span-center": 234.54945054945054,
-    "hips": 153.40472779369628
+    "hips": 153.40472779369628,
+    "shoes": 54.6500754147813,
+    "shoe-left": 10.0,
+    "shoe-right": 93.0
    }
   }
  ],

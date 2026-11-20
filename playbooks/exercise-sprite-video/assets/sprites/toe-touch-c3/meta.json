@@ -1,5 +1,5 @@
 {
- "version": "2",
+ "version": "4",
  "source": "c3-ex1-toe-touching.png",
  "source_hash": "3257aa2b1ca2",
  "key": {
@@ -25,7 +25,10 @@
     "span-left": 0.0,
     "span-right": 261.0,
     "span-center": 130.5,
-    "hips": 131.37593609585622
+    "hips": 131.37593609585622,
+    "shoes": 138.4250657318142,
+    "shoe-left": 5.0,
+    "shoe-right": 255.0
    }
   },
   {
@@ -43,7 +46,10 @@
     "span-left": 0.0,
     "span-right": 294.0,
     "span-center": 157.2391304347826,
-    "hips": 100.38773747841105
+    "hips": 100.38773747841105,
+    "shoes": 29.401023890784984,
+    "shoe-left": 5.0,
+    "shoe-right": 55.0
    }
   },
   {
@@ -61,7 +67,10 @@
     "span-left": 1.0,
     "span-right": 294.0,
     "span-center": 147.99447513812154,
-    "hips": 146.08271108558299
+    "hips": 146.08271108558299,
+    "shoes": 149.89784053156146,
+    "shoe-left": 5.0,
+    "shoe-right": 289.0
    }
   },
   {
@@ -79,7 +88,10 @@
     "span-left": 0.0,
     "span-right": 300.0,
     "span-center": 137.43065693430657,
-    "hips": 204.31544424567682
+    "hips": 204.31544424567682,
+    "shoes": 271.995041322314,
+    "shoe-left": 254.0,
+    "shoe-right": 296.0
    }
   },
   {
@@ -97,7 +109,10 @@
     "span-left": 15.0,
     "span-right": 274.0,
     "span-center": 145.0924369747899,
-    "hips": 142.96036281179138
+    "hips": 142.96036281179138,
+    "shoes": 143.28641171684296,
+    "shoe-left": 20.0,
+    "shoe-right": 269.0
    }
   }
  ],

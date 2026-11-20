@@ -34,8 +34,8 @@
     "_hint": "Each layer (sky, clouds, mountains-far, mountains-near, trees-back, trees-front, ground) is its own file in assets/backdrops/<id>/<format>/. Swap one with overrides: {\"clouds\": \"assets/backdrops/mine/clouds.png\"}. style \"image\" uses one picture."
   },
   "hud": {
-    "font": "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
-    "mono": "/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf",
+    "font": "assets/fonts/DejaVuSans-Bold.ttf",
+    "mono": "assets/fonts/DejaVuSansMono-Bold.ttf",
     "outline": "0x101820@0.9",
     "outline_width": 5,
     "kicker": "0xffd36b",

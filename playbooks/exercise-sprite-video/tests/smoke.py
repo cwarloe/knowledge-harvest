@@ -120,6 +120,29 @@ with tempfile.TemporaryDirectory() as tmp:
 for name, st in reg["strips"].items():
     if st.get("cycle_reverse"): check(sorted(set(st["cycle_reverse"])) == sorted(set(st["cycle"])) and len(st["cycle_reverse"]) == len(st["cycle"]), f"{name}: the reversed cycle uses the same poses as the forward cycle")
 
+# feet stay put: for every strip that pins by a shoe, the pinned shoe point lands within a few pixels in every pose
+import numpy as np
+for name, st in reg["strips"].items():
+    if not str(st["anchor"]).startswith("shoe"): continue
+    m = json.load(open(os.path.join(ROOT, "assets", "sprites", name, "meta.json")))
+    ok_ = all(isinstance(q["anchors"].get(st["anchor"]), float) for q in m["poses"]) and set(m["poses"][0]["anchors"]) >= {"shoes", "shoe-left", "shoe-right"}
+    check(ok_, f"{name}: baked with shoe anchors ({st['anchor']})")
+t3 = reg["strips"]["toe-touch-c3"]; m3 = json.load(open(os.path.join(ROOT, "assets", "sprites", "toe-touch-c3", "meta.json")))["poses"]
+a_ = [build.pose_anchor(t3, k, q) for k, q in enumerate(m3, 1)]
+check(abs((m3[3]["anchors"]["shoe-right"] - t3["nudge"]["4"][0]) - a_[3]) < 1e-6 and a_[0] == m3[0]["anchors"]["shoe-left"], "pose_anchor: a per-pose anchor override and nudge move only that pose")
+
+import copy, builds
+th_p, sc_p = os.path.join(ROOT, "config", "theme.json"), os.path.join(ROOT, "config", "scene.json")
+rec = {"chart": 3, "inputs": builds.inputs_now(data_path, th_p, sc_p, 3, reg["charts"]["3"], reg, theme, build.CODE_VERSION)}
+check(builds.diff(rec, data_path) == [], "builds: a record made from today's files shows nothing out of date")
+r2 = copy.deepcopy(rec); r2["inputs"]["slots"]["ex2"]["sheet_sha"] = "000000000000"; d2 = builds.diff(r2, data_path)
+check(len(d2) == 1 and d2[0][0] == "slot ex2", "builds: a changed strip image is reported for that slot only")
+r3 = copy.deepcopy(rec); r3["inputs"]["data"]["sha"] = "000000000000"; r3["inputs"]["code_version"] = "0"; d3 = {k for k, _ in builds.diff(r3, data_path)}
+check({"plan file", "builder code"} <= d3, "builds: a changed plan file and changed builder code are both reported")
+check(builds.build_id(3, "A+", "landscape") == "c3-Aplus-landscape" and builds.build_id(3, "A+", "landscape", "red shoes") == "c3-Aplus-landscape-red-shoes", "builds: ids are c<chart>-<level>-<format>[-tag]")
+check(all(v["library_id"] for v in rec["inputs"]["slots"].values() if v["strip"] != "stationary-run-c1"), "builds: every chart 3 strip is traceable to a library entry")
+check(all(os.path.exists(builds.absp(f["file"])) for f in rec["inputs"]["fonts"].values()) and not any(os.path.isabs(f["file"]) for f in rec["inputs"]["fonts"].values()), "fonts ship inside the kit (no system font paths)")
+
 import importlib
 lib = importlib.import_module("library")
 with tempfile.TemporaryDirectory() as t2:

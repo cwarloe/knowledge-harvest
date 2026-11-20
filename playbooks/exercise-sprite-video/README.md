@@ -23,7 +23,15 @@ python3 kit/make_demo.py --data ... --out docs/sprite-boy-demo --reel   # phone-
 python3 tests/smoke.py path/to/5bx-charts.json            # 20 s: did my change break anything?
 ```
 
-The data file is a parameter and is never copied here. The plan has one home (`cwarloe/5BX`,
+Every full render also writes `builds/<id>.json` (id = `c<chart>-<level>-<format>`, plus `--tag name` for a variant). It records exactly what went in: the plan file's hash and where it lives, the look, scene and strip settings, each strip sheet per slot with its hash and library id, the fonts, the code version, ffmpeg's version, and the result. The videos stay out of git; the record is what lets you remake one:
+
+```bash
+python3 kit/builds.py list
+python3 kit/builds.py check   c3-Aplus-landscape --data path/to/5bx-charts.json   # up to date, or what changed (and which parts re-render)
+python3 kit/builds.py rebuild c3-Aplus-landscape --data path/to/5bx-charts.json   # same settings -> out/c3-Aplus-landscape.mp4
+```
+
+Everything a build reads is in this folder (strip sheets, `config/`, baked `assets/`, the fonts in `assets/fonts/`), except the plan file. The data file is a parameter and is never copied here. The plan has one home (`cwarloe/5BX`,
 `data/5bx-charts.json`), so this kit cannot drift from it.
 
 ## Change something
@@ -142,6 +150,7 @@ config/strips.json      which image is which exercise; which strip each chart sl
 config/character.json   the boy, in words
 sheets/                 the strips wired into videos; sheets/candidates/ = edit-test results, not wired in
 library/                every kept take, indexed, measured and graded (kit/library.py)
+builds/                 one record per finished video: what went in, so it can be checked and rebuilt (kit/builds.py)
 assets/                 baked layers: sprites/, backdrops/, props/   (real files, committed)
 exports/                a layer pack for chart 1 landscape (separate PNGs + scene.json)
 config/scene.json       props between/in front of the layers; scene.example-mat.json is a ready example
@@ -150,7 +159,7 @@ prompts/PROMPTS.md      every prompt, settings, what went wrong and the fix (gen
 docs/LAYERS-AND-IDEAS.md   brainstorm: every way to split this into layers, tagged by effort
 docs/CHARTS-2-6.md      what the five remaining charts need, from the data
 prompts/strips.json     the pose lists that produced them
-kit/build.py            the builder     kit/library.py   the strip library     kit/prompt.py   prompt maker     kit/make_demo.py   the demo page
+kit/build.py            the builder     kit/library.py   the strip library     kit/builds.py   build records: list, check, rebuild     kit/prompt.py   prompt maker     kit/make_demo.py   the demo page
 kit/keyer.py            background -> transparency     kit/recolor.py   free recolour
 tests/smoke.py          15-second check
 ```

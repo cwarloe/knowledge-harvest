@@ -1,5 +1,5 @@
 {
- "version": "2",
+ "version": "4",
  "source": "ex3-alternate-leg-raise.png",
  "source_hash": "cd34a02bb6d7",
  "key": {
@@ -7,6 +7,8 @@
   "hi": 95
  },
  "n": 3,
+ "rows": null,
+ "row": null,
  "poses": [
   {
    "file": "p1.png",
@@ -23,7 +25,10 @@
     "span-left": 0.0,
     "span-right": 379.0,
     "span-center": 194.49675324675326,
-    "hips": 173.2820750347383
+    "hips": 173.2820750347383,
+    "shoes": 32.87521514629948,
+    "shoe-left": 5.0,
+    "shoe-right": 60.0
    }
   },
   {
@@ -41,7 +46,10 @@
     "span-left": 1.0,
     "span-right": 298.0,
     "span-center": 174.49099099099098,
-    "hips": 171.50550055005502
+    "hips": 171.50550055005502,
+    "shoes": 49.87126019945603,
+    "shoe-left": 5.0,
+    "shoe-right": 95.0
    }
   },
   {
@@ -59,7 +67,10 @@
     "span-left": 1.0,
     "span-right": 302.0,
     "span-center": 174.1818181818182,
-    "hips": 173.45678092399405
+    "hips": 173.45678092399405,
+    "shoes": 33.345826235093696,
+    "shoe-left": 5.0,
+    "shoe-right": 64.0
    }
   }
  ],

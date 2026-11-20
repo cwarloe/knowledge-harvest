@@ -4,7 +4,7 @@
     "toe-touch-c1": {
       "file": "ex1-toe-touching.png",
       "poses": 3,
-      "anchor": "span-center",
+      "anchor": "shoes",
       "cycle": [
         1,
         2,
@@ -16,7 +16,7 @@
     "partial-sit-up-c1": {
       "file": "ex2-partial-sit-up.png",
       "poses": 3,
-      "anchor": "span-right",
+      "anchor": "shoes",
       "cycle": [
         1,
         2,
@@ -40,7 +40,7 @@
     "knee-push-up-c1": {
       "file": "ex4-knee-push-up.png",
       "poses": 3,
-      "anchor": "span-right",
+      "anchor": "shoes",
       "cycle": [
         1,
         2,
@@ -64,7 +64,7 @@
     "scissor-jumps-c1": {
       "file": "ex5-scissor-jumps.png",
       "poses": 4,
-      "anchor": "head",
+      "anchor": "shoes",
       "cycle": [
         1,
         2,
@@ -76,7 +76,7 @@
     "toe-touch-c2": {
       "file": "c2-ex1-toe-touching.png",
       "poses": 5,
-      "anchor": "span-center",
+      "anchor": "shoe-left",
       "cycle": [
         1,
         2,
@@ -89,7 +89,7 @@
     "push-up-c2": {
       "file": "c2-ex4-push-up.png",
       "poses": 3,
-      "anchor": "span-right",
+      "anchor": "shoes",
       "cycle": [
         1,
         2,
@@ -101,7 +101,7 @@
     "sit-up-c2": {
       "file": "c2-ex2-sit-up.png",
       "poses": 3,
-      "anchor": "span-right",
+      "anchor": "shoes",
       "cycle": [
         1,
         2,
@@ -113,7 +113,7 @@
     "astride-jumps-c2": {
       "file": "c2-jump-astride-jumps.png",
       "poses": 4,
-      "anchor": "head",
+      "anchor": "shoes",
       "cycle": [
         1,
         2,
@@ -137,7 +137,7 @@
     "toe-touch-c3": {
       "file": "c3-ex1-toe-touching.png",
       "poses": 5,
-      "anchor": "span-center",
+      "anchor": "shoe-left",
       "cycle": [
         1,
         2,
@@ -152,14 +152,23 @@
         2,
         5
       ],
-      "reps_per_cycle": 1
+      "reps_per_cycle": 1,
+      "anchor_pose": {
+        "4": "shoe-right"
+      },
+      "nudge": {
+        "4": [
+          249.5,
+          0
+        ]
+      }
     },
     "sit-up-hands-behind-head-c3": {
       "file": "c3-ex234-sit-back-push.png",
       "rows": 3,
       "row": 0,
       "poses": 3,
-      "anchor": "span-right",
+      "anchor": "shoes",
       "cycle": [
         1,
         2,
@@ -187,7 +196,7 @@
       "rows": 3,
       "row": 2,
       "poses": 3,
-      "anchor": "span-right",
+      "anchor": "shoes",
       "cycle": [
         1,
         2,
@@ -198,7 +207,7 @@
     "half-knee-bends-c3": {
       "file": "c3-jump-half-knee-bends.png",
       "poses": 3,
-      "anchor": "span-center",
+      "anchor": "shoes",
       "cycle": [
         1,
         2,

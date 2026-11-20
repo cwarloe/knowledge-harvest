@@ -1,5 +1,5 @@
 {
- "version": "2",
+ "version": "4",
  "source": "c2-jump-astride-jumps.png",
  "source_hash": "0a944e07c74f",
  "key": {
@@ -7,6 +7,8 @@
   "hi": 95
  },
  "n": 4,
+ "rows": null,
+ "row": null,
  "poses": [
   {
    "file": "p1.png",
@@ -23,7 +25,10 @@
     "span-left": 6.0,
     "span-right": 104.0,
     "span-center": 55.0,
-    "hips": 54.99817089103737
+    "hips": 54.99817089103737,
+    "shoes": 54.55306298533218,
+    "shoe-left": 8.0,
+    "shoe-right": 103.0
    }
   },
   {
@@ -41,7 +46,10 @@
     "span-left": 31.0,
     "span-right": 306.0,
     "span-center": 167.54736842105262,
-    "hips": 167.25223983459682
+    "hips": 167.25223983459682,
+    "shoes": 162.19600307455804,
+    "shoe-left": 33.0,
+    "shoe-right": 303.0
    }
   },
   {
@@ -59,7 +67,10 @@
     "span-left": 32.0,
     "span-right": 286.0,
     "span-center": 159.0,
-    "hips": 159.02169249106078
+    "hips": 159.02169249106078,
+    "shoes": 157.72803666921314,
+    "shoe-left": 34.0,
+    "shoe-right": 284.0
    }
   },
   {
@@ -77,7 +88,10 @@
     "span-left": 19.0,
     "span-right": 88.0,
     "span-center": 53.42622950819672,
-    "hips": 53.625103448275866
+    "hips": 53.625103448275866,
+    "shoes": 53.7504132231405,
+    "shoe-left": 20.0,
+    "shoe-right": 88.0
    }
   }
  ],
