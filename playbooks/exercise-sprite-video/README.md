@@ -139,6 +139,10 @@ python3 kit/library.py list --chart 3 --slot ex1
 
 `kit/make_demo.py` builds a folder of plain files: a chart menu (every chart in the plan, with what is made and what is not), a 40-second reel (about 1.6 MB), an interactive viewer where you switch backdrop layers, add the mat, shadow and bottle, and recolor the boy, and the edit-test pictures. About 4.6 MB in all. It reads everything from the kit's own assets and config, so rebuilding after any change refreshes it. A copy for the chart 1 look is in `docs/sprite-boy-demo/` at the repo root, ready for GitHub Pages (Settings → Pages → deploy from a branch → `/docs`; the page would be at `/sprite-boy-demo/`). Rebuild it with the command above.
 
+## Sizes on screen
+
+Each exercise is scaled to fill a stage box (`formats.landscape.box` in `config/theme.json`). A lying exercise fills the width and a standing one fills the height, so left alone the lying boy came out about twice the size of the standing boy (measured by shoe length: 180-210 px against 85-100 px). A strip can set `"fit"` in `config/strips.json` (1.0 fills the box; 0.75 is three quarters of it) without moving his feet. Chart 1's three lying exercises use 0.72 to 0.78. The title block was made more compact so the standing figures could grow about 8%: the box is 690 px tall, and the three text sizes are in the same file.
+
 ## Rules that matter
 
 - **Form is checked by a person.** The generator makes plausible-but-wrong form. Check every strip against the booklet's words, and have someone who knows the exercises watch the final video.

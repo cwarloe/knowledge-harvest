@@ -65,11 +65,11 @@
       "ground": 0.8,
       "box": [
         1500,
-        640
+        690
       ],
       "kicker": 26,
-      "title": 56,
-      "target": 44,
+      "title": 50,
+      "target": 38,
       "clock": 84,
       "bar": 16
     },

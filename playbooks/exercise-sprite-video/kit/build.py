@@ -311,7 +311,8 @@ def compose(name, strip, theme, scene, F, fmt, work, slot):
     floor, top = meta["floor"], meta["top"]; anchors = [pose_anchor(strip, k, m) for k, m in enumerate(meta["poses"], 1)]
     mir = [(k, meta["poses"][k - 1]["size"][0], mirror_anchor(strip, k, meta["poses"][k - 1])) for k in strip.get("mirror", [])]      # flipped copies of some poses
     L = max(anchors + [a for _, _, a in mir]); R = max([p.size[0] - a for p, a in zip(poses, anchors)] + [w - a for _, w, a in mir])
-    bw, bh = F["box"]; s = min(bw / (L + R), bh / (floor - top)); gy = int(F["H"] * F["ground"]); X0 = F["W"] / 2 + (L - R) * s / 2
+    bw, bh = F["box"]; fit = strip.get("fit", 1.0); s = fit * min(bw / (L + R), bh / (floor - top));      # "fit" < 1 shrinks this exercise inside the stage box (lying exercises fill the width and look huge next to standing ones)
+    gy = int(F["H"] * F["ground"]); X0 = F["W"] / 2 + (L - R) * s / 2
     geom = dict(gy=gy, X0=X0, s=s, L=L, R=R)
     bg = flatten(blayers, (F["W"], F["H"])); bg.save(os.path.join(out, "backdrop.png"))
     behind, front = render_props(scene, slot, geom, F, "behind"), render_props(scene, slot, geom, F, "front")

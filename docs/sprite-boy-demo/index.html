@@ -234,7 +234,7 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; max-width: 
       const put = (k, alpha) => { const p = P[k]; ctx.globalAlpha = alpha; ctx.drawImage(tinted(spriteImgs[st.chart][st.slot][k], st.chart + ':' + st.slot + ':' + k), p.x, p.y, p.w, p.h); ctx.globalAlpha = 1; };
       if (a > 0 && nxt !== cur) { put(cur, 1 - a); put(nxt, a); } else put(cur, 1);
       drawProps(info, 'front');
-      hudText(info.kicker, H * .02, 26 * K, '#ffd36b'); hudText(info.title.toUpperCase(), H * .02 + 38 * K, 56 * K, '#ffffff'); hudText(info.target, H * .02 + 104 * K, 44 * K, '#ff9a3c');
+      const Q = D.hud; hudText(info.kicker, H * .02, Q.kicker * K, '#ffd36b'); hudText(info.title.toUpperCase(), H * .02 + (Q.kicker + 12) * K, Q.title * K, '#ffffff'); hudText(info.target, H * .02 + (Q.kicker + Q.title + 22) * K, Q.target * K, '#ff9a3c');
       const left = Math.max(0, info.allot - (T % info.allot)), m = Math.floor(left / 60), s = Math.floor(left % 60);
       hudText(`${m}:${String(s).padStart(2, '0')}`, D.floor + 18 * K, 84 * K, '#ffffff'); hudText(D.strings.left, D.floor + 18 * K + 92 * K, 24 * K, '#fff2cf');
       ctx.fillStyle = 'rgba(16,24,32,.55)'; ctx.fillRect(0, H - 16 * K, W, 16 * K); ctx.fillStyle = '#ff9a3c'; ctx.fillRect(0, H - 16 * K, W * ((T % info.allot) / info.allot), 16 * K);

@@ -209,6 +209,12 @@ with tempfile.TemporaryDirectory() as t7:
 th_a, _ = build.apply_look(theme, 1, os.path.join(ROOT, "config", "scene.json")); th_b, sc_b = build.apply_look(theme, 3, os.path.join(ROOT, "config", "scene.json"))
 check(th_a["backdrop"]["id"] == "gym" and os.path.exists(os.path.join(ROOT, th_a["backdrop"]["image"])) and th_b["backdrop"]["id"] == theme["backdrop"]["id"] and sc_b.endswith("scene.json"), "chart looks: chart 1 uses the gym picture, other charts keep the default backdrop")
 
+# "fit" shrinks an exercise inside the stage box without moving its feet
+with tempfile.TemporaryDirectory() as t8:
+    base_ = dict(reg["strips"]["knee-push-up-c1"]); base_.pop("fit", None); half_ = dict(base_, fit=0.5); F8 = theme["formats"]["landscape"]
+    ga = json.load(open(os.path.join(build.compose("knee-push-up-c1", base_, theme, scene, F8, "landscape", t8, "ex4"), "geom.json")))["geom"]; gb = json.load(open(os.path.join(build.compose("knee-push-up-c1", half_, theme, scene, F8, "landscape", t8, "ex4"), "geom.json")))["geom"]
+    check(abs(gb["scale"] - ga["scale"] / 2) < 1e-9 and ga["gy"] == gb["gy"] and reg["strips"]["knee-push-up-c1"].get("fit", 1) < 1, "fit: half the fit gives half the size on the same floor line; chart 1's lying exercises are fitted down")
+
 import copy, builds
 th_p, sc_p = os.path.join(ROOT, "config", "theme.json"), os.path.join(ROOT, "config", "scene.json")
 rec = {"chart": 3, "inputs": builds.inputs_now(data_path, th_p, sc_p, 3, reg["charts"]["3"], reg, theme, build.CODE_VERSION)}

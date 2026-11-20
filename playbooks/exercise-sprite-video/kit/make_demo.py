@@ -88,7 +88,7 @@ def main():
         props.append(q)
     first = next(k for k, v in charts.items() if v["status"] != "planned")
     data = {"frame": [round(1920 * f), round(1080 * f)], "scale": f, "ground": round(gy * f, 2), "floor": round((gy + 10) * f, 2), "layers": layers,
-            "charts": charts, "default_chart": first, "props": props, "strings": S,
+            "charts": charts, "default_chart": first, "hud": {k: theme["formats"]["landscape"][k] for k in ("kicker", "title", "target", "clock")}, "props": props, "strings": S,
             "regions": {k: {"h": v["h"], "smin": v["smin"], "vmin": v["vmin"]} for k, v in REGIONS.items()}}
     json.dump(data, open(os.path.join(out, "data.json"), "w"), indent=1)
 
