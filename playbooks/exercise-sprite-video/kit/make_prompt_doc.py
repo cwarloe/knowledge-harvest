@@ -95,7 +95,7 @@ def main():
         "Two prompts are given for every image. If your tool lets you attach a reference image, attach the standing reference strip (below) and use the first prompt. If not, use the second, which describes the character in words.",
         "Pick the take whose form matches the booklet wording shown above each prompt, not the prettiest one. Use the 'check before you keep a take' list.",
         "Background: a flat magenta is what the prompts ask for. If your tool gives a real transparent PNG instead, that works too. A checkerboard painted into the picture does not count as transparent.",
-        "Send me the best take of each image (all four if you like) by attaching them in the chat. I will check the form against the booklet, cut them out, and build chart 2.",
+        f"Send me the best take of each image (all four if you like) by attaching them in the chat. I will check the form against the booklet, cut them out, and build chart {a.chart}.",
     ])
 
     h = doc.add_heading("The reference image", 2); h.paragraph_format.keep_with_next = True

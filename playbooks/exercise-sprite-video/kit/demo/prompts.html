@@ -47,7 +47,7 @@ button:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px soli
   <header>
     <div class="kicker">Make them with any tool</div>
     <h1>Strip Prompts</h1>
-    <p class="lede">Every prompt used for the chart 1 strips, with the settings, what went wrong and the fix. Paste into any image tool that can follow a long description.</p>
+    <p class="lede">Every prompt for every chart, with the settings, what went wrong and the fix. Charts 1 to 3 are made; charts 4 to 6 are ready to generate. Paste into any image tool that can follow a long description.</p>
   </header>
 
   <section>
@@ -61,7 +61,7 @@ button:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px soli
     <div class="links">
       <a href="HOW-TO-GENERATE-STRIPS.md">The full method (text)</a>
       <a href="PROMPTS.md">All prompts in one file (text)</a>
-      <a href="Chart-2-image-prompts.docx">Chart 2 prompts as a Word document</a>
+      <span id="docs" style="display:contents"></span>
       <a href="index.html">Back to the demo</a>
     </div>
     <p class="warn" id="gen"></p>
@@ -106,6 +106,7 @@ button:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px soli
     document.getElementById('gen').textContent = `Worked with ${g.model}, ${g.aspect}, ${g.resolution}, ${g.variations} takes each. ${g.reference}`;
     const chars = document.getElementById('chars');
     chars.append(block('The character', D.character.description + '.'), block('The background', D.character.background), block('Near and far limbs', D.character.far_side));
+    [...new Set(D.strips.map((s) => s.chart))].filter((c) => c > 1).forEach((c) => document.getElementById('docs').append(el('a', { href: `Chart-${c}-image-prompts.docx`, textContent: `Chart ${c} prompts as a Word document` })));
     const host = document.getElementById('strips');
     D.strips.forEach((s, i) => {
       const kids = []; if (s.image) kids.push(el('img', { src: 'strips/' + s.file, alt: s.exercise + ' pose strip as made', loading: 'lazy' }));
