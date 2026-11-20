@@ -161,6 +161,20 @@ def split_rgba(rgba, n, label):
     return poses
 
 
+def row_bounds(rgba, n_rows, label="sheet"):
+    """A sheet may hold several exercises, one per row. Rows are separated by empty horizontal bands; cut in the middle of the widest ones."""
+    a = np.array(rgba)[..., 3] > 128; occ = a.any(axis=1); bands, start = [], None
+    for y, o in enumerate(list(occ) + [True]):
+        if not o and start is None: start = y
+        if o and start is not None: bands.append((start, y)); start = None
+    inner = [(b0, b1) for b0, b1 in bands if b0 > 0 and b1 < a.shape[0]]
+    if len(inner) < n_rows - 1:
+        raise SystemExit(f"{label}: expected {n_rows} rows separated by empty space, found {len(inner) + 1}. Regenerate with more space between the rows.")
+    cuts = sorted((b0 + b1) // 2 for b0, b1 in sorted(inner, key=lambda b: -(b[1] - b[0]))[:n_rows - 1])
+    edges = [0] + cuts + [a.shape[0]]
+    return [(edges[i], edges[i + 1]) for i in range(n_rows)]
+
+
 def anchors_of(p):
     """Every anchor a pose can be pinned by, in the pose's own pixel coordinates.
     hips = the red shorts: the part of the body that stays put when he lies on the floor (back extension, sit-up)."""
@@ -176,12 +190,16 @@ def bake(name, strip, theme):
     src = os.path.join(ROOT, "sheets", strip["file"]); h = filehash(src); d = os.path.join(ASSETS, "sprites", name); mp = os.path.join(d, "meta.json")
     if os.path.exists(mp):
         m = jload(mp)
-        if m.get("source_hash") == h and m.get("key") == theme["key"] and m.get("n") == strip["poses"] and m.get("version") == BAKE_VERSION: return m
+        if (m.get("source_hash") == h and m.get("key") == theme["key"] and m.get("n") == strip["poses"] and m.get("version") == BAKE_VERSION
+                and m.get("rows") == strip.get("rows") and m.get("row") == strip.get("row")): return m
     os.makedirs(d, exist_ok=True)
     for f in os.listdir(d):
         if f.endswith(".png"): os.remove(os.path.join(d, f))
-    poses = split_rgba(chroma_key(Image.open(src), **theme["key"]), strip["poses"], src)     # neutral colours: recolour happens at build time
-    meta = {"version": BAKE_VERSION, "source": strip["file"], "source_hash": h, "key": theme["key"], "n": strip["poses"], "poses": []}
+    rgba = chroma_key(Image.open(src), **theme["key"])                       # neutral colours: recolour happens at build time
+    if strip.get("rows"):                                                    # several exercises on one sheet: take this strip's row
+        y0, y1 = row_bounds(rgba, strip["rows"], src)[strip["row"]]; rgba = rgba.crop((0, y0, rgba.width, y1))
+    poses = split_rgba(rgba, strip["poses"], src)
+    meta = {"version": BAKE_VERSION, "source": strip["file"], "source_hash": h, "key": theme["key"], "n": strip["poses"], "rows": strip.get("rows"), "row": strip.get("row"), "poses": []}
     for k, (p, off) in enumerate(poses, 1):
         p.save(os.path.join(d, f"p{k}.png")); meta["poses"].append({"file": f"p{k}.png", "offset": list(off), "size": list(p.size), "anchors": anchors_of(p)})
     meta["floor"] = max(o[1] + p.size[1] for p, o in poses); meta["top"] = min(o[1] for p, o in poses)

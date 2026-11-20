@@ -40,6 +40,19 @@ check(not has_real_transparency(mg) and has_real_transparency(tp), "a real trans
 pm = [p for p, _ in build.split_rgba(key(mg, **theme["key"]), 3, "magenta")]; pt = [p for p, _ in build.split_rgba(key(tp, **theme["key"]), 3, "transparent")]
 check(len(pm) == len(pt) == 3 and all(x.size == y.size and np.array_equal(np.array(x)[..., 3] > 128, np.array(y)[..., 3] > 128) for x, y in zip(pm, pt)), "transparent route and magenta route give identical sprites")
 check(not has_real_transparency(Image.new("RGB", (400, 200), (210, 210, 210))), "a painted-in checkerboard is not mistaken for transparency")
+# several exercises on one sheet (rows) must give the same sprites as the strips on their own
+import tempfile as _tf
+_names = ["toe-touch-c1", "partial-sit-up-c1", "knee-push-up-c1"]; _imgs = [Image.open(os.path.join(ROOT, "sheets", reg["strips"][n]["file"])).convert("RGB") for n in _names]
+_W = max(i.width for i in _imgs); _sheet = Image.new("RGB", (_W, sum(i.height for i in _imgs)), (255, 59, 253)); _y = 0
+for _i in _imgs: _sheet.paste(_i, (0, _y)); _y += _i.height
+_tmp = _tf.mkdtemp(); _sp = os.path.join(_tmp, "sheet.png"); _sheet.save(_sp); _old_assets = build.ASSETS; build.ASSETS = os.path.join(_tmp, "assets")
+try:
+    ok_rows = True
+    for _r, _n in enumerate(_names):
+        _one = build.bake("_row_" + _n, dict(reg["strips"][_n], file=_sp, rows=3, row=_r), theme); _own = build.bake("_own_" + _n, dict(reg["strips"][_n], file=os.path.join(ROOT, "sheets", reg["strips"][_n]["file"])), theme)
+        ok_rows &= [q["size"] for q in _one["poses"]] == [q["size"] for q in _own["poses"]]
+finally: build.ASSETS = _old_assets
+check(ok_rows, "a sheet with three exercises in three rows gives the same sprites as the three strips on their own")
 for c, slots in reg["charts"].items():
     for slot, key_ in slots.items(): check(key_ in reg["strips"], f"chart {c} slot {slot} points at a known strip")
 

@@ -16,6 +16,15 @@ Why one image and not one image per pose: generated separately, the character dr
 4. **Image settings:** wide 16:9, at least about 1300 pixels across, 4 takes per prompt.
 5. **The plan's own wording for the exercise**, so you can check form: `python3 kit/prompt.py --booklet --data path/to/5bx-charts.json --chart 1 --slot ex3`.
 
+## Several exercises in one image
+
+Verified 2026-11-20: one image can hold several exercises, one per row. A 3x3 sheet (sit-up, back extension, push-up) came back from ChatGPT's image tool at one scale and one style, and the kit cut all three rows into three poses each. Benefits: far fewer generations, and the boy matches across the exercises.
+
+- Say "three rows" and name what each row is, top to bottom. Ask for **clear empty space between the rows** (the kit cuts on empty bands, so a pose that reaches into the next row's space breaks it).
+- Keep it to about three rows. Each figure gets smaller as more are added, so a lying pose ends up only about 150 to 250 pixels tall.
+- A long strip (the five or six toe touches) is better on its own.
+- Register each row as its own strip: `"file": "sheet.png", "rows": 3, "row": 0, "poses": 3, ...` (row counts from 0, top to bottom).
+
 ## Magenta background or a transparent one?
 
 The kit accepts either. **Default to magenta**; use a transparent PNG only if your tool gives you a real one.
