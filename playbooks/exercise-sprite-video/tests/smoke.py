@@ -120,6 +120,11 @@ with tempfile.TemporaryDirectory() as tmp:
 for name, st in reg["strips"].items():
     if st.get("cycle_reverse"): check(sorted(set(st["cycle_reverse"])) == sorted(set(st["cycle"])) and len(st["cycle_reverse"]) == len(st["cycle"]), f"{name}: the reversed cycle uses the same poses as the forward cycle")
 
+# a cut-out from another tool: real transparency, but a hard rim still tinted with the old magenta
+cut = np.zeros((80, 80, 4), np.uint8); cut[20:60, 20:60] = (230, 150, 70, 255); cut[20:22, 20:60] = (190, 40, 200, 255); cut[58:60, 20:60] = (190, 40, 200, 255)   # an orange square, rim tinted
+cl = np.array(key(Image.fromarray(cut, "RGBA"))); rim = cl[21, 40, :3].astype(int); mid = cl[40, 40, :3].astype(int)
+check(min(rim[0], rim[2]) - rim[1] < 10 and tuple(mid) == (230, 150, 70) and cl[0, 0, 3] == 0 and cl[40, 40, 3] == 255, "keyer: a real-transparency cut-out loses its magenta rim tint, keeps its colours and its see-through background")
+
 # feet stay put: for every strip that pins by a shoe, the pinned shoe point lands within a few pixels in every pose
 import numpy as np
 for name, st in reg["strips"].items():
