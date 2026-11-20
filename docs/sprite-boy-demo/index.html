@@ -49,6 +49,12 @@ input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--link); }
 .hue span.sw { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--ink); }
 input[type="range"] { width: 100%; height: 28px; accent-color: var(--link); }
 .status { color: var(--muted); font-size: .9rem; min-height: 1.3em; }
+.pick { display: grid; gap: 6px; max-width: 520px; }
+.pick label { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .06em; font-size: .85rem; color: var(--muted); }
+select { font: 500 1rem var(--font-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; min-height: 44px; width: 100%; }
+select:focus-visible { outline: 3px solid var(--link); outline-offset: 2px; }
+button:disabled { opacity: .45; cursor: not-allowed; }
+.callout { border-left: 4px solid var(--accent); padding: 8px 12px; background: var(--surface); border-radius: 0 6px 6px 0; max-width: 62ch; }
 
 table { width: 100%; border-collapse: collapse; font-size: .95rem; }
 .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
@@ -67,7 +73,7 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; max-width: 
 
 <main class="wrap">
   <header>
-    <div class="kicker">Chart 1 · level A+ · 11 min 40 s</div>
+    <div class="kicker" id="kicker">Chart 1 · level A+ · 11 min 40 s</div>
     <h1>5BX Sprite Boy</h1>
     <p class="lede">A full 5BX workout video, built from layers you can switch, swap and recolor. Everything on this page runs from the same files as the real video.</p>
   </header>
@@ -75,12 +81,14 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; max-width: 
   <section id="watch">
     <h2>Watch</h2>
     <video id="reel" controls playsinline preload="metadata" src="reel.mp4" aria-label="Forty-second highlight reel"></video>
-    <p class="note">A 40-second cut: the four exercises, the run, the scissor jumps, then the same video recolored, then with a mat, a shadow and a prop. The full video plays every exercise at the booklet's real pace, with a countdown and break cards.</p>
+    <p class="note">A 40-second cut of chart 1: the four exercises, the run, the scissor jumps, then the same video recolored, then with a mat, a shadow and a prop. The full video plays every exercise at the booklet's real pace, with a countdown and break cards.</p>
   </section>
 
   <section id="take-apart">
     <h2>Take it apart</h2>
-    <p>Pick an exercise, then switch layers off, add a mat, or change his colors. This is the same build the video uses.</p>
+    <p>Pick a chart and an exercise, then switch layers off, add a mat, or change his colors. This is the same build the video uses.</p>
+    <div class="pick"><label for="chart">Chart</label><select id="chart"></select></div>
+    <p class="callout" id="chartnote" hidden></p>
     <div class="viewer">
       <div style="display:grid; gap:10px; min-width:0">
         <canvas id="stage" aria-label="Animated preview of the sprite boy doing the selected exercise"></canvas>
@@ -152,7 +160,7 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; max-width: 
   <section id="next">
     <h2>What is next</h2>
     <ul class="plain">
-      <li><b>Charts 2 to 6.</b> 26 more exercise strips, each written from the booklet's own wording. Astride and jack jumps and chart 3's toe touch cannot be read from the side, so they likely need a front view.</li>
+      <li><b>Charts 3 to 6.</b> The chart menu above shows what is made. Prompts for charts 3 and 4 are ready; chart 5 and 6 prompts are not written yet. Astride jumps and chart 3's toe touch cannot be read from the side, so they use a front view.</li>
       <li><b>Not built yet:</b> voiceover, a character on the break cards, a drag-and-drop editor, a different backdrop for each chart.</li>
     </ul>
     <p class="warn">Exercise form has been checked against the booklet's wording, not by someone who knows the exercises. That review comes before this is shared as instruction.</p>
@@ -169,12 +177,14 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; max-width: 
     const cv = $('stage'); cv.width = W; cv.height = H; const ctx = cv.getContext('2d');
     const loadImg = (src) => new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = () => no(new Error('image failed: ' + src)); i.src = src; });
     const layerImgs = await Promise.all(D.layers.map((l) => loadImg(l.file)));
-    const spriteImgs = {}; await Promise.all(D.order.map(async (s) => { spriteImgs[s] = await Promise.all(D.slots[s].poses.map((p) => loadImg(p.file))); }));
+    const spriteImgs = {};                                                // spriteImgs[chart][slot] = the pose images, loaded the first time a chart is opened
+    const loadChart = async (cid) => { if (spriteImgs[cid]) return; const C = D.charts[cid], out = {};
+      await Promise.all(C.order.map(async (s) => { out[s] = await Promise.all(C.slots[s].poses.map((p) => loadImg(p.file))); })); spriteImgs[cid] = out; };
     const propImgs = {}; await Promise.all(D.props.filter((p) => p.kind === 'image').map(async (p) => { propImgs[p.id] = await loadImg(p.file); }));
 
     const defaults = { shorts: 0, shoes: 225, tank: 195 };              // where each color sits on the hue wheel today
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const st = { slot: 'ex1', playing: !reduce, speed: 4, time: 0, last: performance.now(), layers: {}, props: {}, hue: { shorts: null, shoes: null, tank: null } };
+    const st = { chart: D.default_chart, slot: 'ex1', playing: !reduce, speed: 4, time: 0, last: performance.now(), layers: {}, props: {}, hue: { shorts: null, shoes: null, tank: null } };
     D.layers.forEach((l) => (st.layers[l.name] = true)); D.props.forEach((p) => (st.props[p.id] = false));
 
     /* ---------- recolor: same hue-band rule as the video build ---------- */
@@ -211,14 +221,15 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; max-width: 
     function hudText(s, y, size, fill) { ctx.font = `600 ${size}px Oswald, "Arial Narrow", Arial, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'top'; ctx.lineJoin = 'round';
       ctx.lineWidth = size * .16; ctx.strokeStyle = 'rgba(16,24,32,.92)'; ctx.strokeText(s, W / 2, y); ctx.fillStyle = fill; ctx.fillText(s, W / 2, y); }
     function frame() {
-      const info = D.slots[st.slot], T = st.time;
+      const C = D.charts[st.chart], info = C.slots[st.slot], T = st.time;
       ctx.fillStyle = '#1b2430'; ctx.fillRect(0, 0, W, H);
       D.layers.forEach((l, i) => { if (st.layers[l.name]) ctx.drawImage(layerImgs[i], 0, 0, W, H); });
+      if (!info) { ctx.fillStyle = 'rgba(16,24,32,.62)'; ctx.fillRect(0, 0, W, H); hudText(C.label.toUpperCase(), H * .30, 56 * K, '#ffffff'); hudText('Not made yet', H * .30 + 74 * K, 44 * K, '#ff9a3c'); return; }
       drawProps(info, 'behind');
       const n = info.cycle.length, per = info.cycle_s / n, tc = ((T % info.cycle_s) + info.cycle_s) % info.cycle_s, i = Math.min(n - 1, Math.floor(tc / per)), lt = tc - i * per;
       const fade = Math.min(0.30, 0.45 * per); let a = 0; if (lt > per - fade) { const q = (lt - (per - fade)) / fade; a = q * q * (3 - 2 * q); }
       const cur = info.cycle[i] - 1, nxt = info.cycle[(i + 1) % n] - 1, P = info.poses;
-      const put = (k, alpha) => { const p = P[k]; ctx.globalAlpha = alpha; ctx.drawImage(tinted(spriteImgs[st.slot][k], st.slot + ':' + k), p.x, p.y, p.w, p.h); ctx.globalAlpha = 1; };
+      const put = (k, alpha) => { const p = P[k]; ctx.globalAlpha = alpha; ctx.drawImage(tinted(spriteImgs[st.chart][st.slot][k], st.chart + ':' + st.slot + ':' + k), p.x, p.y, p.w, p.h); ctx.globalAlpha = 1; };
       if (a > 0 && nxt !== cur) { put(cur, 1 - a); put(nxt, a); } else put(cur, 1);
       drawProps(info, 'front');
       hudText(info.kicker, H * .02, 26 * K, '#ffd36b'); hudText(info.title.toUpperCase(), H * .02 + 38 * K, 56 * K, '#ffffff'); hudText(info.target, H * .02 + 104 * K, 44 * K, '#ff9a3c');
@@ -230,8 +241,26 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; max-width: 
 
     /* ---------- controls ---------- */
     const mk = (tag, props = {}, kids = []) => { const e = Object.assign(document.createElement(tag), props); kids.forEach((k) => e.append(k)); return e; };
-    D.order.forEach((s) => { const b = mk('button', { type: 'button', textContent: D.slots[s].title.replace(/^./, (c) => c.toUpperCase()).replace(/ jumps?$/i, ' jumps'), id: 'slot-' + s });
-      b.setAttribute('aria-pressed', s === st.slot); b.onclick = () => { st.slot = s; st.time = 0; document.querySelectorAll('#slots button').forEach((x) => x.setAttribute('aria-pressed', x === b)); }; $('slots').append(b); });
+    const chip = (e, C) => { const info = C.slots[e.slot], b = mk('button', { type: 'button', id: 'slot-' + e.slot,
+        textContent: (info ? info.title : e.name).replace(/^./, (c) => c.toUpperCase()).replace(/ jumps?$/i, ' jumps') });
+      if (!info) { b.disabled = true; b.title = 'Not made yet'; return b; }
+      b.setAttribute('aria-pressed', e.slot === st.slot); b.onclick = () => { st.slot = e.slot; st.time = 0; document.querySelectorAll('#slots button').forEach((x) => x.setAttribute('aria-pressed', x === b)); }; return b; };
+    const note = $('chartnote'), pickSel = $('chart');
+    Object.entries(D.charts).forEach(([cid, C]) => { const n = C.all.filter((x) => x.built).length;
+      pickSel.append(mk('option', { value: cid, textContent: `${C.label} · ${C.status === 'built' ? 'all 6 made' : C.status === 'partial' ? n + ' of 6 made' : 'not made yet'}` })); });
+    async function showChart(cid) {
+      const C = D.charts[cid]; $('slots').replaceChildren();
+      if (C.order.length) { status.textContent = 'Loading…'; await loadChart(cid); if (!C.slots[st.slot]) st.slot = C.order[0]; }
+      st.chart = cid; st.time = 0;
+      C.all.forEach((e) => $('slots').append(chip(e, C)));
+      $('kicker').textContent = `${C.label} · level A+ · 11 min 40 s`;
+      const missing = C.all.filter((x) => !x.built).map((x) => x.name.toLowerCase());
+      if (C.status === 'built') note.hidden = true;
+      else { note.hidden = false; note.replaceChildren(document.createTextNode(`${C.status === 'planned' ? 'Not made yet.' : 'Partly made.'} Still to make: ${missing.join('; ')}. `),
+        C.prompts_ready ? mk('a', { href: 'prompts.html', textContent: 'The prompts for this chart are ready.' }) : document.createTextNode('Its prompts are not written yet.')); }
+      status.textContent = 'Real pace is the video’s own timing; 4× and 10× show the loop faster.';
+    }
+    pickSel.value = st.chart; pickSel.onchange = () => showChart(pickSel.value); await showChart(st.chart);
     const pb = $('play'); pb.setAttribute('aria-pressed', st.playing); pb.textContent = st.playing ? 'Pause' : 'Play';
     pb.onclick = () => { st.playing = !st.playing; pb.setAttribute('aria-pressed', st.playing); pb.textContent = st.playing ? 'Pause' : 'Play'; };
     [[1, 'Real pace'], [4, '4×'], [10, '10×']].forEach(([v, label]) => { const b = mk('button', { type: 'button', textContent: label }); b.setAttribute('aria-pressed', v === st.speed);
@@ -246,7 +275,6 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; max-width: 
     const setHues = (o) => { Object.keys(labels).forEach((k) => { st.hue[k] = k in o ? o[k] : null; const v = st.hue[k] ?? defaults[k]; sliders[k].r.value = v; sliders[k].sw.style.background = `hsl(${v} 75% 50%)`; }); };
     [['Original', {}], ['Red shoes, blue shorts', { shoes: 2, shorts: 215 }], ['Yellow shorts', { shorts: 52 }], ['Purple tank', { tank: 275 }]].forEach(([label, o]) => { const b = mk('button', { type: 'button', textContent: label }); b.onclick = () => setHues(o); $('presets').append(b); });
 
-    status.textContent = 'Real pace is the video’s own timing; 4× and 10× show the loop faster.';
     requestAnimationFrame(tick);
   } catch (e) { fail(e); }
 })();

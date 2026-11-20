@@ -151,6 +151,9 @@
       "ex2": "sit-up-c2",
       "jump": "astride-jumps-c2",
       "ex3": "back-extension-c2"
+    },
+    "3": {
+      "run": "stationary-run-c1"
     }
   }
 }

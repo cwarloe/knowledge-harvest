@@ -87,20 +87,34 @@ The prompts, settings and lessons are published so the strips do not depend on o
 1. See what the plan says: `python3 kit/prompt.py --booklet --data … --chart 2 --slot ex3`
 2. Write the pose list in `prompts/strips.json` (one pose per visible stage, plus a "must NOT" for
    the common error). Then `python3 kit/prompt.py --strip <name>` prints the prompt.
-3. Generate 4 takes (`gemini-3-pro-image`, 16:9). First strip of a new character: no reference. After that,
+3. Generate several takes (4 in the API; 9 at a time in a chat image tool works too). First strip of a new character: no reference. After that,
    pin a **neutral standing strip** as the reference. Do not pin a strip that is lying down for a
    different lying exercise: its pose leaks in.
 4. **Check each take against the booklet text before anything else.** Pick the one with the right form.
-5. Save it in `sheets/`. Add an entry under `strips` in `config/strips.json` (`file`, `poses`, `anchor`, `cycle`).
+5. Put every take worth keeping in the library (below), then grade it. Copy the pick to `sheets/`. Add an entry under `strips` in `config/strips.json` (`file`, `poses`, `anchor`, `cycle`).
 6. Point the chart slot at it under `charts`. `build.py --list` shows what is still missing.
 7. `python3 tests/smoke.py …`, then a `--preview` build.
 
 Charts 2–6 use different exercises (sit-up with hands behind head, wide-hand push-up, jack jumps…),
 so each one needs its own strips: **26 more across the five charts** (`docs/CHARTS-2-6.md`). `--list` refuses to build a chart that still has gaps and says which.
 
+## The strip library
+
+Every take worth keeping goes in `library/` with a record, so the best strip for an exercise is one command away and a rejected take is never generated twice. `library/index.json` is the record, `library/images/` the files.
+
+```
+python3 kit/library.py add take.png --strip sit-up-hands-behind-head-c3 --tool chatgpt --view angle --notes "..."
+python3 kit/library.py grade c3-ex2-01 --form 4 --legibility 5 --character 5 --angle 4 --key 5 --by claude
+python3 kit/library.py choose c3-ex2-01        # the pick; the previous pick becomes a candidate
+python3 kit/library.py best                    # the pick, or the best candidate, for every chart and slot
+python3 kit/library.py list --chart 3 --slot ex1
+```
+
+`add` measures what can be counted: figures found, fringe (a messy cut-out), stray green (no green shoes), and refuses the same file twice. Grades are 1 to 5 on form (matches the booklet), legibility, character (same boy), angle (one camera angle) and key. Form counts most. A grade records who gave it; `--expert` marks one given by a person who knows the exercises. `choose` does not change a video: copy the file to `sheets/` and name it in `config/strips.json` (the command prints this).
+
 ## The demo page
 
-`kit/make_demo.py` builds a folder of plain files: a 40-second reel (about 1.6 MB), an interactive viewer where you switch backdrop layers, add the mat, shadow and bottle, and recolor the boy, and the edit-test pictures. About 4.6 MB in all. It reads everything from the kit's own assets and config, so rebuilding after any change refreshes it. A copy for the chart 1 look is in `docs/sprite-boy-demo/` at the repo root, ready for GitHub Pages (Settings → Pages → deploy from a branch → `/docs`; the page would be at `/sprite-boy-demo/`). Rebuild it with the command above.
+`kit/make_demo.py` builds a folder of plain files: a chart menu (every chart in the plan, with what is made and what is not), a 40-second reel (about 1.6 MB), an interactive viewer where you switch backdrop layers, add the mat, shadow and bottle, and recolor the boy, and the edit-test pictures. About 4.6 MB in all. It reads everything from the kit's own assets and config, so rebuilding after any change refreshes it. A copy for the chart 1 look is in `docs/sprite-boy-demo/` at the repo root, ready for GitHub Pages (Settings → Pages → deploy from a branch → `/docs`; the page would be at `/sprite-boy-demo/`). Rebuild it with the command above.
 
 ## Rules that matter
 
@@ -126,7 +140,8 @@ so each one needs its own strips: **26 more across the five charts** (`docs/CHAR
 config/theme.json       look and wording
 config/strips.json      which image is which exercise; which strip each chart slot uses
 config/character.json   the boy, in words
-sheets/                 the chosen strips (chart 1); sheets/candidates/ = edit-test results, not wired in
+sheets/                 the strips wired into videos; sheets/candidates/ = edit-test results, not wired in
+library/                every kept take, indexed, measured and graded (kit/library.py)
 assets/                 baked layers: sprites/, backdrops/, props/   (real files, committed)
 exports/                a layer pack for chart 1 landscape (separate PNGs + scene.json)
 config/scene.json       props between/in front of the layers; scene.example-mat.json is a ready example
@@ -135,7 +150,7 @@ prompts/PROMPTS.md      every prompt, settings, what went wrong and the fix (gen
 docs/LAYERS-AND-IDEAS.md   brainstorm: every way to split this into layers, tagged by effort
 docs/CHARTS-2-6.md      what the five remaining charts need, from the data
 prompts/strips.json     the pose lists that produced them
-kit/build.py            the builder     kit/prompt.py   prompt maker     kit/make_demo.py   the demo page
+kit/build.py            the builder     kit/library.py   the strip library     kit/prompt.py   prompt maker     kit/make_demo.py   the demo page
 kit/keyer.py            background -> transparency     kit/recolor.py   free recolour
 tests/smoke.py          15-second check
 ```

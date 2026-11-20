@@ -28,40 +28,55 @@ def main():
     for d in ("sprites", "backdrop", "props"): shutil.rmtree(os.path.join(out, d), ignore_errors=True)
     os.makedirs(out, exist_ok=True)
 
-    with tempfile.TemporaryDirectory() as tmp:                      # the layer pack gives us geometry and timing for free
-        sh([sys.executable, os.path.join(HERE, "build.py"), "--data", a.data, "--work", os.path.join(ROOT, ".work"), "--export", tmp])
-        pack = os.path.join(tmp, "chart1-landscape"); man = jload(os.path.join(pack, "scene.json")); gy = man["ground_y"]
-        layers = []
-        for fn in sorted(os.listdir(os.path.join(pack, "backdrop"))):
-            im = Image.open(os.path.join(pack, "backdrop", fn)).convert("RGBA")
-            im = im.resize((round(im.width * f), round(im.height * f)), Image.LANCZOS); os.makedirs(os.path.join(out, "backdrop"), exist_ok=True)
-            im.save(os.path.join(out, "backdrop", fn), optimize=True); layers.append({"name": fn[3:-4], "file": f"backdrop/{fn}"})
-
-    segs = man["segments"]; S = man["strings"]; slots = {}
-    for slot, sl in man["slots"].items():
-        st = reg["strips"][sl["strip"]]; meta = jload(os.path.join(ROOT, "assets", "sprites", sl["strip"], "meta.json"))
-        g = sl["geom"]; s = g["scale"]; X0 = g["X0"]; floor = meta["floor"]; poses = []
-        os.makedirs(os.path.join(out, "sprites", sl["strip"]), exist_ok=True)
-        for k, m in enumerate(meta["poses"], 1):
-            ax = m["anchors"][st["anchor"]]; x = X0 - ax * s; y = gy + 10 - (floor - m["offset"][1]) * s; w, h = m["size"][0] * s, m["size"][1] * s
-            im = Image.open(os.path.join(ROOT, "assets", "sprites", sl["strip"], m["file"])).convert("RGBA")
-            sw, shh = max(1, round(w * f)), max(1, round(h * f)); im.resize((sw, shh), Image.LANCZOS).save(os.path.join(out, "sprites", sl["strip"], m["file"]), optimize=True)
-            poses.append({"file": f"sprites/{sl['strip']}/{m['file']}", "x": round(x * f, 2), "y": round(y * f, 2), "w": sw, "h": shh})
-        seg = next(q for q in segs if q.get("slot") == slot)
-        info = {"strip": sl["strip"], "cycle": st["cycle"], "cycle_s": seg["cycle_seconds"], "allot": seg["allot"], "poses": poses,
-                "union": [round((X0 - g["L"] * s) * f, 2), round((X0 + g["R"] * s) * f, 2)]}
-        if seg["kind"] == "exercise": info.update(kicker=S["kicker"].format(n=seg["n"]), title=seg["name"], target=S["reps"].format(reps=seg["reps"]))
-        elif seg["kind"] == "run": info.update(kicker=S["kicker"].format(n=5), title=seg["name"], target=S["steps"].format(steps=seg["steps"]))
-        else: info.update(kicker=S["jump_kicker"], title=S["jump_title"].format(count=seg["count"], name=seg["name"]), target=S["jump_target"])
-        slots[slot] = info
+    data_in = jload(a.data); SLOTS = ["ex1", "ex2", "ex3", "ex4", "run", "jump"]; specs = jload(os.path.join(ROOT, "prompts", "strips.json"))["strips"]
+    prompted = {v["chart"] for v in specs.values() if v.get("chart", 1) > 1}
+    def has_strip(cid, slot):
+        k = reg["charts"].get(str(cid), {}).get(slot); st = reg["strips"].get(k) if k else None
+        return bool(st) and os.path.exists(os.path.join(ROOT, "sheets", st["file"]))
+    charts, layers, props_scene, gy, S = {}, [], None, None, None
+    with tempfile.TemporaryDirectory() as tmp:                      # one layer pack per chart gives us geometry and timing for free
+        for c in data_in["charts"]:
+            cid = c["id"]; built = [x for x in SLOTS if has_strip(cid, x)]
+            names = {f"ex{i + 1}": c["exercises"][i]["name"] for i in range(4)}; names["run"] = c["exercises"][4]["name"]; names["jump"] = c["exercises"][4].get("jumpName", "")
+            entry = {"label": f"Chart {cid}", "status": "built" if len(built) == 6 else "partial" if built else "planned",
+                     "all": [{"slot": x, "name": names[x], "built": x in built} for x in SLOTS], "slots": {}, "order": [x for x in SLOTS if x in built], "prompts_ready": cid == 1 or cid in prompted}
+            charts[str(cid)] = entry
+            if not built: continue
+            sh([sys.executable, os.path.join(HERE, "build.py"), "--data", a.data, "--chart", str(cid), "--work", os.path.join(ROOT, ".work"), "--export", tmp] + (["--only", ",".join(built)] if len(built) < 6 else []))
+            pack = os.path.join(tmp, f"chart{cid}-landscape"); man = jload(os.path.join(pack, "scene.json"))
+            if layers == [] :                                         # the backdrop is the same for every chart: write it once
+                gy = man["ground_y"]; S = man["strings"]
+                for fn in sorted(os.listdir(os.path.join(pack, "backdrop"))):
+                    im = Image.open(os.path.join(pack, "backdrop", fn)).convert("RGBA")
+                    im = im.resize((round(im.width * f), round(im.height * f)), Image.LANCZOS); os.makedirs(os.path.join(out, "backdrop"), exist_ok=True)
+                    im.save(os.path.join(out, "backdrop", fn), optimize=True); layers.append({"name": fn[3:-4], "file": f"backdrop/{fn}"})
+            segs = man["segments"]
+            for slot, sl in man["slots"].items():
+                st = reg["strips"][sl["strip"]]; meta = jload(os.path.join(ROOT, "assets", "sprites", sl["strip"], "meta.json"))
+                g = sl["geom"]; s = g["scale"]; X0 = g["X0"]; floor = meta["floor"]; poses = []
+                sdir = os.path.join("sprites", f"c{cid}", sl["strip"]); os.makedirs(os.path.join(out, sdir), exist_ok=True)      # per chart: the same strip can be scaled differently in another chart
+                for k, m in enumerate(meta["poses"], 1):
+                    ax = m["anchors"][st["anchor"]]; x = X0 - ax * s; y = gy + 10 - (floor - m["offset"][1]) * s; w, h = m["size"][0] * s, m["size"][1] * s
+                    im = Image.open(os.path.join(ROOT, "assets", "sprites", sl["strip"], m["file"])).convert("RGBA")
+                    sw, shh = max(1, round(w * f)), max(1, round(h * f)); im.resize((sw, shh), Image.LANCZOS).save(os.path.join(out, sdir, m["file"]), optimize=True)
+                    poses.append({"file": f"{sdir}/{m['file']}".replace(os.sep, "/"), "x": round(x * f, 2), "y": round(y * f, 2), "w": sw, "h": shh})
+                seg = next(q for q in segs if q.get("slot") == slot)
+                info = {"strip": sl["strip"], "cycle": st["cycle"], "cycle_s": seg["cycle_seconds"], "allot": seg["allot"], "poses": poses,
+                        "union": [round((X0 - g["L"] * s) * f, 2), round((X0 + g["R"] * s) * f, 2)]}
+                if seg["kind"] == "exercise": info.update(kicker=S["kicker"].format(n=seg["n"]), title=seg["name"], target=S["reps"].format(reps=seg["reps"]))
+                elif seg["kind"] == "run": info.update(kicker=S["kicker"].format(n=5), title=seg["name"], target=S["steps"].format(steps=seg["steps"]))
+                else: info.update(kicker=S["jump_kicker"], title=S["jump_title"].format(count=seg["count"], name=seg["name"]), target=S["jump_target"])
+                entry["slots"][slot] = info
+    if not layers: sys.exit("no chart has any strips to show")
     props = []
     for p in example["props"]:
         q = {k: v for k, v in p.items() if not k.startswith("_")}
         if p["kind"] == "image":
             os.makedirs(os.path.join(out, "props"), exist_ok=True); shutil.copy(os.path.join(ROOT, p["file"]), os.path.join(out, "props", os.path.basename(p["file"]))); q["file"] = "props/" + os.path.basename(p["file"])
         props.append(q)
+    first = next(k for k, v in charts.items() if v["status"] != "planned")
     data = {"frame": [round(1920 * f), round(1080 * f)], "scale": f, "ground": round(gy * f, 2), "floor": round((gy + 10) * f, 2), "layers": layers,
-            "slots": slots, "order": ["ex1", "ex2", "ex3", "ex4", "run", "jump"], "props": props, "strings": S,
+            "charts": charts, "default_chart": first, "props": props, "strings": S,
             "regions": {k: {"h": v["h"], "smin": v["smin"], "vmin": v["vmin"]} for k, v in REGIONS.items()}}
     json.dump(data, open(os.path.join(out, "data.json"), "w"), indent=1)
 
@@ -76,8 +91,7 @@ def main():
     shutil.copy(os.path.join(ROOT, "prompts", "prompts.json"), os.path.join(out, "prompts.json")); shutil.copy(os.path.join(ROOT, "prompts", "PROMPTS.md"), os.path.join(out, "PROMPTS.md"))
     shutil.copy(os.path.join(ROOT, "docs", "HOW-TO-GENERATE-STRIPS.md"), os.path.join(out, "HOW-TO-GENERATE-STRIPS.md"))
     for st in reg["strips"].values(): shutil.copy(os.path.join(ROOT, "sheets", st["file"]), os.path.join(out, "strips", st["file"]))
-    specs = jload(os.path.join(ROOT, "prompts", "strips.json"))["strips"]
-    for cid in sorted({v["chart"] for v in specs.values() if v.get("chart", 1) > 1}):                    # a Word document of prompts for each chart still to build
+    for cid in sorted(prompted):                    # a Word document of prompts for each chart still to build
         sh([sys.executable, os.path.join(HERE, "make_prompt_doc.py"), "--data", a.data, "--chart", str(cid), "--out", os.path.join(out, f"Chart-{cid}-image-prompts.docx")])
 
     for name in ("page", "prompts"):                                  # the page itself; the wrapper makes it a standalone file

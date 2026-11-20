@@ -1,0 +1,685 @@
+{
+ "_about": "Strip library. See kit/library.py. Edit with the tool, not by hand.",
+ "entries": [
+  {
+   "id": "c1-ex1-w1",
+   "file": "sheets/ex1-toe-touching.png",
+   "chart": 1,
+   "slot": "ex1",
+   "exercise": "TOE TOUCHES",
+   "strip": "toe-touch-c1",
+   "tool": "unknown",
+   "view": "side",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md",
+   "measured": {
+    "size": [
+     1376,
+     768
+    ],
+    "figures": 3,
+    "fringe_pct": 3.39,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "6f6ce8022261"
+   },
+   "grades": {},
+   "graded_by": "",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "wired": true,
+   "notes": "wired into config/strips.json; not yet graded"
+  },
+  {
+   "id": "c1-ex2-w1",
+   "file": "sheets/ex2-partial-sit-up.png",
+   "chart": 1,
+   "slot": "ex2",
+   "exercise": "a PARTIAL SIT-UP",
+   "strip": "partial-sit-up-c1",
+   "tool": "unknown",
+   "view": "side",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md",
+   "measured": {
+    "size": [
+     1376,
+     768
+    ],
+    "figures": 3,
+    "fringe_pct": 4.52,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "17c10e97e347"
+   },
+   "grades": {},
+   "graded_by": "",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "wired": true,
+   "notes": "wired into config/strips.json; not yet graded"
+  },
+  {
+   "id": "c1-ex3-w1",
+   "file": "sheets/ex3-alternate-leg-raise.png",
+   "chart": 1,
+   "slot": "ex3",
+   "exercise": "an ALTERNATE LEG RAISE",
+   "strip": "alternate-leg-raise-c1",
+   "tool": "unknown",
+   "view": "side",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md",
+   "measured": {
+    "size": [
+     1376,
+     768
+    ],
+    "figures": 3,
+    "fringe_pct": 5.16,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "cd34a02bb6d7"
+   },
+   "grades": {},
+   "graded_by": "",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "wired": true,
+   "notes": "wired into config/strips.json; not yet graded"
+  },
+  {
+   "id": "c1-ex4-w1",
+   "file": "sheets/ex4-knee-push-up.png",
+   "chart": 1,
+   "slot": "ex4",
+   "exercise": "a KNEE PUSH-UP",
+   "strip": "knee-push-up-c1",
+   "tool": "unknown",
+   "view": "side",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md",
+   "measured": {
+    "size": [
+     1376,
+     768
+    ],
+    "figures": 3,
+    "fringe_pct": 3.33,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "93bdc72cd3dd"
+   },
+   "grades": {},
+   "graded_by": "",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "wired": true,
+   "notes": "wired into config/strips.json; not yet graded"
+  },
+  {
+   "id": "c1-run-w1",
+   "file": "sheets/ex5-stationary-run.png",
+   "chart": 1,
+   "slot": "run",
+   "exercise": "a STATIONARY RUN (running in place)",
+   "strip": "stationary-run-c1",
+   "tool": "unknown",
+   "view": "side",
+   "poses": 4,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md",
+   "measured": {
+    "size": [
+     1376,
+     768
+    ],
+    "figures": 4,
+    "fringe_pct": 4.83,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "43023e251fcc"
+   },
+   "grades": {},
+   "graded_by": "",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "wired": true,
+   "notes": "wired into config/strips.json; not yet graded"
+  },
+  {
+   "id": "c1-jump-w1",
+   "file": "sheets/ex5-scissor-jumps.png",
+   "chart": 1,
+   "slot": "jump",
+   "exercise": "SCISSOR JUMPS",
+   "strip": "scissor-jumps-c1",
+   "tool": "unknown",
+   "view": "side",
+   "poses": 4,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md",
+   "measured": {
+    "size": [
+     1376,
+     768
+    ],
+    "figures": 4,
+    "fringe_pct": 5.33,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "df72e21d883e"
+   },
+   "grades": {},
+   "graded_by": "",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "wired": true,
+   "notes": "wired into config/strips.json; not yet graded"
+  },
+  {
+   "id": "c2-ex1-w1",
+   "file": "sheets/c2-ex1-toe-touching.png",
+   "chart": 2,
+   "slot": "ex1",
+   "exercise": "TOE TOUCHES WITH A BOUNCE",
+   "strip": "toe-touch-c2",
+   "tool": "unknown",
+   "view": "angle",
+   "poses": 5,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md",
+   "measured": {
+    "size": [
+     1280,
+     720
+    ],
+    "figures": 5,
+    "fringe_pct": 3.97,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "2535808da595"
+   },
+   "grades": {},
+   "graded_by": "",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "wired": true,
+   "notes": "wired into config/strips.json; not yet graded"
+  },
+  {
+   "id": "c2-ex4-w1",
+   "file": "sheets/c2-ex4-push-up.png",
+   "chart": 2,
+   "slot": "ex4",
+   "exercise": "a PUSH-UP (on the palms and toes, knees OFF the floor)",
+   "strip": "push-up-c2",
+   "tool": "unknown",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md",
+   "measured": {
+    "size": [
+     1280,
+     720
+    ],
+    "figures": 3,
+    "fringe_pct": 4.14,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "00a31ed20f1a"
+   },
+   "grades": {},
+   "graded_by": "",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "wired": true,
+   "notes": "wired into config/strips.json; not yet graded"
+  },
+  {
+   "id": "c2-ex2-w1",
+   "file": "sheets/c2-ex2-sit-up.png",
+   "chart": 2,
+   "slot": "ex2",
+   "exercise": "a SIT-UP",
+   "strip": "sit-up-c2",
+   "tool": "unknown",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md",
+   "measured": {
+    "size": [
+     1280,
+     720
+    ],
+    "figures": 3,
+    "fringe_pct": 4.05,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "8e08fdfa819f"
+   },
+   "grades": {},
+   "graded_by": "",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "wired": true,
+   "notes": "wired into config/strips.json; not yet graded"
+  },
+  {
+   "id": "c2-jump-w1",
+   "file": "sheets/c2-jump-astride-jumps.png",
+   "chart": 2,
+   "slot": "jump",
+   "exercise": "ASTRIDE JUMPS",
+   "strip": "astride-jumps-c2",
+   "tool": "unknown",
+   "view": "angle",
+   "poses": 4,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md",
+   "measured": {
+    "size": [
+     1280,
+     720
+    ],
+    "figures": 4,
+    "fringe_pct": 4.33,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "0a944e07c74f"
+   },
+   "grades": {},
+   "graded_by": "",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "wired": true,
+   "notes": "wired into config/strips.json; not yet graded"
+  },
+  {
+   "id": "c2-ex3-w1",
+   "file": "sheets/c2-ex3-back-extension.png",
+   "chart": 2,
+   "slot": "ex3",
+   "exercise": "a BACK EXTENSION",
+   "strip": "back-extension-c2",
+   "tool": "unknown",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md",
+   "measured": {
+    "size": [
+     1280,
+     720
+    ],
+    "figures": 3,
+    "fringe_pct": 4.13,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "e7eff802987b"
+   },
+   "grades": {},
+   "graded_by": "",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "wired": true,
+   "notes": "wired into config/strips.json; not yet graded"
+  },
+  {
+   "id": "c3-ex1-01",
+   "file": "library/images/c3-ex1-01.png",
+   "chart": 3,
+   "slot": "ex1",
+   "exercise": "TOE TOUCHES TO THE LEFT, CENTRE AND RIGHT",
+   "strip": "toe-touch-c3",
+   "tool": "chatgpt",
+   "view": "front",
+   "poses": 5,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'TOE TOUCHES TO THE LEFT, CENTRE AND RIGHT'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "figures": 5,
+    "fringe_pct": 1.57,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "3257aa2b1ca2"
+   },
+   "grades": {
+    "form": 4,
+    "legibility": 5,
+    "character": 5,
+    "angle": 5,
+    "key": 5
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "notes": "upload 13537; front view, legs apart, 5 poses, arms-up reversal in pose 5 | front view reads clearly; arms-up reversal is the booklet's 'bend back' | tentative pick, not yet confirmed by the author"
+  },
+  {
+   "id": "c3-ex1-02",
+   "file": "library/images/c3-ex1-02.png",
+   "chart": 3,
+   "slot": "ex1",
+   "exercise": "TOE TOUCHES TO THE LEFT, CENTRE AND RIGHT",
+   "strip": "toe-touch-c3",
+   "tool": "chatgpt",
+   "view": "front",
+   "poses": 5,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'TOE TOUCHES TO THE LEFT, CENTRE AND RIGHT'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "figures": 5,
+    "fringe_pct": 2.13,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "c43ac5901257"
+   },
+   "grades": {
+    "form": 4,
+    "legibility": 5,
+    "character": 5,
+    "angle": 5,
+    "key": 3
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "candidate",
+   "notes": "upload 13530; same as 13537 but pink fringe on the fourth figure's legs"
+  },
+  {
+   "id": "c3-jump-01",
+   "file": "library/images/c3-jump-01.png",
+   "chart": 3,
+   "slot": "jump",
+   "exercise": "HALF KNEE BENDS",
+   "strip": "half-knee-bends-c3",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'HALF KNEE BENDS'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "figures": 3,
+    "fringe_pct": 0.94,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "b8b5a94c990f"
+   },
+   "grades": {
+    "form": 4,
+    "legibility": 4,
+    "character": 5,
+    "angle": 4,
+    "key": 5
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "candidate",
+   "notes": "upload 13538; stand, half squat, up on toes"
+  },
+  {
+   "id": "c3-jump-02",
+   "file": "library/images/c3-jump-02.png",
+   "chart": 3,
+   "slot": "jump",
+   "exercise": "HALF KNEE BENDS",
+   "strip": "half-knee-bends-c3",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'HALF KNEE BENDS'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "figures": 3,
+    "fringe_pct": 0.99,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "8751284c1fa1"
+   },
+   "grades": {
+    "form": 4,
+    "legibility": 5,
+    "character": 5,
+    "angle": 5,
+    "key": 5
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "notes": "upload 13529; stand, half squat, up on toes; clearer turn toward camera | knees clearly half-bent, then heels up | tentative pick, not yet confirmed by the author"
+  },
+  {
+   "id": "c3-ex3-01",
+   "file": "library/images/c3-ex3-01.png",
+   "chart": 3,
+   "slot": "ex3",
+   "exercise": "a BACK EXTENSION WITH THE HANDS INTERLOCKED BEHIND THE BACK",
+   "strip": "back-extension-hands-behind-back-c3",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'a BACK EXTENSION WITH THE HANDS INTERLOCKED BEHIND THE BACK'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "figures": 3,
+    "fringe_pct": 1.44,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "cdceac70ac34"
+   },
+   "grades": {
+    "form": 3,
+    "legibility": 3,
+    "character": 5,
+    "angle": 4,
+    "key": 5
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "candidate",
+   "notes": "upload 13535; hands clasped behind back, chest and legs lifting | thigh lift is small; hands clasped behind back are visible"
+  },
+  {
+   "id": "c3-ex3-02",
+   "file": "library/images/c3-ex3-02.png",
+   "chart": 3,
+   "slot": "ex3",
+   "exercise": "a BACK EXTENSION WITH THE HANDS INTERLOCKED BEHIND THE BACK",
+   "strip": "back-extension-hands-behind-back-c3",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'a BACK EXTENSION WITH THE HANDS INTERLOCKED BEHIND THE BACK'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "figures": 3,
+    "fringe_pct": 1.36,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "b3f51ff0c319"
+   },
+   "grades": {
+    "form": 3,
+    "legibility": 3,
+    "character": 5,
+    "angle": 4,
+    "key": 4
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "candidate",
+   "notes": "upload 13532; near-copy of 13535, background has a gradient"
+  },
+  {
+   "id": "c3-ex4-01",
+   "file": "library/images/c3-ex4-01.png",
+   "chart": 3,
+   "slot": "ex4",
+   "exercise": "a CHIN-FOREHEAD PUSH-UP (on the palms and toes, knees OFF the floor)",
+   "strip": "chin-forehead-push-up-c3",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'a CHIN-FOREHEAD PUSH-UP (on the palms and toes, knees OFF the floor)'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "figures": 3,
+    "fringe_pct": 1.42,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "530301d90f76"
+   },
+   "grades": {
+    "form": 3,
+    "legibility": 4,
+    "character": 5,
+    "angle": 4,
+    "key": 5
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "candidate",
+   "notes": "upload 13536; toe push-up, head dips between the hands | head dips between the hands; 'forehead behind the hands' not shown"
+  },
+  {
+   "id": "c3-ex4-02",
+   "file": "library/images/c3-ex4-02.png",
+   "chart": 3,
+   "slot": "ex4",
+   "exercise": "a CHIN-FOREHEAD PUSH-UP (on the palms and toes, knees OFF the floor)",
+   "strip": "chin-forehead-push-up-c3",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'a CHIN-FOREHEAD PUSH-UP (on the palms and toes, knees OFF the floor)'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "figures": 3,
+    "fringe_pct": 1.73,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "87b3f130b38d"
+   },
+   "grades": {
+    "form": 3,
+    "legibility": 3,
+    "character": 5,
+    "angle": 4,
+    "key": 5
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "candidate",
+   "notes": "upload 13531; toe push-up, third figure's head is low and turned | third figure's head is low but turned sideways"
+  },
+  {
+   "id": "c3-ex2-01",
+   "file": "library/images/c3-ex2-01.png",
+   "chart": 3,
+   "slot": "ex2",
+   "exercise": "a SIT-UP WITH THE HANDS CLASPED BEHIND THE HEAD",
+   "strip": "sit-up-hands-behind-head-c3",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'a SIT-UP WITH THE HANDS CLASPED BEHIND THE HEAD'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "figures": 3,
+    "fringe_pct": 1.05,
+    "green_pct": 0.01,
+    "real_transparency": false,
+    "sha": "95a2057e0db0"
+   },
+   "grades": {
+    "form": 3,
+    "legibility": 4,
+    "character": 5,
+    "angle": 4,
+    "key": 5
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "candidate",
+   "notes": "upload 13534; hands behind head | hands behind head; knee bend is weak"
+  },
+  {
+   "id": "c3-ex2-02",
+   "file": "library/images/c3-ex2-02.png",
+   "chart": 3,
+   "slot": "ex2",
+   "exercise": "a SIT-UP WITH THE HANDS CLASPED BEHIND THE HEAD",
+   "strip": "sit-up-hands-behind-head-c3",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'a SIT-UP WITH THE HANDS CLASPED BEHIND THE HEAD'",
+   "measured": {
+    "size": [
+     1672,
+     941
+    ],
+    "figures": 3,
+    "fringe_pct": 1.12,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "05e067a1956b"
+   },
+   "grades": {
+    "form": 3,
+    "legibility": 4,
+    "character": 5,
+    "angle": 4,
+    "key": 5
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "candidate",
+   "notes": "upload 13533; hands behind head | hands behind head; knee bend is weak"
+  }
+ ]
+}

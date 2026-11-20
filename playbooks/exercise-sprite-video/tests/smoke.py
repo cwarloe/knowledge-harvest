@@ -96,8 +96,13 @@ with tempfile.TemporaryDirectory() as tmp:
     check(ok, "demo page builds")
     if ok:
         dd = json.load(open(os.path.join(demo, "data.json")))
-        refs = [l["file"] for l in dd["layers"]] + [q["file"] for sl in dd["slots"].values() for q in sl["poses"]] + [q["file"] for q in dd["props"] if q["kind"] == "image"]
+        refs = [l["file"] for l in dd["layers"]] + [q["file"] for C in dd["charts"].values() for sl in C["slots"].values() for q in sl["poses"]] + [q["file"] for q in dd["props"] if q["kind"] == "image"]
         check(all(os.path.exists(os.path.join(demo, f)) for f in refs), f"every file the demo refers to exists ({len(refs)} files)")
+        reg_charts = {str(k) for k in reg["charts"]}
+        check(len(dd["charts"]) == len(data["charts"]), f"chart menu lists every chart in the plan ({len(dd['charts'])})")
+        check(all((C["status"] == "planned") == (not C["order"]) for C in dd["charts"].values()) and dd["charts"][dd["default_chart"]]["order"], "each chart's status matches the slots it has; the default chart has something to show")
+        check(all(set(C["slots"]) == set(C["order"]) == {x["slot"] for x in C["all"] if x["built"]} for C in dd["charts"].values()), "per-chart slots, order and 'built' flags agree")
+        check(all(cid in reg_charts or C["status"] == "planned" for cid, C in dd["charts"].items()), "only charts with no strips are shown as 'not made yet'")
         pj = json.load(open(os.path.join(demo, "prompts.json")))
         check({q["key"] for q in pj["strips"]} >= set(reg["strips"]) and all("prompt_with_reference" in q and "prompt_first_strip" in q for q in pj["strips"]), f"published prompts cover every registered strip and the {sum(1 for q in pj['strips'] if not q['image'])} not made yet, with and without a reference")
         docs = [f for f in os.listdir(demo) if f.endswith("-image-prompts.docx")]
@@ -111,4 +116,22 @@ with tempfile.TemporaryDirectory() as tmp:
         check(not any(w in open(os.path.join(demo, "PROMPTS.md"), encoding="utf-8").read().lower() for w in ("charles", "@gmail")), "published prompts carry no personal names or addresses")
         check(os.path.exists(os.path.join(demo, "index.html")) and "5BX Sprite Boy" in open(os.path.join(demo, "index.html"), encoding="utf-8").read(), "demo index.html written")
     else: print(r.stderr[-600:])
+
+import importlib
+lib = importlib.import_module("library")
+with tempfile.TemporaryDirectory() as t2:
+    lib.LIB = os.path.join(t2, "library"); lib.INDEX = os.path.join(lib.LIB, "index.json")
+    import argparse
+    one = os.path.join(ROOT, "sheets", "c2-ex2-sit-up.png")
+    lib.cmd_add(argparse.Namespace(file=one, chart=2, slot="ex2", strip="sit-up-c2", exercise="", tool="test", view="angle", poses=3, prompt="", notes="smoke"))
+    db = lib.load(); e = db["entries"][0]
+    check(e["id"] == "c2-ex2-01" and e["measured"]["figures"] == 3 and e["measured"]["green_pct"] < 1 and os.path.exists(os.path.join(ROOT if e["file"].startswith("sheets") else t2, e["file"])), "library: add measures the strip (3 figures, no green) and stores the file")
+    try: lib.cmd_add(argparse.Namespace(file=one, chart=2, slot="ex2", strip="sit-up-c2", exercise="", tool="test", view="angle", poses=3, prompt="", notes="")); dup = False
+    except SystemExit: dup = True
+    check(dup, "library: the same file cannot be added twice")
+    lib.cmd_grade(argparse.Namespace(id="c2-ex2-01", form=4, legibility=5, character=5, angle=4, key=5, by="test", notes="", expert=False))
+    lib.set_verdict(argparse.Namespace(id="c2-ex2-01", notes=""), "chosen")
+    db = lib.load(); check(db["entries"][0]["verdict"] == "chosen" and lib.score(db["entries"][0]) == 4 * 3 + 5 * 2 + 5 + 4 + 5, "library: grade and choose are recorded, score weights form first")
+real = lib.jload(os.path.join(ROOT, "library", "index.json")) if os.path.exists(os.path.join(ROOT, "library", "index.json")) else {"entries": []}
+check(all(os.path.exists(os.path.join(ROOT, x["file"])) for x in real["entries"]) and len({x["id"] for x in real["entries"]}) == len(real["entries"]), f"library: every indexed file exists and ids are unique ({len(real['entries'])} entries)")
 print("\nALL PASS" if not fails else f"\n{len(fails)} FAILED"); sys.exit(1 if fails else 0)

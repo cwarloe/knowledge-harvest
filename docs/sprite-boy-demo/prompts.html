@@ -66,6 +66,7 @@ button:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px soli
     <div class="links">
       <a href="HOW-TO-GENERATE-STRIPS.md">The full method (text)</a>
       <a href="PROMPTS.md">All prompts in one file (text)</a>
+      <a href="Chart-2-image-prompts.docx">Chart 2 prompts as a Word document</a>
       <a href="index.html">Back to the demo</a>
     </div>
     <p class="warn" id="gen"></p>
@@ -78,7 +79,7 @@ button:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px soli
   </section>
 
   <section>
-    <h2>Chart 1 strips</h2>
+    <h2>Strips, by chart</h2>
     <div id="strips" style="display:grid; gap:12px"></div>
   </section>
 
@@ -112,13 +113,15 @@ button:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px soli
     chars.append(block('The character', D.character.description + '.'), block('The background', D.character.background), block('Near and far limbs', D.character.far_side));
     const host = document.getElementById('strips');
     D.strips.forEach((s, i) => {
-      const kids = [el('img', { src: 'strips/' + s.file, alt: s.exercise + ' pose strip as made', loading: 'lazy' })];
+      const kids = []; if (s.image) kids.push(el('img', { src: 'strips/' + s.file, alt: s.exercise + ' pose strip as made', loading: 'lazy' }));
       const facts = el('div', { className: 'facts' });
       if (s.booklet) { facts.append(el('div', {}, [el('b', { textContent: 'The plan says: ' }), document.createTextNode(`starts ${s.booklet.start.toLowerCase()} ${s.booklet.movement}`)])); s.booklet.notes.forEach((n) => facts.append(el('div', { textContent: 'Note: ' + n }))); }
-      facts.append(el('div', {}, [el('b', { textContent: 'Kept: ' }), document.createTextNode(s.kept)])); kids.push(facts);
+      facts.append(el('div', {}, [el('b', { textContent: s.image ? 'Kept: ' : 'Status: ' }), document.createTextNode(s.kept)])); kids.push(facts);
+      if (s.check && s.check.length) kids.push(el('div', { style: 'display:grid; gap:6px' }, [el('h3', { textContent: 'Check before you keep a take' }), el('ul', {}, s.check.map((x) => el('li', { textContent: x })))]));
+      if (s.draft && s.draft.length) kids.push(el('div', { style: 'display:grid; gap:6px' }, [el('h3', { textContent: 'My decisions to check [draft]' }), el('ul', {}, s.draft.map((x) => el('li', { textContent: x })))]));
       kids.push(block('Prompt with a reference image attached', s.prompt_with_reference), block('Prompt with no reference (character in words)', s.prompt_first_strip));
       if (s.learned.length) kids.push(el('div', { style: 'display:grid; gap:6px' }, [el('h3', { textContent: 'What went wrong, and the fix' }), el('ul', {}, s.learned.map((x) => el('li', { textContent: x })))]));
-      const d = el('details', { open: i === 0 }, [el('summary', {}, [document.createTextNode(nice(s.exercise)), el('small', { textContent: s.poses + ' poses' })]), el('div', { className: 'body' }, kids)]);
+      const d = el('details', { open: i === 0 }, [el('summary', {}, [document.createTextNode(nice(s.exercise)), el('small', { textContent: 'chart ' + s.chart + ' · ' + s.poses + ' poses' })]), el('div', { className: 'body' }, kids)]);
       host.append(d);
     });
     const eh = document.getElementById('edits');
