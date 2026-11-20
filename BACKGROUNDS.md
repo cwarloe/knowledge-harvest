@@ -24,7 +24,7 @@ STYLE: clean cartoon video-game illustration that matches a friendly cartoon boy
 
 CAMERA: a low, level, straight-on side view, like a 2.5D side-scrolling game. ONE horizon line 56% down from the top of the image, shared by every layer. No tilt, no wide-angle distortion, no dramatic vanishing points.
 
-THE STAGE (very important): a cartoon boy about 59% of the image height will be pasted on top, standing with his feet on an invisible line 80% down from the top, in the middle. Keep the strip from 73% to 86% down the image completely flat, smooth and empty (no rocks, plants, lines or shadows bigger than a pebble) so he stands on clean ground. Keep the middle third of the image (left to right) calm, with lower contrast and no strong shapes, so his silhouette reads clearly; put the interest and detail in the left and right thirds. Nothing may rise in front of the stage strip.
+THE STAGE (very important): a cartoon boy about 64% of the image height will be pasted on top, standing with his feet on an invisible line 80% down from the top, in the middle. Keep the strip from 73% to 86% down the image completely flat, smooth and empty (no rocks, plants, lines or shadows bigger than a pebble) so he stands on clean ground. Keep the middle third of the image (left to right) calm, with lower contrast and no strong shapes, so his silhouette reads clearly; put the interest and detail in the left and right thirds. Nothing may rise in front of the stage strip.
 
 LIGHT: bright clear morning, the sun high in the upper left, warm soft light, soft shadows falling slightly to the right and behind objects. One light direction in every layer.
 
@@ -165,7 +165,7 @@ STYLE: clean cartoon video-game illustration that matches a friendly cartoon boy
 
 CAMERA: a low, level, straight-on side view, like a 2.5D side-scrolling game. ONE horizon line 56% down from the top of the image, shared by every layer. No tilt, no wide-angle distortion, no dramatic vanishing points.
 
-THE STAGE (very important): a cartoon boy about 59% of the image height will be pasted on top, standing with his feet on an invisible line 80% down from the top, in the middle. Keep the strip from 73% to 86% down the image completely flat, smooth and empty (no rocks, plants, lines or shadows bigger than a pebble) so he stands on clean ground. Keep the middle third of the image (left to right) calm, with lower contrast and no strong shapes, so his silhouette reads clearly; put the interest and detail in the left and right thirds. Nothing may rise in front of the stage strip.
+THE STAGE (very important): a cartoon boy about 64% of the image height will be pasted on top, standing with his feet on an invisible line 80% down from the top, in the middle. Keep the strip from 73% to 86% down the image completely flat, smooth and empty (no rocks, plants, lines or shadows bigger than a pebble) so he stands on clean ground. Keep the middle third of the image (left to right) calm, with lower contrast and no strong shapes, so his silhouette reads clearly; put the interest and detail in the left and right thirds. Nothing may rise in front of the stage strip.
 
 LIGHT: bright clear morning, the sun high in the upper left, warm soft light, soft shadows falling slightly to the right and behind objects. One light direction in every layer.
 
@@ -306,7 +306,7 @@ STYLE: clean cartoon video-game illustration that matches a friendly cartoon boy
 
 CAMERA: a low, level, straight-on side view, like a 2.5D side-scrolling game. ONE horizon line 56% down from the top of the image, shared by every layer. No tilt, no wide-angle distortion, no dramatic vanishing points.
 
-THE STAGE (very important): a cartoon boy about 59% of the image height will be pasted on top, standing with his feet on an invisible line 80% down from the top, in the middle. Keep the strip from 73% to 86% down the image completely flat, smooth and empty (no rocks, plants, lines or shadows bigger than a pebble) so he stands on clean ground. Keep the middle third of the image (left to right) calm, with lower contrast and no strong shapes, so his silhouette reads clearly; put the interest and detail in the left and right thirds. Nothing may rise in front of the stage strip.
+THE STAGE (very important): a cartoon boy about 64% of the image height will be pasted on top, standing with his feet on an invisible line 80% down from the top, in the middle. Keep the strip from 73% to 86% down the image completely flat, smooth and empty (no rocks, plants, lines or shadows bigger than a pebble) so he stands on clean ground. Keep the middle third of the image (left to right) calm, with lower contrast and no strong shapes, so his silhouette reads clearly; put the interest and detail in the left and right thirds. Nothing may rise in front of the stage strip.
 
 LIGHT: bright clear morning, the sun high in the upper left, warm soft light, soft shadows falling slightly to the right and behind objects. One light direction in every layer.
 
@@ -447,7 +447,7 @@ STYLE: clean cartoon video-game illustration that matches a friendly cartoon boy
 
 CAMERA: a low, level, straight-on side view, like a 2.5D side-scrolling game. ONE horizon line 56% down from the top of the image, shared by every layer. No tilt, no wide-angle distortion, no dramatic vanishing points.
 
-THE STAGE (very important): a cartoon boy about 59% of the image height will be pasted on top, standing with his feet on an invisible line 80% down from the top, in the middle. Keep the strip from 73% to 86% down the image completely flat, smooth and empty (no rocks, plants, lines or shadows bigger than a pebble) so he stands on clean ground. Keep the middle third of the image (left to right) calm, with lower contrast and no strong shapes, so his silhouette reads clearly; put the interest and detail in the left and right thirds. Nothing may rise in front of the stage strip.
+THE STAGE (very important): a cartoon boy about 64% of the image height will be pasted on top, standing with his feet on an invisible line 80% down from the top, in the middle. Keep the strip from 73% to 86% down the image completely flat, smooth and empty (no rocks, plants, lines or shadows bigger than a pebble) so he stands on clean ground. Keep the middle third of the image (left to right) calm, with lower contrast and no strong shapes, so his silhouette reads clearly; put the interest and detail in the left and right thirds. Nothing may rise in front of the stage strip.
 
 LIGHT: bright clear morning, the sun high in the upper left, warm soft light, soft shadows falling slightly to the right and behind objects. One light direction in every layer.
 
@@ -588,7 +588,7 @@ STYLE: clean cartoon video-game illustration that matches a friendly cartoon boy
 
 CAMERA: a low, level, straight-on side view, like a 2.5D side-scrolling game. ONE horizon line 56% down from the top of the image, shared by every layer. No tilt, no wide-angle distortion, no dramatic vanishing points.
 
-THE STAGE (very important): a cartoon boy about 59% of the image height will be pasted on top, standing with his feet on an invisible line 80% down from the top, in the middle. Keep the strip from 73% to 86% down the image completely flat, smooth and empty (no rocks, plants, lines or shadows bigger than a pebble) so he stands on clean ground. Keep the middle third of the image (left to right) calm, with lower contrast and no strong shapes, so his silhouette reads clearly; put the interest and detail in the left and right thirds. Nothing may rise in front of the stage strip.
+THE STAGE (very important): a cartoon boy about 64% of the image height will be pasted on top, standing with his feet on an invisible line 80% down from the top, in the middle. Keep the strip from 73% to 86% down the image completely flat, smooth and empty (no rocks, plants, lines or shadows bigger than a pebble) so he stands on clean ground. Keep the middle third of the image (left to right) calm, with lower contrast and no strong shapes, so his silhouette reads clearly; put the interest and detail in the left and right thirds. Nothing may rise in front of the stage strip.
 
 LIGHT: bright clear morning, the sun high in the upper left, warm soft light, soft shadows falling slightly to the right and behind objects. One light direction in every layer.
 
@@ -729,7 +729,7 @@ STYLE: clean cartoon video-game illustration that matches a friendly cartoon boy
 
 CAMERA: a low, level, straight-on side view, like a 2.5D side-scrolling game. ONE horizon line 56% down from the top of the image, shared by every layer. No tilt, no wide-angle distortion, no dramatic vanishing points.
 
-THE STAGE (very important): a cartoon boy about 59% of the image height will be pasted on top, standing with his feet on an invisible line 80% down from the top, in the middle. Keep the strip from 73% to 86% down the image completely flat, smooth and empty (no rocks, plants, lines or shadows bigger than a pebble) so he stands on clean ground. Keep the middle third of the image (left to right) calm, with lower contrast and no strong shapes, so his silhouette reads clearly; put the interest and detail in the left and right thirds. Nothing may rise in front of the stage strip.
+THE STAGE (very important): a cartoon boy about 64% of the image height will be pasted on top, standing with his feet on an invisible line 80% down from the top, in the middle. Keep the strip from 73% to 86% down the image completely flat, smooth and empty (no rocks, plants, lines or shadows bigger than a pebble) so he stands on clean ground. Keep the middle third of the image (left to right) calm, with lower contrast and no strong shapes, so his silhouette reads clearly; put the interest and detail in the left and right thirds. Nothing may rise in front of the stage strip.
 
 LIGHT: bright clear morning, the sun high in the upper left, warm soft light, soft shadows falling slightly to the right and behind objects. One light direction in every layer.
 
