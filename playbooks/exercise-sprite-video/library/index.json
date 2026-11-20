@@ -364,7 +364,9 @@
    "graded_by": "claude",
    "expert_reviewed": false,
    "verdict": "chosen",
-   "notes": "upload 13537; front view, legs apart, 5 poses, arms-up reversal in pose 5 | front view reads clearly; arms-up reversal is the booklet's 'bend back' | tentative pick, not yet confirmed by the author"
+   "notes": "upload 13537; front view, legs apart, 5 poses, arms-up reversal in pose 5 | front view reads clearly; arms-up reversal is the booklet's 'bend back' | tentative pick, not yet confirmed by the author",
+   "wired": true,
+   "sheet": "sheets/c3-ex1-toe-touching.png"
   },
   {
    "id": "c3-ex1-02",
@@ -469,7 +471,9 @@
    "graded_by": "claude",
    "expert_reviewed": false,
    "verdict": "chosen",
-   "notes": "upload 13529; stand, half squat, up on toes; clearer turn toward camera | knees clearly half-bent, then heels up | tentative pick, not yet confirmed by the author"
+   "notes": "upload 13529; stand, half squat, up on toes; clearer turn toward camera | knees clearly half-bent, then heels up | tentative pick, not yet confirmed by the author",
+   "wired": true,
+   "sheet": "sheets/c3-jump-half-knee-bends.png"
   },
   {
    "id": "c3-ex3-01",
@@ -680,6 +684,119 @@
    "expert_reviewed": false,
    "verdict": "candidate",
    "notes": "upload 13533; hands behind head | hands behind head; knee bend is weak"
+  },
+  {
+   "id": "c3-ex2-03",
+   "file": "library/images/c3-ex2-03.png",
+   "chart": 3,
+   "slot": "ex2",
+   "exercise": "a SIT-UP WITH THE HANDS CLASPED BEHIND THE HEAD",
+   "strip": "sit-up-hands-behind-head-c3",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'a SIT-UP WITH THE HANDS CLASPED BEHIND THE HEAD'",
+   "measured": {
+    "size": [
+     1670,
+     941
+    ],
+    "rows": 3,
+    "row": 0,
+    "figures": 3,
+    "fringe_pct": 2.56,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "987f179e5b49"
+   },
+   "grades": {
+    "form": 4,
+    "legibility": 5,
+    "character": 5,
+    "angle": 5,
+    "key": 4
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "notes": "3x3 sheet row 1; hands behind head, knees slightly bent, feet nearly together (booklet: 6 in apart) | knees only slightly bent as the booklet allows; feet nearly touching rather than 6 in apart | tentative pick",
+   "wired": true,
+   "sheet": "sheets/c3-ex234-sit-back-push.png"
+  },
+  {
+   "id": "c3-ex3-03",
+   "file": "library/images/c3-ex2-03.png",
+   "chart": 3,
+   "slot": "ex3",
+   "exercise": "a BACK EXTENSION WITH THE HANDS INTERLOCKED BEHIND THE BACK",
+   "strip": "back-extension-hands-behind-back-c3",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'a BACK EXTENSION WITH THE HANDS INTERLOCKED BEHIND THE BACK'",
+   "measured": {
+    "size": [
+     1670,
+     941
+    ],
+    "rows": 3,
+    "row": 1,
+    "figures": 3,
+    "fringe_pct": 2.56,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "987f179e5b49"
+   },
+   "grades": {
+    "form": 4,
+    "legibility": 5,
+    "character": 5,
+    "angle": 5,
+    "key": 4
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "notes": "3x3 sheet row 2; hands clasped behind back, head, chest and both legs lift in the last pose | clearest thigh lift of any take | tentative pick"
+  },
+  {
+   "id": "c3-ex4-03",
+   "file": "library/images/c3-ex2-03.png",
+   "chart": 3,
+   "slot": "ex4",
+   "exercise": "a CHIN-FOREHEAD PUSH-UP (on the palms and toes, knees OFF the floor)",
+   "strip": "chin-forehead-push-up-c3",
+   "tool": "chatgpt",
+   "view": "angle",
+   "poses": 3,
+   "added": "2026-11-20",
+   "prompt": "prompts/PROMPTS.md, 'a CHIN-FOREHEAD PUSH-UP (on the palms and toes, knees OFF the floor)'",
+   "measured": {
+    "size": [
+     1670,
+     941
+    ],
+    "rows": 3,
+    "row": 2,
+    "figures": 3,
+    "fringe_pct": 3.1,
+    "green_pct": 0.0,
+    "real_transparency": false,
+    "sha": "987f179e5b49"
+   },
+   "grades": {
+    "form": 3,
+    "legibility": 4,
+    "character": 5,
+    "angle": 5,
+    "key": 4
+   },
+   "graded_by": "claude",
+   "expert_reviewed": false,
+   "verdict": "chosen",
+   "notes": "3x3 sheet row 3; up, chest and chin low, head down. Forehead lands in FRONT of the hands (booklet: behind) | forehead lands in front of the hands, booklet says behind; chin step is not distinct from the up step | tentative pick; form caveat"
   }
  ]
 }

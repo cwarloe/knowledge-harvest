@@ -1,0 +1,106 @@
+{
+ "version": "2",
+ "source": "c3-ex1-toe-touching.png",
+ "source_hash": "3257aa2b1ca2",
+ "key": {
+  "lo": 28,
+  "hi": 95
+ },
+ "n": 5,
+ "rows": null,
+ "row": null,
+ "poses": [
+  {
+   "file": "p1.png",
+   "offset": [
+    34,
+    153
+   ],
+   "size": [
+    262,
+    582
+   ],
+   "anchors": {
+    "head": 132.48101265822785,
+    "span-left": 0.0,
+    "span-right": 261.0,
+    "span-center": 130.5,
+    "hips": 131.37593609585622
+   }
+  },
+  {
+   "file": "p2.png",
+   "offset": [
+    339,
+    412
+   ],
+   "size": [
+    295,
+    323
+   ],
+   "anchors": {
+    "head": 149.0,
+    "span-left": 0.0,
+    "span-right": 294.0,
+    "span-center": 157.2391304347826,
+    "hips": 100.38773747841105
+   }
+  },
+  {
+   "file": "p3.png",
+   "offset": [
+    687,
+    413
+   ],
+   "size": [
+    295,
+    322
+   ],
+   "anchors": {
+    "head": 146.5,
+    "span-left": 1.0,
+    "span-right": 294.0,
+    "span-center": 147.99447513812154,
+    "hips": 146.08271108558299
+   }
+  },
+  {
+   "file": "p4.png",
+   "offset": [
+    1032,
+    414
+   ],
+   "size": [
+    301,
+    321
+   ],
+   "anchors": {
+    "head": 156.0,
+    "span-left": 0.0,
+    "span-right": 300.0,
+    "span-center": 137.43065693430657,
+    "hips": 204.31544424567682
+   }
+  },
+  {
+   "file": "p5.png",
+   "offset": [
+    1362,
+    212
+   ],
+   "size": [
+    275,
+    523
+   ],
+   "anchors": {
+    "head": 130.83644859813083,
+    "span-left": 15.0,
+    "span-right": 274.0,
+    "span-center": 145.0924369747899,
+    "hips": 142.96036281179138
+   }
+  }
+ ],
+ "floor": 735,
+ "top": 153
+}

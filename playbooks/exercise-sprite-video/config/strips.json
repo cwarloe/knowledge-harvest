@@ -133,6 +133,78 @@
         2
       ],
       "reps_per_cycle": 1
+    },
+    "toe-touch-c3": {
+      "file": "c3-ex1-toe-touching.png",
+      "poses": 5,
+      "anchor": "span-center",
+      "cycle": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "cycle_reverse": [
+        1,
+        4,
+        3,
+        2,
+        5
+      ],
+      "reps_per_cycle": 1
+    },
+    "sit-up-hands-behind-head-c3": {
+      "file": "c3-ex234-sit-back-push.png",
+      "rows": 3,
+      "row": 0,
+      "poses": 3,
+      "anchor": "span-right",
+      "cycle": [
+        1,
+        2,
+        3,
+        2
+      ],
+      "reps_per_cycle": 1
+    },
+    "back-extension-hands-behind-back-c3": {
+      "file": "c3-ex234-sit-back-push.png",
+      "rows": 3,
+      "row": 1,
+      "poses": 3,
+      "anchor": "hips",
+      "cycle": [
+        1,
+        2,
+        3,
+        2
+      ],
+      "reps_per_cycle": 1
+    },
+    "chin-forehead-push-up-c3": {
+      "file": "c3-ex234-sit-back-push.png",
+      "rows": 3,
+      "row": 2,
+      "poses": 3,
+      "anchor": "span-right",
+      "cycle": [
+        1,
+        2,
+        3
+      ],
+      "reps_per_cycle": 1
+    },
+    "half-knee-bends-c3": {
+      "file": "c3-jump-half-knee-bends.png",
+      "poses": 3,
+      "anchor": "span-center",
+      "cycle": [
+        1,
+        2,
+        3
+      ],
+      "jumps_per_cycle": 1
     }
   },
   "charts": {
@@ -153,7 +225,12 @@
       "ex3": "back-extension-c2"
     },
     "3": {
-      "run": "stationary-run-c1"
+      "ex1": "toe-touch-c3",
+      "ex2": "sit-up-hands-behind-head-c3",
+      "ex3": "back-extension-hands-behind-back-c3",
+      "ex4": "chin-forehead-push-up-c3",
+      "run": "stationary-run-c1",
+      "jump": "half-knee-bends-c3"
     }
   }
 }

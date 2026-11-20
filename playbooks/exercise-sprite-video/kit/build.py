@@ -399,7 +399,7 @@ def export_layers(dirpath, plan, theme, scene, reg, slots, F, fmt, work, chart_i
             if with_composites: shutil.copy(os.path.join(src, f"p{k}.png"), os.path.join(sd, f"composite_p{k}.png")); files["composite"].append(f"{slot}/composite_p{k}.png")
         for extra in ("props_behind.png", "props_front.png"):
             if os.path.exists(os.path.join(src, extra)): shutil.copy(os.path.join(src, extra), os.path.join(sd, extra)); files[extra[:-4]] = f"{slot}/{extra}"
-        man["slots"][slot] = {"strip": slots[slot], "anchor": st["anchor"], "cycle": st["cycle"], "files": files, **jload(os.path.join(src, "geom.json"))}
+        man["slots"][slot] = {"strip": slots[slot], "anchor": st["anchor"], "cycle": st["cycle"], **({"cycle_reverse": st["cycle_reverse"]} if st.get("cycle_reverse") else {}), "files": files, **jload(os.path.join(src, "geom.json"))}
     for p in plan:
         seg = {k: v for k, v in p.items() if k not in ("label",)}
         if p["kind"] in ("exercise", "run", "jumps") and "cycle_s" in p: seg["cycle_seconds"] = round(p["cycle_s"], 4)
@@ -461,10 +461,15 @@ def main():
     for p in plan:
         if p["kind"] == "break": parts.append(breakcard(args, args.work, theme, F, hud, p["secs"], p["next"], args.format)); continue
         st = sstep(p["slot"])
-        if p["kind"] == "exercise": ov = hud.exercise(S["kicker"].format(n=p["n"]), p["name"], S["reps"].format(reps=p["reps"]), p["allot"]); label = p["name"]
-        elif p["kind"] == "run": ov = hud.exercise(S["kicker"].format(n=5), p["name"], S["steps"].format(steps=p["steps"]), p["allot"], p["off"]); label = p["label"]
-        else: ov = hud.exercise(S["jump_kicker"], S["jump_title"].format(count=p["count"], name=p["name"]), S["jump_target"], p["allot"], p["off"]); label = p["label"]
-        parts.append(segment(args, args.work, frames(p["slot"]), st["cycle"], p["cycle_s"], p["dur"], ov, fps, fade_max, label))
+        if p["kind"] == "exercise": ov = lambda off=0.0, p=p: hud.exercise(S["kicker"].format(n=p["n"]), p["name"], S["reps"].format(reps=p["reps"]), p["allot"], off); label = p["name"]
+        elif p["kind"] == "run": ov = lambda off=0.0, p=p: hud.exercise(S["kicker"].format(n=5), p["name"], S["steps"].format(steps=p["steps"]), p["allot"], p["off"] + off); label = p["label"]
+        else: ov = lambda off=0.0, p=p: hud.exercise(S["jump_kicker"], S["jump_title"].format(count=p["count"], name=p["name"]), S["jump_target"], p["allot"], p["off"] + off); label = p["label"]
+        rev = st.get("cycle_reverse") if p["kind"] == "exercise" else None
+        if rev:                                                        # "reverse direction after half the number of counts": whole cycles first, then the reversed order
+            first = math.floor(p["reps"] / 2 / st["reps_per_cycle"] + 0.5) * p["cycle_s"]
+            parts.append(segment(args, args.work, frames(p["slot"]), st["cycle"], p["cycle_s"], first, ov(0.0), fps, fade_max, label + " (first half)"))
+            parts.append(segment(args, args.work, frames(p["slot"]), rev, p["cycle_s"], p["dur"] - first, ov(first), fps, fade_max, label + " (reversed)"))
+        else: parts.append(segment(args, args.work, frames(p["slot"]), st["cycle"], p["cycle_s"], p["dur"], ov(), fps, fade_max, label))
     steps = lv["steps"]
     if not only or "run" in only: print(f"  ex5: {steps} steps, {60 / [x for x in plan if x['kind'] == 'run'][0]['step_s']:.0f} steps/min")
     lst = os.path.join(args.work, "all.txt")

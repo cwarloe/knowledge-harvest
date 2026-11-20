@@ -2,6 +2,7 @@
 """The strip library: every generated strip we keep, indexed, measured and graded, so the best one for an exercise is easy to find.
 
   python3 kit/library.py add FILE --chart 3 --slot ex1 --tool chatgpt --view angle --notes "front view, 5 poses"
+  python3 kit/library.py add sheet.png --strip sit-up-hands-behind-head-c3 --rows 3 --row 0 --poses 3    # one sheet, several exercises: add once per row
   python3 kit/library.py grade c3-ex1-01 --form 4 --legibility 5 --character 5 --angle 5 --key 4 --notes "reversal pose is clear"
   python3 kit/library.py choose c3-ex1-01          # marks it the pick; the previous pick becomes a candidate
   python3 kit/library.py reject c3-ex1-02 --notes "knees straight in the squat"
@@ -44,11 +45,14 @@ def find(db, i):
     sys.exit(f"no entry {i}. Try: library.py list")
 
 
-def measure(path):
+def measure(path, rows=None, row=None):
     """What can be counted without judgment. Uses the same key and shape-splitting as the build."""
     from keyer import key, has_real_transparency
     import build
-    im = Image.open(path); rgba = key(im); a = np.array(rgba); op = a[..., 3] > 128
+    im = Image.open(path); rgba = key(im)
+    if rows:                                                       # one sheet holds several exercises, one per row
+        y0, y1 = build.row_bounds(rgba, rows, path)[row]; rgba = rgba.crop((0, y0, rgba.width, y1))
+    a = np.array(rgba); op = a[..., 3] > 128
     lab, ds = build.components(op); area = np.bincount(lab.ravel())[1:] if lab.max() else np.array([])
     figures = int((area > 400).sum())
     semi = int(((a[..., 3] > 16) & (a[..., 3] < 240)).sum()); fringe = round(100.0 * semi / max(1, int(op.sum())), 2)
@@ -56,7 +60,7 @@ def measure(path):
     if len(rgb):
         hsv = np.array([colorsys.rgb_to_hsv(*p) for p in rgb[:: max(1, len(rgb) // 40000)]])
         green = round(100.0 * float(((hsv[:, 0] > .22) & (hsv[:, 0] < .45) & (hsv[:, 1] > .45) & (hsv[:, 2] > .3)).mean()), 2)
-    return {"size": list(im.size), "figures": figures, "fringe_pct": fringe, "green_pct": green, "real_transparency": bool(has_real_transparency(im)),
+    return {"size": list(im.size), "rows": rows, "row": row, "figures": figures, "fringe_pct": fringe, "green_pct": green, "real_transparency": bool(has_real_transparency(im)),
             "sha": hashlib.sha1(open(path, "rb").read()).hexdigest()[:12]}
 
 
@@ -74,15 +78,19 @@ def spec_for(strip):
 def cmd_add(a):
     db = load(); src = os.path.abspath(a.file)
     if not os.path.exists(src): sys.exit(f"no such file: {src}")
-    m = measure(src)
+    m = measure(src, a.rows, a.row)
+    if a.rows and a.row is None: sys.exit("--rows needs --row (0 is the top row)")
     for e in db["entries"]:
-        if e.get("measured", {}).get("sha") == m["sha"]: sys.exit(f"already in the library as {e['id']} (same file).")
+        if e.get("measured", {}).get("sha") == m["sha"] and e["measured"].get("row") == m.get("row"): sys.exit(f"already in the library as {e['id']} (same file{', same row' if a.rows else ''}).")
     spec = spec_for(a.strip)
     chart = a.chart or (spec or {}).get("chart"); slot = a.slot or (spec or {}).get("slot")
     if not chart or slot not in SLOTS: sys.exit("give --chart N and --slot ex1|ex2|ex3|ex4|run|jump (or --strip KEY from prompts/strips.json)")
     i = next_id(db, chart, slot); ext = os.path.splitext(src)[1].lower() or ".png"
-    os.makedirs(os.path.join(LIB, "images"), exist_ok=True); shutil.copy(src, os.path.join(LIB, "images", i + ext))
-    e = {"id": i, "file": f"library/images/{i}{ext}", "chart": chart, "slot": slot, "exercise": (spec or {}).get("exercise", a.exercise or ""),
+    os.makedirs(os.path.join(LIB, "images"), exist_ok=True)
+    shared = next((e["file"] for e in db["entries"] if e.get("measured", {}).get("sha") == m["sha"]), None)       # a sheet shared by several exercises is stored once
+    if shared: rel = shared
+    else: shutil.copy(src, os.path.join(LIB, "images", i + ext)); rel = f"library/images/{i}{ext}"
+    e = {"id": i, "file": rel, "chart": chart, "slot": slot, "exercise": (spec or {}).get("exercise", a.exercise or ""),
          "strip": a.strip or "", "tool": a.tool, "view": a.view, "poses": a.poses or m["figures"], "added": datetime.date.today().isoformat(),
          "prompt": a.prompt or ((spec or {}).get("exercise") and f"prompts/PROMPTS.md, '{(spec or {}).get('exercise')}'") or "", "measured": m,
          "grades": {}, "graded_by": "", "expert_reviewed": False, "verdict": "candidate", "notes": a.notes or ""}
@@ -160,8 +168,9 @@ def cmd_import(a):
             if not st or not os.path.exists(path): continue
             rel = f"sheets/{st['file']}"
             if rel in known: continue
-            spec = spec_for(strip) or {}; m = measure(path)
-            if st.get("rows"): m["figures"] = st["poses"]       # a shared sheet: the figure count is for the whole sheet
+            spec = spec_for(strip) or {}; m = measure(path, st.get("rows"), st.get("row"))
+            twin = next((e for e in db["entries"] if e["measured"].get("sha") == m["sha"] and e["measured"].get("row") == m.get("row")), None)
+            if twin: twin["wired"] = True; twin["sheet"] = rel; known.add(rel); continue          # already in the library: just mark it as in use
             i = f"c{cid}-{slot}-w{len([e for e in db['entries'] if e['id'].startswith(f'c{cid}-{slot}-w')]) + 1}"
             db["entries"].append({"id": i, "file": rel, "chart": int(cid), "slot": slot, "exercise": spec.get("exercise", ""), "strip": strip, "tool": "unknown",
                                   "view": "side" if int(cid) == 1 else "angle", "poses": st["poses"], "added": datetime.date.today().isoformat(), "prompt": "prompts/PROMPTS.md",
@@ -174,7 +183,7 @@ def cmd_import(a):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter); sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("add"); p.add_argument("file"); p.add_argument("--chart", type=int); p.add_argument("--slot", choices=SLOTS); p.add_argument("--strip", help="key in prompts/strips.json")
-    p.add_argument("--exercise", default=""); p.add_argument("--tool", default="unknown"); p.add_argument("--view", default="angle", choices=VIEWS); p.add_argument("--poses", type=int)
+    p.add_argument("--exercise", default=""); p.add_argument("--tool", default="unknown"); p.add_argument("--view", default="angle", choices=VIEWS); p.add_argument("--poses", type=int); p.add_argument("--rows", type=int, help="the sheet holds this many exercises, one per row"); p.add_argument("--row", type=int, help="which row is this exercise (0 = top)")
     p.add_argument("--prompt", default=""); p.add_argument("--notes", default=""); p.set_defaults(fn=cmd_add)
     p = sub.add_parser("grade"); p.add_argument("id")
     for k in GRADES: p.add_argument("--" + k, type=int)

@@ -676,7 +676,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - Movement: Touch floor 6" outside left foot, again between feet and press once then 6" outside right foot, bend backward as far as possible, repeat, reverse direction after half the number of counts.
 - Note: Do not strain to keep knees straight, return to erect position.
 
-**Status:** (not made yet)
+**Kept:** (not made yet)
 
 **Check before you keep a take:**
 
@@ -736,7 +736,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - Starts: Back lying, feet 6" apart, arms clasped behind head. Allow knees to bend slightly.
 - Movement: Sit up to vertical position, keep feet on floor, hook feet under chair, etc., only if necessary.
 
-**Status:** (not made yet)
+**Kept:** (not made yet)
 
 **Check before you keep a take:**
 
@@ -793,7 +793,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - Movement: Lift head, shoulders, chest and both legs as high as possible.
 - Note: Keep legs straight, and raise chest and both thighs completely off floor.
 
-**Status:** (not made yet)
+**Kept:** (not made yet)
 
 **Check before you keep a take:**
 
@@ -854,7 +854,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - Movement: Touch chin to floor in front of hands - touch forehead to floor behind hands before returning to up position.
 - Note: There are three definite movements: chin, forehead, arms straightened. DO NOT do in one continuous movement.
 
-**Status:** (not made yet)
+**Kept:** (not made yet)
 
 **Check before you keep a take:**
 
@@ -916,7 +916,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 - Note: Straighten to upright position, raising heel off floor, return to starting position each time.
 - Note: Keep feet in contact with floor - the back upright and straight at all times.
 
-**Status:** (not made yet)
+**Kept:** (not made yet)
 
 **Check before you keep a take:**
 

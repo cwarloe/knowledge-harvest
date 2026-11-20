@@ -226,9 +226,10 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; max-width: 
       D.layers.forEach((l, i) => { if (st.layers[l.name]) ctx.drawImage(layerImgs[i], 0, 0, W, H); });
       if (!info) { ctx.fillStyle = 'rgba(16,24,32,.62)'; ctx.fillRect(0, 0, W, H); hudText(C.label.toUpperCase(), H * .30, 56 * K, '#ffffff'); hudText('Not made yet', H * .30 + 74 * K, 44 * K, '#ff9a3c'); return; }
       drawProps(info, 'behind');
-      const n = info.cycle.length, per = info.cycle_s / n, tc = ((T % info.cycle_s) + info.cycle_s) % info.cycle_s, i = Math.min(n - 1, Math.floor(tc / per)), lt = tc - i * per;
+      const cyc = info.cycle_reverse && (T % info.allot) >= Math.round(info.allot / info.cycle_s / 2) * info.cycle_s ? info.cycle_reverse : info.cycle;     // the booklet reverses direction after half the counts
+      const n = cyc.length, per = info.cycle_s / n, tc = ((T % info.cycle_s) + info.cycle_s) % info.cycle_s, i = Math.min(n - 1, Math.floor(tc / per)), lt = tc - i * per;
       const fade = Math.min(0.30, 0.45 * per); let a = 0; if (lt > per - fade) { const q = (lt - (per - fade)) / fade; a = q * q * (3 - 2 * q); }
-      const cur = info.cycle[i] - 1, nxt = info.cycle[(i + 1) % n] - 1, P = info.poses;
+      const cur = cyc[i] - 1, nxt = cyc[(i + 1) % n] - 1, P = info.poses;
       const put = (k, alpha) => { const p = P[k]; ctx.globalAlpha = alpha; ctx.drawImage(tinted(spriteImgs[st.chart][st.slot][k], st.chart + ':' + st.slot + ':' + k), p.x, p.y, p.w, p.h); ctx.globalAlpha = 1; };
       if (a > 0 && nxt !== cur) { put(cur, 1 - a); put(nxt, a); } else put(cur, 1);
       drawProps(info, 'front');

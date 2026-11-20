@@ -117,18 +117,26 @@ with tempfile.TemporaryDirectory() as tmp:
         check(os.path.exists(os.path.join(demo, "index.html")) and "5BX Sprite Boy" in open(os.path.join(demo, "index.html"), encoding="utf-8").read(), "demo index.html written")
     else: print(r.stderr[-600:])
 
+for name, st in reg["strips"].items():
+    if st.get("cycle_reverse"): check(sorted(set(st["cycle_reverse"])) == sorted(set(st["cycle"])) and len(st["cycle_reverse"]) == len(st["cycle"]), f"{name}: the reversed cycle uses the same poses as the forward cycle")
+
 import importlib
 lib = importlib.import_module("library")
 with tempfile.TemporaryDirectory() as t2:
     lib.LIB = os.path.join(t2, "library"); lib.INDEX = os.path.join(lib.LIB, "index.json")
     import argparse
     one = os.path.join(ROOT, "sheets", "c2-ex2-sit-up.png")
-    lib.cmd_add(argparse.Namespace(file=one, chart=2, slot="ex2", strip="sit-up-c2", exercise="", tool="test", view="angle", poses=3, prompt="", notes="smoke"))
+    lib.cmd_add(argparse.Namespace(file=one, chart=2, slot="ex2", strip="sit-up-c2", exercise="", tool="test", view="angle", poses=3, prompt="", notes="smoke", rows=None, row=None))
     db = lib.load(); e = db["entries"][0]
     check(e["id"] == "c2-ex2-01" and e["measured"]["figures"] == 3 and e["measured"]["green_pct"] < 1 and os.path.exists(os.path.join(ROOT if e["file"].startswith("sheets") else t2, e["file"])), "library: add measures the strip (3 figures, no green) and stores the file")
-    try: lib.cmd_add(argparse.Namespace(file=one, chart=2, slot="ex2", strip="sit-up-c2", exercise="", tool="test", view="angle", poses=3, prompt="", notes="")); dup = False
+    try: lib.cmd_add(argparse.Namespace(file=one, chart=2, slot="ex2", strip="sit-up-c2", exercise="", tool="test", view="angle", poses=3, prompt="", notes="", rows=None, row=None)); dup = False
     except SystemExit: dup = True
     check(dup, "library: the same file cannot be added twice")
+    sheet = os.path.join(ROOT, "sheets", "c3-ex234-sit-back-push.png")
+    for r_, sl_, k_ in ((0, "ex2", "sit-up-hands-behind-head-c3"), (1, "ex3", "back-extension-hands-behind-back-c3")):
+        lib.cmd_add(argparse.Namespace(file=sheet, chart=3, slot=sl_, strip=k_, exercise="", tool="test", view="angle", poses=3, prompt="", notes="", rows=3, row=r_))
+    db = lib.load(); sh_ = [e for e in db["entries"] if e["chart"] == 3]
+    check(len(sh_) == 2 and sh_[0]["file"] == sh_[1]["file"] and all(e["measured"]["figures"] == 3 for e in sh_), "library: a sheet shared by several exercises is stored once and measured per row")
     lib.cmd_grade(argparse.Namespace(id="c2-ex2-01", form=4, legibility=5, character=5, angle=4, key=5, by="test", notes="", expert=False))
     lib.set_verdict(argparse.Namespace(id="c2-ex2-01", notes=""), "chosen")
     db = lib.load(); check(db["entries"][0]["verdict"] == "chosen" and lib.score(db["entries"][0]) == 4 * 3 + 5 * 2 + 5 + 4 + 5, "library: grade and choose are recorded, score weights form first")

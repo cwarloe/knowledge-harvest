@@ -1,0 +1,70 @@
+{
+ "version": "2",
+ "source": "c3-jump-half-knee-bends.png",
+ "source_hash": "8751284c1fa1",
+ "key": {
+  "lo": 28,
+  "hi": 95
+ },
+ "n": 3,
+ "rows": null,
+ "row": null,
+ "poses": [
+  {
+   "file": "p1.png",
+   "offset": [
+    173,
+    60
+   ],
+   "size": [
+    242,
+    809
+   ],
+   "anchors": {
+    "head": 137.5,
+    "span-left": 77.0,
+    "span-right": 239.0,
+    "span-center": 158.0,
+    "hips": 147.38555146113634
+   }
+  },
+  {
+   "file": "p2.png",
+   "offset": [
+    685,
+    148
+   ],
+   "size": [
+    271,
+    721
+   ],
+   "anchors": {
+    "head": 162.0,
+    "span-left": 62.0,
+    "span-right": 237.0,
+    "span-center": 149.5,
+    "hips": 156.42513639119014
+   }
+  },
+  {
+   "file": "p3.png",
+   "offset": [
+    1234,
+    23
+   ],
+   "size": [
+    219,
+    844
+   ],
+   "anchors": {
+    "head": 115.0,
+    "span-left": 82.0,
+    "span-right": 169.0,
+    "span-center": 125.5,
+    "hips": 133.16438473386958
+   }
+  }
+ ],
+ "floor": 869,
+ "top": 23
+}

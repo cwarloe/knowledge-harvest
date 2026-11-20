@@ -1,0 +1,70 @@
+{
+ "version": "2",
+ "source": "c3-ex234-sit-back-push.png",
+ "source_hash": "987f179e5b49",
+ "key": {
+  "lo": 28,
+  "hi": 95
+ },
+ "n": 3,
+ "rows": 3,
+ "row": 2,
+ "poses": [
+  {
+   "file": "p1.png",
+   "offset": [
+    54,
+    30
+   ],
+   "size": [
+    413,
+    234
+   ],
+   "anchors": {
+    "head": 359.0,
+    "span-left": 7.0,
+    "span-right": 378.0,
+    "span-center": 220.42307692307693,
+    "hips": 176.30858806404657
+   }
+  },
+  {
+   "file": "p2.png",
+   "offset": [
+    574,
+    80
+   ],
+   "size": [
+    458,
+    185
+   ],
+   "anchors": {
+    "head": 402.0,
+    "span-left": 7.0,
+    "span-right": 356.0,
+    "span-center": 203.3709677419355,
+    "hips": 188.89366391184572
+   }
+  },
+  {
+   "file": "p3.png",
+   "offset": [
+    1120,
+    154
+   ],
+   "size": [
+    456,
+    110
+   ],
+   "anchors": {
+    "head": 404.0,
+    "span-left": 6.0,
+    "span-right": 447.0,
+    "span-center": 286.02941176470586,
+    "hips": 187.81341265548946
+   }
+  }
+ ],
+ "floor": 265,
+ "top": 30
+}
