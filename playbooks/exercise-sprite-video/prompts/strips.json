@@ -104,7 +104,19 @@
       ],
       "chart": 1,
       "slot": "run",
-      "view": "strict side view facing right"
+      "view": "strict side view facing right",
+      "retake": {
+        "attach": [
+          "the previous sheet to fix: ex5-stationary-run.png",
+          "the character reference: c4-run-knees-waist-high.png"
+        ],
+        "problems": [
+          "The lifted foot rises far higher than the booklet's four inches and the stride is a jog. Make it a low march in place: the lifted shoe only about four inches off the floor (the sole of the lifted shoe just above the top of the planted shoe), the knee only slightly bent, the body upright, small steps, the arms bent about 90 degrees swinging gently.",
+          "Keep the rule that the two lifts use DIFFERENT legs: near (lighter) leg in pose 1, far (darker) leg in pose 3."
+        ],
+        "keep": "the boy's look, line weight and colors, four poses in the same order, the side-on body with the head and shoulders turned toward the camera, and the same angle in every pose.",
+        "rows": null
+      }
     },
     "scissor-jumps-c1": {
       "exercise": "SCISSOR JUMPS",
@@ -122,7 +134,24 @@
       ],
       "chart": 1,
       "slot": "jump",
-      "view": "strict side view facing right"
+      "view": "strict side view facing right",
+      "retake": {
+        "attach": [
+          "the previous sheet to fix: ex5-scissor-jumps.png",
+          "the character reference: c4-run-knees-waist-high.png"
+        ],
+        "problems": [
+          "Stance A and stance B look almost the same from the side. They must be clearly different: in stance A the NEAR leg and the FAR arm are forward and the far leg and the near arm are back; in stance B everything is the other way round.",
+          "Stance B came out as a lunge with a bent back knee. In both stances the front leg is bent only slightly and the back leg is straight, the body upright, the arms straight at shoulder height.",
+          "The jump poses must clearly leave the floor with both feet well off it."
+        ],
+        "keep": "the boy's look, line weight and colors, four poses in the same order, the same scale, and the stances resting on one floor line with the jump poses clearly higher.",
+        "rows": [
+          "three-quarter FRONT view, from the front and a little from the left, so that the forward and backward legs and arms can be told apart",
+          "SIDE view facing right with a clearly darker shade on the far arm and far leg"
+        ],
+        "why_rows": "Scissor stances are hard to tell apart from the side, so this asks for two cameras; send me the whole image and I will pick the row that reads best."
+      }
     },
     "toe-touch-c2": {
       "chart": 2,
@@ -238,7 +267,20 @@
         "The leg raise is modest: the feet rise about 20 px more than at the start, so the thighs only just clear the hands. If a clearer raise is wanted, ask for 'legs raised high' or run an edit pass.",
         "The START pose already has the feet a few pixels off the floor.",
         "Both feet lift at the top, so a planted-foot anchor makes him slide 364 px. The new 'hips' anchor (the red shorts) holds him to 2 px. Use it for any exercise where he lies and the hips stay on the floor."
-      ]
+      ],
+      "retake": {
+        "attach": [
+          "the previous sheet to fix: c2-ex3-back-extension.png",
+          "the character reference: c4-run-knees-waist-high.png"
+        ],
+        "problems": [
+          "The lift is too small: the thighs barely clear the hands. The booklet says both thighs must clear the palms: in the TOP pose the thighs, knees and shins are clearly lifted well above the hands, the legs straight with the knees locked.",
+          "The START pose already has the feet off the floor. It must lie completely flat: belly, chest, thighs and shins on the floor line, the palms flat under the thighs.",
+          "Exactly two arms: both straight back along his sides with the palms flat on the floor under the thighs; nothing else on his back."
+        ],
+        "keep": "the boy's look, line weight and colors, three poses in the same order, head on the right and feet on the left, the same three-quarter view as the previous sheet.",
+        "rows": null
+      }
     },
     "push-up-c2": {
       "chart": 2,
@@ -462,6 +504,28 @@
           1
         ],
         "reps_per_cycle": 1
+      },
+      "retake": {
+        "attach": [
+          "the previous sheet to fix: c3-ex234-sit-back-push.png (use only its bottom row, the push-up)",
+          "the character reference: c4-run-knees-waist-high.png"
+        ],
+        "problems": [
+          "In the FOREHEAD pose the forehead lands IN FRONT of the hands. The booklet says the forehead touches the floor BEHIND the hands: the head tucks back and down so the forehead rests on the floor between the hands, level with them or a little back toward the shoulders, with the hands visibly AHEAD of the forehead.",
+          "The CHIN pose looks almost the same as the UP pose. The chin pose must be clearly lower: the chin touching the floor in front of the hands, the head pushed forward past the hands, the elbows bent and the chest just above the floor.",
+          "The three poses must be clearly different from each other: 1 UP with the arms straight; 2 CHIN; 3 FOREHEAD with the chest almost on the floor."
+        ],
+        "keep": "the boy's look, line weight and colors, three poses in the same order, palms and toes only (knees off the floor), the body one straight line, and the feet on one floor line.",
+        "rows": [
+          "plain SIDE view facing right, with both hands visible at the ends of the arms",
+          "three-quarter FRONT view, from the front and a little from one side, so that the head and the hands can be seen clearly"
+        ],
+        "why_rows": "The forehead-behind-the-hands pose is hard to draw, so this asks for two cameras; send me the whole image and I will pick the row that shows it.",
+        "poses": [
+          "UP: arms fully straightened, palms flat directly under the shoulders, only the palms and toes touching the floor, the body one straight line from the heels to the head (hips NOT piked up, back NOT sagging, knees NOT on the floor).",
+          "CHIN: lowered until the CHIN touches the floor in front of the hands (the head pushed forward past the hands), elbows bent, palms still flat on the floor under the shoulders, only the palms, toes and chin touching the floor, the body one straight line.",
+          "FOREHEAD: lowered until the chest is almost on the floor, the head tucked down and back so that the FOREHEAD touches the floor between the hands, level with the line of the hands or slightly behind it (the hands are visibly AHEAD of the forehead, in the direction he is facing), the elbows bent and flared out, the palms flat, only the palms, toes and forehead touching the floor, the body one straight line."
+        ]
       }
     },
     "half-knee-bends-c3": {
@@ -608,6 +672,25 @@
           2
         ],
         "reps_per_cycle": 1
+      },
+      "retake": {
+        "attach": [
+          "the previous sheet to fix: c4-ex3-back-extension-arms-sideways.png",
+          "the character reference: c4-run-knees-waist-high.png"
+        ],
+        "problems": [
+          "Every figure has THREE arms: besides the near arm and the far arm, a third arm lies across his back. He must have exactly two arms and two legs.",
+          "Pose 1 is floating in the air. In pose 1 he must lie completely flat: belly, chest, thighs and shins resting on the floor line, legs together, chin down near the floor.",
+          "The arms are swept forward like a flying superhero. They must stretch straight out SIDEWAYS from the shoulders, at right angles to his body, like the letter T, palms down.",
+          "Only the belly and hips may stay on the floor line in poses 2 and 3; everything else that lifts must lift clearly, with the legs straight and together."
+        ],
+        "keep": "the boy's look, the line weight and colors, three poses in the same order, and in the TOP pose the chest and both thighs clearly lifted with the legs straight.",
+        "rows": [
+          "seen from the FRONT and slightly above, his head nearer the camera and his feet farther away, so that both arms stick out to the left and right of his body like a T",
+          "three-quarter view from the SIDE and well above, head on the right and feet on the left, so that both arms are visible: one pointing toward the camera and one away, each clearly separate from the body"
+        ],
+        "why_rows": "A back extension with the arms sideways is hard to read from one angle, so this asks for two cameras; send me the whole image and I will pick the row that reads best.",
+        "layout": "In every figure he lies FACE DOWN, flat on his belly, with the same orientation within a row. In every row the figures lie on one invisible floor line."
       }
     },
     "wide-hand-push-up-c4": {
@@ -714,6 +797,27 @@
           4
         ],
         "jumps_per_cycle": 2
+      },
+      "retake": {
+        "attach": [
+          "the previous sheet to fix: c4-jump-semi-squat-jumps.png",
+          "the character reference: c4-run-knees-waist-high.png"
+        ],
+        "problems": [
+          "The two jump poses look like ballet: toes pointed straight down, the legs stiff, the arms hanging limp and curved. Make it an athletic hop: both knees slightly bent, the feet only about a hand's width off the floor, the shoes mostly level (toes NOT pointed), one foot ahead of the other as they swap places, and the arms swinging forward and a little up for balance with the elbows slightly bent and the fists relaxed.",
+          "The face has a smirk. Use a calm, focused, friendly face: a small closed smile, the eyes looking straight ahead (not up), the eyebrows level.",
+          "The shorts look like tights. Use loose red athletic shorts with a wide leg opening that hang to mid-thigh and clearly stand away from the leg.",
+          "In the crouch the back is rounded and the head is pushed forward. The booklet says keep the back as straight as possible: a straight spine leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands on the knees, the arms straight.",
+          "Crouch 1 must have the NEAR foot (his right) slightly ahead and crouch 3 the FAR foot (his left) slightly ahead. The previous sheet had them the other way round.",
+          "The two jump poses must differ: pose 2 is the feet passing each other on the way up from crouch 1 (near foot still a little ahead); pose 4 is the feet passing on the way up from crouch 3 (far foot still a little ahead)."
+        ],
+        "keep": "the boy's look, line weight and colors, four poses in the same order, the same scale, and the two crouches resting on one floor line with the two jump poses clearly higher.",
+        "poses": [
+          "CROUCH, NEAR FOOT AHEAD: a half crouch with the knees bent about halfway, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, the NEAR foot (his right foot) slightly ahead of the FAR foot (his left foot), both feet flat on the floor.",
+          "HOP UP: just left the floor, the body upright and straight, both knees slightly bent, both feet only about a hand's width off the floor with the shoes mostly level (toes NOT pointed), the feet passing each other with the near foot still a little ahead, the arms swinging forward and a little up for balance, the elbows slightly bent, the fists relaxed.",
+          "CROUCH, FAR FOOT AHEAD: landed in the half crouch, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, and now the FAR foot (his left foot) slightly ahead of the NEAR foot (his right foot), both feet flat on the floor.",
+          "HOP UP: the same hop as pose 2, but with the far foot still a little ahead as the feet pass each other: body upright and straight, knees slightly bent, feet a hand's width off the floor with the shoes mostly level, the arms swinging forward and a little up."
+        ]
       }
     },
     "toe-touch-clasped-c5": {

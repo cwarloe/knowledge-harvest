@@ -311,10 +311,8 @@
     },
     "4": {
       "ex2": "sit-up-toe-touch-c4",
-      "ex3": "back-extension-arms-sideways-c4",
       "ex4": "wide-hand-push-up-c4",
-      "run": "high-knee-run-c4",
-      "jump": "semi-squat-jumps-c4"
+      "run": "high-knee-run-c4"
     },
     "5": {
       "run": "high-knee-run-c4"

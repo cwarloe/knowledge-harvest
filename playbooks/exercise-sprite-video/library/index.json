@@ -863,16 +863,16 @@
     "sha": "3a1e9c67a3e4"
    },
    "grades": {
-    "form": 3,
-    "legibility": 4,
+    "form": 1,
+    "legibility": 2,
     "character": 5,
     "angle": 4,
     "key": 5
    },
    "graded_by": "claude",
    "expert_reviewed": false,
-   "verdict": "chosen",
-   "notes": "chart 4 back extension, arms sideways, seen from slightly above | arms sideways in a T as asked; but pose 1 is floating, not lying flat on the floor (booklet: start front lying); retake pose 1 flat | tentative pick",
+   "verdict": "rejected",
+   "notes": "chart 4 back extension, arms sideways, seen from slightly above | arms sideways in a T as asked; but pose 1 is floating, not lying flat on the floor (booklet: start front lying); retake pose 1 flat | tentative pick | REJECTED after review: three arms in every pose, pose 1 floating, arms swept forward not a T. Retake prompt on the prompts page. | extra limbs",
    "wired": true,
    "sheet": "sheets/c4-ex3-back-extension-arms-sideways.png"
   },
@@ -980,16 +980,16 @@
     "sha": "33d44728eaad"
    },
    "grades": {
-    "form": 4,
-    "legibility": 4,
+    "form": 2,
+    "legibility": 3,
     "character": 5,
     "angle": 5,
     "key": 5
    },
    "graded_by": "claude",
    "expert_reviewed": false,
-   "verdict": "chosen",
-   "notes": "chart 4 semi-squat jumps: crouch, jump, crouch (feet swapped), jump | crouch 1 has the far (left) foot ahead and crouch 3 the near (right) foot ahead, the reverse of the strip's wording; handled by starting the cycle at pose 3. The two jump poses are the same | tentative pick",
+   "verdict": "rejected",
+   "notes": "chart 4 semi-squat jumps: crouch, jump, crouch (feet swapped), jump | crouch 1 has the far (left) foot ahead and crouch 3 the near (right) foot ahead, the reverse of the strip's wording; handled by starting the cycle at pose 3. The two jump poses are the same | tentative pick | REJECTED after review: ballet look (pointed toes, limp curved arms), smirk, tight-looking shorts, rounded back in the crouch. Retake prompt on the prompts page.",
    "wired": true,
    "sheet": "sheets/c4-jump-semi-squat-jumps.png"
   }
