@@ -180,7 +180,7 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; max-width: 
     const spriteImgs = {};                                                // spriteImgs[chart][slot] = the pose images, loaded the first time a chart is opened
     const loadChart = async (cid) => { if (spriteImgs[cid]) return; const C = D.charts[cid], out = {};
       await Promise.all(C.order.map(async (s) => { out[s] = await Promise.all(C.slots[s].poses.map((p) => loadImg(p.file))); })); spriteImgs[cid] = out; };
-    const propImgs = {}; await Promise.all(D.props.filter((p) => p.kind === 'image').map(async (p) => { propImgs[p.id] = await loadImg(p.file); }));
+    const propImgs = {}; await Promise.all(D.props.filter((p) => p.kind === 'image' || p.kind === 'overlay').map(async (p) => { propImgs[p.id] = await loadImg(p.file); }));
 
     const defaults = { shorts: 0, shoes: 225, tank: 195 };              // where each color sits on the hue wheel today
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -215,6 +215,7 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; max-width: 
         else if (p.kind === 'shadow') { const rx = (uw * (p.width ?? .95)) / 2, ry = ((p.height ?? 26) * K) / 2 + 3;
           ctx.save(); ctx.translate(cx, fy + 2); ctx.scale(1, ry / rx); const g = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
           g.addColorStop(0, `rgba(0,0,0,${p.opacity ?? .28})`); g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, rx, 0, 7); ctx.fill(); ctx.restore(); }
+        else if (p.kind === 'overlay') { ctx.save(); ctx.globalAlpha = p.opacity ?? 1; ctx.drawImage(propImgs[p.id], 0, 0, W, H); ctx.restore(); }
         else if (p.kind === 'image') { const im = propImgs[p.id], w = W * (p.scale ?? .1), h = im.height * w / im.width; ctx.drawImage(im, (p.x ?? .5) * W - w / 2, fy - h + (p.lift ?? 0) * K, w, h); }
       }
     }
