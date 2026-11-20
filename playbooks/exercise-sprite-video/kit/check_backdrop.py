@@ -16,6 +16,21 @@ from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE); sys.path.insert(0, HERE)
 SKIN, SHORTS, SHOES = (235, 155, 65), (215, 35, 35), (50, 110, 200)
+PARTS = {"skin": SKIN, "shorts": SHORTS, "tank": (60, 175, 235), "shoes": SHOES, "white socks": (240, 240, 240), "black outline": (22, 22, 26)}
+CVD = {"normal vision": None,        # red-green colour blindness (Machado 2009, full severity), applied to linear RGB
+       "deuteranopia": np.array([[0.367322, 0.860646, -0.227968], [0.280085, 0.672501, 0.047413], [-0.011820, 0.042940, 0.968881]]),
+       "protanopia": np.array([[0.152286, 1.052583, -0.204868], [0.114503, 0.786281, 0.099216], [-0.003882, -0.048116, 1.051998]])}
+
+
+def _sim(rgb, M):
+    if M is None: return tuple(rgb)
+    c = np.array(rgb, float) / 255; lin = np.where(c > .04045, ((c + .055) / 1.055) ** 2.4, c / 12.92); o = np.clip(M @ lin, 0, 1)
+    return tuple(255 * np.where(o <= .0031308, 12.92 * o, 1.055 * o ** (1 / 2.4) - .055))
+
+
+def worst_part(col):
+    """The part of him that stands out least from this colour, over normal and red-green colour-blind vision: (distance, part, vision)."""
+    return min((de(_sim(col, M), _sim(v, M)), part, vis) for vis, M in CVD.items() for part, v in PARTS.items())
 
 
 def lab(rgb):
@@ -34,22 +49,24 @@ def measure(path, F):
     zone = gm[int(H * head_top):wall_floor, int(W * .33):int(W * .67)]
     floor = a[int(H * (floor_y - .06)):int(H * (floor_y + .10)), int(W * .35):int(W * .65)].reshape(-1, 3).mean(0)
     strip = lum[int(H * (floor_y - .07)):int(H * (floor_y + .06)), int(W * .30):int(W * .70)]
-    return {"floor_rgb": tuple(int(v) for v in floor), "de_skin": de(floor, SKIN), "de_shorts": de(floor, SHORTS), "de_shoes": de(floor, SHOES),
+    w = worst_part(floor)
+    return {"worst": w[0], "worst_part": w[1], "worst_vision": w[2], "floor_rgb": tuple(int(v) for v in floor), "de_skin": de(floor, SKIN), "de_shorts": de(floor, SHORTS), "de_shoes": de(floor, SHOES),
             "busy": float((zone > 25).mean() * 100), "strip_std": float(strip.std()), "wall_floor_pct": round(100 * wall_floor / H)}
 
 
 def verdict(m):
     v = []
     v.append("floor: " + ("clear" if m["de_skin"] >= 40 else "ok" if m["de_skin"] >= 30 else "LEGS MELT INTO THE FLOOR (change the floor to a cool grey, blue or green)"))
+    v.append(f"weakest part of him: {m['worst_part']} at {m['worst']:.0f}" + (f" under {m['worst_vision']}" if m["worst_vision"] != "normal vision" else "") + (" (good)" if m["worst"] >= 35 else " (ok)" if m["worst"] >= 28 else " (WEAK: change the floor lightness; a mid grey around 110-125 is the best neutral)"))
     v.append("behind him: " + ("calm" if m["busy"] <= 5 else "busy" if m["busy"] <= 8 else "VERY BUSY (move windows and objects to the sides)"))
     v.append("stage strip: " + ("flat" if m["strip_std"] <= 12 else "NOT FLAT (clear objects and lines near his feet)"))
     return v
 
 
-def preview(path, fmt, out):
+def preview(path, fmt, out, scene=None):
     """The run (standing) and the push-up (lying) on this background, through the same compose() the video uses."""
     import build
-    theme = json.load(open(os.path.join(ROOT, "config", "theme.json"))); reg = json.load(open(os.path.join(ROOT, "config", "strips.json"))); scene = json.load(open(os.path.join(ROOT, "config", "scene.json")))
+    theme = json.load(open(os.path.join(ROOT, "config", "theme.json"))); reg = json.load(open(os.path.join(ROOT, "config", "strips.json"))); scene = scene or json.load(open(os.path.join(ROOT, "config", "scene.json")))
     bid = "_check-" + os.path.splitext(os.path.basename(path))[0]; theme["backdrop"] = {"id": bid, "style": "image", "image": os.path.abspath(path)}
     F = theme["formats"][fmt]; work = tempfile.mkdtemp(); tiles = []
     try:

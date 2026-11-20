@@ -172,6 +172,8 @@ with tempfile.TemporaryDirectory() as t4:
         im_ = Image.new("RGB", (Fl["W"], Fl["H"]), (200, 205, 190)); im_.paste(Image.new("RGB", (Fl["W"], int(Fl["H"] * .35)), col_), (0, int(Fl["H"] * .65))); im_.save(os.path.join(t4, nm_ + ".png"))
     mo, mg = (check_backdrop.measure(os.path.join(t4, n_ + ".png"), Fl) for n_ in ("orange", "grey"))
     check(mo["de_skin"] < 30 <= 40 <= mg["de_skin"] and "MELT" in check_backdrop.verdict(mo)[0] and check_backdrop.verdict(mg)[0].endswith("clear"), "background checker: an orange floor is flagged as melting his legs, a cool grey one passes")
+    dk, md = check_backdrop.worst_part((74, 79, 90)), check_backdrop.worst_part((112, 118, 128))
+    check(dk[1] == "black outline" and md[0] > dk[0] + 8, "background checker: a dark charcoal floor loses his black outline; a mid grey is clearly better")
     check(mg["busy"] < 1 and mg["strip_std"] < 3, "background checker: a plain picture is calm and its stage strip flat")
 
 import copy, builds
