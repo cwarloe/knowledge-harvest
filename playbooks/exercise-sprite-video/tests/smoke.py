@@ -139,12 +139,15 @@ check(abs((m3[3]["anchors"]["shoe-right"] - t3["nudge"]["4"][0]) - a_[3]) < 1e-6
 # background prompts and importing generated layers
 import prompt_bg, import_backdrop
 bspec = json.load(open(os.path.join(ROOT, "prompts", "backgrounds.spec.json"))); allbg = prompt_bg.build_all(theme, bspec)
-check(set(allbg) == {"landscape", "portrait"} and all(len(e["items"]) == 8 for f in allbg.values() for e in f.values()) and len(allbg["landscape"]) == len(bspec["environments"]), f"background prompts: {len(bspec['environments'])} environments x 2 formats, a master and 7 layers each")
+envs_ = set(bspec["environments"])
+check(set(allbg) == {"landscape", "portrait"} and all(len(allbg[f][k]["items"]) == 8 for f in allbg for k in envs_) and all(set(allbg[f]) == envs_ | {"gym-keeper"} for f in allbg), f"background prompts: {len(envs_)} environments x 2 formats, a master and 7 layers each, plus the gym keeper set")
 fl = round(theme["formats"]["landscape"]["ground"] * 100); mp_ = allbg["landscape"]["forest"]["items"][0]["prompt"]
 check(f"{fl}% down from the top" in mp_ and f"horizon {fl - 24}% " not in mp_ and f"{fl - 24}% down from the top" in mp_, "background prompts: floor line and horizon come from theme.json")
 allt = "\n".join(i["prompt"] for f in allbg.values() for e in f.values() for i in e["items"])
+gk = allbg["landscape"]["gym-keeper"]["items"]; gp = allbg["portrait"]["gym-keeper"]["items"]
+check(len(gk) == 3 and len(gp) == 3 and gk[0]["plane"] == "finish" and gp[0]["plane"] == "portrait-room" and all("#FF00FF" in i["prompt"] for i in gk[1:] + gp[1:]), "background prompts: the gym keeper set has a finishing pass (wide) or tall room, and two magenta mat overlays per shape")
 check("{" not in allt and "}" not in allt and "charles" not in allt.lower(), "background prompts: every placeholder filled, no personal names")
-check(all(("#FF00FF" in i["prompt"]) or i["plane"] in ("master", "sky") for f in allbg.values() for e in f.values() for i in e["items"]), "background prompts: every cut-out layer asks for a flat magenta background")
+check(all(("#FF00FF" in i["prompt"]) or i["plane"] in ("master", "sky") for f in allbg for k in envs_ for i in allbg[f][k]["items"]), "background prompts: every cut-out layer asks for a flat magenta background")
 bc = allbg["landscape"]["beach"]["numbers"]; check(bc["ground_top"] > bc["horizon"] and bc["back"] >= bc["ground_top"] + 3, "background prompts: beach land starts below the horizon and its back row stands on the sand")
 with tempfile.TemporaryDirectory() as t3:
     src = os.path.join(t3, "layers"); os.makedirs(src); W_, H_ = 640, 360
