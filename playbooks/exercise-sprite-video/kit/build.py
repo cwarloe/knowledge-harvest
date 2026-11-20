@@ -243,6 +243,20 @@ def pose_xy(strip, k, meta_pose, X0, gy, floor, s):
     return X0 - pose_anchor(strip, k, meta_pose) * s, gy + 10 - (floor - meta_pose["offset"][1]) * s + dy * s
 
 
+def cycle_pose(c):
+    """A cycle entry is a pose number, or "5m": pose 5 flipped left to right (the lean to the other side of a circle bend)."""
+    return int(str(c).rstrip("m")), str(c).endswith("m")
+
+
+_SWAP = {"shoe-left": "shoe-right", "shoe-right": "shoe-left", "span-left": "span-right", "span-right": "span-left"}
+
+
+def mirror_anchor(strip, k, meta_pose):
+    """Where pose k's anchor falls once the picture is flipped left to right: the left/right anchors swap sides and every x becomes width - x."""
+    how = (strip.get("anchor_pose") or {}).get(str(k), strip["anchor"]); dx = (strip.get("nudge") or {}).get(str(k), (0, 0))[0]
+    return meta_pose["size"][0] - meta_pose["anchors"][_SWAP.get(how, how)] + dx
+
+
 def load_sprites(name, strip, theme):
     meta = bake(name, strip, theme); d = os.path.join(ASSETS, "sprites", name)
     return [recolor(Image.open(os.path.join(d, m["file"])).convert("RGBA"), theme.get("recolor")) for m in meta["poses"]], meta
@@ -295,7 +309,8 @@ def compose(name, strip, theme, scene, F, fmt, work, slot):
     os.makedirs(out, exist_ok=True)
     poses, meta = load_sprites(name, strip, theme)
     floor, top = meta["floor"], meta["top"]; anchors = [pose_anchor(strip, k, m) for k, m in enumerate(meta["poses"], 1)]
-    L = max(anchors); R = max(p.size[0] - a for p, a in zip(poses, anchors))
+    mir = [(k, meta["poses"][k - 1]["size"][0], mirror_anchor(strip, k, meta["poses"][k - 1])) for k in strip.get("mirror", [])]      # flipped copies of some poses
+    L = max(anchors + [a for _, _, a in mir]); R = max([p.size[0] - a for p, a in zip(poses, anchors)] + [w - a for _, w, a in mir])
     bw, bh = F["box"]; s = min(bw / (L + R), bh / (floor - top)); gy = int(F["H"] * F["ground"]); X0 = F["W"] / 2 + (L - R) * s / 2
     geom = dict(gy=gy, X0=X0, s=s, L=L, R=R)
     bg = flatten(blayers, (F["W"], F["H"])); bg.save(os.path.join(out, "backdrop.png"))
@@ -313,6 +328,15 @@ def compose(name, strip, theme, scene, F, fmt, work, slot):
         f.alpha_composite(layer)
         if front: f.alpha_composite(front)
         f.convert("RGB").save(os.path.join(out, f"p{k}.png"))
+    for k, w0, ax in mir:                                          # the flipped copies: layer_pKm.png and the finished pKm.png
+        p, m = poses[k - 1], meta["poses"][k - 1]; fl = p.transpose(Image.FLIP_LEFT_RIGHT); w, h = max(1, round(fl.size[0] * s)), max(1, round(fl.size[1] * s))
+        dy = (strip.get("nudge") or {}).get(str(k), (0, 0))[1]; py = gy + 10 - (floor - m["offset"][1]) * s + dy * s
+        layer = Image.new("RGBA", (F["W"], F["H"]), (0, 0, 0, 0)); layer.alpha_composite(fl.resize((w, h), Image.LANCZOS), (round(X0 - ax * s), round(py))); layer.save(os.path.join(out, f"layer_p{k}m.png"))
+        f = bg.copy()
+        if behind: f.alpha_composite(behind)
+        f.alpha_composite(layer)
+        if front: f.alpha_composite(front)
+        f.convert("RGB").save(os.path.join(out, f"p{k}m.png"))
     json.dump({"geom": {"gy": gy, "X0": X0, "scale": s, "L": L, "R": R}, "poses": strip["poses"]}, open(os.path.join(out, "geom.json"), "w"))
     open(os.path.join(out, "DONE"), "w").write("ok"); return out
 
@@ -406,6 +430,13 @@ def breakcard(args, work, theme, F, hud, secs, nxt, fmt):
     os.replace(tmp, out); return out
 
 
+def apply_look(theme, chart, default_scene):
+    """Each chart can have its own room and props: theme.json "chart_looks": {"1": {"backdrop": {...}, "scene": "config/scene.chart1.json"}}. Returns (theme, scene path)."""
+    look = (theme.get("chart_looks") or {}).get(str(chart)) or {}
+    if look.get("backdrop"): theme = dict(theme, backdrop=look["backdrop"])
+    return theme, (os.path.join(ROOT, look["scene"]) if look.get("scene") else default_scene)
+
+
 def make_plan(data, chart, level, only):
     """The whole video as a list of timed segments, read straight from the data file. Render and export both use it."""
     lv, timing, ex5 = chart["levels"][level], data["timing"]["secondsPerExercise"], chart["exercises"][4]; plan = []
@@ -441,6 +472,8 @@ def export_layers(dirpath, plan, theme, scene, reg, slots, F, fmt, work, chart_i
         for k in range(1, st["poses"] + 1):
             shutil.copy(os.path.join(src, f"layer_p{k}.png"), os.path.join(sd, f"boy_p{k}.png")); files["boy"].append(f"{slot}/boy_p{k}.png")
             if with_composites: shutil.copy(os.path.join(src, f"p{k}.png"), os.path.join(sd, f"composite_p{k}.png")); files["composite"].append(f"{slot}/composite_p{k}.png")
+        for k in st.get("mirror", []):
+            shutil.copy(os.path.join(src, f"layer_p{k}m.png"), os.path.join(sd, f"boy_p{k}m.png")); files["boy"].append(f"{slot}/boy_p{k}m.png")
         for extra in ("props_behind.png", "props_front.png"):
             if os.path.exists(os.path.join(src, extra)): shutil.copy(os.path.join(src, extra), os.path.join(sd, extra)); files[extra[:-4]] = f"{slot}/{extra}"
         man["slots"][slot] = {"strip": slots[slot], "anchor": st["anchor"], "cycle": st["cycle"], **({"cycle_reverse": st["cycle_reverse"]} if st.get("cycle_reverse") else {}), "files": files, **jload(os.path.join(src, "geom.json"))}
@@ -467,7 +500,8 @@ def main():
     ap.add_argument("--with-composites", action="store_true", help="with --export: also write the finished frames (redundant; the layers recreate them)")
     args = ap.parse_args()
 
-    theme = jload(args.theme); reg = jload(os.path.join(ROOT, "config", "strips.json")); scene = jload(args.scene)
+    theme = jload(args.theme); reg = jload(os.path.join(ROOT, "config", "strips.json"))
+    theme, scene_path = apply_look(theme, args.chart, args.scene); scene = jload(scene_path)
     if args.bake:
         for name, st in reg["strips"].items():
             if os.path.exists(os.path.join(ROOT, "sheets", st["file"])): print(f"  sprites {name}: {len(bake(name, st, theme)['poses'])} poses")
@@ -527,7 +561,7 @@ def main():
     os.replace(tmp, args.out); print("wrote", args.out)
     if not (args.preview or only or args.no_record):                   # a full render gets a record of exactly what went in
         sys.path.insert(0, HERE); import builds
-        builds.record(args, args.theme, args.scene, args.chart, {x: slots[x] for x in all_slots}, reg, theme, CODE_VERSION, args.out)
+        builds.record(args, args.theme, scene_path, args.chart, {x: slots[x] for x in all_slots}, reg, theme, CODE_VERSION, args.out)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,262 @@
+{
+ "A": [
+  {
+   "title": "Chart 4 semi-squat jumps (retake)",
+   "attach": [
+    "c4-jump-semi-squat-jumps.png",
+    "c4-run-knees-waist-high.png",
+    "REF-footswitch.png"
+   ],
+   "strip": "semi-squat-jumps-c4",
+   "kind": "retake",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 4 toe touch with circle bend (first draw)",
+   "attach": [
+    "c4-run-knees-waist-high.png",
+    "c3-ex1-toe-touching.png"
+   ],
+   "strip": "toe-touch-circle-c4",
+   "kind": "first",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 4 sit-up toe touch (retake: arms against the head)",
+   "attach": [
+    "c4-ex2-sit-up-toe-touch.png",
+    "c4-run-knees-waist-high.png"
+   ],
+   "strip": "sit-up-toe-touch-c4",
+   "kind": "retake",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 4 back extension, arms sideways (retake, three cameras)",
+   "attach": [
+    "c4-ex3-back-extension-arms-sideways.png",
+    "c4-run-knees-waist-high.png",
+    "REF-backext-geometry.png"
+   ],
+   "strip": "back-extension-arms-sideways-c4",
+   "kind": "retake",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 3 chin-forehead push-up (retake, two cameras)",
+   "attach": [
+    "c3-ex234-sit-back-push.png",
+    "c4-run-knees-waist-high.png"
+   ],
+   "strip": "chin-forehead-push-up-c3",
+   "kind": "retake",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 2 back extension (retake: both thighs clear the hands)",
+   "attach": [
+    "c2-ex3-back-extension.png",
+    "c4-run-knees-waist-high.png"
+   ],
+   "strip": "back-extension-c2",
+   "kind": "retake",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 1 stationary run (retake: feet only 4 inches up)",
+   "attach": [
+    "ex5-stationary-run.png",
+    "c4-run-knees-waist-high.png"
+   ],
+   "strip": "stationary-run-c1",
+   "kind": "retake",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 1 scissor jumps (retake, two cameras)",
+   "attach": [
+    "ex5-scissor-jumps.png",
+    "c4-run-knees-waist-high.png"
+   ],
+   "strip": "scissor-jumps-c1",
+   "kind": "retake",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 5 toe touch, hands clasped",
+   "attach": [
+    "c4-run-knees-waist-high.png",
+    "c3-ex1-toe-touching.png"
+   ],
+   "strip": "toe-touch-clasped-c5",
+   "kind": "first",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 5 sit-up with a twist",
+   "attach": [
+    "c4-run-knees-waist-high.png"
+   ],
+   "strip": "sit-up-twist-c5",
+   "kind": "first",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 5 back extension, arms overhead",
+   "attach": [
+    "c4-run-knees-waist-high.png",
+    "c2-ex3-back-extension.png"
+   ],
+   "strip": "back-extension-arms-overhead-c5",
+   "kind": "first",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 5 clap push-up",
+   "attach": [
+    "c4-run-knees-waist-high.png",
+    "c4-ex4-wide-hand-push-up.png"
+   ],
+   "strip": "clap-push-up-c5",
+   "kind": "first",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 5 semi-spread eagle jumps",
+   "attach": [
+    "c4-run-knees-waist-high.png",
+    "c2-jump-astride-jumps.png"
+   ],
+   "strip": "semi-spread-eagle-jumps-c5",
+   "kind": "first",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 6 toe touch, reverse clasp",
+   "attach": [
+    "c4-run-knees-waist-high.png",
+    "c3-ex1-toe-touching.png"
+   ],
+   "strip": "toe-touch-reverse-clasp-c6",
+   "kind": "first",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 6 pike sit-up",
+   "attach": [
+    "c4-run-knees-waist-high.png",
+    "c4-ex2-sit-up-toe-touch.png"
+   ],
+   "strip": "pike-sit-up-c6",
+   "kind": "first",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 6 back extension with a press",
+   "attach": [
+    "c4-run-knees-waist-high.png",
+    "c2-ex3-back-extension.png"
+   ],
+   "strip": "back-extension-press-c6",
+   "kind": "first",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 6 chest-slap push-up",
+   "attach": [
+    "c4-run-knees-waist-high.png",
+    "c4-ex4-wide-hand-push-up.png"
+   ],
+   "strip": "chest-slap-push-up-c6",
+   "kind": "first",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  },
+  {
+   "title": "Chart 6 jack jumps",
+   "attach": [
+    "c4-run-knees-waist-high.png",
+    "c3-jump-half-knee-bends.png"
+   ],
+   "strip": "jack-jumps-c6",
+   "kind": "first",
+   "output": "ONE image: the whole sheet (all rows, all poses). No separate figures."
+  }
+ ],
+ "B": [
+  {
+   "title": "Gym: tall phone version of the room",
+   "attach": [
+    "bg-keeper-gym-landscape-v1.png"
+   ],
+   "output": "ONE image named bg-gym-portrait-final.png"
+  },
+  {
+   "title": "Gym: floor mat overlay, muted teal, wide",
+   "attach": [
+    "bg-keeper-gym-landscape-v1.png"
+   ],
+   "output": "ONE image named bg-gym-landscape-mat-teal.png"
+  },
+  {
+   "title": "Gym: floor mat overlay, deep navy, wide",
+   "attach": [
+    "bg-keeper-gym-landscape-v1.png"
+   ],
+   "output": "ONE image named bg-gym-landscape-mat-navy.png"
+  },
+  {
+   "title": "Gym: floor mat overlay, muted teal, tall",
+   "attach": [
+    "(your own output of the 'tall phone version' job)"
+   ],
+   "output": "ONE image named bg-gym-portrait-mat-teal.png"
+  },
+  {
+   "title": "Gym: floor mat overlay, deep navy, tall",
+   "attach": [
+    "(your own output of the 'tall phone version' job)"
+   ],
+   "output": "ONE image named bg-gym-portrait-mat-navy.png"
+  },
+  {
+   "title": "Arcade lounge rework",
+   "attach": [
+    "bg-cand-arcade-landscape.png"
+   ],
+   "output": "ONE image named bg-arcade-landscape-final.png"
+  },
+  {
+   "title": "Brick loft rework",
+   "attach": [
+    "bg-cand-loft-landscape.png"
+   ],
+   "output": "ONE image named bg-loft-landscape-final.png"
+  },
+  {
+   "title": "Workshop rework",
+   "attach": [
+    "bg-cand-workshop-landscape.png"
+   ],
+   "output": "ONE image named bg-workshop-landscape-final.png"
+  },
+  {
+   "title": "Pine forest master scene (the outdoor option; make 4 variations)",
+   "attach": [],
+   "output": "FOUR variations of the master scene"
+  },
+  {
+   "title": "Mountain meadow rework (attach YOUR mountain image)",
+   "attach": [
+    "bg-mountain-v1.png"
+   ],
+   "output": "ONE image named bg-mountain-landscape-final.png"
+  },
+  {
+   "title": "OPTIONAL, lowest priority: gym finishing pass (plain centre window). Accept only if everything else is preserved exactly",
+   "attach": [
+    "bg-keeper-gym-landscape-v1.png"
+   ],
+   "output": "ONE image named bg-gym-landscape-final.png"
+  }
+ ]
+}

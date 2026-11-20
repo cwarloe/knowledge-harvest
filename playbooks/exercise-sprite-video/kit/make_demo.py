@@ -61,8 +61,15 @@ def main():
                     im = Image.open(os.path.join(ROOT, "assets", "sprites", sl["strip"], m["file"])).convert("RGBA")
                     sw, shh = max(1, round(w * f)), max(1, round(h * f)); im.resize((sw, shh), Image.LANCZOS).save(os.path.join(out, sdir, m["file"]), optimize=True)
                     poses.append({"file": f"{sdir}/{m['file']}".replace(os.sep, "/"), "x": round(x * f, 2), "y": round(y * f, 2), "w": sw, "h": shh})
+                extra = {}                                                        # flipped poses ("5m"): appended after the real ones so the viewer can use plain numbers
+                for k in st.get("mirror", []):
+                    m = meta["poses"][k - 1]; fl = Image.open(os.path.join(ROOT, "assets", "sprites", sl["strip"], m["file"])).convert("RGBA").transpose(Image.FLIP_LEFT_RIGHT)
+                    ax = build.mirror_anchor(st, k, m); dy = (st.get("nudge") or {}).get(str(k), (0, 0))[1]; x, y = X0 - ax * s, gy + 10 - (floor - m["offset"][1]) * s + dy * s; w, h = m["size"][0] * s, m["size"][1] * s
+                    sw, shh = max(1, round(w * f)), max(1, round(h * f)); fn = f"p{k}m.png"; fl.resize((sw, shh), Image.LANCZOS).save(os.path.join(out, sdir, fn), optimize=True)
+                    poses.append({"file": f"{sdir}/{fn}".replace(os.sep, "/"), "x": round(x * f, 2), "y": round(y * f, 2), "w": sw, "h": shh}); extra[f"{k}m"] = len(poses)
+                num = lambda cyc: [extra[c] if str(c) in extra else int(c) for c in cyc]
                 seg = next(q for q in segs if q.get("slot") == slot)
-                info = {"strip": sl["strip"], "cycle": st["cycle"], **({"cycle_reverse": st["cycle_reverse"]} if st.get("cycle_reverse") else {}), "cycle_s": seg["cycle_seconds"], "allot": seg["allot"], "poses": poses,
+                info = {"strip": sl["strip"], "cycle": num(st["cycle"]), **({"cycle_reverse": num(st["cycle_reverse"])} if st.get("cycle_reverse") else {}), "cycle_s": seg["cycle_seconds"], "allot": seg["allot"], "poses": poses,
                         "union": [round((X0 - g["L"] * s) * f, 2), round((X0 + g["R"] * s) * f, 2)]}
                 if seg["kind"] == "exercise": info.update(kicker=S["kicker"].format(n=seg["n"]), title=seg["name"], target=S["reps"].format(reps=seg["reps"]))
                 elif seg["kind"] == "run": info.update(kicker=S["kicker"].format(n=5), title=seg["name"], target=S["steps"].format(steps=seg["steps"]))

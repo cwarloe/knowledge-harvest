@@ -41,7 +41,8 @@ def inputs_now(data_path, theme_path, scene_path, chart, slots, reg, theme, code
         out_slots[slot] = {"strip": name, "sheet": f"sheets/{st['file']}", "sheet_sha": sh_, "rows": st.get("rows"), "row": st.get("row"), "library_id": twin,
                            "settings_sha": h12(json.dumps(st, sort_keys=True).encode())}
     fonts = {k: {"file": theme["hud"][k], "sha": fh(absp(theme["hud"][k]))} for k in ("font", "mono")}
-    return {"data": {"file": os.path.basename(data_path), "sha": fh(data_path)}, "theme": {"file": rel(theme_path), "sha": fh(theme_path)},
+    room = theme["backdrop"].get("image") if theme["backdrop"].get("style") == "image" else None
+    return {"backdrop": {"id": theme["backdrop"].get("id"), "image": room, "sha": fh(absp(room)) if room else None}, "data": {"file": os.path.basename(data_path), "sha": fh(data_path)}, "theme": {"file": rel(theme_path), "sha": fh(theme_path)},
             "scene": {"file": rel(scene_path), "sha": fh(scene_path)}, "fonts": fonts, "code_version": code_version, "slots": out_slots}
 
 
@@ -88,11 +89,12 @@ def need_data(a):
 def diff(rec, data_path):
     """What differs between the record and the files as they are now. Empty list = a rebuild would match."""
     sys.path.insert(0, HERE); import build
-    theme_path, scene_path = absp(rec["inputs"]["theme"]["file"]), absp(rec["inputs"]["scene"]["file"]); theme = jload(theme_path); reg = jload(os.path.join(ROOT, "config", "strips.json"))
+    theme_path, scene_path = absp(rec["inputs"]["theme"]["file"]), absp(rec["inputs"]["scene"]["file"]); theme = jload(theme_path); reg = jload(os.path.join(ROOT, "config", "strips.json")); theme, _ = build.apply_look(theme, rec["chart"], scene_path)
     names = reg["charts"].get(str(rec["chart"]), {}); slots = {s: names[s] for s in rec["inputs"]["slots"] if s in names}
     missing = [s for s in rec["inputs"]["slots"] if s not in slots]
     now = inputs_now(data_path, theme_path, scene_path, rec["chart"], slots, reg, theme, build.CODE_VERSION); was = rec["inputs"]; out = []
     if now["data"]["sha"] != was["data"]["sha"]: out.append(("plan file", "the plan (5bx-charts.json) is not the version this video was built from"))
+    if now.get("backdrop") != was.get("backdrop") and "backdrop" in was: out.append(("room", "the background picture or its settings changed"))
     for k, label in (("theme", "look and wording (theme.json)"), ("scene", "props (scene file)")):
         if now[k]["sha"] != was[k]["sha"]: out.append((label, "changed"))
     if now["fonts"] != was["fonts"]: out.append(("fonts", "changed"))

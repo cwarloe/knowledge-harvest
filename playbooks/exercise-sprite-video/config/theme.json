@@ -87,5 +87,15 @@
       "clock": 118,
       "bar": 22
     }
-  }
+  },
+  "chart_looks": {
+    "1": {
+      "backdrop": {
+        "id": "gym",
+        "style": "image",
+        "image": "assets/backgrounds/gym-keeper-landscape.png"
+      }
+    }
+  },
+  "_chart_looks_hint": "A chart can have its own room and props. Charts without an entry use \"backdrop\" above (the original code-drawn forest, retired for new rooms as they arrive). Add \"scene\": \"config/scene.chartN.json\" to give a chart its own props (a mat overlay)."
 }

@@ -898,3 +898,58 @@ All edges crisp: no glow, feathering or blur against the magenta. No pink, magen
 ALSO GIVE ME a second image: the same mat placed on the reference room, as a preview.
 ```
 
+
+## Candidate rooms: rework passes  (`candidates`)
+
+Landscape 1920x1080: horizon 61%, ground starts 61%, boy's feet on 80%, back-row bases 73%, front-frame bases 86%.
+
+### Arcade lounge rework (attach the arcade room)  (save as `bg-arcade-landscape-final.png`)
+
+```
+Using the attached image as the exact base, redraw the same arcade lounge with these changes only. Keep the room, the window view, the arcade cabinets, the plants, the colors, the line weight and the style exactly. wide 16:9 (1920x1080), same composition. No people.
+
+CHANGES:
+1. WALL: remove the big round emblem and the two round dots from the dark teal wall. Keep the two thin horizontal teal stripes running straight across. The middle third of the wall must be calm: no circles, symbols or bright shapes.
+2. CABINETS AND PLANTS: move the two cabinets and the two plants about 5% farther toward the outer edges, and make each cabinet fully visible inside the frame, with nothing cropped at the left or right edge. Make them about 10% smaller, as if farther back, with their bases still on the wall-floor line.
+3. FLOOR: make the grey-mauve floor a mid grey-blue, about #707680, with a very subtle top-to-bottom gradient (slightly lighter at the wall line). Keep the strip from 73% to 86% down completely flat, smooth and empty.
+4. WINDOW VIEW: lower the contrast of the city view slightly so it sits behind the character.
+5. Do not use pink, magenta or saturated purple anywhere.
+```
+
+### Brick loft rework (attach the loft room)  (save as `bg-loft-landscape-final.png`)
+
+```
+Using the attached image as the exact base, redraw the same industrial loft gym with these changes only. Keep the ceiling trusses, the lamps, the concrete pillars, the shelves with plants and mats, the lighting direction, the line weight and the style exactly. wide 16:9 (1920x1080), same composition. No people.
+
+CHANGES:
+1. BRICK: change the orange-red brick wall to blue-grey painted brick, about #8C9BAA, with the same brick pattern and slightly lighter mortar lines. There must be no orange or red anywhere on the wall.
+2. WINDOWS: the three big gridded windows are too busy behind a character. Replace them with two smaller windows, one in the left third and one in the right third of the wall, each with fewer, thinner bars. The middle third of the wall must be plain painted brick: no window, no object, no bright shape.
+3. FLOOR: make the concrete floor a mid cool grey, about #707680, smooth and flat, with a very subtle top-to-bottom gradient. Keep the strip from 73% to 86% down completely flat, smooth and empty.
+4. Do not use pink, magenta or saturated purple anywhere.
+```
+
+### Workshop rework (attach the workshop room)  (save as `bg-workshop-landscape-final.png`)
+
+```
+Using the attached image as the exact base, redraw the same fantasy workshop with these changes only. Keep the stone arches, the shelves and potions, the lantern, the pipes, the line weight and the style exactly. wide 16:9 (1920x1080), same composition. No people.
+
+CHANGES:
+1. FLOOR: replace the beige floor with cool stone-grey flagstones, about #707680, smooth and flat, with faint seams. It must be clearly different from orange-tan skin: no beige, tan or orange anywhere on the floor.
+2. GEARS: make the large gold gears and machines about 30% smaller and tone the gold down to a muted bronze, so they no longer dwarf a character standing in front of them.
+3. CENTER: keep the middle third of the wall calm: keep the arched window but make it smaller and lower in contrast, and move the hanging lantern out of the center to the right third.
+4. Keep the strip from 73% to 86% down completely flat, smooth and empty.
+5. Do not use pink, magenta or saturated purple anywhere.
+```
+
+### Mountain meadow rework (attach YOUR mountain image, saved as bg-mountain-v1.png)  (save as `bg-mountain-landscape-final.png`)
+
+```
+Using the attached image as the exact base (a cartoon mountain meadow with a trail), keep everything the same except the changes below: same style, line weight, sun position, clouds, trees, bushes and rocks. wide 16:9 (1920x1080), same composition. No people.
+
+CHANGES:
+1. PATH: change the tan dirt path to a smooth, flat, cool blue-grey rubber running track, about #707680, with no pebbles, marks or seams. It must be clearly different in color from orange-tan skin: no tan, beige or orange anywhere on it. Keep the path where it is, covering at least the strip from 73% to 86% down, completely flat, smooth and empty.
+2. CENTER: lower the tallest central snowy peak by about 30% so nothing tall rises behind the middle of the image; keep the taller peaks and the larger trees, bushes and rocks toward the left and right thirds. The middle third must stay calm.
+3. DISTANT HILLS: make the distant hills slightly bluer and lighter than now, so a character in red shorts stands out clearly against them.
+4. Do not use pink, magenta or saturated purple anywhere.
+```
+

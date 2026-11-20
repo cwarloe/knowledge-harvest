@@ -49,14 +49,15 @@ def booklet_text(data, chart_id, slot):
     return {"name": e["name"], "start": e.get("start", ""), "movement": e.get("movement", ""), "notes": e.get("notes", [])}
 
 
-def retake(spec, ch):
-    """A prompt for fixing a sheet that came back wrong: attach the bad sheet and a good character reference, name what was wrong, ask again.
-    With 'rows', it asks for the same poses from several cameras on one image, so the best camera can be picked."""
+def retake(spec, ch, individual=True):
+    """A prompt for fixing a sheet that came back wrong: attach the bad sheet and a good character reference (and any schematic), name what was wrong, ask again.
+    With 'rows', it asks for the same poses from several cameras on one image, so the best camera can be picked. individual=False leaves out the request for separate figure files."""
     r = spec.get("retake")
     if not r: return None
     poses = r.get("poses") or spec["poses"]; n = len(poses); words = {2: "TWO", 3: "THREE", 4: "FOUR", 5: "FIVE", 6: "SIX"}.get(n, str(n)); aspect = ch["generator"]["aspect"]; rows = r.get("rows")
-    L = [f"RETAKE. Attach two images: (1) {r['attach'][0]}; (2) {r['attach'][1]}.", "",
-         "Use image 2 ONLY for how the boy looks (face, hair, skin tone, build, outline weight, shading, colors). Image 1 is a previous attempt at this exercise: do not copy its mistakes.", "",
+    att = r["attach"]; names = {1: "ONE", 2: "TWO", 3: "THREE", 4: "FOUR"}
+    L = [f"RETAKE. Attach {names.get(len(att), len(att))} images: " + "; ".join(f"({i}) {a}" for i, a in enumerate(att, 1)) + ".", "",
+         "Use image 2 ONLY for how the boy looks (face, hair, skin tone, build, outline weight, shading, colors). Image 1 is a previous attempt at this exercise: do not copy its mistakes." + (f" Image 3 is {r['schematic']}" if len(att) > 2 and r.get("schematic") else ""), "",
          f"THE BOY (keep identical in every figure): {ch['description']}.", "", "WHAT WAS WRONG WITH THE PREVIOUS ATTEMPT (fix every one of these):"] + [f"- {x}" for x in r["problems"]] + ["", f"KEEP from the previous attempt: {r['keep']}", ""]
     layout = r.get("layout") or spec.get("layout", "Same scale, all on the same invisible floor line, wide empty gaps so the figures never touch.")
     if rows:
@@ -68,7 +69,8 @@ def retake(spec, ch):
     L += ["", f"THE {words} POSES (official exercise, follow exactly):"] + [f"{i}. {x}" for i, x in enumerate(poses, 1)]
     if spec.get("far_side", True): L += ["", ch["far_side"]]
     if ch.get("body_rules"): L += ["", ch["body_rules"]]
-    L += ["", "BACKGROUND: " + ch["background"], "", "ALSO GIVE ME each figure as a separate transparent PNG at the original size, not resized, with a few pixels of empty margin, named by row and pose number."]
+    L += ["", "BACKGROUND: " + ch["background"]]
+    if individual: L += ["", "ALSO GIVE ME each figure as a separate transparent PNG at the original size, not resized, with a few pixels of empty margin, named by row and pose number."]
     return "\n".join(L)
 
 

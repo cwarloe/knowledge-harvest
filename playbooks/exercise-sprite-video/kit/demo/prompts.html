@@ -140,7 +140,7 @@ button:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px soli
       B.how.forEach((t) => how.append(el('li', { textContent: t })));
       Object.keys(B.formats).forEach((f) => fmtSel.append(el('option', { value: f, textContent: f === 'landscape' ? 'Landscape (wide 16:9)' : 'Portrait (tall 9:16)' })));
       Object.entries(B.formats.landscape).forEach(([k, e]) => envSel.append(el('option', { value: k, textContent: e.title })));
-      const show = () => { const e = B.formats[fmtSel.value][envSel.value], n = e.numbers; items.replaceChildren();
+      const show = () => { const F = B.formats[fmtSel.value], e = F[envSel.value] || F[Object.keys(F)[0]], n = e.numbers; items.replaceChildren();
         document.getElementById('bgnums').textContent = `${n.W} by ${n.H}. Horizon ${n.horizon}% down, ground starts ${n.ground_top}%, his feet on ${n.floor}%, back-row bases ${n.back}%, front-frame bases ${n.front}%. Other light: swap the LIGHT line for ` + Object.values(B.lights).slice(1).map((t) => '"' + t.split(',')[0] + '"').join(' or ') + '.';
         e.items.forEach((it, i) => items.append(el('details', { open: i === 0 }, [el('summary', {}, [document.createTextNode(it.title), el('small', { textContent: 'save as ' + it.file })]), el('div', { className: 'body' }, [block('Prompt', it.prompt)])]))); };
       envSel.onchange = show; fmtSel.onchange = show; show();

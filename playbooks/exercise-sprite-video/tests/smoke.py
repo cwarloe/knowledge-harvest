@@ -26,7 +26,7 @@ for name, st in reg["strips"].items():
     except SystemExit as e: check(False, f"{name}: {e}"); continue
     files = [os.path.join(ROOT, "assets", "sprites", name, q["file"]) for q in m["poses"]]
     check(len(m["poses"]) == st["poses"] and all(os.path.exists(f) for f in files), f"{name}: {len(files)} sprite files on disk, one per pose")
-    check(max(st["cycle"]) <= st["poses"], f"{name}: cycle only uses poses that exist")
+    check(all(build.cycle_pose(c)[0] <= st["poses"] and (not build.cycle_pose(c)[1] or build.cycle_pose(c)[0] in st.get("mirror", [])) for c in st["cycle"] + st.get("cycle_reverse", [])), f"{name}: cycle only uses poses that exist (and flipped ones that are declared)")
     check(st["anchor"] in m["poses"][0]["anchors"], f"{name}: anchor '{st['anchor']}' exists")
 
 k = key(Image.open(os.path.join(ROOT, "sheets", reg["strips"]["toe-touch-c1"]["file"])), **theme["key"])
@@ -140,7 +140,7 @@ check(abs((m3[3]["anchors"]["shoe-right"] - t3["nudge"]["4"][0]) - a_[3]) < 1e-6
 import prompt_bg, import_backdrop
 bspec = json.load(open(os.path.join(ROOT, "prompts", "backgrounds.spec.json"))); allbg = prompt_bg.build_all(theme, bspec)
 envs_ = set(bspec["environments"])
-check(set(allbg) == {"landscape", "portrait"} and all(len(allbg[f][k]["items"]) == 8 for f in allbg for k in envs_) and all(set(allbg[f]) == envs_ | {"gym-keeper"} for f in allbg), f"background prompts: {len(envs_)} environments x 2 formats, a master and 7 layers each, plus the gym keeper set")
+check(set(allbg) == {"landscape", "portrait"} and all(len(allbg[f][k]["items"]) == 8 for f in allbg for k in envs_) and set(allbg["landscape"]) == envs_ | {"gym-keeper", "candidates"} and set(allbg["portrait"]) == envs_ | {"gym-keeper"}, f"background prompts: {len(envs_)} environments x 2 formats, a master and 7 layers each, plus the gym keeper set and the candidate rework passes")
 fl = round(theme["formats"]["landscape"]["ground"] * 100); mp_ = allbg["landscape"]["forest"]["items"][0]["prompt"]
 check(f"{fl}% down from the top" in mp_ and f"horizon {fl - 24}% " not in mp_ and f"{fl - 24}% down from the top" in mp_, "background prompts: floor line and horizon come from theme.json")
 allt = "\n".join(i["prompt"] for f in allbg.values() for e in f.values() for i in e["items"])
@@ -186,6 +186,28 @@ with tempfile.TemporaryDirectory() as t5:
         lay = np.array(build.render_props({"props": [{"id": "m", "kind": "overlay", "file": "assets/_test_overlay.png", "z": "behind", "slots": "*"}]}, "ex2", {"gy": int(Fo["H"] * Fo["ground"]), "X0": 960, "L": 300, "R": 300, "s": 1}, Fo, "behind"))
         check(lay[5, 5, 3] == 0 and lay[840, 900, 3] == 255 and tuple(lay[840, 900, :3]) == (33, 118, 120), "overlay prop: the magenta is cut out, the mat colour is kept, full frame")
     finally: os.remove(ovp)
+
+# the overnight batch: every attached file exists, every prompt is complete
+import make_batch
+with tempfile.TemporaryDirectory() as t6:
+    make_batch.sys.argv = ["make_batch", "--out", t6]; make_batch.main()
+    jobs = json.load(open(os.path.join(t6, "jobs.json"))); txtA = open(os.path.join(t6, "BATCH-A-sprites.md")).read(); txtB = open(os.path.join(t6, "BATCH-B-backgrounds.md")).read()
+    miss = [f for tag in "AB" for j in jobs[tag] for f in j["attach"] if f in make_batch.REFS and not os.path.exists(os.path.join(t6, f"refs-{tag}", f))]
+    check(len(jobs["A"]) == 18 and len(jobs["B"]) == 11 and not miss, f"overnight batch: 18 sprite jobs and 11 background jobs, every attached reference file is in its folder ({len(os.listdir(os.path.join(t6, 'refs-A')))} + {len(os.listdir(os.path.join(t6, 'refs-B')))} files)")
+    check("{" not in txtA + txtB and "charles" not in (txtA + txtB).lower() and txtA.count("=== JOB-") == 18 and txtB.count("=== JOB-") == 11, "overnight batch: no unfilled placeholder, no personal names, job numbers run 1-18 and 19-29")
+
+# a flipped pose: "3m" is pose 3 mirrored, placed so its (mirrored) anchor lands on the same spot
+with tempfile.TemporaryDirectory() as t7:
+    st_ = dict(reg["strips"]["toe-touch-c1"]); st_["mirror"] = [3]; st_["cycle"] = [1, 2, 3, "3m"]; F7 = theme["formats"]["landscape"]
+    d7 = build.compose("toe-touch-c1", st_, theme, scene, F7, "landscape", t7, "ex1"); a_ = np.array(Image.open(os.path.join(d7, "layer_p3.png")))[..., 3] > 128; b_ = np.array(Image.open(os.path.join(d7, "layer_p3m.png")))[..., 3] > 128
+    xs_a, xs_b = np.nonzero(a_)[1], np.nonzero(b_)[1]; g7 = json.load(open(os.path.join(d7, "geom.json")))["geom"]
+    check(os.path.exists(os.path.join(d7, "p3m.png")) and a_.sum() == b_.sum() and abs((xs_a.min() + xs_a.max()) - (xs_b.min() + xs_b.max())) > 4, "mirrored pose: a flipped copy with the same shape is written for 3m")
+    meta7 = json.load(open(os.path.join(ROOT, "assets", "sprites", "toe-touch-c1", "meta.json")))["poses"][2]
+    check(abs((g7["X0"] - build.mirror_anchor(st_, 3, meta7) * g7["scale"]) - (g7["X0"] - (meta7["size"][0] - meta7["anchors"]["shoes"]) * g7["scale"])) < 1e-6, "mirrored pose: the mirrored anchor is width minus the original anchor")
+
+# per-chart looks: chart 1 stands in the gym, the other charts keep the default backdrop
+th_a, _ = build.apply_look(theme, 1, os.path.join(ROOT, "config", "scene.json")); th_b, sc_b = build.apply_look(theme, 3, os.path.join(ROOT, "config", "scene.json"))
+check(th_a["backdrop"]["id"] == "gym" and os.path.exists(os.path.join(ROOT, th_a["backdrop"]["image"])) and th_b["backdrop"]["id"] == theme["backdrop"]["id"] and sc_b.endswith("scene.json"), "chart looks: chart 1 uses the gym picture, other charts keep the default backdrop")
 
 import copy, builds
 th_p, sc_p = os.path.join(ROOT, "config", "theme.json"), os.path.join(ROOT, "config", "scene.json")

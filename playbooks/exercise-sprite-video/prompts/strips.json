@@ -637,6 +637,19 @@
           2
         ],
         "reps_per_cycle": 1
+      },
+      "retake": {
+        "attach": [
+          "the previous sheet to fix: c4-ex2-sit-up-toe-touch.png",
+          "the character reference: c4-run-knees-waist-high.png"
+        ],
+        "problems": [
+          "In the last pose the head is upright and sits above the arms, and the arms reach forward below the face. The booklet says the arms stay in contact with the sides of the head THROUGHOUT. In the TOUCH pose his head must be tucked down between his upper arms, with both upper arms pressed against his ears, the whole upper body folded forward over the legs, and the straight arms carrying on forward from the head to the toes.",
+          "In the middle pose the arms must again be straight and against the sides of his head (the head between the arms), not out in front of the face.",
+          "Leave a wide empty gap between the figures so that no figure is clipped by or touches its neighbour."
+        ],
+        "keep": "the boy's look, line weight and colors, three poses in the same order, head on the left and feet on the right, legs straight with the feet together and flat, the same camera angle in every pose, and the START pose with the arms straight along the floor above the head.",
+        "rows": null
       }
     },
     "back-extension-arms-sideways-c4": {
@@ -676,22 +689,25 @@
       },
       "retake": {
         "attach": [
-          "the previous sheet to fix: c4-ex3-back-extension-arms-sideways.png",
-          "the character reference: c4-run-knees-waist-high.png"
+          "the previous sheet to fix: c4-ex3-back-extension-arms-sideways.png (it has two rows; the first row, seen from the front, is the better one)",
+          "the character reference: c4-run-knees-waist-high.png",
+          "the geometry schematic: REF-backext-geometry.png"
         ],
         "problems": [
-          "Every figure has THREE arms: besides the near arm and the far arm, a third arm lies across his back. He must have exactly two arms and two legs.",
-          "Pose 1 is floating in the air. In pose 1 he must lie completely flat: belly, chest, thighs and shins resting on the floor line, legs together, chin down near the floor.",
-          "The arms are swept forward like a flying superhero. They must stretch straight out SIDEWAYS from the shoulders, at right angles to his body, like the letter T, palms down.",
-          "Only the belly and hips may stay on the floor line in poses 2 and 3; everything else that lifts must lift clearly, with the legs straight and together."
+          "In the side-view rows of earlier attempts the start pose did not rest flat. In pose 1 he must lie completely flat: belly, chest, thighs and shins resting on the floor line, legs together, chin down near the floor, the arms flat on the floor (see the schematic).",
+          "In the front view the lift is hard to see. Show how far the chest and the thighs lift in the TOP pose: the chest about 35 degrees up from the floor and the legs about 25 degrees up, with only the lower belly and hips still on the floor (see the schematic), and make the legs, knees and shoes clearly visible rising behind him.",
+          "He must have exactly two arms and two legs, and the arms must stretch straight out SIDEWAYS at right angles to his body, like the letter T, palms down (see the top-down part of the schematic). An earlier attempt had the near arm trailing back along his body, which is wrong.",
+          "Only the belly and hips may stay on the floor in poses 2 and 3; the legs stay straight and together."
         ],
         "keep": "the boy's look, the line weight and colors, three poses in the same order, and in the TOP pose the chest and both thighs clearly lifted with the legs straight.",
         "rows": [
-          "seen from the FRONT and slightly above, his head nearer the camera and his feet farther away, so that both arms stick out to the left and right of his body like a T",
-          "three-quarter view from the SIDE and well above, head on the right and feet on the left, so that both arms are visible: one pointing toward the camera and one away, each clearly separate from the body"
+          "seen from the FRONT and slightly above, his head nearer the camera and his feet farther away, so that both arms stick out left and right like a T; raise the camera a little more than before so the legs and shoes can be seen rising behind him",
+          "seen from the FOOT END and well above, his feet nearer the camera and his head farther away, so that both arms stick out left and right like a T and the legs rising toward the camera are clearly visible",
+          "three-quarter view from the SIDE and well above, head on the right and feet on the left, the near arm pointing straight toward the camera at a right angle to his body (it will look short because it points at the camera) and the far arm pointing straight away"
         ],
-        "why_rows": "A back extension with the arms sideways is hard to read from one angle, so this asks for two cameras; send me the whole image and I will pick the row that reads best.",
-        "layout": "In every figure he lies FACE DOWN, flat on his belly, with the same orientation within a row. In every row the figures lie on one invisible floor line."
+        "why_rows": "Three cameras on one image: the T arms and the lift are hard to show together, so I will pick the row that reads best.",
+        "layout": "In every figure he lies FACE DOWN, flat on his belly, with the same orientation within a row. In every row the figures lie on one invisible floor line.",
+        "schematic": "a schematic of the body angles (side view) and of the T-shaped arms (top-down). Copy the angles and positions only; do NOT copy its drawing style or any of its text."
       }
     },
     "wide-hand-push-up-c4": {
@@ -772,10 +788,10 @@
       "kept": "(not made yet)",
       "layout": "Same scale, wide empty gaps so the figures never touch. The two crouching poses rest on the same invisible floor line; the two jumping poses are drawn clearly higher, with both feet well above that line.",
       "poses": [
-        "CROUCH, RIGHT FOOT AHEAD: a half crouch with the knees bent about halfway, the hands resting on the knees with the arms straight, the back as straight as possible, the NEAR foot (his right foot) slightly ahead of the FAR foot (his left foot), both feet flat on the floor.",
-        "JUMP: jumped up to an upright position with the body straight, both feet clearly off the floor, the feet passing each other as they swap places, the arms straight and relaxed beside the body.",
-        "CROUCH, LEFT FOOT AHEAD: landed in the half crouch, the hands resting on the knees with the arms straight, the back as straight as possible, and now the FAR foot (his left foot) slightly ahead of the NEAR foot (his right foot), both feet flat on the floor.",
-        "JUMP: the same airborne upright pose as pose 2, the body straight and both feet well above the floor line."
+        "CROUCH, NEAR FOOT AHEAD: a half crouch with the knees bent about halfway, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, the NEAR foot (his right foot, lighter) one full shoe length ahead of the FAR foot (his left foot, darker), both feet flat on the floor.",
+        "FIRST HOP: in the air after the jump from crouch 1, the body upright and straight, both knees slightly bent, both feet about a hand's width off the floor with the shoes mostly level (toes NOT pointed), the feet already swapped so the FAR foot (his left, darker) is ahead of the near foot, the arms swinging forward and a little up for balance, the elbows slightly bent, the fists relaxed.",
+        "CROUCH, FAR FOOT AHEAD: landed in the half crouch, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, the FAR foot (his left, darker) one full shoe length ahead of the NEAR foot (his right, lighter), both feet flat on the floor.",
+        "SECOND HOP: in the air after the jump from crouch 3, the same hop as the first hop but with the feet swapped back, so the NEAR foot (his right, lighter) is ahead of the far foot in the air: body upright and straight, knees slightly bent, feet a hand's width off the floor with the shoes mostly level, the arms swinging forward and a little up."
       ],
       "check": [
         "Four poses, same boy, same angle",
@@ -784,8 +800,8 @@
         "The two jump poses are upright and clearly higher than the crouches"
       ],
       "draft": [
-        "The booklet does not say where the arms go in the jump, only 'body straight and feet leaving floor'. I chose arms straight and relaxed beside the body.",
-        "One cycle is crouch, jump, crouch with the feet reversed, jump: two jumps per cycle."
+        "Feet: crouch 1 has the near (right) foot one full shoe length ahead, crouch 3 the far (left) foot; in the air the feet have already swapped (hop 1 far foot ahead, hop 2 near foot ahead). The booklet does not say where the arms go in the hop; I chose a small swing forward and up for balance. [DRAFT]",
+        "One cycle is crouch, hop, crouch with the feet reversed, hop: two jumps per cycle."
       ],
       "suggest": {
         "file": "c4-jump-semi-squat-jumps.png",
@@ -802,23 +818,25 @@
       "retake": {
         "attach": [
           "the previous sheet to fix: c4-jump-semi-squat-jumps.png",
-          "the character reference: c4-run-knees-waist-high.png"
+          "the character reference: c4-run-knees-waist-high.png",
+          "the foot-switch schematic: REF-footswitch.png"
         ],
         "problems": [
-          "The two jump poses look like ballet: toes pointed straight down, the legs stiff, the arms hanging limp and curved. Make it an athletic hop: both knees slightly bent, the feet only about a hand's width off the floor, the shoes mostly level (toes NOT pointed), one foot ahead of the other as they swap places, and the arms swinging forward and a little up for balance with the elbows slightly bent and the fists relaxed.",
+          "The two hop poses look like ballet: toes pointed straight down, the legs stiff, the arms hanging limp and curved. Make it an athletic hop: both knees slightly bent, the feet only about a hand's width off the floor, the shoes mostly level (toes NOT pointed), and the arms swinging forward and a little up for balance with the elbows slightly bent and the fists relaxed.",
+          "The two crouches do not clearly show the feet swapping. In crouch 1 the NEAR foot (his right, the lighter one) is ahead of the FAR foot (his left, the darker one) by one FULL shoe length, measured toe to toe. In crouch 3 it is the other way round: the FAR foot is one full shoe length ahead of the near foot. Use the schematic (image 3) for exactly where the feet go.",
+          "The two hop poses look too similar. They must be different: in pose 2 (the first hop) the feet have ALREADY swapped, so the FAR (left, darker) foot is ahead of the near foot in the air, ready to land that way; in pose 4 (the second hop) the NEAR (right, lighter) foot is ahead of the far foot in the air.",
           "The face has a smirk. Use a calm, focused, friendly face: a small closed smile, the eyes looking straight ahead (not up), the eyebrows level.",
           "The shorts look like tights. Use loose red athletic shorts with a wide leg opening that hang to mid-thigh and clearly stand away from the leg.",
-          "In the crouch the back is rounded and the head is pushed forward. The booklet says keep the back as straight as possible: a straight spine leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands on the knees, the arms straight.",
-          "Crouch 1 must have the NEAR foot (his right) slightly ahead and crouch 3 the FAR foot (his left) slightly ahead. The previous sheet had them the other way round.",
-          "The two jump poses must differ: pose 2 is the feet passing each other on the way up from crouch 1 (near foot still a little ahead); pose 4 is the feet passing on the way up from crouch 3 (far foot still a little ahead)."
+          "In the crouch the back is rounded and the head is pushed forward. The booklet says keep the back as straight as possible: a straight spine leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands on the knees, the arms straight."
         ],
         "keep": "the boy's look, line weight and colors, four poses in the same order, the same scale, and the two crouches resting on one floor line with the two jump poses clearly higher.",
         "poses": [
-          "CROUCH, NEAR FOOT AHEAD: a half crouch with the knees bent about halfway, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, the NEAR foot (his right foot) slightly ahead of the FAR foot (his left foot), both feet flat on the floor.",
-          "HOP UP: just left the floor, the body upright and straight, both knees slightly bent, both feet only about a hand's width off the floor with the shoes mostly level (toes NOT pointed), the feet passing each other with the near foot still a little ahead, the arms swinging forward and a little up for balance, the elbows slightly bent, the fists relaxed.",
-          "CROUCH, FAR FOOT AHEAD: landed in the half crouch, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, and now the FAR foot (his left foot) slightly ahead of the NEAR foot (his right foot), both feet flat on the floor.",
-          "HOP UP: the same hop as pose 2, but with the far foot still a little ahead as the feet pass each other: body upright and straight, knees slightly bent, feet a hand's width off the floor with the shoes mostly level, the arms swinging forward and a little up."
-        ]
+          "CROUCH, NEAR FOOT AHEAD: a half crouch with the knees bent about halfway, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, the NEAR foot (his right foot, lighter) one full shoe length ahead of the FAR foot (his left foot, darker), both feet flat on the floor.",
+          "FIRST HOP: in the air after the jump from crouch 1, the body upright and straight, both knees slightly bent, both feet about a hand's width off the floor with the shoes mostly level (toes NOT pointed), the feet already swapped so the FAR foot (his left, darker) is ahead of the near foot, the arms swinging forward and a little up for balance, the elbows slightly bent, the fists relaxed.",
+          "CROUCH, FAR FOOT AHEAD: landed in the half crouch, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, the FAR foot (his left, darker) one full shoe length ahead of the NEAR foot (his right, lighter), both feet flat on the floor.",
+          "SECOND HOP: in the air after the jump from crouch 3, the same hop as the first hop but with the feet swapped back, so the NEAR foot (his right, lighter) is ahead of the far foot in the air: body upright and straight, knees slightly bent, feet a hand's width off the floor with the shoes mostly level, the arms swinging forward and a little up."
+        ],
+        "schematic": "a schematic of WHERE the feet are in the four poses (stick figures, side view). Copy the foot positions only; do NOT copy its drawing style or any of its text."
       }
     },
     "toe-touch-clasped-c5": {

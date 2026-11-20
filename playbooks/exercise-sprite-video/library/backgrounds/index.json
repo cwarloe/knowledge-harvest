@@ -42,6 +42,18 @@
    "file": "bg-keeper-gym-landscape-v1.png",
    "verdict": "KEEPER (author, 2026-11-20): lighter grey floor, no mat baked in",
    "notes": "The orange gym recoloured to a mid-grey rubber floor (about #707680). Remaining polish for a ChatGPT pass: plain centre window, no sunbeams in the middle third (prompts page: Gym keeper). The mat is a separate full-frame overlay in floor perspective (prop kind 'overlay'); see gym-keeper-mat-standin-preview.png for the intended look."
+  },
+  {
+   "id": "old-forest",
+   "file": "(code-drawn: assets/backdrops/forest/)",
+   "verdict": "RETIRED for new builds (author, 2026-11-20)",
+   "notes": "Fine in the videos already made. When videos are redone they use the new rooms (theme.json chart_looks). Flat shapes, tree line at his feet, trees only hip-high."
+  },
+  {
+   "id": "mountain-v1",
+   "file": "(ChatGPT image, not saved on disk; re-send to measure)",
+   "verdict": "good match; fix path colour, centre peak, hill tint",
+   "notes": "Matches the boy's style (outlined trees, shaded clouds). Judged by eye only: tan path nearly the colour of his skin (change to cool grey), tall central peak behind his torso, mid-blue sky and hills behind a cyan tank. Rework prompt: overnight batch B, job 29."
   }
  ]
 }

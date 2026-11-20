@@ -312,7 +312,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 **Retake prompt (the sheet came back wrong; attach the bad sheet and a character reference):**
 
 ```text
-RETAKE. Attach two images: (1) the previous sheet to fix: ex5-stationary-run.png; (2) the character reference: c4-run-knees-waist-high.png.
+RETAKE. Attach TWO images: (1) the previous sheet to fix: ex5-stationary-run.png; (2) the character reference: c4-run-knees-waist-high.png.
 
 Use image 2 ONLY for how the boy looks (face, hair, skin tone, build, outline weight, shading, colors). Image 1 is a previous attempt at this exercise: do not copy its mistakes.
 
@@ -406,7 +406,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 Scissor stances are hard to tell apart from the side, so this asks for two cameras; send me the whole image and I will pick the row that reads best.
 
 ```text
-RETAKE. Attach two images: (1) the previous sheet to fix: ex5-scissor-jumps.png; (2) the character reference: c4-run-knees-waist-high.png.
+RETAKE. Attach TWO images: (1) the previous sheet to fix: ex5-scissor-jumps.png; (2) the character reference: c4-run-knees-waist-high.png.
 
 Use image 2 ONLY for how the boy looks (face, hair, skin tone, build, outline weight, shading, colors). Image 1 is a previous attempt at this exercise: do not copy its mistakes.
 
@@ -645,7 +645,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 **Retake prompt (the sheet came back wrong; attach the bad sheet and a character reference):**
 
 ```text
-RETAKE. Attach two images: (1) the previous sheet to fix: c2-ex3-back-extension.png; (2) the character reference: c4-run-knees-waist-high.png.
+RETAKE. Attach TWO images: (1) the previous sheet to fix: c2-ex3-back-extension.png; (2) the character reference: c4-run-knees-waist-high.png.
 
 Use image 2 ONLY for how the boy looks (face, hair, skin tone, build, outline weight, shading, colors). Image 1 is a previous attempt at this exercise: do not copy its mistakes.
 
@@ -1076,7 +1076,7 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 The forehead-behind-the-hands pose is hard to draw, so this asks for two cameras; send me the whole image and I will pick the row that shows it.
 
 ```text
-RETAKE. Attach two images: (1) the previous sheet to fix: c3-ex234-sit-back-push.png (use only its bottom row, the push-up); (2) the character reference: c4-run-knees-waist-high.png.
+RETAKE. Attach TWO images: (1) the previous sheet to fix: c3-ex234-sit-back-push.png (use only its bottom row, the push-up); (2) the character reference: c4-run-knees-waist-high.png.
 
 Use image 2 ONLY for how the boy looks (face, hair, skin tone, build, outline weight, shading, colors). Image 1 is a previous attempt at this exercise: do not copy its mistakes.
 
@@ -1303,6 +1303,38 @@ BODY AND FACE RULES (every figure): exactly TWO arms and TWO legs, so count the 
 BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
 ```
 
+**Retake prompt (the sheet came back wrong; attach the bad sheet and a character reference):**
+
+```text
+RETAKE. Attach TWO images: (1) the previous sheet to fix: c4-ex2-sit-up-toe-touch.png; (2) the character reference: c4-run-knees-waist-high.png.
+
+Use image 2 ONLY for how the boy looks (face, hair, skin tone, build, outline weight, shading, colors). Image 1 is a previous attempt at this exercise: do not copy its mistakes.
+
+THE BOY (keep identical in every figure): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.
+
+WHAT WAS WRONG WITH THE PREVIOUS ATTEMPT (fix every one of these):
+- In the last pose the head is upright and sits above the arms, and the arms reach forward below the face. The booklet says the arms stay in contact with the sides of the head THROUGHOUT. In the TOUCH pose his head must be tucked down between his upper arms, with both upper arms pressed against his ears, the whole upper body folded forward over the legs, and the straight arms carrying on forward from the head to the toes.
+- In the middle pose the arms must again be straight and against the sides of his head (the head between the arms), not out in front of the face.
+- Leave a wide empty gap between the figures so that no figure is clipped by or touches its neighbour.
+
+KEEP from the previous attempt: the boy's look, line weight and colors, three poses in the same order, head on the left and feet on the right, legs straight with the feet together and flat, the same camera angle in every pose, and the START pose with the arms straight along the floor above the head.
+
+Create a NEW wide 16:9 pose sheet of that same boy doing a SIT-UP THAT ENDS BY TOUCHING THE TOES, with the arms kept straight overhead against the ears, shown THREE times left to right, side-on body with the head and shoulders turned about 30 to 45 degrees toward the camera, so most of his face (both eyes) and a little of his chest show, facing right, with the SAME angle in every pose. In every pose he lies on his back (or sits) with his HEAD ON THE LEFT and his FEET ON THE RIGHT, same scale, all on the same invisible floor line, wide empty gaps so the figures never touch. Draw only the boy: no chair, no objects.
+
+THE THREE POSES (official exercise, follow exactly):
+1. START: lying flat on his back, legs straight and the feet together, both arms stretched straight out above the head along the floor, the upper arms touching the sides of the head.
+2. RISING: halfway up, upper body lifted about 45 degrees off the floor, both arms still straight above the head with the upper arms touching the sides of the head, legs straight, heels on the floor.
+3. TOUCH: sitting up and folded forward over the legs, both arms straight and still touching the sides of the head, the fingertips touching the toes, legs straight with the feet flat (knees bent only very slightly), heels on the floor.
+
+Draw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.
+
+BODY AND FACE RULES (every figure): exactly TWO arms and TWO legs, so count the limbs in every figure before you finish and never draw a third arm or leg; loose red athletic shorts that hang to mid-thigh with a wide leg opening, clearly shorts and not tights, leggings or briefs; a calm, friendly face with a small closed smile and level eyebrows, the eyes looking where he is going: no smirk, no big grin, no raised cheek; the back straight in standing and crouching poses; feet relaxed and natural, never pointed like a ballet dancer.
+
+BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.
+
+ALSO GIVE ME each figure as a separate transparent PNG at the original size, not resized, with a few pixels of empty margin, named by row and pose number.
+```
+
 ---
 
 ## Chart 4: a BACK EXTENSION WITH THE ARMS STRETCHED SIDEWAYS  (`back-extension-arms-sideways-c4`, 3 poses)
@@ -1371,26 +1403,27 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 
 **Retake prompt (the sheet came back wrong; attach the bad sheet and a character reference):**
 
-A back extension with the arms sideways is hard to read from one angle, so this asks for two cameras; send me the whole image and I will pick the row that reads best.
+Three cameras on one image: the T arms and the lift are hard to show together, so I will pick the row that reads best.
 
 ```text
-RETAKE. Attach two images: (1) the previous sheet to fix: c4-ex3-back-extension-arms-sideways.png; (2) the character reference: c4-run-knees-waist-high.png.
+RETAKE. Attach THREE images: (1) the previous sheet to fix: c4-ex3-back-extension-arms-sideways.png (it has two rows; the first row, seen from the front, is the better one); (2) the character reference: c4-run-knees-waist-high.png; (3) the geometry schematic: REF-backext-geometry.png.
 
-Use image 2 ONLY for how the boy looks (face, hair, skin tone, build, outline weight, shading, colors). Image 1 is a previous attempt at this exercise: do not copy its mistakes.
+Use image 2 ONLY for how the boy looks (face, hair, skin tone, build, outline weight, shading, colors). Image 1 is a previous attempt at this exercise: do not copy its mistakes. Image 3 is a schematic of the body angles (side view) and of the T-shaped arms (top-down). Copy the angles and positions only; do NOT copy its drawing style or any of its text.
 
 THE BOY (keep identical in every figure): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.
 
 WHAT WAS WRONG WITH THE PREVIOUS ATTEMPT (fix every one of these):
-- Every figure has THREE arms: besides the near arm and the far arm, a third arm lies across his back. He must have exactly two arms and two legs.
-- Pose 1 is floating in the air. In pose 1 he must lie completely flat: belly, chest, thighs and shins resting on the floor line, legs together, chin down near the floor.
-- The arms are swept forward like a flying superhero. They must stretch straight out SIDEWAYS from the shoulders, at right angles to his body, like the letter T, palms down.
-- Only the belly and hips may stay on the floor line in poses 2 and 3; everything else that lifts must lift clearly, with the legs straight and together.
+- In the side-view rows of earlier attempts the start pose did not rest flat. In pose 1 he must lie completely flat: belly, chest, thighs and shins resting on the floor line, legs together, chin down near the floor, the arms flat on the floor (see the schematic).
+- In the front view the lift is hard to see. Show how far the chest and the thighs lift in the TOP pose: the chest about 35 degrees up from the floor and the legs about 25 degrees up, with only the lower belly and hips still on the floor (see the schematic), and make the legs, knees and shoes clearly visible rising behind him.
+- He must have exactly two arms and two legs, and the arms must stretch straight out SIDEWAYS at right angles to his body, like the letter T, palms down (see the top-down part of the schematic). An earlier attempt had the near arm trailing back along his body, which is wrong.
+- Only the belly and hips may stay on the floor in poses 2 and 3; the legs stay straight and together.
 
 KEEP from the previous attempt: the boy's look, the line weight and colors, three poses in the same order, and in the TOP pose the chest and both thighs clearly lifted with the legs straight.
 
-Create ONE NEW 16:9 image with 2 ROWS. Each row shows the same boy doing a BACK EXTENSION WITH THE ARMS STRETCHED SIDEWAYS in the same THREE poses, left to right, in the same order, but from a different camera, so the best camera can be picked:
-ROW 1: seen from the FRONT and slightly above, his head nearer the camera and his feet farther away, so that both arms stick out to the left and right of his body like a T.
-ROW 2: three-quarter view from the SIDE and well above, head on the right and feet on the left, so that both arms are visible: one pointing toward the camera and one away, each clearly separate from the body.
+Create ONE NEW 16:9 image with 3 ROWS. Each row shows the same boy doing a BACK EXTENSION WITH THE ARMS STRETCHED SIDEWAYS in the same THREE poses, left to right, in the same order, but from a different camera, so the best camera can be picked:
+ROW 1: seen from the FRONT and slightly above, his head nearer the camera and his feet farther away, so that both arms stick out left and right like a T; raise the camera a little more than before so the legs and shoes can be seen rising behind him.
+ROW 2: seen from the FOOT END and well above, his feet nearer the camera and his head farther away, so that both arms stick out left and right like a T and the legs rising toward the camera are clearly visible.
+ROW 3: three-quarter view from the SIDE and well above, head on the right and feet on the left, the near arm pointing straight toward the camera at a right angle to his body (it will look short because it points at the camera) and the far arm pointing straight away.
 
 In every figure he lies FACE DOWN, flat on his belly, with the same orientation within a row. In every row the figures lie on one invisible floor line. Same scale in every figure and every row, a wide empty gap between figures and a wide empty band between rows.
 
@@ -1558,8 +1591,8 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 
 **My decisions to check [DRAFT]:**
 
-- The booklet does not say where the arms go in the jump, only 'body straight and feet leaving floor'. I chose arms straight and relaxed beside the body.
-- One cycle is crouch, jump, crouch with the feet reversed, jump: two jumps per cycle.
+- Feet: crouch 1 has the near (right) foot one full shoe length ahead, crouch 3 the far (left) foot; in the air the feet have already swapped (hop 1 far foot ahead, hop 2 near foot ahead). The booklet does not say where the arms go in the hop; I chose a small swing forward and up for balance. [DRAFT]
+- One cycle is crouch, hop, crouch with the feet reversed, hop: two jumps per cycle.
 
 **Prompt, with a character reference attached:**
 
@@ -1569,10 +1602,10 @@ Using the attached reference image ONLY for the character's appearance and art s
 Create a NEW wide 16:9 pose sheet of that same boy doing SEMI-SQUAT JUMPS, shown FOUR times left to right, side-on body with the head and shoulders turned about 30 to 45 degrees toward the camera, so most of his face (both eyes) and a little of his chest show, facing right, with the SAME angle in every pose. Same scale, wide empty gaps so the figures never touch. The two crouching poses rest on the same invisible floor line; the two jumping poses are drawn clearly higher, with both feet well above that line.
 
 THE FOUR POSES (official exercise, follow exactly):
-1. CROUCH, RIGHT FOOT AHEAD: a half crouch with the knees bent about halfway, the hands resting on the knees with the arms straight, the back as straight as possible, the NEAR foot (his right foot) slightly ahead of the FAR foot (his left foot), both feet flat on the floor.
-2. JUMP: jumped up to an upright position with the body straight, both feet clearly off the floor, the feet passing each other as they swap places, the arms straight and relaxed beside the body.
-3. CROUCH, LEFT FOOT AHEAD: landed in the half crouch, the hands resting on the knees with the arms straight, the back as straight as possible, and now the FAR foot (his left foot) slightly ahead of the NEAR foot (his right foot), both feet flat on the floor.
-4. JUMP: the same airborne upright pose as pose 2, the body straight and both feet well above the floor line.
+1. CROUCH, NEAR FOOT AHEAD: a half crouch with the knees bent about halfway, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, the NEAR foot (his right foot, lighter) one full shoe length ahead of the FAR foot (his left foot, darker), both feet flat on the floor.
+2. FIRST HOP: in the air after the jump from crouch 1, the body upright and straight, both knees slightly bent, both feet about a hand's width off the floor with the shoes mostly level (toes NOT pointed), the feet already swapped so the FAR foot (his left, darker) is ahead of the near foot, the arms swinging forward and a little up for balance, the elbows slightly bent, the fists relaxed.
+3. CROUCH, FAR FOOT AHEAD: landed in the half crouch, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, the FAR foot (his left, darker) one full shoe length ahead of the NEAR foot (his right, lighter), both feet flat on the floor.
+4. SECOND HOP: in the air after the jump from crouch 3, the same hop as the first hop but with the feet swapped back, so the NEAR foot (his right, lighter) is ahead of the far foot in the air: body upright and straight, knees slightly bent, feet a hand's width off the floor with the shoes mostly level, the arms swinging forward and a little up.
 
 Draw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.
 
@@ -1589,10 +1622,10 @@ Generate a wide 16:9 character pose sheet for a fitness animation: ONE boy shown
 CHARACTER (keep identical in every pose): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.
 
 THE FOUR POSES (official exercise, follow exactly):
-1. CROUCH, RIGHT FOOT AHEAD: a half crouch with the knees bent about halfway, the hands resting on the knees with the arms straight, the back as straight as possible, the NEAR foot (his right foot) slightly ahead of the FAR foot (his left foot), both feet flat on the floor.
-2. JUMP: jumped up to an upright position with the body straight, both feet clearly off the floor, the feet passing each other as they swap places, the arms straight and relaxed beside the body.
-3. CROUCH, LEFT FOOT AHEAD: landed in the half crouch, the hands resting on the knees with the arms straight, the back as straight as possible, and now the FAR foot (his left foot) slightly ahead of the NEAR foot (his right foot), both feet flat on the floor.
-4. JUMP: the same airborne upright pose as pose 2, the body straight and both feet well above the floor line.
+1. CROUCH, NEAR FOOT AHEAD: a half crouch with the knees bent about halfway, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, the NEAR foot (his right foot, lighter) one full shoe length ahead of the FAR foot (his left foot, darker), both feet flat on the floor.
+2. FIRST HOP: in the air after the jump from crouch 1, the body upright and straight, both knees slightly bent, both feet about a hand's width off the floor with the shoes mostly level (toes NOT pointed), the feet already swapped so the FAR foot (his left, darker) is ahead of the near foot, the arms swinging forward and a little up for balance, the elbows slightly bent, the fists relaxed.
+3. CROUCH, FAR FOOT AHEAD: landed in the half crouch, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, the FAR foot (his left, darker) one full shoe length ahead of the NEAR foot (his right, lighter), both feet flat on the floor.
+4. SECOND HOP: in the air after the jump from crouch 3, the same hop as the first hop but with the feet swapped back, so the NEAR foot (his right, lighter) is ahead of the far foot in the air: body upright and straight, knees slightly bent, feet a hand's width off the floor with the shoes mostly level, the arms swinging forward and a little up.
 
 Draw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.
 
@@ -1604,29 +1637,29 @@ BACKGROUND: perfectly flat solid magenta (#FF00FF), nothing else. No ground shad
 **Retake prompt (the sheet came back wrong; attach the bad sheet and a character reference):**
 
 ```text
-RETAKE. Attach two images: (1) the previous sheet to fix: c4-jump-semi-squat-jumps.png; (2) the character reference: c4-run-knees-waist-high.png.
+RETAKE. Attach THREE images: (1) the previous sheet to fix: c4-jump-semi-squat-jumps.png; (2) the character reference: c4-run-knees-waist-high.png; (3) the foot-switch schematic: REF-footswitch.png.
 
-Use image 2 ONLY for how the boy looks (face, hair, skin tone, build, outline weight, shading, colors). Image 1 is a previous attempt at this exercise: do not copy its mistakes.
+Use image 2 ONLY for how the boy looks (face, hair, skin tone, build, outline weight, shading, colors). Image 1 is a previous attempt at this exercise: do not copy its mistakes. Image 3 is a schematic of WHERE the feet are in the four poses (stick figures, side view). Copy the foot positions only; do NOT copy its drawing style or any of its text.
 
 THE BOY (keep identical in every figure): a 12-year-old boy: short spiky black hair, warm tan skin, simple friendly face with small dark eyes, athletic but slim build. Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles. Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges.
 
 WHAT WAS WRONG WITH THE PREVIOUS ATTEMPT (fix every one of these):
-- The two jump poses look like ballet: toes pointed straight down, the legs stiff, the arms hanging limp and curved. Make it an athletic hop: both knees slightly bent, the feet only about a hand's width off the floor, the shoes mostly level (toes NOT pointed), one foot ahead of the other as they swap places, and the arms swinging forward and a little up for balance with the elbows slightly bent and the fists relaxed.
+- The two hop poses look like ballet: toes pointed straight down, the legs stiff, the arms hanging limp and curved. Make it an athletic hop: both knees slightly bent, the feet only about a hand's width off the floor, the shoes mostly level (toes NOT pointed), and the arms swinging forward and a little up for balance with the elbows slightly bent and the fists relaxed.
+- The two crouches do not clearly show the feet swapping. In crouch 1 the NEAR foot (his right, the lighter one) is ahead of the FAR foot (his left, the darker one) by one FULL shoe length, measured toe to toe. In crouch 3 it is the other way round: the FAR foot is one full shoe length ahead of the near foot. Use the schematic (image 3) for exactly where the feet go.
+- The two hop poses look too similar. They must be different: in pose 2 (the first hop) the feet have ALREADY swapped, so the FAR (left, darker) foot is ahead of the near foot in the air, ready to land that way; in pose 4 (the second hop) the NEAR (right, lighter) foot is ahead of the far foot in the air.
 - The face has a smirk. Use a calm, focused, friendly face: a small closed smile, the eyes looking straight ahead (not up), the eyebrows level.
 - The shorts look like tights. Use loose red athletic shorts with a wide leg opening that hang to mid-thigh and clearly stand away from the leg.
 - In the crouch the back is rounded and the head is pushed forward. The booklet says keep the back as straight as possible: a straight spine leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands on the knees, the arms straight.
-- Crouch 1 must have the NEAR foot (his right) slightly ahead and crouch 3 the FAR foot (his left) slightly ahead. The previous sheet had them the other way round.
-- The two jump poses must differ: pose 2 is the feet passing each other on the way up from crouch 1 (near foot still a little ahead); pose 4 is the feet passing on the way up from crouch 3 (far foot still a little ahead).
 
 KEEP from the previous attempt: the boy's look, line weight and colors, four poses in the same order, the same scale, and the two crouches resting on one floor line with the two jump poses clearly higher.
 
 Create a NEW wide 16:9 pose sheet of that same boy doing SEMI-SQUAT JUMPS, shown FOUR times left to right, side-on body with the head and shoulders turned about 30 to 45 degrees toward the camera, so most of his face (both eyes) and a little of his chest show, facing right, with the SAME angle in every pose. Same scale, wide empty gaps so the figures never touch. The two crouching poses rest on the same invisible floor line; the two jumping poses are drawn clearly higher, with both feet well above that line.
 
 THE FOUR POSES (official exercise, follow exactly):
-1. CROUCH, NEAR FOOT AHEAD: a half crouch with the knees bent about halfway, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, the NEAR foot (his right foot) slightly ahead of the FAR foot (his left foot), both feet flat on the floor.
-2. HOP UP: just left the floor, the body upright and straight, both knees slightly bent, both feet only about a hand's width off the floor with the shoes mostly level (toes NOT pointed), the feet passing each other with the near foot still a little ahead, the arms swinging forward and a little up for balance, the elbows slightly bent, the fists relaxed.
-3. CROUCH, FAR FOOT AHEAD: landed in the half crouch, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, and now the FAR foot (his left foot) slightly ahead of the NEAR foot (his right foot), both feet flat on the floor.
-4. HOP UP: the same hop as pose 2, but with the far foot still a little ahead as the feet pass each other: body upright and straight, knees slightly bent, feet a hand's width off the floor with the shoes mostly level, the arms swinging forward and a little up.
+1. CROUCH, NEAR FOOT AHEAD: a half crouch with the knees bent about halfway, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, the NEAR foot (his right foot, lighter) one full shoe length ahead of the FAR foot (his left foot, darker), both feet flat on the floor.
+2. FIRST HOP: in the air after the jump from crouch 1, the body upright and straight, both knees slightly bent, both feet about a hand's width off the floor with the shoes mostly level (toes NOT pointed), the feet already swapped so the FAR foot (his left, darker) is ahead of the near foot, the arms swinging forward and a little up for balance, the elbows slightly bent, the fists relaxed.
+3. CROUCH, FAR FOOT AHEAD: landed in the half crouch, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, the FAR foot (his left, darker) one full shoe length ahead of the NEAR foot (his right, lighter), both feet flat on the floor.
+4. SECOND HOP: in the air after the jump from crouch 3, the same hop as the first hop but with the feet swapped back, so the NEAR foot (his right, lighter) is ahead of the far foot in the air: body upright and straight, knees slightly bent, feet a hand's width off the floor with the shoes mostly level, the arms swinging forward and a little up.
 
 Draw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.
 

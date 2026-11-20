@@ -76,6 +76,13 @@ def gym_keeper(theme, spec, fmt):
     return {"title": g["title"], "numbers": {k: n[k] for k in ("W", "H", "floor", "strip_top", "strip_bottom")} | {"horizon": n["wall_floor"], "ground_top": n["wall_floor"], "boy_h": round(F["box"][1] / H * 100), "back": n["strip_top"], "front": n["strip_bottom"]}, "items": items}
 
 
+def candidates(theme, spec):
+    F = theme["formats"]["landscape"]; W, H, floor = F["W"], F["H"], round(F["ground"] * 100)
+    n = {"W": W, "H": H, "aspect": "wide 16:9", "floor": floor, "strip_top": floor - 7, "strip_bottom": floor + 6}
+    return {"title": spec["candidates"]["title"], "numbers": {"W": W, "H": H, "floor": floor, "strip_top": n["strip_top"], "strip_bottom": n["strip_bottom"], "horizon": floor - 19, "ground_top": floor - 19, "boy_h": round(F["box"][1] / H * 100), "back": n["strip_top"], "front": n["strip_bottom"]},
+            "items": [dict(i, prompt=i["prompt"].format(**n)) for i in spec["candidates"]["items"]]}
+
+
 def build_all(theme, spec, light="morning"):
     out = {}
     for fmt in ("landscape", "portrait"):
@@ -86,6 +93,7 @@ def build_all(theme, spec, light="morning"):
                 items.append({"plane": pl, "title": f"Layer {i}: {spec['plane_names'][pl].title()}", "file": f"{stem}-{i:02d}-{pl}.png", "prompt": layer(theme, spec, fmt, envk, light, pl)})
             out.setdefault(fmt, {})[envk] = {"title": env["title"], "numbers": {k: n[k] for k in ("W", "H", "floor", "horizon", "ground_top", "boy_h", "strip_top", "strip_bottom", "back", "front")}, "items": items}
     for fmt in ("landscape", "portrait"): out[fmt]["gym-keeper"] = gym_keeper(theme, spec, fmt)
+    out["landscape"]["candidates"] = candidates(theme, spec)
     return out
 
 
