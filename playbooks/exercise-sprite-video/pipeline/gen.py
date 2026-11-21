@@ -33,7 +33,7 @@ def appearance(ch):
 
 
 def tags(ex):
-    """Which learned rules apply: 'all' plus the explicit tags in exercises.toml (jump, lying, touch, front, multirow)."""
+    """Which learned rules apply: 'all' plus the explicit tags in exercises.toml (jump, prone, supine, touch, front, multirow)."""
     return {"all"} | set(ex.get("tags", []))
 
 
@@ -178,7 +178,7 @@ def review_checklist(exercise_ids, character, out_path):
             out.append("- [ ] " + fill(e["key_rule"], ch).replace("\n", " "))
         out.append("- [ ] Exactly two arms and two legs in every figure (count the hidden far-side limbs too)")
         for r in rules:
-            if r["when"] in tags(e) and r["id"] in ("R-CONTACT", "R-FLAT", "R-FRONT", "R-LIFT"):
+            if r["when"] in tags(e) and r["id"] in ("R-CONTACT", "R-FLAT", "R-FLAT-SUPINE", "R-FRONT", "R-LIFT"):
                 out.append(f"- [ ] ({r['id']}) " + fill(r["text"], ch))
         for p in e.get("pitfalls", []):
             out.append(f"- [ ] Not repeated: " + fill(p, ch).replace("\n", " "))

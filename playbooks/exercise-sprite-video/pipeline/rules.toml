@@ -1,6 +1,6 @@
 # Learned rules: every recurring defect from LESSONS.md becomes one line here, and the prompt generator
 # adds the applicable lines to EVERY prompt. This is how a lesson stops costing us twice.
-# when: "all" | "jump" (has airborne poses) | "lying" (on the floor) | "multirow" | "touch" (toe-touch family) | "front"
+# when: "all" | "jump" (has airborne poses) | "prone" (face down) | "supine" (on the back) | "multirow" | "touch" (toe-touch family) | "front"
 # defect = the LESSONS.md defect id this rule prevents.
 
 [[rule]]
@@ -36,8 +36,14 @@ text = "In a strict front view every figure faces the camera squarely, including
 [[rule]]
 id = "R-FLAT"
 defect = "D-06"
-when = "lying"
-text = "In a START pose the figure lies completely flat: belly, chest, thighs and shins all rest on the floor line, with nothing lifted. Only the later poses lift."
+when = "prone"
+text = "In a START pose the figure lies completely flat face down: belly, chest, thighs and shins all rest on the floor line, with nothing lifted. Only the later poses lift."
+
+[[rule]]
+id = "R-FLAT-SUPINE"
+defect = "D-06"
+when = "supine"
+text = "In a START pose the figure lies completely flat on the back: head, shoulders, back, hips and straight legs all rest on the floor line, with nothing lifted. Only the later poses rise."
 
 [[rule]]
 id = "R-LIFT"

@@ -11,7 +11,7 @@ BRIEFS = os.path.join(os.path.dirname(HERE), "briefs", "BATCH-A-sprites.md")
 RULES = S.load_toml(os.path.join(HERE, "rules.toml"))["rule"]
 STAGE = S.load_stage()
 EXS = S.load_exercises()
-VALID_WHEN = {"all", "jump", "lying", "multirow", "touch", "front", "inline"}
+VALID_WHEN = {"all", "jump", "prone", "supine", "multirow", "touch", "front", "inline"}
 
 
 class Library(unittest.TestCase):
@@ -34,6 +34,37 @@ class Library(unittest.TestCase):
     def test_job_numbers_unique(self):
         jobs = [e["job"] for e in EXS]
         self.assertEqual(len(jobs), len(set(jobs)))
+
+
+class Orientation(unittest.TestCase):
+    """The 'start flat' rule must match how the exercise lies (review finding on PR #30)."""
+
+    def prompt(self, key):
+        e = S.find_exercise(EXS, key)
+        return gen.sprite_prompt(e, S.load_character("boy"), RULES, STAGE)[0]
+
+    def test_supine_exercises_are_not_told_to_lie_face_down(self):
+        for k in ("sit-up-toe-touch-c4", "sit-up-twist-c5", "pike-sit-up-c6"):
+            p = self.prompt(k)
+            self.assertNotIn("face down: belly", p, k)
+            self.assertIn("flat on the back", p, k)
+
+    def test_prone_exercises_keep_the_face_down_rule(self):
+        for k in ("back-extension-c2", "back-extension-press-c6"):
+            self.assertIn("flat face down", self.prompt(k), k)
+
+
+class Segmentation(unittest.TestCase):
+    def test_attached_piece_grows_the_figure_box(self):
+        import numpy as np
+        a = np.zeros((200, 300, 3), np.uint8); a[:] = (255, 0, 255)
+        a[50:150, 100:160] = (0, 0, 0)            # the figure body
+        a[100:112, 175:187] = (0, 0, 0)           # a detached piece 15 px to the right of the body
+        rows, lab = S.segment(a, np.array([255., 0., 255.]), min_area_frac=0.05, attach_dist=30)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(len(rows[0]), 1)
+        x, y, w, h = rows[0][0]["bbox"]
+        self.assertGreaterEqual(x + w, 187, "box must include the attached piece")
 
 
 class CharacterSwap(unittest.TestCase):

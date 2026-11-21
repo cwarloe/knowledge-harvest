@@ -120,6 +120,12 @@ def segment(a, bg, rows_expected=1, min_area_frac=0.0015, attach_dist=30):
         best = min(figs, key=lambda f: _rect_dist(cx, cy, f["bbox"]))
         if _rect_dist(cx, cy, best["bbox"]) <= attach_dist:
             best["labels"].add(i)
+            # grow the figure's box to include the attached piece so cropping and the feet pivot see it
+            sx, sy, sw, sh = (int(v) for v in stats[i][:4])
+            bx, by, bw, bh = best["bbox"]
+            x0, y0 = min(bx, sx), min(by, sy)
+            x1, y1 = max(bx + bw, sx + sw), max(by + bh, sy + sh)
+            best["bbox"] = (x0, y0, x1 - x0, y1 - y0)
     figs.sort(key=lambda f: f["bbox"][1] + f["bbox"][3] / 2)
     cyv = [f["bbox"][1] + f["bbox"][3] / 2 for f in figs]
     if rows_expected > 1 and len(figs) >= rows_expected:

@@ -54,7 +54,7 @@ more, so the two steps are both needed.
 | D-03 | Background not exactly `#FF00FF` (green channel 3-30) | All 22 sheets | Same cause as D-02 | Key with a measured colour and a tolerance of at least 40, never an exact match | `R-KEY`, `cut.py` |
 | D-04 | Requested camera ignored: two rows that look alike, side view where three-quarter front was asked, "strict front" figures turned | 08, 17, 09, 14 | Camera words get averaged; a retake can repeat the old angle | Name the camera in each row, forbid turning in strict front, check in review | `R-CAMERA`, `R-FRONT`, checklist |
 | D-05 | Fingertips land on the shoe, not outside the foot | 02, 09, 14 | Anatomy shortcut: hands drift to the nearest foot | State the offset in shoe-widths | `R-CONTACT` |
-| D-06 | Start pose not flat (legs or feet lifted) | 04 row 3, 06-v2 | The model draws the "exercise" look in every frame | Say that only later poses lift | `R-FLAT` |
+| D-06 | Start pose not flat (legs or feet lifted) | 04 row 3, 06-v2 | The model draws the "exercise" look in every frame | Say that only later poses lift | `R-FLAT` (face down), `R-FLAT-SUPINE` (on the back) |
 | D-07 | Lift too small, or the extra step is barely visible | 06-v2 (thighs), 08 (jumps), 16 (press, about 30 px) | "A little higher" is below what the model draws as a difference | Give lift as a share of figure height; measure airborne poses | `R-LIFT`, `qc` |
 | D-08 | Smirk instead of a calm smile; hop arms in a boxing guard | 01-v2 | Style drift | Face rule is in the character file; arm action is in the pose text | `characters/*.toml`, `fixes.toml` |
 | D-09 | Extra or missing limbs | None seen in the sheets reviewed | Rule worked | Keep "count the limbs" in every prompt | body rules line |
