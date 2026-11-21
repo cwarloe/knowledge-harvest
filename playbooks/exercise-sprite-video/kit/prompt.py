@@ -17,7 +17,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def build(spec, ch, reference=True):
-    """reference=True: a character image is attached. reference=False: the first strip, the boy described in words only."""
+    """reference=True: a character image is attached. reference=False: the first strip, the character described in words only."""
+    N = ch.get("noun", "boy")
     n = len(spec["poses"]); words = {2: "TWO", 3: "THREE", 4: "FOUR", 5: "FIVE", 6: "SIX"}.get(n, str(n))
     layout = spec.get('layout', 'Same scale, all on the same invisible floor line, wide empty gaps so the figures never touch.')
     view = spec.get('view', ch['view'])
@@ -26,11 +27,11 @@ def build(spec, ch, reference=True):
             f"Using the attached reference image ONLY for the character's appearance and art style ({ch['description']}). "
             "IGNORE the poses in the reference image completely.",
             "",
-            f"Create a NEW wide {ch['generator']['aspect']} pose sheet of that same boy doing {spec['exercise']}, shown {words} times left to right, {view}. {layout}",
+            f"Create a NEW wide {ch['generator']['aspect']} pose sheet of that same {N} doing {spec['exercise']}, shown {words} times left to right, {view}. {layout}",
         ]
     else:
         lines = [
-            f"Generate a wide {ch['generator']['aspect']} character pose sheet for a fitness animation: ONE boy shown {words} times, left to right, doing {spec['exercise']}, {view}. "
+            f"Generate a wide {ch['generator']['aspect']} character pose sheet for a fitness animation: ONE {N} shown {words} times, left to right, doing {spec['exercise']}, {view}. "
             f"This is a pose-by-pose animation reference, so all {words.lower()} figures must be the same character at the same scale. {layout}",
             "",
             f"CHARACTER (keep identical in every pose): {ch['description']}.",
@@ -54,17 +55,18 @@ def retake(spec, ch, individual=True):
     With 'rows', it asks for the same poses from several cameras on one image, so the best camera can be picked. individual=False leaves out the request for separate figure files."""
     r = spec.get("retake")
     if not r: return None
+    N = ch.get("noun", "boy")
     poses = r.get("poses") or spec["poses"]; n = len(poses); words = {2: "TWO", 3: "THREE", 4: "FOUR", 5: "FIVE", 6: "SIX"}.get(n, str(n)); aspect = ch["generator"]["aspect"]; rows = r.get("rows")
     att = r["attach"]; names = {1: "ONE", 2: "TWO", 3: "THREE", 4: "FOUR"}
     L = [f"RETAKE. Attach {names.get(len(att), len(att))} images: " + "; ".join(f"({i}) {a}" for i, a in enumerate(att, 1)) + ".", "",
-         "Use image 2 ONLY for how the boy looks (face, hair, skin tone, build, outline weight, shading, colors). Image 1 is a previous attempt at this exercise: do not copy its mistakes." + (f" Image 3 is {r['schematic']}" if len(att) > 2 and r.get("schematic") else ""), "",
-         f"THE BOY (keep identical in every figure): {ch['description']}.", "", "WHAT WAS WRONG WITH THE PREVIOUS ATTEMPT (fix every one of these):"] + [f"- {x}" for x in r["problems"]] + ["", f"KEEP from the previous attempt: {r['keep']}", ""]
+         f"Use image 2 ONLY for how the {N} looks (face, hair, skin tone, build, outline weight, shading, colors). Image 1 is a previous attempt at this exercise: do not copy its mistakes." + (f" Image 3 is {r['schematic']}" if len(att) > 2 and r.get("schematic") else ""), "",
+         f"THE {N.upper()} (keep identical in every figure): {ch['description']}.", "", "WHAT WAS WRONG WITH THE PREVIOUS ATTEMPT (fix every one of these):"] + [f"- {x}" for x in r["problems"]] + ["", f"KEEP from the previous attempt: {r['keep']}", ""]
     layout = r.get("layout") or spec.get("layout", "Same scale, all on the same invisible floor line, wide empty gaps so the figures never touch.")
     if rows:
-        L += [f"Create ONE NEW {aspect} image with {len(rows)} ROWS. Each row shows the same boy doing {spec['exercise']} in the same {words} poses, left to right, in the same order, but from a different camera, so the best camera can be picked:"] + [f"ROW {i}: {v}." for i, v in enumerate(rows, 1)]
+        L += [f"Create ONE NEW {aspect} image with {len(rows)} ROWS. Each row shows the same {N} doing {spec['exercise']} in the same {words} poses, left to right, in the same order, but from a different camera, so the best camera can be picked:"] + [f"ROW {i}: {v}." for i, v in enumerate(rows, 1)]
         L += ["", f"{layout} Same scale in every figure and every row, a wide empty gap between figures and a wide empty band between rows."]
     else:
-        L += [f"Create a NEW wide {aspect} pose sheet of that same boy doing {spec['exercise']}, shown {words} times left to right, {spec.get('view', ch['view'])}. {layout}"]
+        L += [f"Create a NEW wide {aspect} pose sheet of that same {N} doing {spec['exercise']}, shown {words} times left to right, {spec.get('view', ch['view'])}. {layout}"]
     if spec.get("rule"): L += ["", spec["rule"]]
     L += ["", f"THE {words} POSES (official exercise, follow exactly):"] + [f"{i}. {x}" for i, x in enumerate(poses, 1)]
     if spec.get("far_side", True): L += ["", ch["far_side"]]
@@ -74,9 +76,46 @@ def retake(spec, ch, individual=True):
     return "\n".join(L)
 
 
+def load_character(path=None):
+    """The character to draw. Default config/character.json; override with --character PATH or SPRITE_CHARACTER=PATH,
+    so a second character (config/characters/<name>.json) reuses every exercise spec unchanged."""
+    path = path or os.environ.get("SPRITE_CHARACTER") or os.path.join(ROOT, "config", "character.json")
+    ch = json.load(open(path)); ch.setdefault("noun", "boy"); return ch
+
+
+# Rules that hold for every character and every exercise. Character-specific wording (clothes, face) stays in the character file.
+UNIVERSAL = ("SPACING: the figures must not touch or overlap anywhere (hands, feet and hair included). The gap only has to be clear; "
+             "it does not have to be any particular size, so do not shrink or squash a figure to make a bigger gap.")
+
+
+def remake(spec, ch, attach, schematic_note=None):
+    """A fresh take that leans on the plan's own drawing instead of a failed take.
+    attach: list of (filename, role) in order, role one of 'character', 'booklet', 'schematic'.
+    Why: attaching the bad sheet anchored the tool to its mistakes (batch C kept most of them), while the one
+    job that got the form right (semi-squat jumps) had a position diagram attached."""
+    N = ch.get("noun", "boy"); poses = spec["poses"]; n = len(poses); words = {2: "TWO", 3: "THREE", 4: "FOUR", 5: "FIVE", 6: "SIX"}.get(n, str(n))
+    aspect = ch["generator"]["aspect"]; names = {1: "ONE", 2: "TWO", 3: "THREE"}
+    roles = {"character": f"ONLY for how the {N} looks: face, hair, skin tone, build, clothes, outline weight, shading and colors. Ignore its pose completely.",
+             "booklet": "the official drawing of this exercise from the original 1961 5BX booklet. Copy the BODY POSITIONS from it: where the head, hands, hips and feet are and how the body bends. Do NOT copy its drawing style (white silhouettes) and never add a second person.",
+             "schematic": schematic_note or "a stick-figure diagram of WHERE the limbs are. Copy the positions only, never its style, colors or text."}
+    L = [f"Attach {names.get(len(attach), len(attach))} images, in this order: " + "; ".join(f"({i}) {f}" for i, (f, _) in enumerate(attach, 1)) + ".", ""]
+    L += [f"Image {i} is {roles[r]}" if r != "character" else f"Use image {i} {roles[r]}" for i, (_, r) in enumerate(attach, 1)]
+    L += ["", f"THE {N.upper()} (keep identical in every figure): {ch['description']}.", ""]
+    r = spec.get("retake") or {}
+    if r.get("problems"): L += ["EARLIER ATTEMPTS GOT THESE WRONG (avoid every one):"] + [f"- {x}" for x in r["problems"]] + [""]
+    L += [f"Create a NEW wide {aspect} pose sheet of that same {N} doing {spec['exercise']}, shown {words} times left to right, {(spec.get('remake') or {}).get('view') or spec.get('view', ch['view'])}. {spec.get('layout', '')}".rstrip()]
+    if spec.get("rule"): L += ["", spec["rule"]]
+    L += ["", f"THE {words} POSES (official exercise, follow exactly):"] + [f"{i}. {x}" for i, x in enumerate(poses, 1)]
+    if spec.get("far_side", True): L += ["", ch["far_side"]]
+    if ch.get("body_rules"): L += ["", ch["body_rules"]]
+    L += ["", UNIVERSAL, "", "BACKGROUND: " + ch["background"]]
+    if spec.get("check"): L += ["", "BEFORE YOU FINISH, CHECK THE SHEET AGAINST THIS LIST and redraw any figure that fails:"] + [f"- {x}" for x in spec["check"]]
+    return "\n".join(L)
+
+
 def publish_all(data, out_md, out_json):
     """One file with every prompt, the character, the settings and what was learned: usable with any image tool."""
-    ch = json.load(open(os.path.join(ROOT, "config", "character.json"))); sp = json.load(open(os.path.join(ROOT, "prompts", "strips.json")))
+    ch = load_character(); sp = json.load(open(os.path.join(ROOT, "prompts", "strips.json")))
     reg = json.load(open(os.path.join(ROOT, "config", "strips.json"))); edits = json.load(open(os.path.join(ROOT, "prompts", "edits.json")))
     items = []
     for key, spec in sorted(sp["strips"].items(), key=lambda kv: (kv[1].get("chart", 1), ["ex1", "ex2", "ex3", "ex4", "run", "jump"].index(kv[1].get("slot", "ex1")))):
@@ -128,6 +167,7 @@ if __name__ == "__main__":
     ap.add_argument("--strip"); ap.add_argument("--booklet", action="store_true"); ap.add_argument("--first", action="store_true", help="with --strip: the no-reference version for a character's first strip")
     ap.add_argument("--all", action="store_true", help="write prompts/PROMPTS.md and prompts/prompts.json (everything, for any image tool)")
     ap.add_argument("--data"); ap.add_argument("--chart", type=int, default=1); ap.add_argument("--slot", default="ex1")
+    ap.add_argument("--character", help="character file (default config/character.json, or $SPRITE_CHARACTER)")
     a = ap.parse_args()
     if a.all:
         publish_all(json.load(open(a.data)) if a.data else None, os.path.join(ROOT, "prompts", "PROMPTS.md"), os.path.join(ROOT, "prompts", "prompts.json"))
@@ -137,4 +177,4 @@ if __name__ == "__main__":
     else:
         specs = json.load(open(os.path.join(ROOT, "prompts", "strips.json")))["strips"]
         if a.strip not in specs: sys.exit(f"unknown strip '{a.strip}'. Known: {', '.join(specs)}")
-        print(build(specs[a.strip], json.load(open(os.path.join(ROOT, "config", "character.json"))), reference=not a.first))
+        print(build(specs[a.strip], load_character(a.character), reference=not a.first))

@@ -1,0 +1,24 @@
+{
+  "_about": "TEMPLATE for a new character. Copy to config/characters/<name>.json, fill every field, then follow docs/NEW-CHARACTER.md. Every exercise spec in prompts/strips.json works unchanged with any character: only this file differs.",
+  "name": "<short name, e.g. 'coach rosa'>",
+  "noun": "<one word the prompts use for the character: 'boy', 'girl', 'woman', 'man', 'robot'...>",
+  "description": "<ONE sentence, in this order: age and type; hair; skin; face; build; each piece of clothing with its color; shoes; then the art style (outline weight, shading, color saturation). Be concrete: colors by name, not mood. This is pasted into every prompt.>",
+  "locked": [
+    "<decisions that must never drift, with the date: e.g. 'Green shoes, never white (2026-12-01)'>"
+  ],
+  "view": "side-on body with the head and shoulders turned about 30 to 45 degrees toward the camera, so most of his face (both eyes) and a little of his chest show, facing right, with the SAME angle in every pose",
+  "far_side": "Draw the arm and leg on the far side of the body in a noticeably darker shade of the same color (darker skin tone, darker shorts, darker shoe) so near and far limbs are easy to tell apart.",
+  "background": "perfectly flat solid magenta (#FF00FF), nothing else. No ground shadow, no floor line, no scenery, no gradient, no text, labels, numbers or arrows.",
+  "generator": {
+    "model": "gemini-3-pro-image",
+    "aspect": "16:9",
+    "resolution": "1K",
+    "variations": 4
+  },
+  "body_rules": "BODY AND FACE RULES (every figure): exactly TWO arms and TWO legs, so count the limbs in every figure before you finish and never draw a third arm or leg; <the clothing rule that keeps going wrong for THIS character, e.g. 'loose shorts that hang to mid-thigh, not tights'>; <the face you want: e.g. 'a calm, friendly face with a small closed smile, no smirk'>; the back straight in standing and crouching poses; feet relaxed and natural, never pointed like a ballet dancer.",
+  "_notes": [
+    "Keep the limb-count, straight-back and natural-feet rules: they fixed real failures with the first character and apply to anyone.",
+    "Pick clothing colors that are far from magenta (#FF00FF) and from each other: the keyer removes magenta, and the far-side shading needs a visibly darker version of each color.",
+    "Avoid pink, purple and magenta anywhere on the character for the same reason."
+  ]
+}

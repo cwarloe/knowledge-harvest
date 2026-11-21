@@ -130,7 +130,8 @@
       ],
       "learned": [
         "Stance A and stance B look almost the same in profile; only the shading differs. A front view would fix it.",
-        "Stance B came out as a lunge with a bent back knee. An edit pass made it upright; see edits.json."
+        "Stance B came out as a lunge with a bent back knee. An edit pass made it upright; see edits.json.",
+        "Batch C (2026-11-20): two camera rows came back almost identical and stance B was still indistinguishable from A. Remake in a single three-quarter front view with a stance diagram attached."
       ],
       "chart": 1,
       "slot": "jump",
@@ -141,9 +142,9 @@
           "the character reference: c4-run-knees-waist-high.png"
         ],
         "problems": [
-          "Stance A and stance B look almost the same from the side. They must be clearly different: in stance A the NEAR leg and the FAR arm are forward and the far leg and the near arm are back; in stance B everything is the other way round.",
-          "Stance B came out as a lunge with a bent back knee. In both stances the front leg is bent only slightly and the back leg is straight, the body upright, the arms straight at shoulder height.",
-          "The jump poses must clearly leave the floor with both feet well off it."
+          "Stance A and stance B looked almost the same. They are mirror images: in stance A his RIGHT leg and LEFT arm are forward; in stance B his LEFT leg and RIGHT arm are forward. In a strict side view this is hard to see, so draw a three-quarter front view where the forward leg is clearly the one nearer the camera in A and the one farther from the camera in B.",
+          "One stance came out as a lunge. In both stances the front knee is only slightly bent, the back leg is STRAIGHT, the body upright, both arms straight at shoulder height (one forward, one back).",
+          "In the two jump poses both feet are clearly off the floor, the legs passing each other under the hips."
         ],
         "keep": "the boy's look, line weight and colors, four poses in the same order, the same scale, and the stances resting on one floor line with the jump poses clearly higher.",
         "rows": [
@@ -151,6 +152,18 @@
           "SIDE view facing right with a clearly darker shade on the far arm and far leg"
         ],
         "why_rows": "Scissor stances are hard to tell apart from the side, so this asks for two cameras; send me the whole image and I will pick the row that reads best."
+      },
+      "check": [
+        "Four poses: STANCE A, JUMP, STANCE B, JUMP",
+        "Stance A: right leg and left arm forward. Stance B: left leg and right arm forward. You can tell them apart without looking at shading",
+        "Back leg straight in both stances, no lunge",
+        "Both jump poses clearly higher than the stances, both feet off the floor"
+      ],
+      "remake": {
+        "booklet": "BOOKLET-c1e5.png",
+        "schematic": "REF-scissor-stances.png",
+        "schematic_note": "a stick-figure diagram of the four poses seen from the side: which leg and which arm are forward in stance A and in stance B, and both feet off the floor in the jumps. Copy the positions only, never its style, colors or text.",
+        "view": "a THREE-QUARTER FRONT view: the body turned about 45 degrees toward the camera, facing right, so the viewer can see which leg and which arm are forward. The SAME angle in all four poses"
       }
     },
     "toe-touch-c2": {
@@ -247,7 +260,9 @@
         "Three poses, head on the right, feet on the left",
         "Arms straight back, hands under the thighs (not planted in front like a push-up)",
         "In TOP the head, shoulders and BOTH legs are up together",
-        "Legs straight, thighs clear of the hands"
+        "Legs straight, thighs clear of the hands",
+        "The hands are in the same place, under the front of the thighs, in all three poses",
+        "START, LIFTING and TOP are three clearly different heights"
       ],
       "draft": [],
       "suggest": {
@@ -266,7 +281,8 @@
         "Form is right: head, shoulders and both legs up, back gently arched, arms straight back, hands on the floor.",
         "The leg raise is modest: the feet rise about 20 px more than at the start, so the thighs only just clear the hands. If a clearer raise is wanted, ask for 'legs raised high' or run an edit pass.",
         "The START pose already has the feet a few pixels off the floor.",
-        "Both feet lift at the top, so a planted-foot anchor makes him slide 364 px. The new 'hips' anchor (the red shorts) holds him to 2 px. Use it for any exercise where he lies and the hips stay on the floor."
+        "Both feet lift at the top, so a planted-foot anchor makes him slide 364 px. The new 'hips' anchor (the red shorts) holds him to 2 px. Use it for any exercise where he lies and the hips stay on the floor.",
+        "Batch C (2026-11-20): the lift improved but the hands moved forward to the hips, and START and LIFTING looked the same. Remake with the booklet drawing and a hands-and-thighs diagram attached."
       ],
       "retake": {
         "attach": [
@@ -274,12 +290,17 @@
           "the character reference: c4-run-knees-waist-high.png"
         ],
         "problems": [
-          "The lift is too small: the thighs barely clear the hands. The booklet says both thighs must clear the palms: in the TOP pose the thighs, knees and shins are clearly lifted well above the hands, the legs straight with the knees locked.",
-          "The START pose already has the feet off the floor. It must lie completely flat: belly, chest, thighs and shins on the floor line, the palms flat under the thighs.",
-          "Exactly two arms: both straight back along his sides with the palms flat on the floor under the thighs; nothing else on his back."
+          "The hands drifted forward to the hips and belly. Both hands stay flat on the floor UNDER THE FRONT OF THE THIGHS, just below the hips, fingers pointing toward the feet, arms straight back along the sides. They do not move between poses.",
+          "In TOP the thighs must lift clearly OFF the hands: a visible gap between the bottom of each thigh and the hand under it, the legs straight with the knees locked, the feet well above the floor.",
+          "START must lie completely flat (chest, thighs, shins and feet on the floor), and LIFTING must be clearly in between START and TOP. Earlier sheets drew START and LIFTING the same."
         ],
         "keep": "the boy's look, line weight and colors, three poses in the same order, head on the right and feet on the left, the same three-quarter view as the previous sheet.",
         "rows": null
+      },
+      "remake": {
+        "booklet": "BOOKLET-c2e3.png",
+        "schematic": "REF-backext-hands.png",
+        "schematic_note": "a stick-figure diagram of where the HANDS and THIGHS are in START and TOP, seen from the side. Copy the positions only, never its style, colors or text."
       }
     },
     "push-up-c2": {
@@ -479,14 +500,14 @@
       "poses": [
         "UP: arms fully straightened, palms flat directly under the shoulders, only the palms and toes touching the floor, the body one straight line from the heels to the head (hips NOT piked up, back NOT sagging, knees NOT on the floor).",
         "CHIN: lowered until the CHIN touches the floor in front of the hands (the head pushed forward past the hands), elbows bent, palms still flat on the floor under the shoulders, only the palms, toes and chin touching the floor, the body one straight line.",
-        "FOREHEAD: the FOREHEAD touching the floor behind the hands (the head tucked back toward the hands so the forehead rests on the floor on the body side of the hands), elbows bent and tucked in, palms flat, only the palms, toes and forehead touching the floor, the body one straight line."
+        "FOREHEAD (a PIKE, as in the booklet's drawing): the hips pushed UP HIGH so the body makes an upside-down V, the palms still flat on the floor where they were, the elbows bent, the head tucked down and back between the arms so the FOREHEAD touches the floor just BEHIND the hands (on the feet side of the hands), the toes on the floor. Only the palms, the toes and the forehead touch the floor. This pose is NOT a straight body: the hips are the highest point."
       ],
       "check": [
         "Three poses, facing right: UP, CHIN, FOREHEAD",
-        "Only palms and toes touch the floor (knees OFF the floor) in UP",
-        "CHIN: the chin on the floor in front of the hands",
-        "FOREHEAD: the forehead on the floor behind the hands, clearly different from CHIN",
-        "Body a straight line, back straight"
+        "UP: arms straight, body one straight line, knees off the floor",
+        "CHIN: body low and straight, the chin on the floor IN FRONT of the hands, the head ahead of the hands",
+        "FOREHEAD: hips high in an upside-down V (a pike), the forehead on the floor BEHIND the hands, hands ahead of the forehead",
+        "The three poses are clearly different at a glance"
       ],
       "draft": [
         "The booklet does not say whether this push-up is on the toes or the knees. I assumed palms and toes, continuing chart 2. If it should be the knees, tell me and I will change one phrase.",
@@ -511,9 +532,8 @@
           "the character reference: c4-run-knees-waist-high.png"
         ],
         "problems": [
-          "In the FOREHEAD pose the forehead lands IN FRONT of the hands. The booklet says the forehead touches the floor BEHIND the hands: the head tucks back and down so the forehead rests on the floor between the hands, level with them or a little back toward the shoulders, with the hands visibly AHEAD of the forehead.",
-          "The CHIN pose looks almost the same as the UP pose. The chin pose must be clearly lower: the chin touching the floor in front of the hands, the head pushed forward past the hands, the elbows bent and the chest just above the floor.",
-          "The three poses must be clearly different from each other: 1 UP with the arms straight; 2 CHIN; 3 FOREHEAD with the chest almost on the floor."
+          "In the FOREHEAD pose the forehead landed IN FRONT of the hands. The forehead touches the floor BEHIND the hands. The way to get it there is a PIKE, as in the booklet drawing: hips up high, head tucked down between the arms.",
+          "The CHIN pose must be clearly lower than UP: the chin touching the floor in front of the hands, the head pushed forward past the hands, the elbows bent, the body low and straight."
         ],
         "keep": "the boy's look, line weight and colors, three poses in the same order, palms and toes only (knees off the floor), the body one straight line, and the feet on one floor line.",
         "rows": [
@@ -526,6 +546,12 @@
           "CHIN: lowered until the CHIN touches the floor in front of the hands (the head pushed forward past the hands), elbows bent, palms still flat on the floor under the shoulders, only the palms, toes and chin touching the floor, the body one straight line.",
           "FOREHEAD: lowered until the chest is almost on the floor, the head tucked down and back so that the FOREHEAD touches the floor between the hands, level with the line of the hands or slightly behind it (the hands are visibly AHEAD of the forehead, in the direction he is facing), the elbows bent and flared out, the palms flat, only the palms, toes and forehead touching the floor, the body one straight line."
         ]
+      },
+      "learned": [
+        "Batch C (2026-11-20): our FOREHEAD wording (body straight, chest almost on the floor) contradicted the booklet. The booklet drawing (5BX figures/c3e4.png) shows the forehead pose as a pike: hips high, head tucked between the arms, which is how the forehead gets behind the hands. Rewritten to match; attach the booklet drawing."
+      ],
+      "remake": {
+        "booklet": "BOOKLET-c3e4.png"
       }
     },
     "half-knee-bends-c3": {

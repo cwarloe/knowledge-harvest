@@ -1,0 +1,37 @@
+[
+ {
+  "title": "Chart 1 scissor jumps (remake from the booklet)",
+  "attach": [
+   "c4-run-knees-waist-high.png",
+   "BOOKLET-c1e5.png",
+   "REF-scissor-stances.png"
+  ],
+  "strip": "scissor-jumps-c1",
+  "kind": "remake",
+  "output": "ONE image: the whole sheet. No separate figures.",
+  "all_refs": "JOB-01-ALL-REFS.png"
+ },
+ {
+  "title": "Chart 2 back extension (remake from the booklet)",
+  "attach": [
+   "c4-run-knees-waist-high.png",
+   "BOOKLET-c2e3.png",
+   "REF-backext-hands.png"
+  ],
+  "strip": "back-extension-c2",
+  "kind": "remake",
+  "output": "ONE image: the whole sheet. No separate figures.",
+  "all_refs": "JOB-02-ALL-REFS.png"
+ },
+ {
+  "title": "Chart 3 chin-forehead push-up (remake from the booklet)",
+  "attach": [
+   "c4-run-knees-waist-high.png",
+   "BOOKLET-c3e4.png"
+  ],
+  "strip": "chin-forehead-push-up-c3",
+  "kind": "remake",
+  "output": "ONE image: the whole sheet. No separate figures.",
+  "all_refs": "JOB-03-ALL-REFS.png"
+ }
+]
