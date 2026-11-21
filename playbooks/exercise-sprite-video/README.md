@@ -20,7 +20,9 @@ The first overnight run (29 jobs) produced the material in `assets/` and the les
 | `RETAKE-NEXT.md` | What to ask ChatGPT to redo, job by job |
 
 The reference images the briefs name (`c4-run-knees-waist-high.png`, `REF-footswitch.png`,
-`bg-keeper-gym-landscape-v1.png`, and so on) are not in this repo.
+`bg-keeper-gym-landscape-v1.png`, and so on) are in `refs/refs-A` (sprites, 14 files) and `refs/refs-B`
+(backgrounds, 4 files; `bg-mountain-v1.png` was never in the set). Pass them to the generator with
+`--refs refs/refs-A`.
 
 ## What passed, and what did not
 

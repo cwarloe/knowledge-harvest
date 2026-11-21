@@ -36,7 +36,8 @@ Optional: JOB-16 passes, but the "press" pose is only slightly higher than the t
 
 ## Also needed
 
-The reference images the briefs name are not in this repo and are needed again for any
-retake: `c4-run-knees-waist-high.png` (the character), `REF-footswitch.png`,
-`REF-backext-geometry.png`, `bg-keeper-gym-landscape-v1.png`, and the `c*-` and `ex5-` previous sheets.
+Every retake needs the reference images, which are in `refs/refs-A` and `refs/refs-B`:
+`c4-run-knees-waist-high.png` (the character), `REF-footswitch.png`, `REF-backext-geometry.png`,
+`bg-keeper-gym-landscape-v1.png` and the `c*-` and `ex5-` older sheets. The returned sheets from run 1 (to attach as
+the "previous attempt") are not in the repo; keep them locally.
 
