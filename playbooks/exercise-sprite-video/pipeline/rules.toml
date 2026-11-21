@@ -1,0 +1,59 @@
+# Learned rules: every recurring defect from LESSONS.md becomes one line here, and the prompt generator
+# adds the applicable lines to EVERY prompt. This is how a lesson stops costing us twice.
+# when: "all" | "jump" (has airborne poses) | "lying" (on the floor) | "multirow" | "touch" (toe-touch family) | "front"
+# defect = the LESSONS.md defect id this rule prevents.
+
+[[rule]]
+id = "R-GAP"
+defect = "D-01"
+when = "all"
+text = "Leave at least 8% of the image width of empty background between neighbouring figures; figures must never touch or overlap. If the figures do not fit, draw every figure at about 80 to 85% scale."
+
+[[rule]]
+id = "R-KEY"
+defect = "D-03"
+when = "all"
+text = "The background must be one flat, exact #FF00FF with no noise, gradient, texture or shadow."
+
+[[rule]]
+id = "R-CAMERA"
+defect = "D-04"
+when = "all"
+text = "Use exactly the camera angle the job names, the same in every figure of a row. When a job asks for different cameras in different rows, the rows must look clearly different from each other."
+
+[[rule]]
+id = "R-CONTACT"
+defect = "D-05"
+when = "touch"
+text = "Where a pose says the fingertips touch the floor outside the foot, the touch point must be visibly beyond the outer edge of the shoe, about one shoe-width away, never on or touching the shoe."
+
+[[rule]]
+id = "R-FRONT"
+defect = "D-04"
+when = "front"
+text = "In a strict front view every figure faces the camera squarely, including the forward-bent poses; do not turn the body to a three-quarter angle."
+
+[[rule]]
+id = "R-FLAT"
+defect = "D-06"
+when = "lying"
+text = "In a START pose the figure lies completely flat: belly, chest, thighs and shins all rest on the floor line, with nothing lifted. Only the later poses lift."
+
+[[rule]]
+id = "R-LIFT"
+defect = "D-07"
+when = "jump"
+text = "Jumping and lifting poses must leave the floor by a clearly visible amount: both feet at least a quarter of the figure's height above the floor line for a full jump, and noticeably higher than the previous pose for every increase."
+
+# when = "inline": already written into the standard BODY AND FACE RULES line, so not repeated as a bullet.
+[[rule]]
+id = "R-LIMBS"
+defect = "D-09"
+when = "inline"
+text = "Before finishing, count the limbs in every figure: exactly two arms and two legs, including the far-side limbs that are partly hidden."
+
+[[rule]]
+id = "R-NEAR-FAR"
+defect = "D-10"
+when = "all"
+text = "Draw the arm and leg on the far side of the body in a noticeably darker shade of the same colors (darker skin tone, darker garment, darker shoe) so near and far limbs are easy to tell apart."

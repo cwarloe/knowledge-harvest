@@ -2,7 +2,8 @@
 
 Append the "Fix" text below to the ORIGINAL job prompt in `briefs/` and attach the same
 reference images as before. For retakes, also attach the previous sheet and say which one is
-the better take. Measurements come from `tools/measure.py` and `tools/measure_backgrounds.py`.
+the better take. Measurements come from `pipeline/sprite.py qc`. The retake prompts are now generated:
+`python sprite.py prompts --mode fix` (see `pipeline/README.md`); this file is the human-readable version.
 
 Rules to add to every retake:
 - Leave at least 8% of the image width between neighbouring figures (several sheets had 13-25 px).
@@ -28,7 +29,7 @@ Optional: JOB-16 passes, but the "press" pose is only slightly higher than the t
 
 | Job | Fix |
 |-----|-----|
-| JOB-22, JOB-23 | Done in code (`tools/draw_mats.py`, `assets/backgrounds/mats-code/`); no ChatGPT retake needed. |
+| JOB-22, JOB-23 | Done in code (`pipeline/mats.py`, `assets/backgrounds/mats-code/`); no ChatGPT retake needed. |
 | JOB-26 | A floor seam runs straight across the 73-86% strip (at about 74% down). Redraw the flagstones so the strip is perfectly smooth; seams only above 70% and below 90%. Gears are still large on the left: shrink them about 30% as briefed. |
 | JOB-27 | Ask for two more variations with the ground starting at 56% down (variation 3 is at 58-59%; the others are 60-62%). Keep rocks and bushes out of the 73-86% strip. |
 | JOB-29 | Optional and unapproved: the whole upper room differs from the keeper (about 6.5% of pixels changed evenly across left, middle and right), so it was re-rendered, not just edited. Skip unless the plain centre window is wanted; a pixel edit of the keeper would be more reliable. |

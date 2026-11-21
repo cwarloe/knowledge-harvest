@@ -1,0 +1,883 @@
+# Exercise library. One entry per exercise; written once, reused for any character.
+# Pronouns and the character noun are tokens ({his}, {he}, {him}, {noun}, ...) filled in from characters/*.toml.
+# Bootstrapped from the hand-written overnight briefs; this file is now the source of truth.
+
+[[exercise]]
+id = "semi-squat-jumps-c4"
+job = 1
+title = "Chart 4 semi-squat jumps"
+chart = 4
+view = "side-3q"
+tags = ["jump"]
+layout_ref = ""
+original_previous_sheet = "c4-jump-semi-squat-jumps.png"
+schematic_file = "REF-footswitch.png"
+schematic_note = '''
+a schematic of WHERE the feet are in the four poses (stick figures, side view). Copy the foot positions only; do NOT copy its drawing style or any of its text.
+'''
+layout = '''
+Create a NEW wide 16:9 pose sheet of that same {noun} doing SEMI-SQUAT JUMPS, shown FOUR times left to right, side-on body with the head and shoulders turned about 30 to 45 degrees toward the camera, so most of {his} face (both eyes) and a little of {his} chest show, facing right, with the SAME angle in every pose. Same scale, wide empty gaps so the figures never touch. The two crouching poses rest on the same invisible floor line; the two jumping poses are drawn clearly higher, with both feet well above that line.
+'''
+keep = '''
+the {noun}'s look, line weight and colors, four poses in the same order, the same scale, and the two crouches resting on one floor line with the two jump poses clearly higher.
+'''
+pitfalls = ['''
+The two hop poses look like ballet: toes pointed straight down, the legs stiff, the arms hanging limp and curved. Make it an athletic hop: both knees slightly bent, the feet only about a hand's width off the floor, the shoes mostly level (toes NOT pointed), and the arms swinging forward and a little up for balance with the elbows slightly bent and the fists relaxed.
+''', '''
+The two crouches do not clearly show the feet swapping. In crouch 1 the NEAR foot ({his} right, the lighter one) is ahead of the FAR foot ({his} left, the darker one) by one FULL shoe length, measured toe to toe. In crouch 3 it is the other way round: the FAR foot is one full shoe length ahead of the near foot. Use the schematic (image 3) for exactly where the feet go.
+''', '''
+The two hop poses look too similar. They must be different: in pose 2 (the first hop) the feet have ALREADY swapped, so the FAR (left, darker) foot is ahead of the near foot in the air, ready to land that way; in pose 4 (the second hop) the NEAR (right, lighter) foot is ahead of the far foot in the air.
+''', '''
+The face has a smirk. Use a calm, focused, friendly face: a small closed smile, the eyes looking straight ahead (not up), the eyebrows level.
+''', '''
+The lower garment looks like tight leggings. Draw it exactly as the BODY AND FACE RULES describe, standing clearly away from the leg where that is specified.
+''', '''
+In the crouch the back is rounded and the head is pushed forward. The booklet says keep the back as straight as possible: a straight spine leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands on the knees, the arms straight.
+''']
+
+[exercise.qc]
+rows = 1
+per_row = 4
+grounded = [0, 2]
+floor_check = true
+
+[exercise.qc.airborne]
+"1" = 0.06
+"3" = 0.06
+
+[[exercise.poses]]
+label = "CROUCH, NEAR FOOT AHEAD"
+text = '''
+a half crouch with the knees bent about halfway, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, the NEAR foot ({his} right foot, lighter) one full shoe length ahead of the FAR foot ({his} left foot, darker), both feet flat on the floor.
+'''
+
+[[exercise.poses]]
+label = "FIRST HOP"
+text = '''
+in the air after the jump from crouch 1, the body upright and straight, both knees slightly bent, both feet about a hand's width off the floor with the shoes mostly level (toes NOT pointed), the feet already swapped so the FAR foot ({his} left, darker) is ahead of the near foot, the arms swinging forward and a little up for balance, the elbows slightly bent, the fists relaxed.
+'''
+
+[[exercise.poses]]
+label = "CROUCH, FAR FOOT AHEAD"
+text = '''
+landed in the half crouch, the back straight and leaning forward about 45 degrees, the chest up, the head up and looking ahead, the hands resting on the knees with the arms straight, the FAR foot ({his} left, darker) one full shoe length ahead of the NEAR foot ({his} right, lighter), both feet flat on the floor.
+'''
+
+[[exercise.poses]]
+label = "SECOND HOP"
+text = '''
+in the air after the jump from crouch 3, the same hop as the first hop but with the feet swapped back, so the NEAR foot ({his} right, lighter) is ahead of the far foot in the air: body upright and straight, knees slightly bent, feet a hand's width off the floor with the shoes mostly level, the arms swinging forward and a little up.
+'''
+
+[[exercise]]
+id = "toe-touch-circle-c4"
+job = 2
+title = "Chart 4 toe touch with circle bend"
+chart = 4
+view = "front"
+tags = ["touch", "front"]
+layout_ref = "c3-ex1-toe-touching.png"
+original_previous_sheet = ""
+layout = '''
+Create a NEW wide 16:9 pose sheet of that same {noun} doing TOE TOUCHES TO THE LEFT, CENTRE AND RIGHT, THEN A CIRCLE BEND, shown SIX times left to right, strict FRONT view, the {noun} facing the camera (not a side view). Same scale, feet on the same invisible floor line, with wide empty gaps so the figures never touch. The six figures are in the ORDER OF THE MOVEMENT, left to right across the picture, not in the order of where the hands land.
+'''
+
+[exercise.qc]
+rows = 1
+per_row = 6
+grounded = [0, 1, 2, 3, 4, 5]
+floor_check = true
+
+[[exercise.poses]]
+label = "START"
+text = '''
+standing tall facing the camera, feet wide apart (astride, a little wider than the shoulders), both arms straight up overhead, upper arms beside the ears.
+'''
+
+[[exercise.poses]]
+label = "TOUCH LEFT"
+text = '''
+bent forward at the waist, seen from the front, both hands reaching down together with the fingertips touching the floor about six inches OUTSIDE {HIS} LEFT FOOT ({his} left foot is on the RIGHT side of the picture), knees only slightly bent, head hanging down.
+'''
+
+[[exercise.poses]]
+label = "TOUCH BETWEEN"
+text = '''
+bent forward in the same way, fingertips of both hands touching the floor BETWEEN {HIS} FEET, pressing down a little, knees only slightly bent, head hanging down.
+'''
+
+[[exercise.poses]]
+label = "TOUCH RIGHT"
+text = '''
+bent forward in the same way, fingertips of both hands touching the floor about six inches OUTSIDE {HIS} RIGHT FOOT ({his} right foot is on the LEFT side of the picture), knees only slightly bent, head hanging down.
+'''
+
+[[exercise.poses]]
+label = "LEAN RIGHT"
+text = '''
+standing up again out of the right-hand touch, feet still wide apart, both arms held straight up above the head with the upper arms touching the ears, the whole upper body leaning sideways toward {HIS} RIGHT (the left side of the picture) as part of a big circle.
+'''
+
+[[exercise.poses]]
+label = "BEND BACK"
+text = '''
+standing, feet wide apart, both arms held straight up above the head with the upper arms touching the ears, bending backward past upright as far as {he} can, hips pushed forward, chest and face lifted toward the sky, knees straight.
+'''
+
+[[exercise]]
+id = "sit-up-toe-touch-c4"
+job = 3
+title = "Chart 4 sit-up toe touch"
+chart = 4
+view = "side-3q"
+tags = ["lying"]
+layout_ref = ""
+original_previous_sheet = "c4-ex2-sit-up-toe-touch.png"
+layout = '''
+Create a NEW wide 16:9 pose sheet of that same {noun} doing a SIT-UP THAT ENDS BY TOUCHING THE TOES, with the arms kept straight overhead against the ears, shown THREE times left to right, side-on body with the head and shoulders turned about 30 to 45 degrees toward the camera, so most of {his} face (both eyes) and a little of {his} chest show, facing right, with the SAME angle in every pose. In every pose {he} lies on {his} back (or sits) with {his} HEAD ON THE LEFT and {his} FEET ON THE RIGHT, same scale, all on the same invisible floor line, wide empty gaps so the figures never touch. Draw only the {noun}: no chair, no objects.
+'''
+keep = '''
+the {noun}'s look, line weight and colors, three poses in the same order, head on the left and feet on the right, legs straight with the feet together and flat, the same camera angle in every pose, and the START pose with the arms straight along the floor above the head.
+'''
+pitfalls = ['''
+In the last pose the head is upright and sits above the arms, and the arms reach forward below the face. The booklet says the arms stay in contact with the sides of the head THROUGHOUT. In the TOUCH pose {his} head must be tucked down between {his} upper arms, with both upper arms pressed against {his} ears, the whole upper body folded forward over the legs, and the straight arms carrying on forward from the head to the toes.
+''', '''
+In the middle pose the arms must again be straight and against the sides of {his} head (the head between the arms), not out in front of the face.
+''', '''
+Leave a wide empty gap between the figures so that no figure is clipped by or touches its neighbour.
+''']
+
+[exercise.qc]
+rows = 1
+per_row = 3
+grounded = [0, 1, 2]
+floor_check = true
+
+[[exercise.poses]]
+label = "START"
+text = '''
+lying flat on {his} back, legs straight and the feet together, both arms stretched straight out above the head along the floor, the upper arms touching the sides of the head.
+'''
+
+[[exercise.poses]]
+label = "RISING"
+text = '''
+halfway up, upper body lifted about 45 degrees off the floor, both arms still straight above the head with the upper arms touching the sides of the head, legs straight, heels on the floor.
+'''
+
+[[exercise.poses]]
+label = "TOUCH"
+text = '''
+sitting up and folded forward over the legs, both arms straight and still touching the sides of the head, the fingertips touching the toes, legs straight with the feet flat (knees bent only very slightly), heels on the floor.
+'''
+
+[[exercise]]
+id = "back-extension-arms-sideways-c4"
+job = 4
+title = "Chart 4 back extension, arms sideways"
+chart = 4
+view = "high-3 cameras"
+tags = ["lying", "multirow"]
+layout_ref = ""
+original_previous_sheet = "c4-ex3-back-extension-arms-sideways.png"
+schematic_file = "REF-backext-geometry.png"
+schematic_note = '''
+a schematic of the body angles (side view) and of the T-shaped arms (top-down). Copy the angles and positions only; do NOT copy its drawing style or any of its text.
+'''
+layout = '''
+Create ONE NEW 16:9 image with 3 ROWS. Each row shows the same {noun} doing a BACK EXTENSION WITH THE ARMS STRETCHED SIDEWAYS in the same THREE poses, left to right, in the same order, but from a different camera, so the best camera can be picked:
+ROW 1: seen from the FRONT and slightly above, {his} head nearer the camera and {his} feet farther away, so that both arms stick out left and right like a T; raise the camera a little more than before so the legs and shoes can be seen rising behind {him}.
+ROW 2: seen from the FOOT END and well above, {his} feet nearer the camera and {his} head farther away, so that both arms stick out left and right like a T and the legs rising toward the camera are clearly visible.
+ROW 3: three-quarter view from the SIDE and well above, head on the right and feet on the left, the near arm pointing straight toward the camera at a right angle to {his} body (it will look short because it points at the camera) and the far arm pointing straight away.
+'''
+key_rule = '''
+KEY BODY RULE FOR ALL THREE POSES: {his} arms are stretched straight out SIDEWAYS from the shoulders, like the letter T, one arm out to each side of {his} body, palms down. {His} arms are NOT under {his} thighs and NOT in front of {him}.
+'''
+extra = ['''
+In every figure {he} lies FACE DOWN, flat on {his} belly, with the same orientation within a row. In every row the figures lie on one invisible floor line. Same scale in every figure and every row, a wide empty gap between figures and a wide empty band between rows.
+''']
+keep = '''
+the {noun}'s look, the line weight and colors, three poses in the same order, and in the TOP pose the chest and both thighs clearly lifted with the legs straight.
+'''
+rows = ['''
+ROW 1: seen from the FRONT and slightly above, {his} head nearer the camera and {his} feet farther away, so that both arms stick out left and right like a T; raise the camera a little more than before so the legs and shoes can be seen rising behind {him}.
+''', '''
+ROW 2: seen from the FOOT END and well above, {his} feet nearer the camera and {his} head farther away, so that both arms stick out left and right like a T and the legs rising toward the camera are clearly visible.
+''', '''
+ROW 3: three-quarter view from the SIDE and well above, head on the right and feet on the left, the near arm pointing straight toward the camera at a right angle to {his} body (it will look short because it points at the camera) and the far arm pointing straight away.
+''']
+pitfalls = ['''
+In the side-view rows of earlier attempts the start pose did not rest flat. In pose 1 {he} must lie completely flat: belly, chest, thighs and shins resting on the floor line, legs together, chin down near the floor, the arms flat on the floor (see the schematic).
+''', '''
+In the front view the lift is hard to see. Show how far the chest and the thighs lift in the TOP pose: the chest about 35 degrees up from the floor and the legs about 25 degrees up, with only the lower belly and hips still on the floor (see the schematic), and make the legs, knees and shoes clearly visible rising behind {him}.
+''', '''
+{He} must have exactly two arms and two legs, and the arms must stretch straight out SIDEWAYS at right angles to {his} body, like the letter T, palms down (see the top-down part of the schematic). An earlier attempt had the near arm trailing back along {his} body, which is wrong.
+''', '''
+Only the belly and hips may stay on the floor in poses 2 and 3; the legs stay straight and together.
+''']
+
+[exercise.qc]
+rows = 3
+per_row = 3
+grounded = []
+floor_check = false
+
+[[exercise.poses]]
+label = "START"
+text = '''
+lying completely flat face down, legs straight and together, chin near the floor, both arms stretched straight out sideways on the floor.
+'''
+
+[[exercise.poses]]
+label = "LIFTING"
+text = '''
+head, shoulders, arms, chest and both legs just beginning to lift off the floor together, legs straight, arms still stretched out sideways.
+'''
+
+[[exercise.poses]]
+label = "TOP"
+text = '''
+head, shoulders, both ARMS, chest AND BOTH THIGHS lifted completely off the floor as high as {he} can, legs straight with the knees LOCKED, back strongly arched, looking forward, arms still stretched straight out sideways and raised; only {his} lower belly and hips stay on the floor.
+'''
+
+[[exercise]]
+id = "chin-forehead-push-up-c3"
+job = 5
+title = "Chart 3 chin-forehead push-up"
+chart = 3
+view = "side + 3q-front"
+tags = ["multirow"]
+layout_ref = ""
+original_previous_sheet = "c3-ex234-sit-back-push.png"
+layout = '''
+Create ONE NEW 16:9 image with 2 ROWS. Each row shows the same {noun} doing a CHIN-FOREHEAD PUSH-UP (on the palms and toes, knees OFF the floor) in the same THREE poses, left to right, in the same order, but from a different camera, so the best camera can be picked:
+ROW 1: plain SIDE view facing right, with both hands visible at the ends of the arms.
+ROW 2: three-quarter FRONT view, from the front and a little from one side, so that the head and the hands can be seen clearly.
+'''
+extra = ['''
+Same scale, all on the same invisible floor line, with generous empty space between the figures so they do not touch or overlap. Same scale in every figure and every row, a wide empty gap between figures and a wide empty band between rows.
+''']
+keep = '''
+the {noun}'s look, line weight and colors, three poses in the same order, palms and toes only (knees off the floor), the body one straight line, and the feet on one floor line.
+'''
+rows = ['''
+ROW 1: plain SIDE view facing right, with both hands visible at the ends of the arms.
+''', '''
+ROW 2: three-quarter FRONT view, from the front and a little from one side, so that the head and the hands can be seen clearly.
+''']
+pitfalls = ['''
+In the FOREHEAD pose the forehead lands IN FRONT of the hands. The booklet says the forehead touches the floor BEHIND the hands: the head tucks back and down so the forehead rests on the floor between the hands, level with them or a little back toward the shoulders, with the hands visibly AHEAD of the forehead.
+''', '''
+The CHIN pose looks almost the same as the UP pose. The chin pose must be clearly lower: the chin touching the floor in front of the hands, the head pushed forward past the hands, the elbows bent and the chest just above the floor.
+''', '''
+The three poses must be clearly different from each other: 1 UP with the arms straight; 2 CHIN; 3 FOREHEAD with the chest almost on the floor.
+''']
+
+[exercise.qc]
+rows = 2
+per_row = 3
+grounded = [0, 1, 2]
+floor_check = true
+
+[[exercise.poses]]
+label = "UP"
+text = '''
+arms fully straightened, palms flat directly under the shoulders, only the palms and toes touching the floor, the body one straight line from the heels to the head (hips NOT piked up, back NOT sagging, knees NOT on the floor).
+'''
+
+[[exercise.poses]]
+label = "CHIN"
+text = '''
+lowered until the CHIN touches the floor in front of the hands (the head pushed forward past the hands), elbows bent, palms still flat on the floor under the shoulders, only the palms, toes and chin touching the floor, the body one straight line.
+'''
+
+[[exercise.poses]]
+label = "FOREHEAD"
+text = '''
+lowered until the chest is almost on the floor, the head tucked down and back so that the FOREHEAD touches the floor between the hands, level with the line of the hands or slightly behind it (the hands are visibly AHEAD of the forehead, in the direction {he} is facing), the elbows bent and flared out, the palms flat, only the palms, toes and forehead touching the floor, the body one straight line.
+'''
+
+[[exercise]]
+id = "back-extension-c2"
+job = 6
+title = "Chart 2 back extension"
+chart = 2
+view = "side-3q"
+tags = ["lying"]
+layout_ref = ""
+original_previous_sheet = "c2-ex3-back-extension.png"
+layout = '''
+Create a NEW wide 16:9 pose sheet of that same {noun} doing a BACK EXTENSION, shown THREE times left to right, side-on body with the head and shoulders turned about 30 to 45 degrees toward the camera, so most of {his} face (both eyes) and a little of {his} chest show, facing right, with the SAME angle in every pose. In every pose {he} lies FACE DOWN, flat on {his} belly, with {his} HEAD ON THE RIGHT looking right and {his} FEET ON THE LEFT. Same scale, all on the same invisible floor line, wide empty gaps between figures.
+'''
+key_rule = '''
+KEY BODY RULE FOR ALL THREE POSES: {his} arms are NOT pushing up and NOT planted in front of {him}. Both arms are STRAIGHT and stretched back along {his} sides, with the hands tucked flat, palms down, UNDER THE FRONT OF {HIS} THIGHS. Elbows straight.
+'''
+keep = '''
+the {noun}'s look, line weight and colors, three poses in the same order, head on the right and feet on the left, the same three-quarter view as the previous sheet.
+'''
+pitfalls = ['''
+The lift is too small: the thighs barely clear the hands. The booklet says both thighs must clear the palms: in the TOP pose the thighs, knees and shins are clearly lifted well above the hands, the legs straight with the knees locked.
+''', '''
+The START pose already has the feet off the floor. It must lie completely flat: belly, chest, thighs and shins on the floor line, the palms flat under the thighs.
+''', '''
+Exactly two arms: both straight back along {his} sides with the palms flat on the floor under the thighs; nothing else on {his} back.
+''']
+
+[exercise.qc]
+rows = 1
+per_row = 3
+grounded = [0, 1, 2]
+floor_check = true
+
+[[exercise.poses]]
+label = "START"
+text = '''
+lying completely flat face down, legs straight and together, chin near the floor, arms straight back with palms under the thighs.
+'''
+
+[[exercise.poses]]
+label = "LIFTING"
+text = '''
+head, shoulders and both legs just beginning to lift off the floor together, legs straight, arms still straight back under the thighs.
+'''
+
+[[exercise.poses]]
+label = "TOP"
+text = '''
+head, shoulders AND BOTH LEGS raised off the floor at the same time, legs straight with the knees LOCKED, thighs clearly lifted off {his} hands, back gently arched, looking forward; only {his} belly stays on the floor.
+'''
+
+[[exercise]]
+id = "stationary-run-c1"
+job = 7
+title = "Chart 1 stationary run"
+chart = 1
+view = "side"
+tags = []
+layout_ref = ""
+original_previous_sheet = "ex5-stationary-run.png"
+layout = '''
+Create a NEW wide 16:9 pose sheet of that same {noun} doing a STATIONARY RUN (running in place), shown FOUR times left to right, strict side view facing right. Same scale, same invisible floor line, wide empty gaps. {He} does not travel forward: jogging on the spot with small quick steps, the lifted foot only a few inches off the floor, knee bent only slightly, NOT a sprint stride, NOT high knees, NOT a long stride. Arms bent about 90 degrees and pumping like a jogger.
+'''
+extra = ['''
+The {noun}'s NEAR leg and near arm are closest to the viewer, in the normal colors. {His} FAR leg and far arm are in a noticeably darker shade. The two lifts must use DIFFERENT legs.
+''']
+keep = '''
+the {noun}'s look, line weight and colors, four poses in the same order, the side-on body with the head and shoulders turned toward the camera, and the same angle in every pose.
+'''
+pitfalls = ['''
+The lifted foot rises far higher than the booklet's four inches and the stride is a jog. Make it a low march in place: the lifted shoe only about four inches off the floor (the sole of the lifted shoe just above the top of the planted shoe), the knee only slightly bent, the body upright, small steps, the arms bent about 90 degrees swinging gently.
+''', '''
+Keep the rule that the two lifts use DIFFERENT legs: near (lighter) leg in pose 1, far (darker) leg in pose 3.
+''']
+
+[exercise.qc]
+rows = 1
+per_row = 4
+grounded = [0, 1, 2, 3]
+floor_check = true
+
+[[exercise.poses]]
+label = "NEAR FOOT LIFTED"
+text = '''
+the NEAR (lighter) foot lifted a few inches off the floor with the knee slightly bent; the FAR (darker) foot flat on the floor. Near arm bent and swinging forward, far arm bent and back.
+'''
+
+[[exercise.poses]]
+label = "PASSING"
+text = '''
+both feet close to the floor under the hips, standing nearly upright, near arm back and far arm forward, both arms bent.
+'''
+
+[[exercise.poses]]
+label = "FAR FOOT LIFTED"
+text = '''
+the FAR (darker) foot lifted a few inches off the floor with the knee slightly bent; the NEAR (lighter) foot planted flat. Far arm bent and forward, near arm bent and back. Clearly different from pose 1: the lifted foot is the darker one.
+'''
+
+[[exercise.poses]]
+label = "PASSING"
+text = '''
+both feet close to the floor, nearly upright, near arm forward and far arm back, both arms bent.
+'''
+
+[[exercise]]
+id = "scissor-jumps-c1"
+job = 8
+title = "Chart 1 scissor jumps"
+chart = 1
+view = "3q-front + side"
+tags = ["jump", "multirow"]
+layout_ref = ""
+original_previous_sheet = "ex5-scissor-jumps.png"
+layout = '''
+Create ONE NEW 16:9 image with 2 ROWS. Each row shows the same {noun} doing SCISSOR JUMPS in the same FOUR poses, left to right, in the same order, but from a different camera, so the best camera can be picked:
+ROW 1: three-quarter FRONT view, from the front and a little from the left, so that the forward and backward legs and arms can be told apart.
+ROW 2: SIDE view facing right with a clearly darker shade on the far arm and far leg.
+'''
+extra = ['''
+Same scale, wide empty gaps. The two standing poses rest on the same invisible floor line; the two jumping poses are drawn clearly higher, with both feet well above that line. Same scale in every figure and every row, a wide empty gap between figures and a wide empty band between rows.
+''']
+keep = '''
+the {noun}'s look, line weight and colors, four poses in the same order, the same scale, and the stances resting on one floor line with the jump poses clearly higher.
+'''
+rows = ['''
+ROW 1: three-quarter FRONT view, from the front and a little from the left, so that the forward and backward legs and arms can be told apart.
+''', '''
+ROW 2: SIDE view facing right with a clearly darker shade on the far arm and far leg.
+''']
+pitfalls = ['''
+Stance A and stance B look almost the same from the side. They must be clearly different: in stance A the NEAR leg and the FAR arm are forward and the far leg and the near arm are back; in stance B everything is the other way round.
+''', '''
+Stance B came out as a lunge with a bent back knee. In both stances the front leg is bent only slightly and the back leg is straight, the body upright, the arms straight at shoulder height.
+''', '''
+The jump poses must clearly leave the floor with both feet well off it.
+''']
+
+[exercise.qc]
+rows = 2
+per_row = 4
+grounded = [0, 2]
+floor_check = true
+
+[exercise.qc.airborne]
+"1" = 0.08
+"3" = 0.08
+
+[[exercise.poses]]
+label = "STANCE A, on the floor"
+text = '''
+the leg NEAREST the viewer extended forward and the other leg extended backward in a wide scissor stance, both feet on the floor; the arm FARTHEST from the viewer extended forward and the near arm extended backward, both arms straight at SHOULDER HEIGHT.
+'''
+
+[[exercise.poses]]
+label = "JUMP, in the air"
+text = '''
+jumped straight up, both feet well off the floor, legs and arms passing each other mid-switch (legs close together under the hips, arms crossing near the body), knees slightly bent.
+'''
+
+[[exercise.poses]]
+label = "STANCE B, on the floor"
+text = '''
+the mirror of stance A. The leg FARTHEST from the viewer is now forward and the near leg is back; the NEAR arm extended forward and the far arm backward, arms straight at shoulder height, both feet on the floor.
+'''
+
+[[exercise.poses]]
+label = "JUMP, in the air"
+text = '''
+the same airborne switching pose as pose 2, both feet well above the floor line.
+'''
+
+[[exercise]]
+id = "toe-touch-clasped-c5"
+job = 9
+title = "Chart 5 toe touch, hands clasped"
+chart = 5
+view = "front"
+tags = ["touch", "front"]
+layout_ref = "c3-ex1-toe-touching.png"
+original_previous_sheet = ""
+layout = '''
+Create a NEW wide 16:9 pose sheet of that same {noun} doing TOE TOUCHES WITH THE HANDS CLASPED, TO THE LEFT, CENTRE AND RIGHT, THEN A CIRCLE BEND, shown SIX times left to right, strict FRONT view, the {noun} facing the camera (not a side view). Same scale, feet on the same invisible floor line, with wide empty gaps so the figures never touch. The six figures are in the ORDER OF THE MOVEMENT, left to right across the picture, not in the order of where the hands land.
+'''
+
+[exercise.qc]
+rows = 1
+per_row = 6
+grounded = [0, 1, 2, 3, 4, 5]
+floor_check = true
+
+[[exercise.poses]]
+label = "START"
+text = '''
+standing tall facing the camera, feet wide apart (astride, a little wider than the shoulders), both arms straight up overhead with the hands CLASPED together (fingers interlocked) and the arms straight, upper arms beside the ears.
+'''
+
+[[exercise.poses]]
+label = "TOUCH LEFT"
+text = '''
+bent forward at the waist, seen from the front, both hands reaching down together, still CLASPED together, with the fingertips touching the floor about six inches OUTSIDE {HIS} LEFT FOOT ({his} left foot is on the RIGHT side of the picture), knees only slightly bent, head hanging down.
+'''
+
+[[exercise.poses]]
+label = "TOUCH BETWEEN"
+text = '''
+bent forward in the same way, the clasped fingertips of both hands touching the floor BETWEEN {HIS} FEET, pressing down a little, knees only slightly bent, head hanging down.
+'''
+
+[[exercise.poses]]
+label = "TOUCH RIGHT"
+text = '''
+bent forward in the same way, the clasped fingertips of both hands touching the floor about six inches OUTSIDE {HIS} RIGHT FOOT ({his} right foot is on the LEFT side of the picture), knees only slightly bent, head hanging down.
+'''
+
+[[exercise.poses]]
+label = "LEAN RIGHT"
+text = '''
+standing up again out of the right-hand touch, feet still wide apart, both arms held straight up above the head with the hands CLASPED together (fingers interlocked) and the arms straight and the upper arms touching the ears, the whole upper body leaning sideways toward {HIS} RIGHT (the left side of the picture) as part of a big circle.
+'''
+
+[[exercise.poses]]
+label = "BEND BACK"
+text = '''
+standing, feet wide apart, both arms held straight up above the head with the hands CLASPED together (fingers interlocked) and the arms straight and the upper arms touching the ears, bending backward past upright as far as {he} can, hips pushed forward, chest and face lifted toward the sky, knees straight.
+'''
+
+[[exercise]]
+id = "sit-up-twist-c5"
+job = 10
+title = "Chart 5 sit-up with a twist"
+chart = 5
+view = "3q-front, foot end"
+tags = ["lying"]
+layout_ref = ""
+original_previous_sheet = ""
+layout = '''
+Create a NEW wide 16:9 pose sheet of that same {noun} doing a SIT-UP WITH A TWIST, drawing the knees up and touching an elbow to the opposite knee, shown THREE times left to right, three-quarter FRONT view, seen from the foot end so that the twist toward each knee is readable, the {noun} facing the camera, with the SAME camera angle in every pose. In every pose {he} is on the floor with {his} HEAD AWAY from the camera and {his} FEET TOWARD the camera, same scale, all on the same invisible floor line, wide empty gaps so the figures never touch. Draw only the {noun}: no chair, no objects.
+'''
+
+[exercise.qc]
+rows = 1
+per_row = 3
+grounded = []
+floor_check = false
+
+[[exercise.poses]]
+label = "START"
+text = '''
+lying flat on {his} back, legs straight and the feet together, fingers clasped behind {his} head with the elbows out to the sides.
+'''
+
+[[exercise.poses]]
+label = "TWIST RIGHT"
+text = '''
+sitting up with the legs drawn up bent and the FEET OFF THE FLOOR, the upper body twisted so that {his} RIGHT ELBOW touches {his} LEFT KNEE, fingers still clasped behind the head.
+'''
+
+[[exercise.poses]]
+label = "TWIST LEFT"
+text = '''
+the same, sitting up with the legs drawn up bent and the FEET OFF THE FLOOR, the upper body twisted the other way so that {his} LEFT ELBOW touches {his} RIGHT KNEE, fingers still clasped behind the head.
+'''
+
+[[exercise]]
+id = "back-extension-arms-overhead-c5"
+job = 11
+title = "Chart 5 back extension, arms overhead"
+chart = 5
+view = "side-3q"
+tags = ["lying"]
+layout_ref = "c2-ex3-back-extension.png"
+original_previous_sheet = ""
+layout = '''
+Create a NEW wide 16:9 pose sheet of that same {noun} doing a BACK EXTENSION WITH THE ARMS STRETCHED STRAIGHT OVERHEAD, shown THREE times left to right, side-on body with the head and shoulders turned about 30 to 45 degrees toward the camera, facing LEFT, with the SAME camera angle in every pose. In every pose {he} lies FACE DOWN, flat on {his} belly, with {his} HEAD ON THE LEFT and {his} FEET ON THE RIGHT. Same scale, all on the same invisible floor line, wide empty gaps between figures.
+'''
+
+[exercise.qc]
+rows = 1
+per_row = 3
+grounded = [0, 1, 2]
+floor_check = true
+
+[[exercise.poses]]
+label = "START"
+text = '''
+lying completely flat face down, legs straight and together, both arms stretched straight out in front, overhead, along the floor, palms down.
+'''
+
+[[exercise.poses]]
+label = "LIFTING"
+text = '''
+the arms, head, shoulders, chest and both legs just beginning to lift off the floor together, arms and legs straight.
+'''
+
+[[exercise.poses]]
+label = "TOP"
+text = '''
+the arms, head, chest AND BOTH THIGHS lifted completely off the floor as high as {he} can, arms straight and stretched forward and slightly up beside the ears, legs straight with the knees LOCKED, back strongly arched, looking forward; only {his} lower belly and hips stay on the floor.
+'''
+
+[[exercise]]
+id = "clap-push-up-c5"
+job = 12
+title = "Chart 5 clap push-up"
+chart = 5
+view = "3q-front"
+tags = []
+layout_ref = "c4-ex4-wide-hand-push-up.png"
+original_previous_sheet = ""
+layout = '''
+Create a NEW wide 16:9 pose sheet of that same {noun} doing a CLAP PUSH-UP (on the palms and toes, knees OFF the floor), shown THREE times left to right, three-quarter FRONT view: seen from the front and a little from one side, with {his} head nearer the camera and {his} feet farther away, so the hands are clearly visible, with the SAME camera angle in every pose. Same scale, all on the same invisible floor line (the toes stay on it in the first two poses), with generous empty space between the figures so they do not touch or overlap.
+'''
+
+[exercise.qc]
+rows = 1
+per_row = 3
+grounded = [0, 1]
+floor_check = true
+
+[[exercise.poses]]
+label = "START"
+text = '''
+lying face down, hands under the shoulders with the palms flat on the floor, only the palms and toes touching the floor, the body one straight line (the chest just above the floor, elbows bent).
+'''
+
+[[exercise.poses]]
+label = "PUSH"
+text = '''
+arms straightened, the body one straight line from the heels to the head, only the palms and toes touching the floor (the top of a normal push-up).
+'''
+
+[[exercise.poses]]
+label = "CLAP"
+text = '''
+pushed so hard that both HANDS ARE OFF THE FLOOR, the body still one straight line with only the toes touching the floor, both hands brought together in front of the chest as they CLAP.
+'''
+
+[[exercise]]
+id = "semi-spread-eagle-jumps-c5"
+job = 13
+title = "Chart 5 semi-spread eagle jumps"
+chart = 5
+view = "front"
+tags = ["jump", "front"]
+layout_ref = "c2-jump-astride-jumps.png"
+original_previous_sheet = ""
+layout = '''
+Create a NEW wide 16:9 pose sheet of that same {noun} doing SEMI-SPREAD EAGLE JUMPS, shown THREE times left to right, strict FRONT view, the {noun} facing the camera (not a side view). Same scale, wide empty gaps so the figures never touch. The crouch rests on the invisible floor line; the two jumping poses are drawn clearly higher, with both feet well above that line.
+'''
+
+[exercise.qc]
+rows = 1
+per_row = 3
+grounded = [0]
+floor_check = true
+
+[exercise.qc.airborne]
+"1" = 0.02
+"2" = 0.08
+
+[[exercise.poses]]
+label = "CROUCH"
+text = '''
+feet together, dropped to a half crouch with the knees bent about halfway, the hands resting on the knees with the arms straight, the back straight, both feet flat on the floor.
+'''
+
+[[exercise.poses]]
+label = "TAKE-OFF"
+text = '''
+just leaving the floor, the legs straightening with the feet together and both feet a little off the floor, the arms swinging up in front of {him}.
+'''
+
+[[exercise.poses]]
+label = "SPREAD EAGLE"
+text = '''
+in mid-air, both feet well off the floor and spread astride at least shoulder width apart, both arms swung up overhead with the hands above head level.
+'''
+
+[[exercise]]
+id = "toe-touch-reverse-clasp-c6"
+job = 14
+title = "Chart 6 toe touch, reverse clasp"
+chart = 6
+view = "front"
+tags = ["touch", "front"]
+layout_ref = "c3-ex1-toe-touching.png"
+original_previous_sheet = ""
+layout = '''
+Create a NEW wide 16:9 pose sheet of that same {noun} doing TOE TOUCHES WITH THE HANDS REVERSE CLASPED, TO THE LEFT, CENTRE AND RIGHT, THEN A CIRCLE BEND, shown SIX times left to right, strict FRONT view, the {noun} facing the camera (not a side view). Same scale, feet on the same invisible floor line, with wide empty gaps so the figures never touch. The six figures are in the ORDER OF THE MOVEMENT, left to right across the picture, not in the order of where the hands land.
+'''
+
+[exercise.qc]
+rows = 1
+per_row = 6
+grounded = [0, 1, 2, 3, 4, 5]
+floor_check = true
+
+[[exercise.poses]]
+label = "START"
+text = '''
+standing tall facing the camera, feet wide apart (astride, a little wider than the shoulders), both arms straight up overhead with the hands REVERSE CLASPED (fingers interlocked with the palms turned OUTWARD, away from the head) and the arms straight, upper arms beside the ears.
+'''
+
+[[exercise.poses]]
+label = "TOUCH LEFT"
+text = '''
+bent forward at the waist, seen from the front, both hands reaching down together, still REVERSE CLASPED, with the fingertips touching the floor about six inches OUTSIDE {HIS} LEFT FOOT ({his} left foot is on the RIGHT side of the picture), knees only slightly bent, head hanging down.
+'''
+
+[[exercise.poses]]
+label = "TOUCH BETWEEN"
+text = '''
+bent forward in the same way, the clasped fingertips of both hands touching the floor BETWEEN {HIS} FEET, pressing down a little, knees only slightly bent, head hanging down.
+'''
+
+[[exercise.poses]]
+label = "TOUCH RIGHT"
+text = '''
+bent forward in the same way, the clasped fingertips of both hands touching the floor about six inches OUTSIDE {HIS} RIGHT FOOT ({his} right foot is on the LEFT side of the picture), knees only slightly bent, head hanging down.
+'''
+
+[[exercise.poses]]
+label = "LEAN RIGHT"
+text = '''
+standing up again out of the right-hand touch, feet still wide apart, both arms held straight up above the head with the hands REVERSE CLASPED (fingers interlocked with the palms turned OUTWARD, away from the head) and the arms straight and the upper arms touching the ears, the whole upper body leaning sideways toward {HIS} RIGHT (the left side of the picture) as part of a big circle.
+'''
+
+[[exercise.poses]]
+label = "BEND BACK"
+text = '''
+standing, feet wide apart, both arms held straight up above the head with the hands REVERSE CLASPED (fingers interlocked with the palms turned OUTWARD, away from the head) and the arms straight and the upper arms touching the ears, bending backward past upright as far as {he} can, hips pushed forward, chest and face lifted toward the sky, knees straight.
+'''
+
+[[exercise]]
+id = "pike-sit-up-c6"
+job = 15
+title = "Chart 6 pike sit-up"
+chart = 6
+view = "side"
+tags = ["lying"]
+layout_ref = "c4-ex2-sit-up-toe-touch.png"
+original_previous_sheet = ""
+layout = '''
+Create a NEW wide 16:9 pose sheet of that same {noun} doing a PIKE SIT-UP: sitting up and lifting both legs at the same time to touch the toes in a V, shown THREE times left to right, strict SIDE view, the {noun} facing right, with the SAME camera angle in every pose. In every pose {he} lies on {his} back (or sits) with {his} HEAD ON THE LEFT and {his} FEET ON THE RIGHT, same scale, all on the same invisible floor line, wide empty gaps so the figures never touch. Draw only the {noun}: no chair, no objects.
+'''
+
+[exercise.qc]
+rows = 1
+per_row = 3
+grounded = [0, 1, 2]
+floor_check = true
+
+[[exercise.poses]]
+label = "START"
+text = '''
+lying flat on {his} back, legs straight and the feet together, both arms stretched straight over the head along the floor.
+'''
+
+[[exercise.poses]]
+label = "RISING"
+text = '''
+the upper body and BOTH straight legs lifting off the floor together about halfway, arms reaching forward toward the toes, feet together.
+'''
+
+[[exercise.poses]]
+label = "PIKE"
+text = '''
+balanced on {his} seat in a V shape, the upper body AND both straight legs lifted clear of the floor, the arms straight and the fingertips touching the toes, feet together, legs and arms straight.
+'''
+
+[[exercise]]
+id = "back-extension-press-c6"
+job = 16
+title = "Chart 6 back extension with a press"
+chart = 6
+view = "side-3q"
+tags = ["lying"]
+layout_ref = "c2-ex3-back-extension.png"
+original_previous_sheet = ""
+layout = '''
+Create a NEW wide 16:9 pose sheet of that same {noun} doing a BACK EXTENSION WITH A PRESS BACK, shown THREE times left to right, side-on body with the head and shoulders turned about 30 to 45 degrees toward the camera, facing LEFT, with the SAME camera angle in every pose. In every pose {he} lies FACE DOWN, flat on {his} belly, with {his} HEAD ON THE LEFT and {his} FEET ON THE RIGHT. Same scale, all on the same invisible floor line, wide empty gaps between figures.
+'''
+
+[exercise.qc]
+rows = 1
+per_row = 3
+grounded = [0, 1, 2]
+floor_check = true
+
+[[exercise.poses]]
+label = "START"
+text = '''
+lying completely flat face down, legs straight and together, both arms stretched straight out in front, overhead, along the floor.
+'''
+
+[[exercise.poses]]
+label = "TOP"
+text = '''
+the arms, head, chest AND BOTH THIGHS lifted completely off the floor as high as {he} can, arms and legs straight, back strongly arched, looking forward.
+'''
+
+[[exercise.poses]]
+label = "PRESS"
+text = '''
+from the top, one extra small push BACK and UP: the arms, chest and legs a little higher still, the back arched a little further, still with the arms and legs straight.
+'''
+
+[[exercise]]
+id = "chest-slap-push-up-c6"
+job = 17
+title = "Chart 6 chest-slap push-up"
+chart = 6
+view = "3q-front"
+tags = []
+layout_ref = "c4-ex4-wide-hand-push-up.png"
+original_previous_sheet = ""
+layout = '''
+Create a NEW wide 16:9 pose sheet of that same {noun} doing a CHEST-SLAP PUSH-UP (on the palms and toes, knees OFF the floor), shown THREE times left to right, three-quarter FRONT view: seen from the front and a little from one side, with {his} head nearer the camera and {his} feet farther away, so the hands are clearly visible, with the SAME camera angle in every pose. Same scale, all on the same invisible floor line (the toes stay on it in the first two poses), with generous empty space between the figures so they do not touch or overlap.
+'''
+
+[exercise.qc]
+rows = 1
+per_row = 3
+grounded = [0, 1]
+floor_check = true
+
+[[exercise.poses]]
+label = "START"
+text = '''
+lying face down, hands under the shoulders with the palms flat on the floor, only the palms and toes touching the floor, the body one straight line (the chest just above the floor, elbows bent).
+'''
+
+[[exercise.poses]]
+label = "PUSH"
+text = '''
+arms straightened, the body one straight line from the heels to the head, only the palms and toes touching the floor (the top of a normal push-up).
+'''
+
+[[exercise.poses]]
+label = "SLAP"
+text = '''
+pushed so hard that both HANDS ARE OFF THE FLOOR, the body still one straight line with only the toes touching the floor, both hands slapping flat against the CHEST.
+'''
+
+[[exercise]]
+id = "jack-jumps-c6"
+job = 18
+title = "Chart 6 jack jumps"
+chart = 6
+view = "side"
+tags = ["jump"]
+layout_ref = "c3-jump-half-knee-bends.png"
+original_previous_sheet = ""
+layout = '''
+Create a NEW wide 16:9 pose sheet of that same {noun} doing JACK JUMPS (a squat jump into a straight-leg pike), shown THREE times left to right, strict SIDE view, the {noun} facing right, with the SAME camera angle in every pose. Same scale, wide empty gaps so the figures never touch. The squat rests on the invisible floor line; the take-off is drawn slightly higher and the pike clearly higher, with both feet well above that line.
+'''
+
+[exercise.qc]
+rows = 1
+per_row = 3
+grounded = [0]
+floor_check = true
+
+[exercise.qc.airborne]
+"1" = 0.015
+"2" = 0.08
+
+[[exercise.poses]]
+label = "SQUAT"
+text = '''
+feet together, the knees fully bent, sitting on the heels, the fingertips of both hands touching the floor.
+'''
+
+[[exercise.poses]]
+label = "TAKE-OFF"
+text = '''
+just leaving the floor, the legs straightening and swinging up, feet together, the arms reaching forward.
+'''
+
+[[exercise.poses]]
+label = "PIKE"
+text = '''
+in mid-air, both legs straight and raised to waist height in front of {him}, feet together, the body bent at the waist and the fingertips of both hands touching the toes.
+'''

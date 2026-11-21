@@ -1,0 +1,58 @@
+# Stage geometry shared by every background, mat and QC check.
+# All positions are fractions of the image height (or width for x). Change here, not in the code.
+
+magenta = "#FF00FF"     # key colour for sheets and mat overlays
+
+[format.wide]
+size = [1920, 1080]
+feet_line = 0.80         # the character stands with feet on this line, in the middle
+strip = [0.73, 0.86]     # this band must be completely flat, smooth and empty
+character_height = 0.59  # fraction of image height
+
+[format.tall]
+size = [1080, 1920]
+feet_line = 0.74
+strip = [0.67, 0.80]
+character_height = 0.50
+
+# Floor colour every scene should use so figures read against it (mid cool grey).
+[floor]
+hex = "#707680"
+tol = 14                 # per-channel tolerance for the QC check
+
+# Exercise mat overlays are DRAWN IN CODE (mats.py). ChatGPT could not hit these numbers (see LESSONS D-02).
+# near/far = [y, x_left, x_right]
+[mat.wide]
+near = [0.90, 0.05, 0.95]
+far = [0.73, 0.08, 0.92]
+thick_px = 12
+border_inset_px = 16
+border_px = 3
+radius_px = 28
+
+[mat.tall]
+near = [0.84, 0.02, 0.98]
+far = [0.67, 0.05, 0.95]
+thick_px = 14
+border_inset_px = 18
+border_px = 4
+radius_px = 34
+
+[[mat_colour]]
+name = "teal"
+top = "#217678"
+line = "#5FA3A5"
+front = "#164f52"
+
+[[mat_colour]]
+name = "navy"
+top = "#243B66"
+line = "#4B6FB5"
+front = "#18284a"
+
+# Scene descriptions used by `sprite.py stage` to write a from-scratch background prompt.
+[[scene]]
+id = "forest"
+name = "Pine forest trail"
+horizon = 0.56
+summary = "a sunny pine forest trail below a blue mountain range"

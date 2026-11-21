@@ -1,20 +1,22 @@
 ﻿# Exercise Sprite Video
 
-Raw material and review notes for the 5BX exercise video: pose sprite sheets of a cartoon boy
-and stage backgrounds, produced in one overnight ChatGPT batch (29 jobs) and then reviewed
-against the written briefs.
+A repeatable line for making exercise pose sprites and stage backgrounds for the 5BX video with ChatGPT:
+generate the prompts from config, score what comes back, cut accepted sheets into transparent sprites.
+The first overnight run (29 jobs) produced the material in `assets/` and the lessons in `LESSONS.md`.
+
+**Start here:** [`pipeline/README.md`](pipeline/README.md) (how to run a cycle, or change the character) and
+[`LESSONS.md`](LESSONS.md) (defect log, yields, what worked, what to test next).
 
 ## Layout
 
 | Path | What it is |
 |------|------------|
-| `briefs/BATCH-A-sprites.md` | The 18 sprite-sheet prompts (jobs 01-18), as pasted into ChatGPT |
-| `briefs/BATCH-B-backgrounds.md` | The 11 background prompts (jobs 19-29) |
-| `briefs/jobs.json` | Job list: title, reference files to attach, expected output |
+| `pipeline/` | The line: `sprite.py` plus config (`characters/`, `exercises.toml`, `rules.toml`, `stage.toml`, `fixes.toml`) and tests |
+| `LESSONS.md` | Defect log, first-pass yield, CTQs, experiments to run next |
+| `briefs/BATCH-A-sprites.md`, `BATCH-B-backgrounds.md`, `jobs.json` | The original hand-written prompts from run 1 (the generator reproduces them) |
+| `briefs/BATCH-C-retakes.md` | The retake batch sent after run 1 (now produced by `sprite.py prompts --mode fix`) |
 | `audits/` | ChatGPT's own notes on its output, unedited |
-| `tools/measure.py`, `tools/measure_backgrounds.py` | Pixel checks used for the review (hard-coded Windows paths; edit them before reuse) |
-| `tools/draw_mats.py` | Draws the four mat overlays (jobs 20-23) in code to the exact brief; run `python draw_mats.py <out_dir> [tall_room.png] [wide_room.png]` |
-| `assets/sprites/`, `assets/backgrounds/` | Only the outputs that passed review |
+| `assets/sprites/`, `assets/backgrounds/` | Only the outputs that passed review (`mats-code/` was drawn by `pipeline/mats.py`) |
 | `RETAKE-NEXT.md` | What to ask ChatGPT to redo, job by job |
 
 The reference images the briefs name (`c4-run-knees-waist-high.png`, `REF-footswitch.png`,
@@ -49,7 +51,7 @@ and 28 with their source images, which were not available, so "keep the same" wa
 
 ### Mats drawn in code (`assets/backgrounds/mats-code/`)
 
-JOB-20 to JOB-23, drawn by `tools/draw_mats.py` instead of ChatGPT, because its mats drifted from the brief (tall mats tapered too much, colours came out light). These match the brief exactly:
+JOB-20 to JOB-23, drawn by `pipeline/mats.py` (`sprite.py mats`) instead of ChatGPT, because its mats drifted from the brief (tall mats tapered too much, colours came out light). These match the brief exactly:
 
 - Top surface is exactly `#217678` (teal) or `#243B66` (navy), flat, with the lighter border line and darker front edge from the brief.
 - Position: near and far edges and x-ranges match to within one pixel (wide: near 90% / 5-95%, far 73% / 8-92%; tall: near 84% / 2-98%, far 67% / 5-95%).

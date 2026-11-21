@@ -1,0 +1,50 @@
+# EXAMPLE of swapping the character: a teenage girl, different outfit and a softer art style.
+# Used by the test in pipeline/README.md to prove a new character needs only this one file.
+# The reference image does not exist yet; a real run needs one drawn first.
+
+name = "teen-girl"
+noun = "girl"
+pronouns = "she"
+reference_image = "teen-girl-reference.png"
+
+age = "15-year-old"
+hair = "long dark brown hair in a high ponytail"
+skin = "medium olive skin"
+face = "friendly face with large dark eyes"
+build = "slim, athletic and slightly taller than a child"
+outfit = "Coral sleeveless athletic top, black bike shorts, white ankle socks, teal sneakers with white soles."
+art_style = "Soft flat-color cartoon illustration: clean thin dark-brown outline, gentle two-tone shading, bright but slightly muted colors, crisp edges."
+
+garment_rule = "fitted black bike shorts that end above the knee, clearly shorts and not long leggings or a skirt"
+face_rule = "a calm, friendly face with a small closed smile and level eyebrows, the eyes looking where {he} is going: no smirk, no big grin, no raised cheek"
+feet_rule = "feet relaxed and natural, never pointed like a ballet dancer"
+
+[[palette]]
+name = "skin"
+hex = "#c98f5e"
+tol = 55
+min_frac = 0.06
+
+[[palette]]
+name = "hair"
+hex = "#3a2417"
+tol = 45
+min_frac = 0.02
+
+[[palette]]
+name = "top"
+hex = "#f26b5b"
+tol = 60
+min_frac = 0.02
+
+[[palette]]
+name = "shorts"
+hex = "#1b1b1f"
+tol = 40
+min_frac = 0.02
+
+[[palette]]
+name = "shoes"
+hex = "#1f9e9a"
+tol = 55
+min_frac = 0.003

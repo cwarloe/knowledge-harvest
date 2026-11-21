@@ -1,0 +1,50 @@
+# One-off fixes for specific exercises, taken from the review of the first overnight run.
+# Used by `sprite.py prompts --mode fix`. Once a fix proves general it moves into rules.toml.
+# base = the previous attempt to attach (file name in the overnight folder).
+
+[[fix]]
+exercise = "semi-squat-jumps-c4"
+base = "JOB-01-v2.png"
+text = """KEEP: the foot order in all four poses is correct. Do not change which foot is ahead.
+FIX: (1) In both hop poses the arms must swing forward and a little up, elbows slightly bent, fists relaxed. Do NOT hold the fists in a boxing guard at the chest. (2) The face must be calm: a small closed smile, eyes level and looking ahead. It currently reads as a smirk. (3) In the crouches keep the back straight at about 45 degrees with the chest and head up."""
+
+[[fix]]
+exercise = "toe-touch-circle-c4"
+base = "JOB-02.png"
+text = """FIX: (1) In the two side touches the fingertips must touch the floor about six inches OUTSIDE the outer edge of the foot, beyond the shoe, not at the shoe. (2) In poses 1, 5 and 6 the arms are straight and parallel with the upper arms touching the ears, not spread in a V. (3) Figures 2, 3 and 4 were 17 px apart. Draw every figure at about 85% scale so there is a wide gap between all six."""
+
+[[fix]]
+exercise = "back-extension-arms-sideways-c4"
+base = "JOB-04-v2.png"
+text = """KEEP: the three rows, the T-shaped arms, and the progressive lift in all three poses.
+FIX: in ROW 3 pose 1 the legs are lifted off the floor. In pose 1 of every row he must lie completely flat with legs, belly and chest on the floor line. Only poses 2 and 3 lift."""
+
+[[fix]]
+exercise = "chin-forehead-push-up-c3"
+base = "JOB-05.png"
+text = """FIX: (1) FOREHEAD pose: the forehead must be level with or BEHIND the line of the hands, with the hands visibly ahead of the forehead in the direction he faces. At the moment his head is in front of the hands. (2) CHIN pose: the chin must visibly touch the floor in front of the hands, with the elbows bent and the chest just above the floor, clearly lower than the UP pose. (3) Both rows: knees off the floor, palms and toes only."""
+
+[[fix]]
+exercise = "back-extension-c2"
+base = "JOB-06-v2.png"
+text = """FIX: (1) START: the feet and shins must lie flat on the floor, not raised. (2) TOP: lift the thighs, knees and shins clearly higher, so there is visible daylight between the thighs and the hands, at least twice the lift of the current sheet. (3) Keep both arms straight back with the palms under the front of the thighs."""
+
+[[fix]]
+exercise = "scissor-jumps-c1"
+base = "JOB-08.png"
+text = """FIX: (1) The two rows must be genuinely different cameras. ROW 1 a three-quarter FRONT view from the front and a little from the left; ROW 2 a strict SIDE view facing right. (2) In the jump poses both feet must be well off the floor: at least a quarter of the figure's height above the floor line (they are only one shoe-height up now), legs together under the hips, arms crossing near the body. (3) Stances: the front leg only slightly bent, the back leg straight, arms straight at shoulder height."""
+
+[[fix]]
+exercise = "toe-touch-clasped-c5"
+base = "JOB-09.png"
+text = """FIX: (1) In the two side touches the clasped fingertips must touch the floor about six inches OUTSIDE the outer edge of the foot, not on the shoe. (2) Poses 2, 3 and 4 must be a strict FRONT view, not turned. (3) Figures were 22 px apart. Draw every figure at about 80% scale so there is a wide gap between all six."""
+
+[[fix]]
+exercise = "toe-touch-reverse-clasp-c6"
+base = "JOB-14.png"
+text = """FIX: (1) In the two side touches the reverse-clasped fingertips must touch the floor about six inches OUTSIDE the outer edge of the foot, not on the shoe. (2) Poses 2, 3 and 4 must be a strict FRONT view, not turned. (3) Figures were 13 px apart. Draw every figure at about 80% scale so there is a wide gap between all six."""
+
+[[fix]]
+exercise = "chest-slap-push-up-c6"
+base = "JOB-17.png"
+text = """FIX: the brief asks for a three-quarter FRONT view, seen from the front and a little from one side, with the head nearer the camera and the feet farther away. The previous sheet is a pure side view. Redraw all three poses from the three-quarter front camera. Keep the three poses and the hands-slap-chest finish."""

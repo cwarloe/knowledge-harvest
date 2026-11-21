@@ -1,0 +1,55 @@
+# Character definition. To make a new character, copy this file and edit it. Nothing else changes.
+# Everything character-specific in every prompt, QC check and sprite cut comes from here.
+
+name = "boy"                   # short id, used in file names
+noun = "boy"                   # how prompts refer to the character: boy, girl, teenager, man, woman
+pronouns = "he"                # "he" or "she"
+reference_image = "c4-run-knees-waist-high.png"   # the one picture that defines the look (attach to every job)
+
+# --- the look (each field is one clause in the appearance sentence) ---
+age = "12-year-old"
+hair = "short spiky black hair"
+skin = "warm tan skin"
+face = "simple friendly face with small dark eyes"
+build = "athletic but slim build"
+outfit = "Bright cyan-blue sleeveless tank top, red athletic shorts, white ankle socks, blue sneakers with white laces and soles."
+art_style = "Clean cartoon video-game illustration: confident medium-weight black outline, flat cel shading with one soft shadow tone, vivid saturated colors, high detail, crisp edges."
+
+# --- rules repeated in every figure prompt ---
+# What the lower garment must look like (this is where "shorts, not tights" lives; change it with the outfit).
+garment_rule = "loose red athletic shorts that hang to mid-thigh with a wide leg opening, clearly shorts and not tights, leggings or briefs"
+face_rule = "a calm, friendly face with a small closed smile and level eyebrows, the eyes looking where {he} is going: no smirk, no big grin, no raised cheek"
+feet_rule = "feet relaxed and natural, never pointed like a ballet dancer"
+
+# --- palette used by the QC gate to confirm each figure still looks like this character ---
+# hex = a dominant colour in the reference image, tol = how far (RGB distance) a pixel may be and still count,
+# min_frac = the smallest share of a figure's pixels that must match.
+[[palette]]
+name = "skin"
+hex = "#f9a64d"
+tol = 55
+min_frac = 0.08
+
+[[palette]]
+name = "hair"
+hex = "#1a1214"
+tol = 45
+min_frac = 0.02
+
+[[palette]]
+name = "tank"
+hex = "#05a0f2"
+tol = 60
+min_frac = 0.02
+
+[[palette]]
+name = "shorts"
+hex = "#df1f1a"
+tol = 55
+min_frac = 0.02
+
+[[palette]]
+name = "shoes"
+hex = "#0a78c8"
+tol = 55
+min_frac = 0.003

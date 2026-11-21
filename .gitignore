@@ -12,3 +12,6 @@ dist/
 build/
 services/uploads/*
 !services/uploads/.gitkeep
+
+__pycache__/
+*.pyc
