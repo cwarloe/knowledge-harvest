@@ -1,4 +1,4 @@
-# Exercise Sprite Video
+﻿# Exercise Sprite Video
 
 Raw material and review notes for the 5BX exercise video: pose sprite sheets of a cartoon boy
 and stage backgrounds, produced in one overnight ChatGPT batch (29 jobs) and then reviewed
@@ -13,6 +13,7 @@ against the written briefs.
 | `briefs/jobs.json` | Job list: title, reference files to attach, expected output |
 | `audits/` | ChatGPT's own notes on its output, unedited |
 | `tools/measure.py`, `tools/measure_backgrounds.py` | Pixel checks used for the review (hard-coded Windows paths; edit them before reuse) |
+| `tools/draw_mats.py` | Draws the four mat overlays (jobs 20-23) in code to the exact brief; run `python draw_mats.py <out_dir> [tall_room.png] [wide_room.png]` |
 | `assets/sprites/`, `assets/backgrounds/` | Only the outputs that passed review |
 | `RETAKE-NEXT.md` | What to ask ChatGPT to redo, job by job |
 
@@ -46,14 +47,24 @@ and 28 with their source images, which were not available, so "keep the same" wa
 | `backgrounds/JOB-27-variation-3.png` | Pine forest | Horizon about 58-59% (brief: 56%); stage strip empty in the middle; no pink |
 | `backgrounds/JOB-28.png` | Mountain meadow | Flat blue-grey track (`#767d86`), no seams, centre calm. Caveat: the track starts at 74.4% down, brief asked for 73% |
 
+### Mats drawn in code (`assets/backgrounds/mats-code/`)
+
+JOB-20 to JOB-23, drawn by `tools/draw_mats.py` instead of ChatGPT, because its mats drifted from the brief (tall mats tapered too much, colours came out light). These match the brief exactly:
+
+- Top surface is exactly `#217678` (teal) or `#243B66` (navy), flat, with the lighter border line and darker front edge from the brief.
+- Position: near and far edges and x-ranges match to within one pixel (wide: near 90% / 5-95%, far 73% / 8-92%; tall: near 84% / 2-98%, far 67% / 5-95%).
+- Each mat has a magenta version (background exactly `#FF00FF`, hard edges), a transparent version (antialiased alpha, no magenta), and a preview.
+- Tall previews sit on the JOB-19 gym. The original wide gym (`bg-keeper-gym-landscape-v1.png`) is not available here, so the wide previews use JOB-29 as a stand-in room.
+
+These replace the ChatGPT mats in `assets/backgrounds/` for jobs 20-21 and supply the missing 22-23.
+
 ### Not included (files stay in the original overnight folder)
 
 - **Failed a brief requirement:** JOB-01-v2 (hop arms, smirk), JOB-02 (hands at the feet, figures
   17 px apart), JOB-04-v2 (row 3 start pose not flat), JOB-05 (forehead lands in front of the
   hands), JOB-06-v2 (lift too small, start feet raised), JOB-08 (both rows same camera, jumps
   barely leave the floor), JOB-09 and JOB-14 (hands touch the shoes, figures 13-22 px apart),
-  JOB-17 (side view, brief asked for three-quarter front), JOB-22 and JOB-23 (tall mats taper
-  too much), JOB-26 (a floor seam crosses the stage strip), JOB-27 variations 1, 2 and 4
+  JOB-17 (side view, brief asked for three-quarter front), JOB-26 (a floor seam crosses the stage strip), JOB-27 variations 1, 2 and 4
   (horizon 60-62%), JOB-19 original (gridded window behind the centre), JOB-29 (whole upper room
   re-rendered, not just the window).
 - First takes superseded by a v2 (JOB-01, 03, 04, 06) were not reviewed.
@@ -63,3 +74,4 @@ and 28 with their source images, which were not available, so "keep the same" wa
 No sheet has an exact `#FF00FF` background. Corners read about (250, 5, 252), and the JOB-10,
 11, 14, 15 and 16 sheets drift further (green around 22-28). Use a chroma-key tolerance of at
 least about 40.
+

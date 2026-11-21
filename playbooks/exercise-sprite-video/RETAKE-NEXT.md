@@ -1,4 +1,4 @@
-# Retake list for ChatGPT
+﻿# Retake list for ChatGPT
 
 Append the "Fix" text below to the ORIGINAL job prompt in `briefs/` and attach the same
 reference images as before. For retakes, also attach the previous sheet and say which one is
@@ -28,7 +28,7 @@ Optional: JOB-16 passes, but the "press" pose is only slightly higher than the t
 
 | Job | Fix |
 |-----|-----|
-| JOB-22, JOB-23 | Not worth another ChatGPT pass: the tall mats taper too much (far edge 10-90%, brief 5-95%) and the colours drift light. Draw them in code to the exact spec instead. |
+| JOB-22, JOB-23 | Done in code (`tools/draw_mats.py`, `assets/backgrounds/mats-code/`); no ChatGPT retake needed. |
 | JOB-26 | A floor seam runs straight across the 73-86% strip (at about 74% down). Redraw the flagstones so the strip is perfectly smooth; seams only above 70% and below 90%. Gears are still large on the left: shrink them about 30% as briefed. |
 | JOB-27 | Ask for two more variations with the ground starting at 56% down (variation 3 is at 58-59%; the others are 60-62%). Keep rocks and bushes out of the 73-86% strip. |
 | JOB-29 | Optional and unapproved: the whole upper room differs from the keeper (about 6.5% of pixels changed evenly across left, middle and right), so it was re-rendered, not just edited. Skip unless the plain centre window is wanted; a pixel edit of the keeper would be more reliable. |
@@ -38,3 +38,4 @@ Optional: JOB-16 passes, but the "press" pose is only slightly higher than the t
 The reference images the briefs name are not in this repo and are needed again for any
 retake: `c4-run-knees-waist-high.png` (the character), `REF-footswitch.png`,
 `REF-backext-geometry.png`, `bg-keeper-gym-landscape-v1.png`, and the `c*-` and `ex5-` previous sheets.
+
