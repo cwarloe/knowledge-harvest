@@ -45,3 +45,15 @@ No universal pass mark or fixed number of cases is asserted. Agree an evidence r
 Compare task mix, workload, staffing, authority, and case severity across windows. Report alternative explanations. A good pilot conclusion reads: “Across these reviewed cases, under these conditions, performance met this standard with this assistance.” Report delivery effort separately from recurring support savings; do not translate founder time into revenue without evidence that the time was productively redeployed.
 
 Continue when the pre-agreed outcome improves with quality maintained and effort acceptable. Revise when a diagnosis or aid is wrong. Pause when opportunities or required support are absent. Stop when costs or harm outweigh likely benefit. The owner records the decision; software never infers it from a single dashboard number.
+
+## Optional arithmetic canary (fictional evidence only)
+
+The [de-identified metrics sidecar](metrics-canary.md) is a local standard-library
+validator for one row per eligible opportunity. It demonstrates the rules above,
+not the product case-management workflow. Its checked-in fixture reproduces the
+counts in [the fictional MSP case](example-msp.md); it is not client evidence.
+
+The checker refuses duplicate IDs, incompatible scope, inconsistent escalation
+labels, impossible independence assertions, and extra fields. It reports missing
+review/minutes coverage rather than treating absence as zero. It never decides
+that an employee is competent or a pilot should be released.

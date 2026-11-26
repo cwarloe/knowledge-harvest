@@ -40,6 +40,7 @@ Stages can loop. A live-work failure can return to diagnosis or invalidate an ai
 - [Pilot workbook](pilot-workbook.md): reusable records for the complete engagement.
 - [Diagnosis and transfer conditions](diagnosis.md): distinguish capability from other barriers.
 - [Measurement and evidence](measurement.md): operational definitions and decision rules.
+- [Optional metrics canary](metrics-canary.md): deterministic fictional QA for the pilot arithmetic and missing-evidence rules, not client-data storage.
 - [Worked MSP example](example-msp.md): fictional decisions and numbers, including a failed attempt.
 - [Product specification](product-spec.md): four screens, domain model, API contract, review rules.
 - [Implementation backlog](implementation-backlog.md): sequenced slices and acceptance checks.
