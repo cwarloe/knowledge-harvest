@@ -21,6 +21,8 @@ describe('PostgreSQL recording duration contract', () => {
   it('retains existing string representations without retroactive reinterpretation', () => {
     expect(durationLabel('8:42')).toBe('8:42');
     expect(durationLabel(null)).toBe('Unknown');
+    expect(durationLabel({})).toBe('Unknown');
+    expect(durationLabel({ unexpected: 'x' })).toBe('Unknown');
     expect(durationLabel({ months: 1 })).toBe('Unknown');
     expect(durationLabel({ seconds: -1 })).toBe('Unknown');
   });

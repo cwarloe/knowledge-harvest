@@ -13,8 +13,11 @@ export function durationLabel(duration) {
   if (!duration || typeof duration !== 'object') return 'Unknown';
   if (duration.years || duration.months) return 'Unknown';
 
-  const parts = ['days', 'hours', 'minutes', 'seconds']
-    .map((key) => duration[key] ?? 0);
+  const fields = ['days', 'hours', 'minutes', 'seconds'];
+  if (!fields.some((key) => Object.prototype.hasOwnProperty.call(duration, key))) {
+    return 'Unknown';
+  }
+  const parts = fields.map((key) => duration[key] ?? 0);
   if (parts.some((part) => typeof part !== 'number' || !Number.isFinite(part) || part < 0)) {
     return 'Unknown';
   }
