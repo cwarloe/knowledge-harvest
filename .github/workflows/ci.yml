@@ -45,3 +45,15 @@ jobs:
         run: node --check server.js
       - name: Tests
         run: npm test
+
+  capability-transfer-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check fictional metrics arithmetic and fail-closed evidence rules
+        run: python3 -m unittest discover -s tools/tests -p 'test_capability_transfer_metrics.py' -v
+      - name: Validate the checked-in fictional pilot canary
+        run: python3 tools/capability_transfer_metrics.py --input docs/capability-transfer/metrics-fixture.json --check

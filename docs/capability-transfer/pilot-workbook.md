@@ -2,6 +2,10 @@
 
 Blank template. Replace bracketed fields; retain unknowns explicitly. Keep completed client work private. Use the [measurement rules](measurement.md) and [diagnostic prompts](diagnosis.md).
 
+For checking aggregate calculations on **fictional records only**, see the
+[optional metrics canary](metrics-canary.md). It does not replace the workbook,
+human review, or an approved private client evidence location.
+
 ## 1. Pilot agreement
 
 - Case ID / title: [ ]

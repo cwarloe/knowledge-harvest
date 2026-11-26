@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "pilot_id": "KH-DEMO-001",
+  "scope_id": "fictional-contract-classification",
+  "comparison_review": {"same_inclusion_rules": true, "task_mix_reviewed": true},
+  "windows": {
+    "baseline": {
+      "scope_id": "fictional-contract-classification",
+      "opportunities": [
+        {"id":"b01","escalated":true,"escalation_class":"avoidable","quality":"pass","independent":null,"founder_minutes":15,"other_support_minutes":0,"critical_error":false},
+        {"id":"b02","escalated":true,"escalation_class":"avoidable","quality":"fail","independent":null,"founder_minutes":10,"other_support_minutes":5,"critical_error":false},
+        {"id":"b03","escalated":true,"escalation_class":"avoidable","quality":"pass","independent":null,"founder_minutes":15,"other_support_minutes":0,"critical_error":false},
+        {"id":"b04","escalated":true,"escalation_class":"avoidable","quality":"pass","independent":null,"founder_minutes":10,"other_support_minutes":0,"critical_error":false},
+        {"id":"b05","escalated":true,"escalation_class":"appropriate","quality":"pass","independent":null,"founder_minutes":15,"other_support_minutes":0,"critical_error":false},
+        {"id":"b06","escalated":true,"escalation_class":"appropriate","quality":"pass","independent":null,"founder_minutes":15,"other_support_minutes":0,"critical_error":false},
+        {"id":"b07","escalated":false,"escalation_class":"none","quality":"fail","independent":null,"founder_minutes":5,"other_support_minutes":5,"critical_error":false},
+        {"id":"b08","escalated":false,"escalation_class":"none","quality":"pass","independent":null,"founder_minutes":5,"other_support_minutes":0,"critical_error":false},
+        {"id":"b09","escalated":false,"escalation_class":"none","quality":"pass","independent":null,"founder_minutes":0,"other_support_minutes":0,"critical_error":false},
+        {"id":"b10","escalated":false,"escalation_class":"none","quality":"pass","independent":null,"founder_minutes":0,"other_support_minutes":0,"critical_error":false}
+      ]
+    },
+    "followup": {
+      "scope_id": "fictional-contract-classification",
+      "opportunities": [
+        {"id":"f01","escalated":true,"escalation_class":"avoidable","quality":"pass","independent":false,"founder_minutes":15,"other_support_minutes":0,"critical_error":false},
+        {"id":"f02","escalated":true,"escalation_class":"appropriate","quality":"pass","independent":true,"founder_minutes":10,"other_support_minutes":0,"critical_error":false},
+        {"id":"f03","escalated":true,"escalation_class":"appropriate","quality":"pass","independent":false,"founder_minutes":10,"other_support_minutes":0,"critical_error":false},
+        {"id":"f04","escalated":false,"escalation_class":"none","quality":"pass","independent":true,"founder_minutes":5,"other_support_minutes":5,"critical_error":false},
+        {"id":"f05","escalated":false,"escalation_class":"none","quality":"pass","independent":true,"founder_minutes":5,"other_support_minutes":5,"critical_error":false},
+        {"id":"f06","escalated":false,"escalation_class":"none","quality":"pass","independent":true,"founder_minutes":0,"other_support_minutes":5,"critical_error":false},
+        {"id":"f07","escalated":false,"escalation_class":"none","quality":"pass","independent":true,"founder_minutes":0,"other_support_minutes":5,"critical_error":false},
+        {"id":"f08","escalated":false,"escalation_class":"none","quality":"pass","independent":true,"founder_minutes":0,"other_support_minutes":0,"critical_error":false},
+        {"id":"f09","escalated":false,"escalation_class":"none","quality":"pass","independent":true,"founder_minutes":0,"other_support_minutes":0,"critical_error":false},
+        {"id":"f10","escalated":false,"escalation_class":"none","quality":"fail","independent":false,"founder_minutes":0,"other_support_minutes":0,"critical_error":false}
+      ]
+    }
+  }
+}
