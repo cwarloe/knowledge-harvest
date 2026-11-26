@@ -24,7 +24,8 @@ const KnowledgeHarvestApp = () => {
   const mediaRecorderRef = useRef(null);
   const streamRef = useRef(null);
   const intervalRef = useRef(null);
-  const chunksRef = useRef([]);
+  const capturePendingRef = useRef(false);
+  const stopPendingRef = useRef(false);
   const elapsedBeforePauseMsRef = useRef(0);
   const segmentStartMsRef = useRef(null);
 
@@ -50,7 +51,7 @@ const KnowledgeHarvestApp = () => {
 
   const stopRecording = useCallback(() => {
     const recorder = mediaRecorderRef.current;
-    if (!recorder || recorder.state === 'inactive') return;
+    if (!recorder || recorder.state === 'inactive' || stopPendingRef.current) return;
 
     if (segmentStartMsRef.current !== null) {
       elapsedBeforePauseMsRef.current += Date.now() - segmentStartMsRef.current;
@@ -59,10 +60,11 @@ const KnowledgeHarvestApp = () => {
     clearInterval(intervalRef.current);
     intervalRef.current = null;
     setRecordingTime(Math.min(MAX_RECORDING_SECONDS, Math.floor(elapsedBeforePauseMsRef.current / 1000)));
+    // stop() is asynchronous: the final dataavailable event precedes onstop.
+    // Keep this session active until its own onstop has assembled the blob.
+    stopPendingRef.current = true;
     recorder.stop();
     streamRef.current?.getTracks().forEach(track => track.stop());
-    setIsRecording(false);
-    setIsPaused(false);
   }, []);
 
   const startTimer = useCallback(() => {
@@ -77,7 +79,10 @@ const KnowledgeHarvestApp = () => {
   }, [stopRecording]);
 
   const startRecording = useCallback(async () => {
+    if (capturePendingRef.current || stopPendingRef.current || mediaRecorderRef.current) return;
+    capturePendingRef.current = true;
     let stream;
+    let mediaRecorder;
     try {
       setError(null);
       stream = await navigator.mediaDevices.getDisplayMedia({
@@ -86,18 +91,22 @@ const KnowledgeHarvestApp = () => {
       });
       
       streamRef.current = stream;
-      chunksRef.current = [];
+      // Data events must only write to the session that created them.
+      const chunks = [];
       
-      const mediaRecorder = new MediaRecorder(stream);
+      mediaRecorder = new MediaRecorder(stream);
       mediaRecorderRef.current = mediaRecorder;
       
       mediaRecorder.ondataavailable = (event) => {
         if (event.data.size > 0) {
-          chunksRef.current.push(event.data);
+          chunks.push(event.data);
         }
       };
       
       mediaRecorder.onstop = () => {
+        stream.getTracks().forEach(track => track.stop());
+        // A stale recorder must never reset another session's clock or blob.
+        if (mediaRecorderRef.current !== mediaRecorder) return;
         if (segmentStartMsRef.current !== null) {
           elapsedBeforePauseMsRef.current += Date.now() - segmentStartMsRef.current;
           segmentStartMsRef.current = null;
@@ -105,10 +114,12 @@ const KnowledgeHarvestApp = () => {
         }
         clearInterval(intervalRef.current);
         intervalRef.current = null;
-        stream.getTracks().forEach(track => track.stop());
+        streamRef.current = null;
+        mediaRecorderRef.current = null;
+        stopPendingRef.current = false;
         setIsRecording(false);
         setIsPaused(false);
-        const blob = new Blob(chunksRef.current, { type: 'video/webm' });
+        const blob = new Blob(chunks, { type: 'video/webm' });
         setRecordedBlob(blob);
         setShowMetadataForm(true);
       };
@@ -121,8 +132,12 @@ const KnowledgeHarvestApp = () => {
       startTimer();
 
     } catch (error) {
+      if (mediaRecorderRef.current === mediaRecorder) mediaRecorderRef.current = null;
+      if (streamRef.current === stream) streamRef.current = null;
       stream?.getTracks().forEach(track => track.stop());
       setError('Error accessing screen: ' + error.message);
+    } finally {
+      capturePendingRef.current = false;
     }
   }, [startTimer]);
 
