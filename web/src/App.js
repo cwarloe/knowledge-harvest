@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { Play, Square, Pause, Download, Upload, Search, Filter, AlertCircle } from 'lucide-react';
+import { durationForUpload, durationLabel } from './recordingDuration';
 
 const MAX_RECORDING_SECONDS = 15 * 60;
 
@@ -160,7 +161,8 @@ const KnowledgeHarvestApp = () => {
       formData.append('description', metadata.description);
       formData.append('tags', metadata.tags);
       formData.append('creator', 'Current User');
-      formData.append('duration', formatTime(recordingTime));
+      const duration = durationForUpload(recordingTime);
+      if (duration !== null) formData.append('duration', duration);
 
       const response = await fetch(`${API_BASE}/api/recordings`, {
         method: 'POST',
@@ -275,7 +277,7 @@ const KnowledgeHarvestApp = () => {
               <h2 className="text-2xl font-bold mb-2">{selectedRecording.title}</h2>
               <p className="text-gray-600 mb-4">
                 By {selectedRecording.creator} • {new Date(selectedRecording.created_at).toLocaleDateString()}
-                {selectedRecording.duration && ` • ${selectedRecording.duration}`}
+                {selectedRecording.duration && ` • ${durationLabel(selectedRecording.duration)}`}
               </p>
 
               {selectedRecording.description && (
@@ -521,7 +523,7 @@ const KnowledgeHarvestApp = () => {
                   <div className="p-4">
                     <h3 className="font-semibold text-lg mb-2">{recording.title}</h3>
                     <p className="text-gray-600 text-sm mb-3">
-                      By {recording.creator} • {new Date(recording.created_at).toLocaleDateString()} • {typeof recording.duration === 'string' ? recording.duration : 'Unknown'}
+                      By {recording.creator} • {new Date(recording.created_at).toLocaleDateString()} • {durationLabel(recording.duration)}
                     </p>
                     <div className="flex flex-wrap gap-1 mb-4">
                       {(recording.tags || []).map(tag => (
