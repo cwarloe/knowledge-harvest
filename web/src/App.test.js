@@ -107,4 +107,63 @@ describe('screen recording duration and cleanup', () => {
     await act(async () => { jest.advanceTimersByTime(901000); });
     expect(recorder.stop).not.toHaveBeenCalled();
   });
+
+  it('keeps the previous session active until delayed onstop finalizes its chunks', async () => {
+    // In real browsers stop() returns before the final dataavailable/onstop.
+    recorder.stop.mockImplementation(() => { recorder.state = 'inactive'; });
+    await click('Stop Recording');
+
+    expect(button('Start Recording')).toBeUndefined();
+    expect(button('Stop Recording')).toBeDefined();
+    await click('Stop Recording');
+    expect(recorder.stop).toHaveBeenCalledTimes(1);
+
+    await act(async () => {
+      recorder.ondataavailable({ data: new Blob(['synthetic-final-chunk']) });
+      recorder.onstop();
+    });
+    expect(container.textContent).toContain('Add Recording Details');
+  });
+
+  it('does not request screen access twice while permission is pending', async () => {
+    await click('Stop Recording');
+    await click('Cancel');
+    let releaseCapture;
+    const capturePending = new Promise((resolve) => { releaseCapture = resolve; });
+    navigator.mediaDevices.getDisplayMedia.mockImplementation(() => capturePending);
+
+    await click('Start Recording');
+    await click('Start Recording');
+    // One initial capture, one new capture; no second browser permission prompt.
+    expect(navigator.mediaDevices.getDisplayMedia).toHaveBeenCalledTimes(2);
+    await act(async () => { releaseCapture({ getTracks: () => [track] }); });
+    expect(container.textContent).toContain('Stop Recording');
+  });
+
+  it('ignores a stale stop callback after the next session has started', async () => {
+    const firstOnStop = recorder.onstop;
+    await click('Stop Recording');
+    await click('Cancel');
+
+    const nextTrack = { stop: jest.fn() };
+    navigator.mediaDevices.getDisplayMedia.mockResolvedValue({ getTracks: () => [nextTrack] });
+    const nextRecorder = {
+      state: 'inactive',
+      start: jest.fn(function () { this.state = 'recording'; }),
+      stop: jest.fn(function () { this.state = 'inactive'; this.onstop(); }),
+      pause: jest.fn(function () { this.state = 'paused'; }),
+      resume: jest.fn(function () { this.state = 'recording'; })
+    };
+    global.MediaRecorder.mockImplementation(() => nextRecorder);
+    await click('Start Recording');
+
+    await act(async () => { firstOnStop(); });
+    expect(button('Stop Recording')).toBeDefined();
+    expect(container.textContent).not.toContain('Add Recording Details');
+    expect(nextTrack.stop).not.toHaveBeenCalled();
+
+    await click('Stop Recording');
+    expect(nextRecorder.stop).toHaveBeenCalledTimes(1);
+    expect(nextTrack.stop).toHaveBeenCalled();
+  });
 });
