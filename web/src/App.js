@@ -1,6 +1,8 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { Play, Square, Pause, Download, Upload, Search, Filter, AlertCircle } from 'lucide-react';
 
+const MAX_RECORDING_SECONDS = 15 * 60;
+
 const KnowledgeHarvestApp = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
@@ -22,6 +24,8 @@ const KnowledgeHarvestApp = () => {
   const streamRef = useRef(null);
   const intervalRef = useRef(null);
   const chunksRef = useRef([]);
+  const elapsedBeforePauseMsRef = useRef(0);
+  const segmentStartMsRef = useRef(null);
 
   const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
@@ -44,19 +48,38 @@ const KnowledgeHarvestApp = () => {
   };
 
   const stopRecording = useCallback(() => {
-    if (mediaRecorderRef.current && isRecording) {
-      mediaRecorderRef.current.stop();
-      streamRef.current?.getTracks().forEach(track => track.stop());
-      clearInterval(intervalRef.current);
-      setIsRecording(false);
-      setIsPaused(false);
+    const recorder = mediaRecorderRef.current;
+    if (!recorder || recorder.state === 'inactive') return;
+
+    if (segmentStartMsRef.current !== null) {
+      elapsedBeforePauseMsRef.current += Date.now() - segmentStartMsRef.current;
+      segmentStartMsRef.current = null;
     }
-  }, [isRecording]);
+    clearInterval(intervalRef.current);
+    intervalRef.current = null;
+    setRecordingTime(Math.min(MAX_RECORDING_SECONDS, Math.floor(elapsedBeforePauseMsRef.current / 1000)));
+    recorder.stop();
+    streamRef.current?.getTracks().forEach(track => track.stop());
+    setIsRecording(false);
+    setIsPaused(false);
+  }, []);
+
+  const startTimer = useCallback(() => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      // Wall-clock active time does not drift when a browser throttles timer ticks.
+      const activeMs = elapsedBeforePauseMsRef.current +
+        (segmentStartMsRef.current === null ? 0 : Date.now() - segmentStartMsRef.current);
+      setRecordingTime(Math.min(MAX_RECORDING_SECONDS, Math.floor(activeMs / 1000)));
+      if (activeMs >= MAX_RECORDING_SECONDS * 1000) stopRecording();
+    }, 1000);
+  }, [stopRecording]);
 
   const startRecording = useCallback(async () => {
+    let stream;
     try {
       setError(null);
-      const stream = await navigator.mediaDevices.getDisplayMedia({
+      stream = await navigator.mediaDevices.getDisplayMedia({
         video: { mediaSource: 'screen' },
         audio: true
       });
@@ -74,44 +97,52 @@ const KnowledgeHarvestApp = () => {
       };
       
       mediaRecorder.onstop = () => {
+        if (segmentStartMsRef.current !== null) {
+          elapsedBeforePauseMsRef.current += Date.now() - segmentStartMsRef.current;
+          segmentStartMsRef.current = null;
+          setRecordingTime(Math.min(MAX_RECORDING_SECONDS, Math.floor(elapsedBeforePauseMsRef.current / 1000)));
+        }
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+        stream.getTracks().forEach(track => track.stop());
+        setIsRecording(false);
+        setIsPaused(false);
         const blob = new Blob(chunksRef.current, { type: 'video/webm' });
         setRecordedBlob(blob);
         setShowMetadataForm(true);
       };
       
       mediaRecorder.start();
+      elapsedBeforePauseMsRef.current = 0;
+      segmentStartMsRef.current = Date.now();
       setIsRecording(true);
       setRecordingTime(0);
-
-      intervalRef.current = setInterval(() => {
-        setRecordingTime(prev => {
-          if (prev >= 900) {
-            stopRecording();
-            return prev;
-          }
-          return prev + 1;
-        });
-      }, 1000);
+      startTimer();
 
     } catch (error) {
+      stream?.getTracks().forEach(track => track.stop());
       setError('Error accessing screen: ' + error.message);
     }
-  }, [stopRecording]);
+  }, [startTimer]);
 
   const pauseRecording = useCallback(() => {
-    if (mediaRecorderRef.current && isRecording) {
-      if (isPaused) {
-        mediaRecorderRef.current.resume();
-        intervalRef.current = setInterval(() => {
-          setRecordingTime(prev => prev + 1);
-        }, 1000);
-      } else {
-        mediaRecorderRef.current.pause();
-        clearInterval(intervalRef.current);
-      }
-      setIsPaused(!isPaused);
+    const recorder = mediaRecorderRef.current;
+    if (!recorder) return;
+    if (recorder.state === 'paused') {
+      recorder.resume();
+      segmentStartMsRef.current = Date.now();
+      startTimer();
+      setIsPaused(false);
+    } else if (recorder.state === 'recording') {
+      recorder.pause();
+      elapsedBeforePauseMsRef.current += Date.now() - segmentStartMsRef.current;
+      segmentStartMsRef.current = null;
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+      setRecordingTime(Math.min(MAX_RECORDING_SECONDS, Math.floor(elapsedBeforePauseMsRef.current / 1000)));
+      setIsPaused(true);
     }
-  }, [isRecording, isPaused]);
+  }, [startTimer]);
 
   const uploadRecording = async () => {
     if (!recordedBlob || !metadata.title.trim()) {
