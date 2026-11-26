@@ -14,6 +14,10 @@ Start with the [Capability Transfer Framework](docs/capability-transfer/README.m
 
 **Delivery status:** the framework is ready to use manually; the case workflow is specified, not implemented in the recording app.
 
+### Owner-only local recording pilot
+
+The opt-in [private local pilot](docs/private-local-pilot.md) protects recording metadata and raw video behind an owner session, uses separate synthetic-only database/storage, and binds the API to localhost. **It is not deployed or approved for real client recordings.** The ordinary development server remains anonymous and must not store sensitive data.
+
 ### Business and research docs
 
 - [Business hypothesis](docs/business-hypothesis.md)
