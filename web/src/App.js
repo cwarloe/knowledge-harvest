@@ -20,6 +20,9 @@ const KnowledgeHarvestApp = () => {
   const [uploading, setUploading] = useState(false);
   const [selectedRecording, setSelectedRecording] = useState(null);
   const [playbackUrl, setPlaybackUrl] = useState(null);
+  const [pilotMode, setPilotMode] = useState(false);
+  const [pilotAuthenticated, setPilotAuthenticated] = useState(true);
+  const [pilotToken, setPilotToken] = useState('');
 
   const mediaRecorderRef = useRef(null);
   const streamRef = useRef(null);
@@ -32,13 +35,57 @@ const KnowledgeHarvestApp = () => {
   const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
   useEffect(() => {
-    fetchRecordings();
+    const initialize = async () => {
+      try {
+        const status = await fetch(`${API_BASE}/api/pilot/status`, { credentials: 'include' });
+        if (status.ok) {
+          const pilot = await status.json();
+          if (pilot.pilot) {
+            setPilotMode(true);
+            setPilotAuthenticated(pilot.authenticated);
+            if (!pilot.authenticated) return;
+          }
+        }
+      } catch (_) {
+        // The ordinary development API does not expose the pilot status route.
+      }
+      fetchRecordings();
+    };
+    initialize();
   }, []);
+
+  const loginToPilot = async (event) => {
+    event.preventDefault();
+    try {
+      setError(null);
+      const response = await fetch(`${API_BASE}/api/pilot/login`, {
+        method: 'POST', credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ accessToken: pilotToken })
+      });
+      if (!response.ok) throw new Error(response.status === 429 ? 'Too many attempts; try later' : 'Access token rejected');
+      setPilotToken('');
+      setPilotAuthenticated(true);
+      fetchRecordings();
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const logoutOfPilot = async () => {
+    await fetch(`${API_BASE}/api/pilot/logout`, { method: 'POST', credentials: 'include' });
+    setRecordings([]);
+    setPlaybackUrl(null);
+    setSelectedRecording(null);
+    setCurrentView('browse');
+    setPilotAuthenticated(false);
+  };
 
   const fetchRecordings = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${API_BASE}/api/recordings`);
+      const response = await fetch(`${API_BASE}/api/recordings`, { credentials: 'include' });
+      if (response.status === 401 && pilotMode) setPilotAuthenticated(false);
       if (!response.ok) throw new Error('Failed to fetch recordings');
       const data = await response.json();
       setRecordings(data);
@@ -181,6 +228,7 @@ const KnowledgeHarvestApp = () => {
 
       const response = await fetch(`${API_BASE}/api/recordings`, {
         method: 'POST',
+        credentials: 'include',
         body: formData
       });
 
@@ -212,7 +260,7 @@ const KnowledgeHarvestApp = () => {
 
   const playRecording = async (recording) => {
     try {
-      const response = await fetch(`${API_BASE}/api/recordings/${recording.id}`);
+      const response = await fetch(`${API_BASE}/api/recordings/${recording.id}`, { credentials: 'include' });
       if (!response.ok) throw new Error('Failed to get video URL');
 
       const data = await response.json();
@@ -228,7 +276,7 @@ const KnowledgeHarvestApp = () => {
 
   const downloadRecording = async (recording) => {
     try {
-      const response = await fetch(`${API_BASE}/api/recordings/${recording.id}`);
+      const response = await fetch(`${API_BASE}/api/recordings/${recording.id}`, { credentials: 'include' });
       if (!response.ok) throw new Error('Failed to get download URL');
 
       const data = await response.json();
@@ -252,6 +300,23 @@ const KnowledgeHarvestApp = () => {
   });
 
   const allTags = [...new Set(recordings.flatMap(r => r.tags || []))];
+
+  if (pilotMode && !pilotAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
+        <form onSubmit={loginToPilot} className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+          <h1 className="text-2xl font-bold mb-3">Knowledge Harvest private pilot</h1>
+          <p className="text-gray-600 mb-4">Synthetic recordings only. Enter the local pilot access token.</p>
+          <label htmlFor="pilot-token" className="block mb-2">Access token</label>
+          <input id="pilot-token" type="password" autoComplete="off" value={pilotToken}
+            onChange={(event) => setPilotToken(event.target.value)}
+            className="w-full border rounded p-3 mb-4" required />
+          {error && <p className="text-red-700 mb-3" role="alert">{error}</p>}
+          <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">Unlock pilot</button>
+        </form>
+      </div>
+    );
+  }
 
   // Video Player View
   if (currentView === 'player' && selectedRecording && playbackUrl) {
@@ -424,12 +489,18 @@ const KnowledgeHarvestApp = () => {
               >
                 Browse
               </button>
+              {pilotMode && (
+                <button onClick={logoutOfPilot} className="px-4 py-2 rounded-lg text-gray-600 hover:text-gray-900">
+                  Log out
+                </button>
+              )}
             </nav>
           </div>
         </div>
       </header>
 
       <main className="max-w-7xl mx-auto px-6 py-8">
+        {pilotMode && <p className="mb-4 text-sm text-amber-900 bg-amber-100 rounded p-3">Private local pilot — synthetic test material only. No client recordings.</p>}
         {error && !showMetadataForm && (
           <div className="mb-6 p-3 bg-red-100 border border-red-300 rounded-lg flex items-center gap-2">
             <AlertCircle size={20} className="text-red-600" />

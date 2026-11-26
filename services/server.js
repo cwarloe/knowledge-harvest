@@ -4,18 +4,21 @@ const multer = require('multer');
 const { Pool } = require('pg');
 const path = require('path');
 const fs = require('fs');
+const { readPilotConfig, addPilotAccess } = require('./pilotAccess');
 require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3001;
+const defaultUploadsDir = path.join(__dirname, 'uploads');
+const pilotConfig = readPilotConfig(process.env, defaultUploadsDir);
 
 // Database connection
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
+  connectionString: pilotConfig ? pilotConfig.db : process.env.DATABASE_URL
 });
 
 // Ensure uploads directory exists
-const uploadsDir = path.join(__dirname, 'uploads');
+const uploadsDir = pilotConfig ? pilotConfig.uploadDir : defaultUploadsDir;
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
@@ -36,8 +39,9 @@ const upload = multer({
   limits: { fileSize: 100 * 1024 * 1024 } // 100MB limit
 });
 
-app.use(cors());
+app.use(cors(pilotConfig ? { origin: pilotConfig.origin, credentials: true } : {}));
 app.use(express.json());
+addPilotAccess(app, pilotConfig);
 
 // Serve uploaded files statically
 app.use('/uploads', express.static(uploadsDir));
@@ -198,8 +202,10 @@ app.delete('/api/recordings/:id', async (req, res) => {
 // Start the server only when run directly (`npm start`), so tests can
 // require the app without opening a port.
 if (require.main === module) {
-  app.listen(port, () => {
-    console.log(`Knowledge Harvest API running on port ${port}`);
+  // The private pilot is intentionally loopback-only. Review and explicit
+  // owner authorization are required before any remote deployment.
+  app.listen(port, pilotConfig ? '127.0.0.1' : undefined, () => {
+    console.log(`Knowledge Harvest API running on port ${port}${pilotConfig ? ' (local private pilot)' : ''}`);
   });
 }
 
