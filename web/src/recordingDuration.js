@@ -14,7 +14,8 @@ export function durationLabel(duration) {
   if (duration.years || duration.months) return 'Unknown';
 
   const fields = ['days', 'hours', 'minutes', 'seconds'];
-  if (!fields.some((key) => Object.prototype.hasOwnProperty.call(duration, key))) {
+  const provided = fields.filter((key) => Object.prototype.hasOwnProperty.call(duration, key));
+  if (!provided.length || provided.some((key) => duration[key] === null || duration[key] === undefined)) {
     return 'Unknown';
   }
   const parts = fields.map((key) => duration[key] ?? 0);
